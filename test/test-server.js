@@ -1,18 +1,23 @@
 const chai = require('chai');
 const chaiHTTP = require('chai-http');
-const {app} = require('../server');
+const faker = require('faker');
+const mongoose = require('mongoose');
+
+const {app, runServer, closeServer} = require('../server');
+const {TEST_DATABASE_URL} = require('../config');
 
 const should = chai.should();
 
 chai.use(chaiHTTP);
 
-describe('Server test', function() {
-	it('should give a 200 status upon set up', function() {
-		return chai.request(app)
-			.get('/')
-			.then(function(res) {
-				res.should.have.status(200);
-				res.should.be.html;
-			});
+//fake data seeding
+
+describe('set up an API environment for testing', function() {
+	before(function() {
+		return runServer(TEST_DATABASE_URL);
+	});
+
+	after(function() {
+		return closeServer();
 	});
 });
