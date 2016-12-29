@@ -11,7 +11,12 @@ const classSchema = mongoose.Schema({
 		studentId: String,
 		firstName: String,
 		lastName: String,
-		grades: Array
+		grades: [
+			{
+				work: String,
+				grade: String
+			}
+		]
 	}]
 });
 

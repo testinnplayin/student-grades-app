@@ -4,8 +4,8 @@
   "description": "an app that visualizes student grades",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-register",
-    "start": "babel . -d lib"
+    "test": "mocha",
+    "start": "node start"
   },
   "keywords": [
     "node",
