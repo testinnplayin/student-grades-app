@@ -13,6 +13,11 @@ chai.use(chaiHTTP);
 
 //fake data seeding
 
+function seedClassData() {
+	console.log('Seeding class info');
+	const seedData = 
+}
+
 describe('set up an API environment for testing', function() {
 	before(function() {
 		return runServer(TEST_DATABASE_URL);
