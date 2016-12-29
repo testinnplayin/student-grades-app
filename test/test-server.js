@@ -82,4 +82,18 @@ describe('set up an API environment for testing Class', function() {
 		return closeServer();
 	});
 
+	describe('GET verb at /classes', function() {
+		it('should return a list of all classes', function() {
+			let res;
+
+			return chai.request(app)
+				.get('/classes')
+				.then(function(_res) {
+					res = _res;
+					res.should.have.status(200);
+					res.body.classes.should.have.length.of(count);
+				});
+		});
+	});
+
 });
