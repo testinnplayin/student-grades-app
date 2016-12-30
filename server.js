@@ -38,6 +38,33 @@ app.get('/classes', (req, res) => {
 	});
 });
 
+//classes POST for Create operation
+
+app.post('/classes', (req, res) => {
+	const requiredFields = ['className', 'subject', 'gradeLevel', 'term'];
+
+	requiredFields.forEach(function(field) {
+		if(!(field in req.body && req.body[field])) {
+			return res.status(400).json({ message : `Please specify a value for ${field}`});
+		}
+	});
+
+	Klass
+		.create({
+			className: req.body.className,
+			subject: req.body.subject,
+			gradeLevel: req.body.gradeLevel,
+			term: req.body.term
+		})
+		.then(function(course) {
+			res.status(201).json(course.apiRepr());
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({ message : 'Internal server error, cannot create' });
+		});
+});
+
 //any use case
 
 app.use('*', function(req, res) {
