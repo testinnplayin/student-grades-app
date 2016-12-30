@@ -68,6 +68,6 @@ classSchema.methods.calculateClassAverage = function() {
 
 //add a method for getting teacher id later on
 
-const Class = mongoose.model('Class', classSchema);
+const Klass = mongoose.model('Klass', classSchema);
 
-module.exports = {Class};
+module.exports = {Klass};

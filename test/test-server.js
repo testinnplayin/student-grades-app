@@ -4,7 +4,7 @@ const faker = require('faker');
 const mongoose = require('mongoose');
 
 const {app, runServer, closeServer} = require('../server');
-const {Class} = require('../models');
+const {Klass} = require('../models');
 const {TEST_DATABASE_URL} = require('../config');
 
 const should = chai.should();
@@ -21,7 +21,7 @@ function seedClassData() {
 		seedData.push(generateClassData());
 	}
 
-	return Class.insertMany(seedData);
+	return Klass.insertMany(seedData);
 }
 
 function generateSomeData(fakeData) {
@@ -65,7 +65,7 @@ function tearDownDb() {
 	return mongoose.connection.dropDatabase();
 }
 
-describe('set up an API environment for testing Class', function() {
+describe('set up an API environment for testing Klass', function() {
 	before(function() {
 		return runServer(TEST_DATABASE_URL);
 	});
@@ -92,12 +92,35 @@ describe('set up an API environment for testing Class', function() {
 					res = _res;
 					res.should.have.status(200);
 					res.body.classes.should.have.length.of.at.least(1);
-					return Class.count();
+					return Klass.count();
 				})
 				.then(function(count) {
 					res.body.classes.should.have.length.of(count);
 				});
 		});
+
+		it('should return a class object with the right fields', function() {
+			let resClass;
+
+			return chai.request(app)
+				.get('/classes')
+				.then(function(res) {
+					res.should.have.status(200);
+					res.should.be.json;
+					res.body.classes.should.be.a('array');
+					res.body.classes.should.have.length.of.at.least(1);
+
+					res.body.classes.forEach(function(course) {
+						course.should.be.a('object');
+						course.should.include.keys('id', 'className', 'subject', 'gradeLevel', 'term');
+
+					});
+					resClass = res.body.classes[0];
+					return Klass.findById(resClass.id);
+				});
+		});
 	});
+
+
 
 });

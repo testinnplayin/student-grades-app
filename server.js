@@ -7,7 +7,7 @@ const morgan = require('morgan');
 // require('babel-core').transform("code", options);
 
 const {DATABASE_URL, PORT} = require('./config');
-const {Class} = require('./models');
+const {Klass} = require('./models');
 
 const app = express();
 
@@ -23,7 +23,7 @@ mongoose.Promise = global.Promise;
 //classes GET for Read operation
 
 app.get('/classes', (req, res) => {
-	Class
+	Klass
 	.find()
 	.limit(10)
 	.exec()
