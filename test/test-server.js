@@ -91,6 +91,10 @@ describe('set up an API environment for testing Class', function() {
 				.then(function(_res) {
 					res = _res;
 					res.should.have.status(200);
+					res.body.classes.should.have.length.of.at.least(1);
+					return Class.count();
+				})
+				.then(function(count) {
 					res.body.classes.should.have.length.of(count);
 				});
 		});

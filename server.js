@@ -18,6 +18,26 @@ app.use(morgan('common'));
 mongoose.Promise = global.Promise;
 
 
+//temporary place for API calls
+
+//classes GET for Read operation
+
+app.get('/classes', (req, res) => {
+	Class
+	.find()
+	.limit(10)
+	.exec()
+	.then(classes => {
+		res.json({
+			classes: classes.map((course) => course.apiRepr())
+		});
+	})
+	.catch(err => {
+		console.error(err);
+		res.status(500).json({ message : 'Internal server error' });
+	});
+});
+
 //any use case
 
 app.use('*', function(req, res) {
