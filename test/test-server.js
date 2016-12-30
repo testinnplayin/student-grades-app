@@ -121,6 +121,33 @@ describe('set up an API environment for testing Klass', function() {
 		});
 	});
 
+	describe('POST verb at /classes', function() {
+		it('should create a new class with the right fields', function() {
+			const newClass = generateClassData();
 
+			return chai.request(app)
+				.post('/classes')
+				.send(newClass)
+				.then(function(res) {
+					res.should.have.status(201);
+					res.should.be.json;
+					res.body.should.be.a('object');
+					res.body.should.include.keys('id', 'className', 'subject', 'gradeLevel', 'term');
+					res.body.id.should.not.be.null;
+					res.body.className.should.equal(newClass.className);
+					res.body.subject.should.equal(newClass.subject);
+					res.body.gradeLevel.should.equal(newClass.gradeLevel);
+					res.body.term.should.equal(newClass.term);
+
+					return Klass.findById(res.body.id);
+				})
+				.then(function(course) {
+					course.className.should.equal(newClass.className);
+					course.subject.should.equal(newClass.subject);
+					course.gradeLevel.should.equal(newClass.gradeLevel);
+					course.term.should.equal(newClass.term);
+				});
+		});
+	});
 
 });
