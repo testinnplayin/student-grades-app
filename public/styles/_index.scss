@@ -1,0 +1,14 @@
+$container-width: 100%;
+$head-foot-color: #eee;
+$border-styles: 1px solid #000;
+
+.main-content {
+	.content-container {
+		border: $border-styles;
+	}
+}
+
+footer {
+	background: $head-foot-color;
+	border-top: $border-styles;
+}
