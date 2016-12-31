@@ -65,6 +65,21 @@ app.post('/classes', (req, res) => {
 		});
 });
 
+//classes DELETE for Delete operation
+
+app.delete('/classes/:id', (req, res) => {
+	Klass
+		.findByIdAndRemove(req.params.id)
+		.exec()
+		.then(function(course) {
+			res.status(204).end();
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({ message : 'Internal server error, cannot delete' });
+		});
+});
+
 //any use case
 
 app.use('*', function(req, res) {
