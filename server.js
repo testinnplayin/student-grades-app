@@ -80,6 +80,36 @@ app.delete('/classes/:id', (req, res) => {
 		});
 });
 
+//classes PUT for Update operation
+
+app.put('/classes/:id', (req, res) => {
+	if (!(req.params.id && req.body.id && (req.params.id === req.body.id))) {
+		const msg = `Request path id parameter ${req.params.id} and the request body id ${req.body.id} must match`;
+		console.error(msg);
+		res.status(400).json({ message : msg });
+	}
+
+	const forUpdating = {};
+	const updateFields = ['className', 'subject', 'gradeLevel', 'term'];
+
+	updateFields.forEach(field => {
+		if (field in req.body) {
+			forUpdating[field] = req.body[field];
+		}
+	});
+
+	Klass
+		.findByIdAndUpdate(req.params.id, { $set : forUpdating })
+		.exec()
+		.then(function(course) {
+			res.status(204).end();
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({ message : 'Internal server error, cannot update'});
+		});
+});
+
 //any use case
 
 app.use('*', function(req, res) {
