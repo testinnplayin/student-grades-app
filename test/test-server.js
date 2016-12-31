@@ -171,4 +171,33 @@ describe('set up an API environment for testing Klass', function() {
 		});
 	});
 
+	describe('PUT verb at /classes/:id', function() {
+		it('should update a class with the fields you send', function() {
+			const updateKlass = {
+				className : 'Engrish1',
+				subject : 'Engrish'
+			};
+
+			return Klass
+				.findOne()
+				.exec()
+				.then(function(course) {
+					updateKlass.id = course.id;
+
+					return chai.request(app)
+						.put(`/classes/${course.id}`)
+						.send(updateKlass);
+				})
+				.then(function(res) {
+					res.should.have.status(204);
+
+					return Klass.findById(updateKlass.id).exec();
+				})
+				.then(function(course) {
+					course.className.should.equal(updateKlass.className);
+					course.subject.should.equal(updateKlass.subject);
+				});
+		});
+	});
+
 });
