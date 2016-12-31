@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-// require('babel-core').transform("code", options);
+const babel = require('babel-core');
 
 const {DATABASE_URL, PORT} = require('./config');
 const {Klass} = require('./models');
@@ -62,6 +62,21 @@ app.post('/classes', (req, res) => {
 		.catch(err => {
 			console.error(err);
 			res.status(500).json({ message : 'Internal server error, cannot create' })
+		});
+});
+
+//classes DELETE for Delete operation
+
+app.delete('/classes/:id', (req, res) => {
+	Klass
+		.findByIdAndRemove(req.params.id)
+		.exec()
+		.then(function(course) {
+			res.status(204).end();
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({ message : 'Internal server error, cannot delete' });
 		});
 });
 

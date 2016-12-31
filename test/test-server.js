@@ -150,4 +150,25 @@ describe('set up an API environment for testing Klass', function() {
 		});
 	});
 
+	describe('DELETE verb at /classes/:id', function() {
+		it('should delete a class', function() {
+			let course;
+
+			return Klass
+				.findOne()
+				.exec()
+				.then(function(_course) {
+					course = _course;
+					return chai.request(app).delete(`/classes/${course.id}`);
+				})
+				.then(function(res) {
+					res.should.have.status(204);
+					return Klass.findById(course.id).exec();
+				})
+				.then(function(_course) {
+					should.not.exist(_course);
+				});
+		});
+	});
+
 });
