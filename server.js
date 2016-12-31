@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-// require('babel-core').transform("code", options);
+const babel = require('babel-core');
 
 const {DATABASE_URL, PORT} = require('./config');
 const {Klass} = require('./models');

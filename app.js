@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 
 // var MOCK_DATA = {
 // 	"classes" : [
@@ -144,3 +144,5 @@
 
 // $(document).ready(getAndDisplayInfo);
 
+let x = "pig";
+console.log(x);
