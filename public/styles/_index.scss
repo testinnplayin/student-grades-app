@@ -1,10 +1,65 @@
+@mixin links ($link, $hover, $active) {
+	& {
+		color: $link;
+		&:hover {
+			color: $hover;
+		}
+		&:active, &:focus {
+			color: $active;
+		}
+	}
+}
+
 $container-width: 100%;
 $head-foot-color: #eee;
 $border-styles: 1px solid #000;
+$text-center: center;
+$border-rad: 5px;
 
-.main-content {
-	.content-container {
-		border: $border-styles;
+h1 {
+	text-align: $text-center;
+	margin-bottom: 30px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.navbar {
+	border-bottom: $border-styles;
+}
+
+.nav-stacked li a {
+	padding: 10px 20px;
+	border: $border-styles;
+	margin-top: 5px;
+	background: $head-foot-color;
+	border-radius: $border-rad;	
+}
+
+.navbar-nav li a {
+	@include links(#bbb, #fff, #eee);
+}
+
+.nav-stacked li a:last-child {
+	margin-left: 15px;
+}
+
+.nav-stacked li a:first-child {
+	margin-top: 5px;
+}
+
+.selected {
+	background: #222;
+}
+
+main {
+	padding: 20px 0 75px 0;
+	.main-content {
+		.content-container {
+			border: $border-styles;
+			h3 {
+				padding-left: 15px;
+			}
+		}
 	}
 }
 
