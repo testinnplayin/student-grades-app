@@ -39,7 +39,8 @@ h1 {
 	@include links(#bbb, #fff, #eee);
 }
 
-.nav-stacked li a:last-child {
+.nav-stacked li a:last-child,
+.navbar-text {
 	margin-left: 15px;
 }
 
