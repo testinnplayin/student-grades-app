@@ -23,6 +23,10 @@ mongoose.Promise = global.Promise;
 //classes GET for Read operation
 
 app.get('/classes', (req, res) => {
+	res.sendFile(__dirname + '/public/index.html');
+});
+
+app.get('/classes', (req, res) => {
 	Klass
 	.find()
 	.limit(10)

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="studentGrades">
 <head>
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
@@ -9,86 +9,89 @@
 	<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
 	<link rel="stylesheet" href="styles/main.css" type="text/css" />
 </head>
-<body>
-	<header>
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false"></button>
-					<span class="sr-only">Toggle navigation bar</span>
-					<a href="#" class="navbar-brand">Student Grades App</a>
-				</div>
-				<div class="collapse navbar-collapse" id="collapsable-nav">
-					<ul class="navbar-nav nav nav-stacked">
-						<li role="presentation"><a href="#" class="active selected">Classes<span class="sr-only">current</span></a></li>
-						<li role="presentation"><a href="#">Students</a></li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li role="presentation"><p class="navbar-text">Signed in as <a href="#">The Dude</a></p></li>						
-					</ul>
-				</div>
-				
-			</div>
-		</nav>	
-	</header>
-
-	<main>
-		<div class="container">
-			<section class="title-stuff">
-				<h1>Student Grade App</h1>
-			</section>
-			<section class="main-content">
-				<div class="alert alert-info alert-dismissible" role="alert">
-					<button class="close" type="button" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					Where alerts will go
-				</div>
-				<div class="content-container">
-					<h3>List of Classes</h3>
-					<div class="class-list list-group">
-							<a href="#" class="list-group-item">Class Name: Chem1, subject: Chemistry, Grade Level: 6th, Term: Spring, 2017</a>
-							<a href="#" class="list-group-item">Class Name: Chem2, subject: Chemistry, Grade Level: 7th, Term: Spring, 2017</a>
-							<a href="#" class="list-group-item">Class Name: Phys1, subject: Physics, Grade Level: 8th, Term: Fall, 2016</a>
-							<a href="#" class="list-group-item">Class Name: Geography1, subject: Geography, Grade Level: 7th, Term: Spring, 2016</a>
+	<body ng-controller="mainController">
+		<header>
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false"></button>
+						<span class="sr-only">Toggle navigation bar</span>
+						<a href="#" class="navbar-brand">Student Grades App</a>
 					</div>
-				</div>
-			</section>
-		</div>
-	</main>
-
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-4">
-					<ul class="nav">
-						<li><p>By R. Wood, 2016</p></li>
-					</ul>
+					<div class="collapse navbar-collapse" id="collapsable-nav">
+						<ul class="navbar-nav nav nav-stacked">
+							<li role="presentation"><a href="#" class="active selected">Classes<span class="sr-only">current</span></a></li>
+							<li role="presentation"><a href="#">Students</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li role="presentation"><p class="navbar-text">Signed in as <a href="#">The Dude</a></p></li>						
+						</ul>
+					</div>
 					
 				</div>
-				<div class="col-xs-4">
-					<p>Powered by:</p>
-					<ul class="nav">
-						<li><a href="#">jQuery</a></li>
-						<li><a href="#">Bootstrap</a></li>
-						<li><a href="#">Node.js</a></li>
-						<li><a href="#">Express</a></li>
-					</ul>
-				</div>
-				<div class="col-xs-4">
-					<p>Thanks to:</p>
-					<ul class="nav">
-						<li><a href="#">Glyphicon</a></li>
-					</ul>
+			</nav>	
+		</header>
+
+		<main>
+			<div class="container">
+				<section class="title-stuff">
+					<h1>Student Grade App</h1>
+				</section>
+				<section class="main-content">
+					<div class="alert alert-info alert-dismissible" role="alert">
+						<button class="close" type="button" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						Where alerts will go
+					</div>
+					<div class="content-container">
+						<h3>List of Classes</h3>
+						<div class="class-list list-group js-class-list" ng-repeat="klass in klasses">
+							<!-- Where data will load -->
+							<li class="list-group-item">Class Name: {{klass.className}} Subject: {{klass.subject}} Grade Level: {{klass.gradeLevel}} Term: {{klass.term}}</li>
+						</div>
+					</div>
+				</section>
+			</div>
+		</main>
+
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-4">
+						<ul class="nav">
+							<li><p>By R. Wood, 2016</p></li>
+						</ul>
+						
+					</div>
+					<div class="col-xs-4">
+						<p>Powered by:</p>
+						<ul class="nav">
+							<li><a href="#">jQuery</a></li>
+							<li><a href="#">Bootstrap</a></li>
+							<li><a href="#">Node.js</a></li>
+							<li><a href="#">Express</a></li>
+						</ul>
+					</div>
+					<div class="col-xs-4">
+						<p>Thanks to:</p>
+						<ul class="nav">
+							<li><a href="#">Glyphicon</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
-		</div>
-	</footer>
-	<!-- SCRIPTS -->
-	<!-- Libraries -->
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous" type="text/javascript"></script>
-	<!-- Custom scripts -->
-	<script src="../app.js" type="text/javascript"></script>
-</body>
+		</footer>
+		<!-- SCRIPTS -->
+		<!-- Libraries -->
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous" type="text/javascript"></script>
+		<script src="../node_modules/angular/angular.min.js" type="text/javascript"></script>
+		<script src="../node_modules/angular-route/angular-route.min.js" type="text/javascript"></script>
+		<!-- Custom scripts -->
+		<script src="scripts/app.js" type="text/javascript"></script>
+		<script src="scripts/mainController.js" type="text/javascript"></script>
+		<script src="scripts/class-routes.js" type="text/javascript"></script>
+
+	</body>
 </html>
