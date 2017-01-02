@@ -23,6 +23,16 @@ $border-styles: 1px solid #000;
 $text-center: center;
 $border-rad: 5px;
 $break-small: 740px;
+$hund-height: 100%;
+$main-margin: 50px;
+
+html {
+	min-height: $hund-height;
+}
+
+body {
+	height: $hund-height;
+}
 
 h1 {
 	text-align: $text-center;
@@ -71,6 +81,7 @@ h1 {
 
 main {
 	padding: 20px 0 75px 0;
+	margin-bottom: $main-margin;
 	.main-content {
 		.content-container {
 			border: $border-styles;
@@ -89,4 +100,5 @@ main {
 footer {
 	background: $head-foot-color;
 	border-top: $border-styles;
+	margin-top: $main-margin;
 }
