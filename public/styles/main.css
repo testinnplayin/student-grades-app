@@ -1,6 +1,4 @@
-html {
-  min-height: 100%; }
-
+html,
 body {
   height: 100%; }
 
@@ -42,9 +40,16 @@ h1 {
 .selected {
   background: #222; }
 
+.col-xs-4 li {
+  margin-left: -10px; }
+
 main {
   padding: 20px 0 75px 0;
-  margin-bottom: 50px; }
+  margin-bottom: 50px;
+  min-height: 100%; }
+  main:after {
+    content: "";
+    display: block; }
   main .main-content .content-container {
     border: 1px solid #000;
     border-radius: 5px; }
@@ -59,3 +64,8 @@ footer {
   background: #eee;
   border-top: 1px solid #000;
   margin-top: 50px; }
+  footer .container {
+    margin-top: 20px;
+    margin-left: 10px; }
+    footer .container .col-xs-4 li {
+      margin-left: -10px; }

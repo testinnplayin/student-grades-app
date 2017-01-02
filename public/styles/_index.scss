@@ -26,10 +26,7 @@ $break-small: 740px;
 $hund-height: 100%;
 $main-margin: 50px;
 
-html {
-	min-height: $hund-height;
-}
-
+html,
 body {
 	height: $hund-height;
 }
@@ -79,9 +76,20 @@ h1 {
 	background: #222;
 }
 
+.col-xs-4 {
+	li {
+		margin-left: -10px;
+	}
+}
+
 main {
 	padding: 20px 0 75px 0;
 	margin-bottom: $main-margin;
+	min-height: $hund-height;
+	&:after {
+		content: "";
+		display: block;
+	}
 	.main-content {
 		.content-container {
 			border: $border-styles;
@@ -101,4 +109,13 @@ footer {
 	background: $head-foot-color;
 	border-top: $border-styles;
 	margin-top: $main-margin;
+	.container {
+		margin-top: 20px;
+		margin-left: 10px;
+		.col-xs-4 {
+			li {
+				margin-left: -10px;
+			}
+		}
+	}
 }
