@@ -6,6 +6,7 @@ app.config(function($routeProvider) {
 	$routeProvider
 	.when('/classes', {
 		controller: 'mainController',
+		templateUrl: 'views/class-list-template.html'
 	})
 });
 

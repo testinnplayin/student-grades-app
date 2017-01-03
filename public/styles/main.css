@@ -18,6 +18,10 @@ h1 {
     border: 1px solid #000;
     background: #eee;
     border-radius: 5px; }
+  .nav-stacked li .selected {
+    background: #222; }
+    .nav-stacked li .selected:link {
+      color: #fff; }
 
 .navbar-nav li a {
   color: #bbb; }
@@ -37,9 +41,6 @@ h1 {
 .nav-stacked > li + li {
   margin-top: 5px; }
 
-.selected {
-  background: #222; }
-
 .col-xs-4 li {
   margin-left: -10px; }
 
@@ -55,10 +56,12 @@ main {
     border-radius: 5px; }
     main .main-content .content-container h3 {
       padding-left: 15px; }
-    main .main-content .content-container .class-list {
+    main .main-content .content-container .class-list li {
       background: #eee; }
-      main .main-content .content-container .class-list:hover, main .main-content .content-container .class-list:focus {
+      main .main-content .content-container .class-list li:hover, main .main-content .content-container .class-list li:focus {
         background: #bbb; }
+      main .main-content .content-container .class-list li .btn-danger {
+        margin-left: 15px; }
 
 footer {
   background: #eee;
