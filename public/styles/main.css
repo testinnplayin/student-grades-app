@@ -1,3 +1,24 @@
+main .main-content .content-container .class-list li {
+  background: #eee; }
+  main .main-content .content-container .class-list li:hover, main .main-content .content-container .class-list li:focus {
+    background: #bbb; }
+  main .main-content .content-container .class-list li .btn-danger {
+    margin-left: 15px; }
+
+main .main-content .content-container {
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: #eee; }
+  main .main-content .content-container h3 {
+    padding-left: 15px; }
+  main .main-content .content-container form {
+    margin: 15px 5px; }
+    main .main-content .content-container form .form-group label {
+      margin-top: 5px; }
+    main .main-content .content-container form #submit-btn {
+      display: block;
+      margin: 15px auto; }
+
 html,
 body {
   height: 100%; }
@@ -56,12 +77,6 @@ main {
     border-radius: 5px; }
     main .main-content .content-container h3 {
       padding-left: 15px; }
-    main .main-content .content-container .class-list li {
-      background: #eee; }
-      main .main-content .content-container .class-list li:hover, main .main-content .content-container .class-list li:focus {
-        background: #bbb; }
-      main .main-content .content-container .class-list li .btn-danger {
-        margin-left: 15px; }
 
 footer {
   background: #eee;
