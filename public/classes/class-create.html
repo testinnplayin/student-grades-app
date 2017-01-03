@@ -5,9 +5,9 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title>Student Grade App</title>
-		<link rel="stylesheet" href="styles/normalize.css" type="text/css" />
+		<link rel="stylesheet" href="../styles/normalize.css" type="text/css" />
 		<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
-		<link rel="stylesheet" href="styles/main.css" type="text/css" />
+		<link rel="stylesheet" href="../styles/main.css" type="text/css" />
 	</head>
 	<body ng-controller="mainController">
 		<header>
@@ -20,7 +20,7 @@
 					</div>
 					<div class="collapse navbar-collapse" id="collapsable-nav">
 						<ul class="navbar-nav nav nav-stacked">
-							<li role="presentation"><a href="/" class="active selected">Classes<span class="sr-only">current</span></a></li>
+							<li role="presentation"><a href="/">Classes</a></li>
 							<li role="presentation"><a href="#">Students</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
@@ -36,7 +36,6 @@
 			<div class="container">
 				<section class="title-stuff">
 					<h1>Student Grade App</h1>
-					<a href="classes/create" class="btn btn-danger" role="button">Add a Class</a>
 				</section>
 				<section class="main-content">
 					<div class="alert alert-info alert-dismissible" role="alert">
@@ -45,7 +44,7 @@
 						</button>
 						Where alerts will go
 					</div>
-					<div class="content-container" ng-include="'/views/class-list-template.html'">
+					<div class="content-container" ng-include="'/views/class-creation-template.html'">
 						<!-- LOAD DATA HERE -->
 					</div>
 				</section>
@@ -86,9 +85,9 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js" type="text/javascript"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js" type="text/javascript"></script>
 		<!-- Custom scripts -->
-		<script src="scripts/app.js" type="text/javascript"></script>
-		<script src="scripts/mainController.js" type="text/javascript"></script>
-		<script src="scripts/classes-routes.js" type="text/javascript"></script>
-		<script src="scripts/classes-service.js" type="text/javascript"></script>
+		<script src="../scripts/app.js" type="text/javascript"></script>
+		<script src="../scripts/mainController.js" type="text/javascript"></script>
+		<script src="../scripts/classes-routes.js" type="text/javascript"></script>
+		<script src="../scripts/classes-service.js" type="text/javascript"></script>
 	</body>
 </html>

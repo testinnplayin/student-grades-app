@@ -24,7 +24,7 @@ mongoose.Promise = global.Promise;
 //classes GET for Read operation
 
 app.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname,'index.html'));
+	res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.get('/classes', (req, res) => { //classes.data
@@ -44,6 +44,10 @@ app.get('/classes', (req, res) => { //classes.data
 });
 
 //classes POST for Create operation
+
+app.get('/classes/create', (req, res) => {
+	res.sendFile(__dirname + '/public/classes/class-create.html');
+});
 
 app.post('/classes', (req, res) => {
 	const requiredFields = ['className', 'subject', 'gradeLevel', 'term'];
