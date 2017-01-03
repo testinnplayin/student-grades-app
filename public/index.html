@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="studentGrades">
-<head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<title>Student Grade App</title>
-	<link rel="stylesheet" href="styles/normalize.css" type="text/css" />
-	<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
-	<link rel="stylesheet" href="styles/main.css" type="text/css" />
-</head>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>Student Grade App</title>
+		<link rel="stylesheet" href="styles/normalize.css" type="text/css" />
+		<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+		<link rel="stylesheet" href="styles/main.css" type="text/css" />
+	</head>
 	<body ng-controller="mainController">
 		<header>
 			<nav class="navbar navbar-default">
@@ -45,7 +45,7 @@
 						Where alerts will go
 					</div>
 					<div class="content-container">
-						<h3>List of Classes</h3>
+						<h3>List of Classes {{Math.round(12.7)}}</h3>
 						<div class="class-list list-group js-class-list" ng-repeat="klass in klasses">
 							<!-- Where data will load -->
 							<li class="list-group-item">Class Name: {{klass.className}} Subject: {{klass.subject}} Grade Level: {{klass.gradeLevel}} Term: {{klass.term}}</li>
@@ -86,12 +86,12 @@
 		<!-- Libraries -->
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous" type="text/javascript"></script>
-		<script src="../node_modules/angular/angular.min.js" type="text/javascript"></script>
-		<script src="../node_modules/angular-route/angular-route.min.js" type="text/javascript"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js" type="text/javascript"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js" type="text/javascript"></script>
 		<!-- Custom scripts -->
 		<script src="scripts/app.js" type="text/javascript"></script>
 		<script src="scripts/mainController.js" type="text/javascript"></script>
-		<script src="scripts/class-routes.js" type="text/javascript"></script>
-
+		<script src="scripts/classes-routes.js" type="text/javascript"></script>
+		<script src="scripts/classes-service.js" type="text/javascript"></script>
 	</body>
 </html>
