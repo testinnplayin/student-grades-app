@@ -22,11 +22,11 @@ mongoose.Promise = global.Promise;
 
 //classes GET for Read operation
 
-app.get('/classes', (req, res) => {
+app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/public/index.html');
 });
 
-app.get('/classes', (req, res) => {
+app.get('/classes', (req, res) => { //classes.data
 	Klass
 	.find()
 	.limit(10)

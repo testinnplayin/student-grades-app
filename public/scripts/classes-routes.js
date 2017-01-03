@@ -18,3 +18,9 @@ app.config(function($routeProvider) {
 // $routeProvider.when('/project/:projectId', {
 //     controller: ProjectCtrl
 // });
+
+// $routeProvider
+//     .when('/classes', {
+//         controller: 'mainController',
+//     })
+//    .when('/students/:id',{ controller:'studentController'})
