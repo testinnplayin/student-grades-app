@@ -24,6 +24,12 @@ h1 {
 		background: $head-foot-color;
 		border-radius: $border-rad;	
 	}
+	.selected{
+		background: $selected-background;
+		&:link {
+			color: $selected-color;
+		}
+	}
 }
 
 
@@ -46,9 +52,6 @@ h1 {
 	margin-top: 5px;
 }
 
-.selected {
-	background: #222;
-}
 
 .col-xs-4 {
 	li {
@@ -72,7 +75,7 @@ main {
 				padding-left: 15px;
 			}
 
-			.class-list {
+			.class-list li {
 				@include lists(#eee, #bbb);
 			}
 		}
