@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const babel = require('babel-core');
+const path = require('path');
 
 const {DATABASE_URL, PORT} = require('./config');
 const {Klass} = require('./models');
@@ -23,7 +24,7 @@ mongoose.Promise = global.Promise;
 //classes GET for Read operation
 
 app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/public/index.html');
+	res.sendFile(path.join(__dirname,'index.html'));
 });
 
 app.get('/classes', (req, res) => { //classes.data

@@ -3,7 +3,7 @@ app.service("Klasses", function($http) {
 			console.log('!');
 			return $http({
 				method: 'GET',
-				url: '/classes' //classes.data
+				url: '/classes'
 			})
 			.then(function successCallback(response) {
 				console.log('good response');

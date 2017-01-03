@@ -60,6 +60,8 @@ main {
       background: #eee; }
       main .main-content .content-container .class-list li:hover, main .main-content .content-container .class-list li:focus {
         background: #bbb; }
+      main .main-content .content-container .class-list li .btn-danger {
+        margin-left: 15px; }
 
 footer {
   background: #eee;
