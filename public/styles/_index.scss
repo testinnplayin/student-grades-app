@@ -1,0 +1,28 @@
+@mixin links ($link, $hover, $active) {
+	& {
+		color: $link;
+		&:hover {
+			color: $hover;
+		}
+		&:active, &:focus {
+			color: $active;
+		}
+	}
+}
+
+@mixin lists ($normal, $hover) {
+	background: $normal;
+	&:hover, &:focus {
+		background: $hover;
+	}
+}
+
+$container-width: 100%;
+$head-foot-color: #eee;
+$border-styles: 1px solid #000;
+$text-center: center;
+$border-rad: 5px;
+$break-small: 740px;
+$hund-height: 100%;
+$main-margin: 50px;
+

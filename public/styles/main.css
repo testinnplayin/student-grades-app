@@ -1,0 +1,71 @@
+html,
+body {
+  height: 100%; }
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: bold; }
+
+.navbar {
+  border-bottom: 1px solid #000; }
+
+.nav-stacked li {
+  margin: 5px 0; }
+  .nav-stacked li a {
+    padding: 10px 20px;
+    border: 1px solid #000;
+    background: #eee;
+    border-radius: 5px; }
+
+.navbar-nav li a {
+  color: #bbb; }
+  .navbar-nav li a:hover {
+    color: #fff; }
+  .navbar-nav li a:active, .navbar-nav li a:focus {
+    color: #eee; }
+
+.nav-stacked li a:last-child,
+.navbar-text {
+  margin-left: 15px; }
+
+@media screen and (min-width: 740px) {
+  .navbar-stacked li:last-child {
+    margin-top: 5px; } }
+
+.nav-stacked > li + li {
+  margin-top: 5px; }
+
+.selected {
+  background: #222; }
+
+.col-xs-4 li {
+  margin-left: -10px; }
+
+main {
+  padding: 20px 0 75px 0;
+  margin-bottom: 50px;
+  min-height: 100%; }
+  main:after {
+    content: "";
+    display: block; }
+  main .main-content .content-container {
+    border: 1px solid #000;
+    border-radius: 5px; }
+    main .main-content .content-container h3 {
+      padding-left: 15px; }
+    main .main-content .content-container .class-list {
+      background: #eee; }
+      main .main-content .content-container .class-list:hover, main .main-content .content-container .class-list:focus {
+        background: #bbb; }
+
+footer {
+  background: #eee;
+  border-top: 1px solid #000;
+  margin-top: 50px; }
+  footer .container {
+    margin-top: 20px;
+    margin-left: 10px; }
+    footer .container .col-xs-4 li {
+      margin-left: -10px; }
