@@ -11,6 +11,8 @@ main .main-content .content-container {
   background: #eee; }
   main .main-content .content-container h3 {
     padding-left: 15px; }
+  main .main-content .content-container p {
+    margin-left: 5px; }
   main .main-content .content-container form {
     margin: 15px 5px; }
     main .main-content .content-container form .form-group label {
