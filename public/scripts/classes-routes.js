@@ -6,15 +6,14 @@ app.config(function($routeProvider) {
 	$routeProvider
 	.when('/', {
 		controller: 'mainController',
-		templateUrl: 'views/class-list-template'
+		templateUrl: '../views/class-list-template.html'
 	})
 	.when('/classes', {
 		controller: 'mainController',
-		templateUrl: 'views/class-list-template.html'
+		templateUrl: '../views/class-list-template.html'
 	})
 	.when('/classes/create', {
-		controller: 'mainController',
-		templateUrl: 'views/class-creation-template.html'
+		controller: 'classCreateController'
 	});
 });
 

@@ -14,19 +14,4 @@ app.service("Klasses", function($http) {
 				return response;
 			});
 		};
-
-		this.createKlasses = function() {
-			console.log('creating');
-			return $http({
-				method: 'POST',
-				url: '/classes/:id'
-			})
-			.then(function successCallback(response) {
-				console.log('good response');
-				return response;
-			}, function errorCallback(response) {
-				console.error('bad response ' + response);
-				return response;
-			});
-		};
 });
