@@ -76,6 +76,10 @@ app.post('/classes', (req, res) => {
 
 //classes DELETE for Delete operation
 
+app.get('classes/delete', (req, res) => {
+	res.sendFile(__dirname + 'public/classes/class-delete.html');
+});
+
 app.delete('/classes/:id', (req, res) => {
 	Klass
 		.findByIdAndRemove(req.params.id)
@@ -90,6 +94,10 @@ app.delete('/classes/:id', (req, res) => {
 });
 
 //classes PUT for Update operation
+
+app.get('/classes/edit', (req, res) => {
+	res.sendFile(__dirname + '/public/classes/class-edit.html');
+});
 
 app.put('/classes/:id', (req, res) => {
 	if (!(req.params.id && req.body.id && (req.params.id === req.body.id))) {

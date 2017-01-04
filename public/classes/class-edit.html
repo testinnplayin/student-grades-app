@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<title>Create Class | Student Grade App</title>
+		<title>Edit Class | Student Grade App</title>
 		<link rel="stylesheet" href="../styles/normalize.css" type="text/css" />
 		<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
 		<link rel="stylesheet" href="../styles/main.css" type="text/css" />
@@ -16,7 +16,7 @@
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false"></button>
 						<span class="sr-only">Toggle navigation bar</span>
-						<a href="#" class="navbar-brand">Student Grades App</a>
+						<a href="/" class="navbar-brand">Student Grades App</a>
 					</div>
 					<div class="collapse navbar-collapse" id="collapsable-nav">
 						<ul class="navbar-nav nav nav-stacked">
@@ -45,8 +45,9 @@
 						Where alerts will go
 					</div>
 					<div class="content-container">
-						<h3>Create New Class</h3>
-						<form method="post" action="/classes" ng-controller="classCreateController">
+						<h3>Edit Class</h3>
+						<p>Class Name: Chem4 Subject: Chemistry Grade Level: 6th Term: Spring, 2017</p>
+						<form method="put" action="/classes/:id" ng-controller="classEditController">
 							<div class="form-group">
 								<label for="className">Class Name:</label>
 								<input type="text" class="form-control" id="className" placeholder="Enter Class Name" ng-model="className" />
@@ -63,7 +64,7 @@
 								<label for="term">Term:</label>
 								<input type="text" class="form-control" id="term" placeholder="Enter Term (eg. Spring, 2016)" ng-model="term" />
 							</div>
-							<button class="btn btn-primary" id="submit-btn" type="submit">Create Class</button>
+							<button class="btn btn-primary" id="submit-btn" type="submit">Edit Class</button>
 						</form>
 					</div>
 				</section>
@@ -105,7 +106,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js" type="text/javascript"></script>
 		<!-- Custom scripts -->
 		<script src="../scripts/app.js" type="text/javascript"></script>
-		<script src="../scripts/controllers/classCreateController.js" type="text/javascript"></script>
+		<script src="../scripts/controllers/classEditController.js" type="text/javascript"></script>
 		<script src="../scripts/classes-routes.js" type="text/javascript"></script>
 	</body>
 </html>
