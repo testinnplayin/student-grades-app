@@ -16,7 +16,7 @@ app.controller('classCreateController', ['$scope', '$http', function($scope, $ht
 			gradeLevel: gradeLevel,
 			term: term
 		};
-		console.log($scope.klass);
+		console.log(klassObj);
 
 		function returnKlass(klass) {
 			return $http.post('/classes', klass)
