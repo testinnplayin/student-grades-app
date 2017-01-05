@@ -5,32 +5,38 @@ app.controller('classCreateController', ['$scope', '$http', function($scope, $ht
 		e.preventDefault();
 		e.stopPropagation();
 
-		let className = $scope.className,
-		subject = $scope.subject,
-		gradeLevel = $scope.gradeLevel,
-		term = $scope.term;
+		console.log('submission started');
 
-		klassObj = {
+		let className = $scope.className,
+			subject = $scope.subject,
+			gradeLevel = $scope.gradeLevel,
+			term = $scope.term;
+
+		var klassObj = {
 			className: className,
 			subject: subject,
 			gradeLevel: gradeLevel,
 			term: term
 		};
+
 		console.log(klassObj);
 
-		function returnKlass(klass) {
-			return $http.post('/classes', klass)
-			.then(function successCallback(response) {
+		// function returnKlass(klass) {
+			$.post('/classes', klassObj, function() {
+				console.log('pie');
+			})
+			.done(function(response) {
 				console.log('successful post');
 				return response;
-			}, function errorCallback(response) {
+			})
+			.fail(function(response) {
 				console.error('there has been an error on post');
 				return response;
 			});
-		};
+		// };
 
-		returnKlass(klassObj);
+		// returnKlass(klassObj);
+
+		// return false;
 	});
-	
-
 }]);
