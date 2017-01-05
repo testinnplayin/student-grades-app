@@ -46,7 +46,7 @@ app.get('/classes', (req, res) => { //classes.data
 //classes POST for Create operation
 
 app.get('/classes/create', (req, res) => {
-	res.sendFile(path.join(__dirname,'public/create-class.html'));
+	res.sendFile(path.join(__dirname,'public/views/create-class.html'));
 });
 
 app.post('/classes', (req, res) => {
