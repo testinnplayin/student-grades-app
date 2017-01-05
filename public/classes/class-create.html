@@ -24,12 +24,12 @@
 							<li role="presentation"><a href="#">Students</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
-							<li role="presentation"><p class="navbar-text">Signed in as <a href="#">The Dude</a></p></li>						
+							<li role="presentation"><p class="navbar-text">Signed in as <a href="#">The Dude</a></p></li>
 						</ul>
 					</div>
-					
+
 				</div>
-			</nav>	
+			</nav>
 		</header>
 
 		<main>
@@ -46,7 +46,8 @@
 					</div>
 					<div class="content-container" ng-controller="classCreateController">
 						<h3>Create New Class</h3>
-						<form method="post">
+
+						<form ng-submit="classSubmit()">
 							<div class="form-group">
 								<label for="className">Class Name:</label>
 								<input type="text" class="form-control" id="className" placeholder="Enter Class Name" ng-model="className" />
@@ -77,7 +78,7 @@
 						<ul class="nav">
 							<li><p>By R. Wood, 2016</p></li>
 						</ul>
-						
+
 					</div>
 					<div class="col-xs-4">
 						<p>Powered by:</p>

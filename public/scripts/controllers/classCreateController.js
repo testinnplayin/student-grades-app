@@ -1,11 +1,10 @@
 app.controller('classCreateController', ['$scope', '$http', function($scope, $http) {
 	console.log('class create controller');
 
-	$('form').on('submit', '#submit-btn', function(e) {
-		e.preventDefault();
-		e.stopPropagation();
+	console.log('submission started');
 
-		console.log('submission started');
+	$scope.classSubmit = function(e)
+	{
 
 		let className = $scope.className,
 			subject = $scope.subject,
@@ -21,22 +20,16 @@ app.controller('classCreateController', ['$scope', '$http', function($scope, $ht
 
 		console.log(klassObj);
 
-		// function returnKlass(klass) {
-			$.post('/classes', klassObj, function() {
-				console.log('pie');
-			})
-			.done(function(response) {
-				console.log('successful post');
-				return response;
-			})
-			.fail(function(response) {
-				console.error('there has been an error on post');
-				return response;
-			});
-		// };
+		return $http.post('/classes', klassObj)
+		.then(function successCallback(response) {
+			console.log('successful post');
+			return response;
+		}, function errorCallback(response) {
+			console.error('there has been an error on post');
+			return response;
+		});
+	}
 
-		// returnKlass(klassObj);
 
-		// return false;
-	});
 }]);
+
