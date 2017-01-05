@@ -95,7 +95,7 @@ app.delete('/classes/:id', (req, res) => {
 
 //classes PUT for Update operation
 
-app.get('/classes/edit', (req, res) => {
+app.get('/classes/edit/:id', (req, res) => {
 	res.sendFile(__dirname + '/public/classes/class-edit.html');
 });
 

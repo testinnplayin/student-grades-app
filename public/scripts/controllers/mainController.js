@@ -8,5 +8,6 @@ app.controller('mainController', ['$scope', 'Klasses', function($scope, Klasses)
 		$scope.Klasses = Klasses.data.classes;
 		console.log($scope.Klasses.classes);
 	});
+
 }]);
 

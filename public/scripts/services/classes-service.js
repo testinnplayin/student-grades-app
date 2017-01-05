@@ -14,4 +14,5 @@ app.service("Klasses", function($http) {
 				return response;
 			});
 		};
+
 });

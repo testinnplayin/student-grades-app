@@ -1,9 +1,10 @@
 app.controller('classCreateController', ['$scope', '$http', function($scope, $http) {
 	console.log('class create controller');
 
+	
 	console.log('submission started');
 
-	$scope.classSubmit = function(e)
+	$scope.classSubmit = function()
 	{
 
 		let className = $scope.className,
@@ -20,6 +21,7 @@ app.controller('classCreateController', ['$scope', '$http', function($scope, $ht
 
 		console.log(klassObj);
 
+		console.log('sending post object');
 		return $http.post('/classes', klassObj)
 		.then(function successCallback(response) {
 			console.log('successful post');
@@ -28,8 +30,8 @@ app.controller('classCreateController', ['$scope', '$http', function($scope, $ht
 			console.error('there has been an error on post');
 			return response;
 		});
-	}
-
+		
+	};
 
 }]);
 
