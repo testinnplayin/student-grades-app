@@ -12,7 +12,7 @@ const {Klass} = require('./models');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname + '/public')));
+app.use(express.static(path.join(__dirname, '/public')));
 app.use(bodyParser.json());
 app.use(morgan('common'));
 
@@ -46,7 +46,7 @@ app.get('/classes', (req, res) => { //classes.data
 //classes POST for Create operation
 
 app.get('/classes/create', (req, res) => {
-	res.sendFile(__dirname + '/public/classes/class-create.html');
+	res.sendFile(path.join(__dirname,'public/create-class.html'));
 });
 
 app.post('/classes', (req, res) => {
