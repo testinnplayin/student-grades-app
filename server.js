@@ -12,7 +12,7 @@ const {Klass} = require('./models');
 
 const app = express();
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname + '/public')));
 app.use(bodyParser.json());
 app.use(morgan('common'));
 
@@ -98,6 +98,24 @@ app.delete('/classes/:id', (req, res) => {
 app.get('/classes/edit/:id', (req, res) => {
 	res.sendFile(__dirname + '/public/classes/class-edit.html');
 });
+
+// app.get('/classes/edit/:id', (req, res) => {
+// 	if (!(req.params.id && req.body.id && (req.params.id === req.body.id))) {
+// 		const msg = `Class edit request body ${req.body.id} and parameter paths ${req.params.id} must match`;
+// 		console.error(msg);
+// 		res.status(400).json({ message : msg });
+// 	}
+
+// 	Klass.findById(req.params.id)
+// 		.exec()
+// 		.then(function(course) {
+// 			res.status(200).json(course.apiRepr());
+// 		})
+// 		.catch(err => {
+// 			console.error(err);
+// 			res.status(500).json({ message : 'Internal server error, cannot get class to edit' });
+// 		});
+// });
 
 app.put('/classes/:id', (req, res) => {
 	if (!(req.params.id && req.body.id && (req.params.id === req.body.id))) {

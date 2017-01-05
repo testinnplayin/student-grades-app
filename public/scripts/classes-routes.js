@@ -18,7 +18,7 @@ app.config(function($routeProvider) {
 	.when('/classes/edit/:id', {
 		controller: 'classEditController'
 	})
-	.when('/classes/delete', {
+	.when('/classes/delete/:id', {
 		controller: 'classDeleteController'
 	});
 });
