@@ -1,5 +1,5 @@
 const state = {
-	currentView: ['index', 'createClass'],
+	currentView: ['index', 'createClass', 'editClass'],
 	viewProps: {
 		'index': {
 			selected: true,
@@ -10,6 +10,12 @@ const state = {
 		'createClass': {
 			selected: false,
 			title: 'Create Class',
+			current: false,
+			addClassBtn: false
+		},
+		'editClass': {
+			selected: false,
+			title: 'Edit Class',
 			current: false,
 			addClassBtn: false
 		}
@@ -50,6 +56,24 @@ function renderAddClassBtn(view) {
 	}
 }
 
+function drawButtons(text, href, style, value) {
+	var ele = '#' + value,
+		fullHref = href + value;
+
+	$(ele).append('<a></a>');
+
+	$(ele)
+	.find('a')
+	.last()
+	.attr('role', 'button')
+	.attr('id', value)
+	.addClass('class-finder')
+	.addClass('btn')
+	.addClass(style)
+	.text(text)
+	.attr('href', fullHref);
+}
+
 // function renderForm() {
 // 	var form = 'form';
 // 	var arr = ['className', 'subject', 'gradeLevel', 'term'];
@@ -79,10 +103,17 @@ function renderInitialState(klasses, view) {
 	$('.js-content-container').append('<h3>List of Classes:</h3>');
 
 	for (let klass of klasses.classes) {
-		var classItem = "<li class='list-group-item'><a href='#' value ='" + klass.id + "''>Class Name: " + klass.className + " Subject: " 
-		+ klass.subject + " Grade Level: " + klass.gradeLevel + " Term: " + klass.term + "</a><a href='#' role='button' class='btn btn-info'>Edit</a><a href='#' role='button' class='btn btn-danger'>Delete</a></li>";
+		var classContainer = '.js-content-container',
+			classItem = "<li class='list-group-item' id='" + klass.id + "'><a href='#' value='" + klass.id + "''>Class Name: " + klass.className + " Subject: " 
+			+ klass.subject + " Grade Level: " + klass.gradeLevel + " Term: " + klass.term + "</a></li>",
+			value = klass.id;
 
-		$('.js-content-container').append(classItem);
+		$(classContainer).append(classItem);
+
+
+		drawButtons('Edit', '/classes/edit/', 'btn-info', value);
+		drawButtons('Delete', '/classes/delete/', 'btn-danger', value);
+
 	}
 
 	renderSelectClass('.js-classes', view);
@@ -104,7 +135,24 @@ function checkState(currentView) {
 	} //else if (currentView === 'createClass') {
 	// 	$('.js-content-container').empty();
 	// 	generateCreateClassView(currentView);
+	// } else if (currentView === 'editClass') {
+		// $('.js-content-container').empty();
+		// generateEditClassView();
 	// }
+}
+
+function getKlass(klassID) {
+	var url = '/classes/' + klassID;
+	console.log('url is ' + url);
+	$.getJSON(url)
+	.done(function(data) {
+		console.log('successful call to get class');
+		console.log(data);
+	})
+	.fail(function(err) {
+		console.log('unsuccessful call to get class');
+		console.error(err);
+	});
 }
 
 function getKlasses(currentView) {
@@ -148,6 +196,20 @@ function getKlasses(currentView) {
 // 	});
 // }
 
+function handleEditOrDeleteClick() {
+	var classID;
+
+	$('.class-finder').click(function(e) {
+		// e.preventDefault();
+
+		console.log('click event triggered');
+
+		classID = $(this).attr('id');
+		console.log('classID ' + classID);
+		getKlass(classID);
+	});
+}
+
 function handleSubmit() {
 	var form = 'form';
 	$(form).submit(function(e) {
@@ -190,7 +252,8 @@ function handleSubmit() {
 function handleActions() {
 	var currentView = 'index';
 
-	checkState(currentView);	
+	checkState(currentView);
+	handleEditOrDeleteClick();
 }
 
 $(document).ready(handleActions());

@@ -34,13 +34,29 @@ function renderAlert(result, response) {
 	.text('&times;');
 }
 
+function showClassToEdit(klass) {
+	let contentContainer = '.js-content-container',
+		classInfo = 'class-info';
+
+	$(contentContainer).append('<div></div>');
+	$(contentContainer)
+	.find('div')
+	.addClass('class-info')
+	.append('<p></p>');
+
+	$(classInfo)
+	.find('p')
+	.text('Class Name: ' + klass.className + ' Subject: ' + klass.subject + ' Grade Level: ' + klass.gradeLevel + ' Term: ' + klass.term);
+}
+
+
 function renderForm() {
 	var form = 'form',
 		arr = ['className', 'subject', 'gradeLevel', 'term'],
 		button = 'button',
 		contentContainer = '.js-content-container';
 
-	$(contentContainer).append('<h3>Add New Class</h3>');
+	$(contentContainer).append('<h3>Edit Class</h3>');//change from create, note that title also has to change
 
 	$(contentContainer).append('<form></form>');
 
@@ -73,43 +89,20 @@ function renderForm() {
 		.addClass('form-control');
 	}
 	
-	$(form).append("<button>Add Class</button>");
+	$(form).append("<button>Edit Class</button>");
 
 	$(button)
 	.attr('type', 'submit')
 	.addClass('btn')
-	.addClass('btn-danger')
+	.addClass('btn-warning')
 	.attr('id', 'submit-btn');
 
 }
 
 function checkState(currentView) {
-	if (currentView === 'createClass') {
+	if (currentView === 'editClass') {
 		renderForm();
 	}
-}
-
-function sendClass(data) {
-	$.ajax({
-		type: 'POST',
-		url: '/classes',
-		data: data,
-		dataType: 'json'
-	})
-	.done(function(data) {
-		let result = "success",
-			response = "post to back end was successful";
-
-		console.log(data);
-		renderAlert(result, response);
-	})
-	.fail(function(err) {
-		let result = "failure".
-			response = "post to back end was not successful";
-
-		console.error(err);
-		renderAlert(result, response);
-	});
 }
 
 function handleSubmit() {
@@ -142,10 +135,11 @@ function handleSubmit() {
 }
 
 function handleActions() {
-	let currentView = 'createClass';
+	let currentView = 'editClass';
 
 	checkState(currentView);
 	handleSubmit();
+
 }
 
 $(document).ready(handleActions());

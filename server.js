@@ -44,6 +44,25 @@ app.get('/classes', (req, res) => { //classes.data
 	});
 });
 
+// app.get('/classes/:id', (req, res) => {
+// 	if(!(req.params.id && req.body.id && (req.params.id === req.body.id))) {
+// 		const msg = `Request paramter path ${req.params.id} and request body id ${req.body.id} do not match`;
+// 		console.error(msg);
+// 		res.status(400).json({ message : msg });
+// 	}
+
+// 	Klass
+// 	.findById(req.params.id)
+// 	.exec()
+// 	.then(function(course) {
+// 		course.apiRepr();
+// 	})
+// 	.catch(function(err) {
+// 		console.error(err);
+// 		res.status(500).json({ message : 'Internal server error while fetching class' });
+// 	});
+// });
+
 //classes POST for Create operation
 
 app.get('/classes/create', (req, res) => {
@@ -82,6 +101,8 @@ app.get('classes/delete', (req, res) => {
 });
 
 app.delete('/classes/:id', (req, res) => {
+
+	console.log('get class event triggered');
 	Klass
 		.findByIdAndRemove(req.params.id)
 		.exec()
@@ -97,26 +118,8 @@ app.delete('/classes/:id', (req, res) => {
 //classes PUT for Update operation
 
 app.get('/classes/edit/:id', (req, res) => {
-	res.sendFile(__dirname + '/public/classes/class-edit.html');
+	res.sendFile(__dirname + '/public/views/edit-class.html');
 });
-
-// app.get('/classes/edit/:id', (req, res) => {
-// 	if (!(req.params.id && req.body.id && (req.params.id === req.body.id))) {
-// 		const msg = `Class edit request body ${req.body.id} and parameter paths ${req.params.id} must match`;
-// 		console.error(msg);
-// 		res.status(400).json({ message : msg });
-// 	}
-
-// 	Klass.findById(req.params.id)
-// 		.exec()
-// 		.then(function(course) {
-// 			res.status(200).json(course.apiRepr());
-// 		})
-// 		.catch(err => {
-// 			console.error(err);
-// 			res.status(500).json({ message : 'Internal server error, cannot get class to edit' });
-// 		});
-// });
 
 app.put('/classes/:id', (req, res) => {
 	if (!(req.params.id && req.body.id && (req.params.id === req.body.id))) {
