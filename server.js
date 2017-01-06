@@ -44,27 +44,28 @@ app.get('/classes', (req, res) => { //classes.data
 	});
 });
 
-// app.get('/classes/:id', (req, res) => {
-// 	console.log('triggering get for /classes/:id');
-// 	console.log(req.body.id);
+app.get('/classes/:id', (req, res) => {
+	console.log('triggering get for /classes/:id');
+	// console.log(req.body.id);
 
-// 	if(!(req.params.id && req.body.id && (req.params.id === req.body.id))) {
-// 		const msg = `Request parameter path ${req.params.id} and request body id ${req.body.id} do not match`;
-// 		console.error(msg);
-// 		res.status(400).json({ message : msg });
-// 	}
+	if(!req.params.id) {
+		const msg = `Request parameter path ${req.params.id} and request body id ${req.body.id} do not match`;
+		console.error(msg);
+		res.status(400).json({ message : msg });
+	}
 
-// 	Klass
-// 	.findById(req.params.id)
-// 	.exec()
-// 	.then(function(course) {
-// 		course.apiRepr();
-// 	})
-// 	.catch(function(err) {
-// 		console.error(err);
-// 		res.status(500).json({ message : 'Internal server error while fetching class' });
-// 	});
-// });
+	Klass
+	.findById(req.params.id)
+	.exec()
+	.then(function(course) {
+		// course.apiRepr();
+		res.json( course.apiRepr() );
+	})
+	.catch(function(err) {
+		console.error(err);
+		res.status(500).json({ message : 'Internal server error while fetching class' });
+	});
+});
 
 //classes POST for Create operation
 
