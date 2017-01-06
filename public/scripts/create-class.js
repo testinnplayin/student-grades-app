@@ -4,7 +4,7 @@ function renderForm() {
 	var form = 'form';
 	var arr = ['className', 'subject', 'gradeLevel', 'term'];
 
-	$('.js-content-container').append('<form action="/classes" method="post"></form>');
+	$('.js-content-container').append('<form></form>');
 
 	for (let item in arr) {
 		$(form).append('<div class="form-group js-' + item + '-f-grp"></div>');
@@ -21,6 +21,7 @@ function renderForm() {
 	$('button').addClass('btn');
 	$('button').addClass('btn-danger');
 	$('button').attr('id', 'submit-btn');
+
 }
 
 function checkState(currentView) {
@@ -29,8 +30,28 @@ function checkState(currentView) {
 	}
 }
 
+function sendClass(data) {
+	console.log('from inside sendClass');
+	console.log(data);
+	$.ajax({
+		type: 'POST',
+		url: '/classes',
+		data: data,
+		dataType: 'json'
+	})
+	.done(function(data) {
+		console.log('post to back end was successful');
+		console.log(data);
+	})
+	.fail(function(err) {
+		console.error(err);
+		console.error('post was not successful');
+		console.log(data);
+	});
+}
+
 function handleSubmit() {
-	$('form').on('submit', '#submit-btn', function(e) {
+	$('form').submit(function(e) {
 		e.preventDefault();
 		e.stopPropagation();
 
@@ -53,7 +74,12 @@ function handleSubmit() {
 		console.log('request object');
 		console.log(reqObj);
 
-		return reqObj;
+		var klass = JSON.stringify(reqObj);
+		console.log(klass);
+
+		sendClass(klass);
+
+		return false;
 	});
 }
 
@@ -61,6 +87,8 @@ function handleActions() {
 	var currentView = 'createClass';
 
 	checkState(currentView);
+	handleSubmit();
+
 }
 
 $(document).ready(handleActions());

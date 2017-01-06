@@ -50,6 +50,7 @@ app.get('/classes/create', (req, res) => {
 });
 
 app.post('/classes', (req, res) => {
+	console.log(req.body);
 	const requiredFields = ['className', 'subject', 'gradeLevel', 'term'];
 
 	requiredFields.forEach(function(field) {

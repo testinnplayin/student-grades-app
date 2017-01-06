@@ -48,7 +48,7 @@ function handleClassCreation() {
 }
 
 function handleActions() {
-	var currentView = state.currentView[0];
+	var currentView = 'index';
 	console.log('initial state');
 	console.log(currentView);
 	checkState(currentView);	
