@@ -28,10 +28,7 @@ function renderAlert(result, response) {
 
 	$(close).append('<span></span>');
 
-	$(close)
-	.find('span')
-	.attr('aria-hidden', 'true')
-	.text('&times;');
+	$(close).html('<span aria-hidden="true">&times;</span>');
 }
 
 function renderForm() {

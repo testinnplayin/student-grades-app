@@ -45,8 +45,11 @@ app.get('/classes', (req, res) => { //classes.data
 });
 
 // app.get('/classes/:id', (req, res) => {
+// 	console.log('triggering get for /classes/:id');
+// 	console.log(req.body.id);
+
 // 	if(!(req.params.id && req.body.id && (req.params.id === req.body.id))) {
-// 		const msg = `Request paramter path ${req.params.id} and request body id ${req.body.id} do not match`;
+// 		const msg = `Request parameter path ${req.params.id} and request body id ${req.body.id} do not match`;
 // 		console.error(msg);
 // 		res.status(400).json({ message : msg });
 // 	}
@@ -118,7 +121,7 @@ app.delete('/classes/:id', (req, res) => {
 //classes PUT for Update operation
 
 app.get('/classes/edit/:id', (req, res) => {
-	res.sendFile(__dirname + '/public/views/edit-class.html');
+	res.sendFile(__dirname + '/public/views/edit-class.html'); //, { resClassID : id } can pass in a variable directly to the sendFile method
 });
 
 app.put('/classes/:id', (req, res) => {

@@ -99,46 +99,75 @@ function renderForm() {
 
 }
 
+function getKlass(klassID) {
+	var url = '/classes/' + klassID;
+	console.log('url is ' + url);
+
+	$.getJSON(url)
+	.done(function(data) {
+		console.log('successful call to get class');
+		console.log(data);
+	})
+	.fail(function(err) {
+		console.log('unsuccessful call to get class');
+		console.error(err);
+	});
+}
+
+
 function checkState(currentView) {
 	if (currentView === 'editClass') {
 		renderForm();
 	}
 }
 
-function handleSubmit() {
-	$('form').submit(function(e) {
-		e.preventDefault();
-		e.stopPropagation();
+function handleEditOrDeleteClick() {
+	var classID;
 
-		var reqObj = {};
-		let className,
-			subject,
-			gradeLevel,
-			term;
+	classID = window.location.href;
+	classID = classID.split('/');
+	classID = classID[classID.length - 1];
+	console.log(classID);
 
-		className = $('input[id="className"]').val();
-		subject = $('input[id="subject"]').val();
-		gradeLevel = $('input[id="gradeLevel"]').val();
-		term = $('input[id="term"]').val();
-
-		reqObj = {
-			className : className,
-			subject : subject,
-			gradeLevel : gradeLevel,
-			term : term
-		};
-
-		sendClass(reqObj);
-
-		return false;
-	});
+	getKlass(classID);
 }
+
+// function handleSubmit() {
+// 	$('form').submit(function(e) {
+// 		e.preventDefault();
+// 		e.stopPropagation();
+
+// 		var reqObj = {};
+// 		let className,
+// 			subject,
+// 			gradeLevel,
+// 			term;
+
+// 		className = $('input[id="className"]').val();
+// 		subject = $('input[id="subject"]').val();
+// 		gradeLevel = $('input[id="gradeLevel"]').val();
+// 		term = $('input[id="term"]').val();
+
+// 		reqObj = {
+// 			className : className,
+// 			subject : subject,
+// 			gradeLevel : gradeLevel,
+// 			term : term
+// 		};
+
+// 		sendClass(reqObj);
+
+// 		return false;
+// 	});
+// }
 
 function handleActions() {
 	let currentView = 'editClass';
 
+	handleEditOrDeleteClick();
+
 	checkState(currentView);
-	handleSubmit();
+	// handleSubmit();
 
 }
 

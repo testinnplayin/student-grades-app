@@ -1,5 +1,4 @@
 const state = {
-	currentView: ['index', 'createClass', 'editClass'],
 	viewProps: {
 		'index': {
 			selected: true,
@@ -75,28 +74,52 @@ function drawButtons(text, href, style, value) {
 }
 
 // function renderForm() {
-// 	var form = 'form';
-// 	var arr = ['className', 'subject', 'gradeLevel', 'term'];
-	// var button = 'button';
+// 	var form = 'form',
+// 		arr = ['className', 'subject', 'gradeLevel', 'term'],
+// 		button = 'button',
+// 		contentContainer = '.js-content-container';
 
-// 	$('.js-content-container').append('<form></form>');
+// 	$(contentContainer).append('<h3>Add New Class</h3>');
+
+// 	$(contentContainer).append('<form></form>');
 
 // 	for (let item in arr) {
-// 		$(form).append('<div class="form-group js-' + item + '-f-grp"></div>');
+// 		$(form).append('<div class="form-group js-f-grp-' + item + '"></div>');
 // 	}
-
+	
 // 	for (let i = 0; i < arr.length; i++) {
-// 		$('.js-' + i + '-f-grp').append("<label for='" + arr[i] + "'>" + arr[i] + ":</label>");
-// 		$('.js-' + i + '-f-grp').append("<input id='" + arr[i] + "' type='text' placeholder='Enter " + arr[i] + "' required />");
-// 		$('.js-' + i + '-f-grp').find('#' + arr[i] + '').addClass('form-control');
-// 	}
+// 		let jsGrp = '.js-f-grp-' + i,
+// 			item = arr[i];
 
+// 		$(jsGrp)
+// 		.append("<label></label>")
+// 		.append("<input />");
+
+// 		$(jsGrp)
+// 		.find('label')
+// 		.attr('for', item)
+// 		.text(item + ':');
+
+// 		$(jsGrp)
+// 		.find('input')
+// 		.attr('id', item)
+// 		.attr('type', 'text')
+// 		.attr('placeholder', 'Enter ' + item)
+// 		.attr('required');
+
+// 		$(jsGrp)
+// 		.find('#' + item + '')
+// 		.addClass('form-control');
+// 	}
+	
 // 	$(form).append("<button>Add Class</button>");
+
 // 	$(button)
-	// .attr('type', 'submit')
-	// .attr('id', 'submit-btn')
-	// .addClass('btn')
-	// .addClass('btn-danger');
+// 	.attr('type', 'submit')
+// 	.addClass('btn')
+// 	.addClass('btn-danger')
+// 	.attr('id', 'submit-btn');
+
 // }
 
 function renderInitialState(klasses, view) {	
@@ -141,19 +164,19 @@ function checkState(currentView) {
 	// }
 }
 
-function getKlass(klassID) {
-	var url = '/classes/' + klassID;
-	console.log('url is ' + url);
-	$.getJSON(url)
-	.done(function(data) {
-		console.log('successful call to get class');
-		console.log(data);
-	})
-	.fail(function(err) {
-		console.log('unsuccessful call to get class');
-		console.error(err);
-	});
-}
+// function getKlass(klassID) {
+// 	var url = '/classes/' + klassID;
+// 	console.log('url is ' + url);
+// 	$.getJSON(url)
+// 	.done(function(data) {
+// 		console.log('successful call to get class');
+// 		console.log(data);
+// 	})
+// 	.fail(function(err) {
+// 		console.log('unsuccessful call to get class');
+// 		console.error(err);
+// 	});
+// }
 
 function getKlasses(currentView) {
 	$.getJSON('/classes')
@@ -196,19 +219,19 @@ function getKlasses(currentView) {
 // 	});
 // }
 
-function handleEditOrDeleteClick() {
-	var classID;
+// function handleEditOrDeleteClick() {
+// 	var classID;
 
-	$('.class-finder').click(function(e) {
-		// e.preventDefault();
+// 	$('.class-finder').click(function(e) {
+// 		// e.preventDefault();
 
-		console.log('click event triggered');
+// 		console.log('click event triggered');
 
-		classID = $(this).attr('id');
-		console.log('classID ' + classID);
-		getKlass(classID);
-	});
-}
+// 		classID = $(this).attr('id');
+// 		console.log('classID ' + classID);
+// 		getKlass(classID);
+// 	});
+// }
 
 function handleSubmit() {
 	var form = 'form';
