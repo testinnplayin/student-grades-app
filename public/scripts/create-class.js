@@ -31,8 +31,6 @@ function checkState(currentView) {
 }
 
 function sendClass(data) {
-	console.log('from inside sendClass');
-	console.log(typeof data);
 	$.ajax({
 		type: 'POST',
 		url: '/classes',
@@ -70,12 +68,6 @@ function handleSubmit() {
 		reqObj.subject = subject;
 		reqObj.gradeLevel = gradeLevel;
 		reqObj.term = term;
-
-		console.log('request object');
-		console.log(reqObj);
-
-		
-		// console.log(reqObj);
 
 		sendClass(reqObj);
 
