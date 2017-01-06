@@ -36,35 +36,44 @@ function renderAddClassBtn(view) {
 	var titleStuff = '.title-stuff';
 	if (state.viewProps[view].addClassBtn) {
 		$(titleStuff).append('<a>Add a Class</a>');
-		$(titleStuff).find('a').attr('role', 'button').attr('href', "#").attr('id', 'js-add-class-btn')
-		.addClass('btn').addClass('btn-danger');
+		$(titleStuff)
+		.find('a')
+		.attr('role', 'button')
+		.attr('href', "/classes/create")
+		.attr('id', 'js-add-class-btn')
+		.addClass('btn')
+		.addClass('btn-danger');
 	} else {
-		$(titleStuff).find('a').remove();
+		$(titleStuff)
+		.find('a')
+		.remove();
 	}
 }
 
-function renderForm() {
-	var form = 'form';
-	var arr = ['className', 'subject', 'gradeLevel', 'term'];
+// function renderForm() {
+// 	var form = 'form';
+// 	var arr = ['className', 'subject', 'gradeLevel', 'term'];
+	// var button = 'button';
 
-	$('.js-content-container').append('<form></form>');
+// 	$('.js-content-container').append('<form></form>');
 
-	for (let item in arr) {
-		$(form).append('<div class="form-group js-' + item + '-f-grp"></div>');
-	}
+// 	for (let item in arr) {
+// 		$(form).append('<div class="form-group js-' + item + '-f-grp"></div>');
+// 	}
 
-	for (let i = 0; i < arr.length; i++) {
-		$('.js-' + i + '-f-grp').append("<label for='" + arr[i] + "'>" + arr[i] + ":</label>");
-		$('.js-' + i + '-f-grp').append("<input id='" + arr[i] + "' type='text' placeholder='Enter " + arr[i] + "' required />");
-		$('.js-' + i + '-f-grp').find('#' + arr[i] + '').addClass('form-control');
-	}
+// 	for (let i = 0; i < arr.length; i++) {
+// 		$('.js-' + i + '-f-grp').append("<label for='" + arr[i] + "'>" + arr[i] + ":</label>");
+// 		$('.js-' + i + '-f-grp').append("<input id='" + arr[i] + "' type='text' placeholder='Enter " + arr[i] + "' required />");
+// 		$('.js-' + i + '-f-grp').find('#' + arr[i] + '').addClass('form-control');
+// 	}
 
-	$(form).append("<button>Add Class</button>");
-	$('button').attr('type', 'submit');
-	$('button').addClass('btn');
-	$('button').addClass('btn-danger');
-	$('button').attr('id', 'submit-btn');
-}
+// 	$(form).append("<button>Add Class</button>");
+// 	$(button)
+	// .attr('type', 'submit')
+	// .attr('id', 'submit-btn')
+	// .addClass('btn')
+	// .addClass('btn-danger');
+// }
 
 function renderInitialState(klasses, view) {	
 	$('.js-content-container').append('<h3>List of Classes:</h3>');
@@ -81,22 +90,21 @@ function renderInitialState(klasses, view) {
 	renderAddClassBtn(view);
 }
 
-function generateCreateClassView(view) {
-	renderSelectClass('js-classes', view);
-	setCurrentSpan('.js-classes', view);
-	renderAddClassBtn(view);
-}
+// function generateCreateClassView(view) {
+// 	renderForm();
+// 	renderSelectClass('js-classes', view);
+// 	setCurrentSpan('.js-classes', view);
+// 	renderAddClassBtn(view);
+// }
 
 
 function checkState(currentView) {
 	if (currentView === 'index') {
-		console.log('checking state');
 		getKlasses(currentView);
-	} else if (currentView === 'createClass') {
-		$('.js-content-container').empty();
-		renderForm();
-		generateCreateClassView(currentView);
-	}
+	} //else if (currentView === 'createClass') {
+	// 	$('.js-content-container').empty();
+	// 	generateCreateClassView(currentView);
+	// }
 }
 
 function getKlasses(currentView) {
@@ -115,30 +123,30 @@ function getKlasses(currentView) {
 	});
 }
 
-function createKlass(klass) {
-	$.ajax({
-		method: 'POST',
-		url: '/classes',
-		data: klass,
-		dataType: json
-	})
-	.done(function(data) {
-		console.log('successful post');
-		console.log(data);
-	})
-	.fail(function(err) {
-		console.error('unsuccessful post');
-		console.error(err);
-	});
-}
+// function createKlass(klass) {
+// 	$.ajax({
+// 		method: 'POST',
+// 		url: '/classes',
+// 		data: klass,
+// 		dataType: json
+// 	})
+// 	.done(function(data) {
+// 		console.log('successful post');
+// 		console.log(data);
+// 	})
+// 	.fail(function(err) {
+// 		console.error('unsuccessful post');
+// 		console.error(err);
+// 	});
+// }
 
-function handleClassCreateClick() {
-	$('#js-add-class-btn').click(function(e) {
-		e.preventDefault();
+// function handleClassCreateClick() {
+// 	$('#js-add-class-btn').click(function(e) {
+// 		e.preventDefault();
 
-		handleClassCreation();
-	});
-}
+// 		handleClassCreation();
+// 	});
+// }
 
 function handleSubmit() {
 	var form = 'form';
@@ -151,6 +159,7 @@ function handleSubmit() {
 			subject,
 			gradeLevel,
 			term;
+
 		className = $('input[id="className"]').val();
 		subject = $('input[id="subject"]').val();
 		gradeLevel = $('input[id="gradeLevel"]').val();
@@ -170,18 +179,17 @@ function handleSubmit() {
 }
 
 
-function handleClassCreation() {
-	var currentView = 'createClass';
+// function handleClassCreation() {
+// 	var currentView = 'createClass';
 
-	checkState(currentView);
-	handleSubmit();
+// 	checkState(currentView);
+// 	handleSubmit();
 
-}
+// }
 
 function handleActions() {
 	var currentView = 'index';
-	console.log('initial state');
-	console.log(currentView);
+
 	checkState(currentView);	
 }
 

@@ -1,26 +1,85 @@
 'use strict';
 
-function renderForm() {
-	var form = 'form';
-	var arr = ['className', 'subject', 'gradeLevel', 'term'];
+function renderAlert(result, response) {
+	var mainContent = '.js-main-content',
+		alert = '.alert',
+		close = '.close';
 
-	$('.js-content-container').append('<form></form>');
+	$(mainContent).prepend('<div></div>');
+
+	$('.js-main-content div')
+	.first()
+	.addClass('alert')
+	.addClass('alert-dismissable')
+	.text(response)
+	.attr('role', 'alert');
+
+	result === 'success' ? $(alert).addClass('alert-success') : $(alert).addClass('alert-warning');
+
+	$(alert)
+	.append('<button></button>');
+
+	$(alert)
+	.find('button')
+	.addClass('close')
+	.attr('type', 'button')
+	.attr('data-dismiss', 'alert')
+	.attr('aria-label', 'close');
+
+	$(close).append('<span></span>');
+
+	$(close)
+	.find('span')
+	.attr('aria-hidden', 'true')
+	.text('&times;');
+}
+
+function renderForm() {
+	var form = 'form',
+		arr = ['className', 'subject', 'gradeLevel', 'term'],
+		button = 'button',
+		contentContainer = '.js-content-container';
+
+	$(contentContainer).append('<h3>Add New Class</h3>');
+
+	$(contentContainer).append('<form></form>');
 
 	for (let item in arr) {
-		$(form).append('<div class="form-group js-' + item + '-f-grp"></div>');
+		$(form).append('<div class="form-group js-f-grp-' + item + '"></div>');
 	}
 	
 	for (let i = 0; i < arr.length; i++) {
-		$('.js-' + i + '-f-grp').append("<label for='" + arr[i] + "'>" + arr[i] + ":</label>");
-		$('.js-' + i + '-f-grp').append("<input id='" + arr[i] + "' type='text' placeholder='Enter " + arr[i] + "' required />");
-		$('.js-' + i + '-f-grp').find('#' + arr[i] + '').addClass('form-control');
+		let jsGrp = '.js-f-grp-' + i,
+			item = arr[i];
+
+		$(jsGrp)
+		.append("<label></label>")
+		.append("<input />");
+
+		$(jsGrp)
+		.find('label')
+		.attr('for', item)
+		.text(item + ':');
+
+		$(jsGrp)
+		.find('input')
+		.attr('id', item)
+		.attr('type', 'text')
+		.attr('placeholder', 'Enter ' + item)
+		.attr('required');
+
+		$(jsGrp)
+		.find('#' + item + '')
+		.addClass('form-control');
 	}
 	
 	$(form).append("<button>Add Class</button>");
-	$('button').attr('type', 'submit');
-	$('button').addClass('btn');
-	$('button').addClass('btn-danger');
-	$('button').attr('id', 'submit-btn');
+
+	$(button)
+	.attr('type', 'submit')
+	.addClass('btn')
+	.addClass('btn-danger')
+	.attr('id', 'submit-btn');
 
 }
 
@@ -38,13 +97,18 @@ function sendClass(data) {
 		dataType: 'json'
 	})
 	.done(function(data) {
-		console.log('post to back end was successful');
+		let result = "success",
+			response = "post to back end was successful";
+
 		console.log(data);
+		renderAlert(result, response);
 	})
 	.fail(function(err) {
+		let result = "failure".
+			response = "post to back end was not successful";
+
 		console.error(err);
-		console.error('post was not successful');
-		console.log(data);
+		renderAlert(result, response);
 	});
 }
 
@@ -64,10 +128,12 @@ function handleSubmit() {
 		gradeLevel = $('input[id="gradeLevel"]').val();
 		term = $('input[id="term"]').val();
 
-		reqObj.className = className;
-		reqObj.subject = subject;
-		reqObj.gradeLevel = gradeLevel;
-		reqObj.term = term;
+		reqObj = {
+			className : className,
+			subject : subject,
+			gradeLevel : gradeLevel,
+			term : term
+		};
 
 		sendClass(reqObj);
 
@@ -76,7 +142,7 @@ function handleSubmit() {
 }
 
 function handleActions() {
-	var currentView = 'createClass';
+	let currentView = 'createClass';
 
 	checkState(currentView);
 	handleSubmit();
