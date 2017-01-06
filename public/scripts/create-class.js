@@ -32,7 +32,7 @@ function checkState(currentView) {
 
 function sendClass(data) {
 	console.log('from inside sendClass');
-	console.log(data);
+	console.log(typeof data);
 	$.ajax({
 		type: 'POST',
 		url: '/classes',
@@ -74,10 +74,10 @@ function handleSubmit() {
 		console.log('request object');
 		console.log(reqObj);
 
-		var klass = JSON.stringify(reqObj);
-		console.log(klass);
+		
+		// console.log(reqObj);
 
-		sendClass(klass);
+		sendClass(reqObj);
 
 		return false;
 	});

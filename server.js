@@ -13,6 +13,7 @@ const {Klass} = require('./models');
 const app = express();
 
 app.use(express.static(path.join(__dirname, '/public')));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan('common'));
 
@@ -50,9 +51,8 @@ app.get('/classes/create', (req, res) => {
 });
 
 app.post('/classes', (req, res) => {
-	console.log(req.body);
 	const requiredFields = ['className', 'subject', 'gradeLevel', 'term'];
-
+	console.log(req.body);
 	requiredFields.forEach(function(field) {
 		if(!(field in req.body && req.body[field])) {
 			return res.status(400).json({ message : `Please specify a value for ${field}`});
@@ -67,6 +67,7 @@ app.post('/classes', (req, res) => {
 			term: req.body.term
 		})
 		.then(function(course) {
+			console.log('this is amazing');
 			res.status(201).json(course.apiRepr());
 		})
 		.catch(err => {
