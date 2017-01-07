@@ -1,5 +1,7 @@
 'use strict';
 
+var classData;
+
 function renderAlert(result, response) {
 	var mainContent = '.js-main-content',
 		alert = '.alert',
@@ -28,13 +30,10 @@ function renderAlert(result, response) {
 
 	$(close).append('<span></span>');
 
-	$(close)
-	.find('span')
-	.attr('aria-hidden', 'true')
-	.text('&times;');
+	$(close).html('<span aria-hidden="true">&times;</span>');
 }
 
-function showClassToEdit(klass) {
+function showClassToEdit() {
 	let contentContainer = '.js-content-container',
 		classInfo = 'class-info';
 
@@ -51,6 +50,7 @@ function showClassToEdit(klass) {
 
 
 function renderForm() {
+	console.log(classData);
 	var form = 'form',
 		arr = ['className', 'subject', 'gradeLevel', 'term'],
 		button = 'button',
@@ -81,7 +81,8 @@ function renderForm() {
 		.find('input')
 		.attr('id', item)
 		.attr('type', 'text')
-		.attr('placeholder', 'Enter ' + item)
+		// .attr('placeholder', 'Enter ' + item)
+		.attr('value', classData[item])
 		.attr('required');
 
 		$(jsGrp)
@@ -107,6 +108,8 @@ function getKlass(klassID) {
 	.done(function(data) {
 		console.log('successful call to get class');
 		console.log(data);
+		classData = data;
+		renderForm();
 	})
 	.fail(function(err) {
 		console.log('unsuccessful call to get class');
@@ -114,10 +117,29 @@ function getKlass(klassID) {
 	});
 }
 
+function sendClass(klass) {
+	$.ajax({
+		method: 'PUT',
+		data: klass,
+		url: '/classes/' + classData.id,
+		dataType: json
+	})
+	.done(function(data) {
+		console.log('successful put to server');
+		console.log(data);
+		renderAlert('success');
+	})
+	.fail(function(err) {
+		console.log('unsuccessful put to server');
+		console.log(err);
+		renderAlert('fail');
+	});
+}
+
 
 function checkState(currentView) {
 	if (currentView === 'editClass') {
-		renderForm();
+		
 	}
 }
 
@@ -132,41 +154,41 @@ function handleEditOrDeleteClick() {
 	getKlass(classID);
 }
 
-// function handleSubmit() {
-// 	$('form').submit(function(e) {
-// 		e.preventDefault();
-// 		e.stopPropagation();
+function handleSubmit() {
+	$('form').submit(function(e) {
+		e.preventDefault();
+		e.stopPropagation();
 
-// 		var reqObj = {};
-// 		let className,
-// 			subject,
-// 			gradeLevel,
-// 			term;
+		var reqObj = {};
+		let className,
+			subject,
+			gradeLevel,
+			term;
 
-// 		className = $('input[id="className"]').val();
-// 		subject = $('input[id="subject"]').val();
-// 		gradeLevel = $('input[id="gradeLevel"]').val();
-// 		term = $('input[id="term"]').val();
+		className = $('input[id="className"]').val();
+		subject = $('input[id="subject"]').val();
+		gradeLevel = $('input[id="gradeLevel"]').val();
+		term = $('input[id="term"]').val();
 
-// 		reqObj = {
-// 			className : className,
-// 			subject : subject,
-// 			gradeLevel : gradeLevel,
-// 			term : term
-// 		};
+		reqObj = {
+			className : className,
+			subject : subject,
+			gradeLevel : gradeLevel,
+			term : term
+		};
 
-// 		sendClass(reqObj);
+		sendClass(reqObj);
 
-// 		return false;
-// 	});
-// }
+		return false;
+	});
+}
 
 function handleActions() {
 	let currentView = 'editClass';
-
 	handleEditOrDeleteClick();
 
 	checkState(currentView);
+
 	// handleSubmit();
 
 }

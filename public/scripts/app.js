@@ -73,55 +73,6 @@ function drawButtons(text, href, style, value) {
 	.attr('href', fullHref);
 }
 
-// function renderForm() {
-// 	var form = 'form',
-// 		arr = ['className', 'subject', 'gradeLevel', 'term'],
-// 		button = 'button',
-// 		contentContainer = '.js-content-container';
-
-// 	$(contentContainer).append('<h3>Add New Class</h3>');
-
-// 	$(contentContainer).append('<form></form>');
-
-// 	for (let item in arr) {
-// 		$(form).append('<div class="form-group js-f-grp-' + item + '"></div>');
-// 	}
-	
-// 	for (let i = 0; i < arr.length; i++) {
-// 		let jsGrp = '.js-f-grp-' + i,
-// 			item = arr[i];
-
-// 		$(jsGrp)
-// 		.append("<label></label>")
-// 		.append("<input />");
-
-// 		$(jsGrp)
-// 		.find('label')
-// 		.attr('for', item)
-// 		.text(item + ':');
-
-// 		$(jsGrp)
-// 		.find('input')
-// 		.attr('id', item)
-// 		.attr('type', 'text')
-// 		.attr('placeholder', 'Enter ' + item)
-// 		.attr('required');
-
-// 		$(jsGrp)
-// 		.find('#' + item + '')
-// 		.addClass('form-control');
-// 	}
-	
-// 	$(form).append("<button>Add Class</button>");
-
-// 	$(button)
-// 	.attr('type', 'submit')
-// 	.addClass('btn')
-// 	.addClass('btn-danger')
-// 	.attr('id', 'submit-btn');
-
-// }
-
 function renderInitialState(klasses, view) {	
 	$('.js-content-container').append('<h3>List of Classes:</h3>');
 
@@ -144,39 +95,13 @@ function renderInitialState(klasses, view) {
 	renderAddClassBtn(view);
 }
 
-// function generateCreateClassView(view) {
-// 	renderForm();
-// 	renderSelectClass('js-classes', view);
-// 	setCurrentSpan('.js-classes', view);
-// 	renderAddClassBtn(view);
-// }
-
 
 function checkState(currentView) {
 	if (currentView === 'index') {
 		getKlasses(currentView);
-	} //else if (currentView === 'createClass') {
-	// 	$('.js-content-container').empty();
-	// 	generateCreateClassView(currentView);
-	// } else if (currentView === 'editClass') {
-		// $('.js-content-container').empty();
-		// generateEditClassView();
-	// }
+	} 
 }
 
-// function getKlass(klassID) {
-// 	var url = '/classes/' + klassID;
-// 	console.log('url is ' + url);
-// 	$.getJSON(url)
-// 	.done(function(data) {
-// 		console.log('successful call to get class');
-// 		console.log(data);
-// 	})
-// 	.fail(function(err) {
-// 		console.log('unsuccessful call to get class');
-// 		console.error(err);
-// 	});
-// }
 
 function getKlasses(currentView) {
 	$.getJSON('/classes')
@@ -193,45 +118,6 @@ function getKlasses(currentView) {
 		return err;
 	});
 }
-
-// function createKlass(klass) {
-// 	$.ajax({
-// 		method: 'POST',
-// 		url: '/classes',
-// 		data: klass,
-// 		dataType: json
-// 	})
-// 	.done(function(data) {
-// 		console.log('successful post');
-// 		console.log(data);
-// 	})
-// 	.fail(function(err) {
-// 		console.error('unsuccessful post');
-// 		console.error(err);
-// 	});
-// }
-
-// function handleClassCreateClick() {
-// 	$('#js-add-class-btn').click(function(e) {
-// 		e.preventDefault();
-
-// 		handleClassCreation();
-// 	});
-// }
-
-// function handleEditOrDeleteClick() {
-// 	var classID;
-
-// 	$('.class-finder').click(function(e) {
-// 		// e.preventDefault();
-
-// 		console.log('click event triggered');
-
-// 		classID = $(this).attr('id');
-// 		console.log('classID ' + classID);
-// 		getKlass(classID);
-// 	});
-// }
 
 function handleSubmit() {
 	var form = 'form';
@@ -262,15 +148,6 @@ function handleSubmit() {
 		return false;
 	});
 }
-
-
-// function handleClassCreation() {
-// 	var currentView = 'createClass';
-
-// 	checkState(currentView);
-// 	handleSubmit();
-
-// }
 
 function handleActions() {
 	var currentView = 'index';
