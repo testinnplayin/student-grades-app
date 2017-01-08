@@ -55,7 +55,20 @@ function renderAddClassBtn(view) {
 	}
 }
 
-function drawButtons(text, href, style, value) {
+function drawLbButtons(ele, style, actn, type, txt) {
+	$(ele)
+	.append('<button></button>');
+
+	$(ele)
+	.find('button')
+	.attr('type', type)
+	.addClass('btn')
+	.addClass('btn-' + style)
+	.attr('id', 'js-' + actn + '-trigger')
+	.text(txt);
+}
+
+function drawEditButton(text, href, style, value) {
 	var ele = '#' + value,
 		fullHref = href + value;
 
@@ -73,6 +86,24 @@ function drawButtons(text, href, style, value) {
 	.attr('href', fullHref);
 }
 
+function renderLightbox() {
+	let lightboxCont = '.js-lb-container',
+		lbStyle = '.js-lb-style';
+	$(lightboxCont).append('<div></div>');
+
+	$(lightboxCont)
+	.find('div')
+	.addClass('js-lb-style')
+	.append('<p></p>');
+
+	$(lbStyle)
+	.find('p')
+	.html('<strong>Are you sure you want to proceed?</strong> Click on confirm delete or click anywhere else to cancel.');
+
+	drawLbButtons(lbStyle, 'danger', 'delete', 'submit', 'Confirm Delete');
+
+}
+
 function renderInitialState(klasses, view) {	
 	$('.js-content-container').append('<h3>List of Classes:</h3>');
 
@@ -80,19 +111,22 @@ function renderInitialState(klasses, view) {
 		var classContainer = '.js-content-container',
 			classItem = "<li class='list-group-item' id='" + klass.id + "'><a href='#' value='" + klass.id + "''>Class Name: " + klass.className + " Subject: " 
 			+ klass.subject + " Grade Level: " + klass.gradeLevel + " Term: " + klass.term + "</a></li>",
-			value = klass.id;
+			value = klass.id
+			valueID = '#' + value; 
 
 		$(classContainer).append(classItem);
 
 
-		drawButtons('Edit', '/classes/edit/', 'btn-info', value);
-		drawButtons('Delete', '/classes/delete/', 'btn-danger', value);
+		drawEditButton('Edit', '/classes/edit/', 'btn-info', value);
+		drawLbButtons(valueID, 'danger', 'send-to-del', 'button', 'Delete');
 
 	}
 
 	renderSelectClass('.js-classes', view);
 	setCurrentSpan('.js-classes', view);
 	renderAddClassBtn(view);
+
+	renderLightbox();
 }
 
 
@@ -110,6 +144,7 @@ function getKlasses(currentView) {
 		console.log(data);
 
 		renderInitialState(data, currentView);
+		handleDeleteClick();
 		return data;
 	})
 	.fail(function(err) {
@@ -149,11 +184,15 @@ function handleSubmit() {
 	});
 }
 
+function handleDeleteClick() {
+	let body = 'body';
+	$(body).on('click', '')
+}
+
 function handleActions() {
 	var currentView = 'index';
 
 	checkState(currentView);
-	// handleEditOrDeleteClick();
 }
 
 $(document).ready(handleActions());

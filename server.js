@@ -99,13 +99,12 @@ app.post('/classes', (req, res) => {
 
 //classes DELETE for Delete operation
 
-app.get('classes/delete', (req, res) => {
-	res.sendFile(__dirname + 'public/classes/class-delete.html');
-});
+// app.get('classes/delete/:id', (req, res) => {
+// 	res.sendFile(__dirname + '/public/views/delete-class.html');
+// });
 
 app.delete('/classes/:id', (req, res) => {
 
-	console.log('get class event triggered');
 	Klass
 		.findByIdAndRemove(req.params.id)
 		.exec()
@@ -125,9 +124,6 @@ app.get('/classes/edit/:id', (req, res) => {
 });
 
 app.put('/classes/:id', (req, res) => {
-
-	console.log('triggering put cycle from server');
-	console.log(req.body.id);
 
 	if (!(req.params.id && req.body.id && (req.params.id === req.body.id))) {
 		const msg = `Request path id parameter ${req.params.id} and the request body id ${req.body.id} must match`;
