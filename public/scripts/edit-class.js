@@ -34,18 +34,19 @@ function renderAlert(result, response) {
 }
 
 function showClassToEdit() {
-	let contentContainer = '.js-content-container',
-		classInfo = 'class-info';
+	let mainContent = '.js-main-content',
+		classInfo = '.class-info';
 
-	$(contentContainer).append('<div></div>');
-	$(contentContainer)
-	.find('div')
+	$(mainContent).prepend('<div></div>');
+	$(mainContent)
+	.children('div')
+	.first()
 	.addClass('class-info')
 	.append('<p></p>');
 
 	$(classInfo)
 	.find('p')
-	.text('Class Name: ' + klass.className + ' Subject: ' + klass.subject + ' Grade Level: ' + klass.gradeLevel + ' Term: ' + klass.term);
+	.text('Class Name: ' + classData.className + ' Subject: ' + classData.subject + ' Grade Level: ' + classData.gradeLevel + ' Term: ' + classData.term);
 }
 
 
@@ -110,6 +111,7 @@ function getKlass(klassID) {
 		console.log(data);
 		classData = data;
 		renderForm();
+		showClassToEdit();
 	})
 	.fail(function(err) {
 		console.log('unsuccessful call to get class');
