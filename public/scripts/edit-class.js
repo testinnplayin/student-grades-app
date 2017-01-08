@@ -82,7 +82,6 @@ function renderForm() {
 		.find('input')
 		.attr('id', item)
 		.attr('type', 'text')
-		// .attr('placeholder', 'Enter ' + item)
 		.attr('value', classData[item])
 		.attr('required');
 
@@ -103,7 +102,6 @@ function renderForm() {
 
 function getKlass(klassID) {
 	var url = '/classes/' + klassID;
-	console.log('url is ' + url);
 
 	$.getJSON(url)
 	.done(function(data) {
@@ -112,6 +110,7 @@ function getKlass(klassID) {
 		classData = data;
 		renderForm();
 		showClassToEdit();
+		handleSubmit();
 	})
 	.fail(function(err) {
 		console.log('unsuccessful call to get class');
@@ -119,39 +118,34 @@ function getKlass(klassID) {
 	});
 }
 
-function sendClass(klass) {
+function sendEditedClass(klass) {
 	$.ajax({
 		method: 'PUT',
 		data: klass,
 		url: '/classes/' + classData.id,
-		dataType: json
+		dataType: 'json'
 	})
 	.done(function(data) {
+		let result = 'success',
+			response = 'Class successfully edited';
 		console.log('successful put to server');
-		console.log(data);
-		renderAlert('success');
+		renderAlert(result, response);
 	})
 	.fail(function(err) {
+		let result = 'fail',
+			response = 'Could not edit class';
 		console.log('unsuccessful put to server');
 		console.log(err);
-		renderAlert('fail');
+		renderAlert(result, response);
 	});
-}
-
-
-function checkState(currentView) {
-	if (currentView === 'editClass') {
-		
-	}
 }
 
 function handleEditOrDeleteClick() {
 	var classID;
 
-	classID = window.location.href;
+	classID = window.location.href;//pulls id from end of url
 	classID = classID.split('/');
 	classID = classID[classID.length - 1];
-	console.log(classID);
 
 	getKlass(classID);
 }
@@ -160,6 +154,8 @@ function handleSubmit() {
 	$('form').submit(function(e) {
 		e.preventDefault();
 		e.stopPropagation();
+
+		console.log('triggering submit');
 
 		var reqObj = {};
 		let className,
@@ -173,13 +169,15 @@ function handleSubmit() {
 		term = $('input[id="term"]').val();
 
 		reqObj = {
+			id: classData.id,
 			className : className,
 			subject : subject,
 			gradeLevel : gradeLevel,
 			term : term
 		};
-
-		sendClass(reqObj);
+		console.log('sending reqObj');
+		console.log(reqObj);
+		sendEditedClass(reqObj);
 
 		return false;
 	});
@@ -188,11 +186,6 @@ function handleSubmit() {
 function handleActions() {
 	let currentView = 'editClass';
 	handleEditOrDeleteClick();
-
-	checkState(currentView);
-
-	// handleSubmit();
-
 }
 
 $(document).ready(handleActions());

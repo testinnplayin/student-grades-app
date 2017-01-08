@@ -153,7 +153,7 @@ function handleActions() {
 	var currentView = 'index';
 
 	checkState(currentView);
-	handleEditOrDeleteClick();
+	// handleEditOrDeleteClick();
 }
 
 $(document).ready(handleActions());

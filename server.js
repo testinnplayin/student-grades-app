@@ -45,8 +45,6 @@ app.get('/classes', (req, res) => { //classes.data
 });
 
 app.get('/classes/:id', (req, res) => {
-	console.log('triggering get for /classes/:id');
-	// console.log(req.body.id);
 
 	if(!req.params.id) {
 		const msg = `Request parameter path ${req.params.id} and request body id ${req.body.id} do not match`;
@@ -127,6 +125,10 @@ app.get('/classes/edit/:id', (req, res) => {
 });
 
 app.put('/classes/:id', (req, res) => {
+
+	console.log('triggering put cycle from server');
+	console.log(req.body.id);
+
 	if (!(req.params.id && req.body.id && (req.params.id === req.body.id))) {
 		const msg = `Request path id parameter ${req.params.id} and the request body id ${req.body.id} must match`;
 		console.error(msg);
