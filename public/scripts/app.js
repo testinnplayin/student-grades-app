@@ -104,6 +104,10 @@ function drawLightbox() {
 
 }
 
+function showLightbox() {
+	$('.js-lightbox').css('display', 'block');
+}
+
 function renderInitialState(klasses, view) {	
 	$('.js-content-container').append('<h3>List of Classes:</h3>');
 
@@ -118,8 +122,7 @@ function renderInitialState(klasses, view) {
 
 
 		drawEditButton('Edit', '/classes/edit/', 'btn-info', value);
-		drawLbButtons(valueID, 'danger', 'send-to-del', 'button', 'Delete');
-
+		drawLbButtons(valueID, 'danger', 'send-to-del', 'button', 'Delete');		
 	}
 
 	renderSelectClass('.js-classes', view);
@@ -151,6 +154,14 @@ function getKlasses(currentView) {
 		console.error("unsuccessful call");
 		console.error(err);
 		return err;
+	});
+}
+
+function handleClose() {
+	$('.js-lb-close').click(function() {
+		console.log('close event triggered');
+		$('.js-lightbox').css('display', 'none');
+		$('.js-lb-content .js-lb-style').html('');
 	});
 }
 
@@ -186,7 +197,14 @@ function handleSubmit() {
 
 function handleDeleteClick() {
 	let body = 'body';
-	$(body).on('click', '')
+	$(body).on('click', '#js-send-to-del-trigger', function(e) {
+		e.preventDefault();
+
+		console.log('lightbox event triggered');
+
+		showLightbox();
+		handleClose();
+	});
 }
 
 function handleActions() {
