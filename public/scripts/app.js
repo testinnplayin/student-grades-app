@@ -86,7 +86,7 @@ function drawEditButton(text, href, style, value) {
 	.attr('href', fullHref);
 }
 
-function renderLightbox() {
+function drawLightbox() {
 	let lightboxCont = '.js-lb-container',
 		lbStyle = '.js-lb-style';
 	$(lightboxCont).append('<div></div>');
@@ -126,7 +126,7 @@ function renderInitialState(klasses, view) {
 	setCurrentSpan('.js-classes', view);
 	renderAddClassBtn(view);
 
-	renderLightbox();
+	drawLightbox();
 }
 
 
