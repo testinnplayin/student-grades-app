@@ -12,7 +12,8 @@ const {Klass} = require('./models');
 
 const app = express();
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '/public')));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan('common'));
 
@@ -24,7 +25,7 @@ mongoose.Promise = global.Promise;
 //classes GET for Read operation
 
 app.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname,'index.html'));
+	res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.get('/classes', (req, res) => { //classes.data
@@ -43,7 +44,32 @@ app.get('/classes', (req, res) => { //classes.data
 	});
 });
 
+// app.get('/classes/:id', (req, res) => {
+
+// 	if(!req.params.id) {
+// 		const msg = `Request parameter path ${req.params.id} and request body id ${req.body.id} do not match`;
+// 		console.error(msg);
+// 		res.status(400).json({ message : msg });
+// 	}
+
+// 	Klass
+// 	.findById(req.params.id)
+// 	.exec()
+// 	.then(function(course) {
+// 		res.json( course.apiRepr() );
+// 	})
+// 	.catch(function(err) {
+// 		console.error(err);
+// 		res.status(500).json({ message : 'Internal server error while fetching class' });
+// 	});
+
+// });
+
 //classes POST for Create operation
+
+app.get('/classes/create', (req, res) => {
+	res.sendFile(__dirname + '/public/views/create-class.html');
+});
 
 app.post('/classes', (req, res) => {
 	const requiredFields = ['className', 'subject', 'gradeLevel', 'term'];
@@ -73,6 +99,7 @@ app.post('/classes', (req, res) => {
 //classes DELETE for Delete operation
 
 app.delete('/classes/:id', (req, res) => {
+
 	Klass
 		.findByIdAndRemove(req.params.id)
 		.exec()
@@ -87,7 +114,12 @@ app.delete('/classes/:id', (req, res) => {
 
 //classes PUT for Update operation
 
+app.get('/classes/edit/:id', (req, res) => {
+	res.sendFile(__dirname + '/public/views/edit-class.html'); //, { resClassID : id } can pass in a variable directly to the sendFile method
+});
+
 app.put('/classes/:id', (req, res) => {
+
 	if (!(req.params.id && req.body.id && (req.params.id === req.body.id))) {
 		const msg = `Request path id parameter ${req.params.id} and the request body id ${req.body.id} must match`;
 		console.error(msg);

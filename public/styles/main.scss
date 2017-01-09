@@ -1,4 +1,7 @@
-@import "_index";
+@import "_mix-n-var";
+@import "templates/_class-list-template";
+@import "templates/_class-form-template";
+@import "templates/_lightbox-styles";
 
 html,
 body {
@@ -73,13 +76,6 @@ main {
 			border-radius: $border-rad;
 			h3 {
 				padding-left: 15px;
-			}
-
-			.class-list li {
-				@include lists(#eee, #bbb);
-				.btn-danger {
-					margin-left: 15px;
-				}
 			}
 		}
 	}

@@ -1,0 +1,14 @@
+@import "../_mix-n-var";
+
+main {
+	.main-content {
+		.content-container {
+			.class-list li {
+				@include lists(#eee, #bbb);
+				.btn-danger {
+					margin-left: 15px;
+				}
+			}
+		}
+	}
+}
