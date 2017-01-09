@@ -142,7 +142,7 @@ function sendEditedClass(klass) {
 	});
 }
 
-function handleEditOrDeleteClick() {
+function handleEditClick() {
 	var classID;
 
 	classID = window.location.href;//pulls id from end of url
@@ -187,7 +187,7 @@ function handleSubmit() {
 
 function handleActions() {
 	let currentView = 'editClass';
-	handleEditOrDeleteClick();
+	handleEditClick();
 }
 
 $(document).ready(handleActions());
