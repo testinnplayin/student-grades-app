@@ -157,7 +157,7 @@ function renderInitialState(klasses, view) {
 
 	for (let klass of klasses.classes) {
 		var classContainer = '.js-content-container',
-			classItem = "<li class='list-group-item' id='" + klass.id + "'><a href='classes/view/class/" + klass.id + "'' value='" + klass.id + "''>Class Name: " + klass.className + " Subject: " 
+			classItem = "<li class='list-group-item' id='" + klass.id + "'><a href='classes/class/view/" + klass.id + "'' value='" + klass.id + "''>Class Name: " + klass.className + " Subject: " 
 			+ klass.subject + " Grade Level: " + klass.gradeLevel + " Term: " + klass.term + "</a></li>",
 			value = klass.id; 
 

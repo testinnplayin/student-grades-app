@@ -36,6 +36,10 @@ app.get('/classes/edit/:id', (req, res) => {
 	res.sendFile(__dirname + '/public/views/edit-class.html'); //, { resClassID : id } can pass in a variable directly to the sendFile method
 });
 
+app.get('/classes/class/view/:id', (req, res) => {
+	res.sendFile(__dirname + '/public/views/class-view.html');
+});
+
 
 //GET operations
 //classes GET for Read operation
