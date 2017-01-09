@@ -121,6 +121,27 @@ describe('set up an API environment for testing Klass', function() {
 		});
 	});
 
+	describe('GET verb at /classes/view/class/:id', function() {
+		it('should return a class object with the right fields', function() {
+			var course = {};
+
+			return Klass
+			.findOne()
+			.exec()
+			.then(function(_course) {
+				course = _course;
+				return chai.request(app).get(`/classes/views/class/${course.id}`);
+			})
+			.then(function(res) {
+				res.should.have.status(200);
+				res.should.be.json;
+				res.body.should.be.a('object');
+				res.body.should.include.keys('id', 'className', 'subject', 'gradeLevel', 'term');
+				res.body.id.should.equal(course.id);
+			});
+		});
+	});
+
 	describe('POST verb at /classes', function() {
 		it('should create a new class with the right fields', function() {
 			const newClass = generateClassData();
