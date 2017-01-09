@@ -23,7 +23,6 @@ mongoose.Promise = global.Promise;
 //temporary place for API calls
 
 //classes GET for Read operation
-
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, 'index.html'));
 });

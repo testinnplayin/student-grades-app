@@ -115,33 +115,35 @@ function drawLightbox() {
 
 function renderAlert(result, response) {
 	var mainContent = '.js-main-content',
-		alert = '.alert',
-		close = '.close';
+		alertSel = '.alert',
+		alertStr = 'alert',
+		closeSel = '.close',
+		closeStr = 'close';
 
 	$(mainContent).prepend('<div></div>');
 
 	$('.js-main-content div')
 	.first()
-	.addClass('alert')
+	.addClass(alertStr)
 	.addClass('alert-dismissable')
 	.text(response)
-	.attr('role', 'alert');
+	.attr('role', alertStr);
 
 	result === 'success' ? $(alert).addClass('alert-success') : $(alert).addClass('alert-warning');
 
-	$(alert)
+	$(alertSel)
 	.append('<button></button>');
 
-	$(alert)
+	$(alertSel)
 	.find('button')
-	.addClass('close')
+	.addClass(closeStr)
 	.attr('type', 'button')
-	.attr('data-dismiss', 'alert')
-	.attr('aria-label', 'close');
+	.attr('data-dismiss', alertStr)
+	.attr('aria-label', closeStr);
 
-	$(close).append('<span></span>');
+	$(closeSel).append('<span></span>');
 
-	$(close).html('<span aria-hidden="true">&times;</span>');
+	$(closeSel).html('<span aria-hidden="true">&times;</span>');
 }
 
 function showLightbox(klassId) {
@@ -155,7 +157,7 @@ function renderInitialState(klasses, view) {
 
 	for (let klass of klasses.classes) {
 		var classContainer = '.js-content-container',
-			classItem = "<li class='list-group-item' id='" + klass.id + "'><a href='#' value='" + klass.id + "''>Class Name: " + klass.className + " Subject: " 
+			classItem = "<li class='list-group-item' id='" + klass.id + "'><a href='classes/view/class/" + klass.id + "'' value='" + klass.id + "''>Class Name: " + klass.className + " Subject: " 
 			+ klass.subject + " Grade Level: " + klass.gradeLevel + " Term: " + klass.term + "</a></li>",
 			value = klass.id; 
 
