@@ -22,10 +22,23 @@ mongoose.Promise = global.Promise;
 
 //temporary place for API calls
 
-//classes GET for Read operation
+//file sending
+
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, 'index.html'));
 });
+
+app.get('/classes/class/create', (req, res) => {
+	res.sendFile(__dirname + '/public/views/create-class.html');
+});
+
+app.get('/classes/edit/:id', (req, res) => {
+	res.sendFile(__dirname + '/public/views/edit-class.html'); //, { resClassID : id } can pass in a variable directly to the sendFile method
+});
+
+
+//GET operations
+//classes GET for Read operation
 
 app.get('/classes', (req, res) => { //classes.data
 	Klass
@@ -42,6 +55,8 @@ app.get('/classes', (req, res) => { //classes.data
 		res.status(500).json({ message : 'Internal server error' });
 	});
 });
+
+//get a specific class
 
 app.get('/classes/:id', (req, res) => {
 
@@ -64,11 +79,28 @@ app.get('/classes/:id', (req, res) => {
 
 });
 
-//classes POST for Create operation
+//class GET for Read operation
 
-app.get('/classes/class/create', (req, res) => {
-	res.sendFile(__dirname + '/public/views/create-class.html');
+app.get('/classes/view/class/:id', (req, res) => {
+	if (!req.params.id) {
+		const msg = `Request parameter path ${req.params.id} and request body id ${req.body.id} for classes/view/class/:id do not match`;
+		console.error(msg);
+		res.status(400).json({ message : msg });
+	}
+
+	Klass
+	.findById(req.params.id)
+	.exec()
+	.then(function(course) {
+		res.json(course.studentApiRep());
+	})
+	.catch(function(err) {
+		console.error(err);
+		res.status(500).json({ message : 'Internal server error while fetching class for class view' });
+	});
 });
+
+//classes POST for Create operation
 
 app.post('/classes', (req, res) => {
 	const requiredFields = ['className', 'subject', 'gradeLevel', 'term'];
@@ -112,10 +144,6 @@ app.delete('/classes/:id', (req, res) => {
 });
 
 //classes PUT for Update operation
-
-app.get('/classes/edit/:id', (req, res) => {
-	res.sendFile(__dirname + '/public/views/edit-class.html'); //, { resClassID : id } can pass in a variable directly to the sendFile method
-});
 
 app.put('/classes/:id', (req, res) => {
 

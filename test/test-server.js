@@ -82,6 +82,8 @@ describe('set up an API environment for testing Klass', function() {
 		return closeServer();
 	});
 
+	//GET operations
+
 	describe('GET verb at /classes', function() {
 		it('should return a list of all classes', function() {
 			let res;
@@ -118,6 +120,52 @@ describe('set up an API environment for testing Klass', function() {
 					resClass = res.body.classes[0];
 					return Klass.findById(resClass.id);
 				});
+		});
+	});
+
+	describe('GET verb at /classes/:id', function() {
+		it('should return a class object for viewing with the right fields', function() {
+			var course = {};
+
+			return Klass
+			.findOne()
+			.exec()
+			.then(function(_course) {
+				course.id = _course.id;
+				return chai.request(app).get(`/classes/${course.id}`);
+			})
+			.then(function(res) {
+				res.should.have.status(200);
+				res.should.be.json;
+				res.body.should.be.a('object');
+				res.body.should.include.keys('id', 'className', 'subject', 'gradeLevel', 'term');
+				res.body.id.should.equal(course.id);
+
+				return Klass.findById(course.id);
+			});
+		});
+	});
+
+	describe('GET verb at /classes/view/class/:id', function() {
+		it('should return a class object for viewing with the right fields', function() {
+			var course = {};
+
+			return Klass
+			.findOne()
+			.exec()
+			.then(function(_course) {
+				course.id = _course.id;
+				return chai.request(app).get(`/classes/view/class/${course.id}`);
+			})
+			.then(function(res) {
+				res.should.have.status(200);
+				res.should.be.json;
+				res.body.should.be.a('object');
+				res.body.should.include.keys('id', 'className', 'subject', 'gradeLevel', 'term', 'students');
+				res.body.id.should.equal(course.id);
+
+				return Klass.findById(course.id);
+			});
 		});
 	});
 
