@@ -39,6 +39,7 @@ function setCurrentSpan(ele, view) {
 
 function renderAddClassBtn(view) {
 	var titleStuff = '.title-stuff';
+	$(titleStuff).empty();
 	if (state.viewProps[view].addClassBtn) {
 		$(titleStuff).append('<a>Add a Class</a>');
 		$(titleStuff)
@@ -55,7 +56,8 @@ function renderAddClassBtn(view) {
 	}
 }
 
-function drawLbButtons(ele, style, actn, type, txt) {
+function drawLbButtons(value, style, actn, type, txt) {
+	let ele = '#' + value;
 	$(ele)
 	.append('<button></button>');
 
@@ -64,7 +66,7 @@ function drawLbButtons(ele, style, actn, type, txt) {
 	.attr('type', type)
 	.addClass('btn')
 	.addClass('btn-' + style)
-	.attr('id', 'js-' + actn + '-trigger')
+	.addClass('js-' + actn + '-trigger')
 	.text(txt);
 }
 
@@ -88,45 +90,85 @@ function drawEditButton(text, href, style, value) {
 
 function drawLightbox() {
 	let lightboxCont = '.js-lb-container',
-		lbStyle = '.js-lb-style';
+		lbStyle = '.js-lb-style',
+		form = 'form',
+		lbForm = 'js-lb-form';
 	$(lightboxCont).append('<div></div>');
 
 	$(lightboxCont)
 	.find('div')
 	.addClass('js-lb-style')
+	.append('<form></form>');
+
+	$(lbStyle)
+	.find(form)
+	.attr('id', lbForm)
 	.append('<p></p>');
 
 	$(lbStyle)
 	.find('p')
 	.html('<strong>Are you sure you want to proceed?</strong> Click on confirm delete or click anywhere else to cancel.');
 
-	drawLbButtons(lbStyle, 'danger', 'delete', 'submit', 'Confirm Delete');
+	drawLbButtons(lbForm, 'danger', 'delete', 'submit', 'Confirm Delete');
 
 }
 
-function showLightbox() {
+function renderAlert(result, response) {
+	var mainContent = '.js-main-content',
+		alert = '.alert',
+		close = '.close';
+
+	$(mainContent).prepend('<div></div>');
+
+	$('.js-main-content div')
+	.first()
+	.addClass('alert')
+	.addClass('alert-dismissable')
+	.text(response)
+	.attr('role', 'alert');
+
+	result === 'success' ? $(alert).addClass('alert-success') : $(alert).addClass('alert-warning');
+
+	$(alert)
+	.append('<button></button>');
+
+	$(alert)
+	.find('button')
+	.addClass('close')
+	.attr('type', 'button')
+	.attr('data-dismiss', 'alert')
+	.attr('aria-label', 'close');
+
+	$(close).append('<span></span>');
+
+	$(close).html('<span aria-hidden="true">&times;</span>');
+}
+
+function showLightbox(klassId) {
 	$('.js-lightbox').css('display', 'block');
+	handleSubmit(klassId);
 }
 
 function renderInitialState(klasses, view) {	
+	let jsKlasses = '.js-classes';
 	$('.js-content-container').append('<h3>List of Classes:</h3>');
 
 	for (let klass of klasses.classes) {
 		var classContainer = '.js-content-container',
 			classItem = "<li class='list-group-item' id='" + klass.id + "'><a href='#' value='" + klass.id + "''>Class Name: " + klass.className + " Subject: " 
 			+ klass.subject + " Grade Level: " + klass.gradeLevel + " Term: " + klass.term + "</a></li>",
-			value = klass.id
-			valueID = '#' + value; 
+			value = klass.id; 
 
 		$(classContainer).append(classItem);
 
 
 		drawEditButton('Edit', '/classes/edit/', 'btn-info', value);
-		drawLbButtons(valueID, 'danger', 'send-to-del', 'button', 'Delete');		
+		drawLbButtons(value, 'danger', 'send-to-del', 'button', 'Delete');		
+		$('.js-send-to-del-trigger').val(value);
 	}
 
-	renderSelectClass('.js-classes', view);
-	setCurrentSpan('.js-classes', view);
+	renderSelectClass(jsKlasses, view);
+	setCurrentSpan(jsKlasses, view);
 	renderAddClassBtn(view);
 
 	drawLightbox();
@@ -137,6 +179,33 @@ function checkState(currentView) {
 	if (currentView === 'index') {
 		getKlasses(currentView);
 	} 
+}
+
+function deleteKlass(reqObj) {
+	console.log('delete operation triggered');
+	$.ajax({
+		method: 'DELETE',
+		url: '/classes/' + reqObj.id,
+		dataType: 'json'
+	})
+	.done(function(data) {
+		let result = 'success',
+			response = 'Class successfully deleted';
+
+		console.log('successful delete operation');
+		closeLb();
+		renderAlert(result, response);
+		handleCleanUp(reqObj);
+	})
+	.fail(function(err) {
+		let result = 'fail',
+			response = 'Class was not successfully deleted';
+
+		console.error('unsuccessful delete operation');
+		console.error(err);
+		closeLb();
+		renderAlert(result, response);
+	});
 }
 
 
@@ -157,39 +226,40 @@ function getKlasses(currentView) {
 	});
 }
 
+function closeLb() {
+	$('.js-lightbox').css('display', 'none');
+	$('.js-lb-content .js-lb-style').html('');	
+}
+
 function handleClose() {
 	$('.js-lb-close').click(function() {
-		console.log('close event triggered');
-		$('.js-lightbox').css('display', 'none');
-		$('.js-lb-content .js-lb-style').html('');
+		closeLb();
 	});
 }
 
-function handleSubmit() {
-	var form = 'form';
+function handleCleanUp(reqObj) {
+	let contentContainer = '.js-content-container';
+
+	reqObj = {};
+	console.log(reqObj);
+	$(contentContainer).empty();
+	getKlasses('index');
+}
+
+function handleSubmit(klassId) {
+	var form = '.js-lb-form';
+
 	$(form).submit(function(e) {
 		e.preventDefault();
 		e.stopPropagation();
 
 		var reqObj = {};
-		let className,
-			subject,
-			gradeLevel,
-			term;
+		
+		reqObj.id = klassId;
+		console.log('request obj');
+		console.log(reqObj.id);
 
-		className = $('input[id="className"]').val();
-		subject = $('input[id="subject"]').val();
-		gradeLevel = $('input[id="gradeLevel"]').val();
-		term = $('input[id="term"]').val();
-
-		reqObj = {
-			className: className,
-			subject: subject,
-			gradeLevel: gradeLevel,
-			term: term
-		};
-
-		createKlass(reqObj);
+		deleteKlass(reqObj);
 
 		return false;
 	});
@@ -197,12 +267,16 @@ function handleSubmit() {
 
 function handleDeleteClick() {
 	let body = 'body';
-	$(body).on('click', '#js-send-to-del-trigger', function(e) {
+	$(body).on('click', '.js-send-to-del-trigger', function(e) {
 		e.preventDefault();
+
+		var klassId = $(this).val();
+		console.log('handle delete click obj');
+		console.log(klassId);
 
 		console.log('lightbox event triggered');
 
-		showLightbox();
+		showLightbox(klassId);
 		handleClose();
 	});
 }
