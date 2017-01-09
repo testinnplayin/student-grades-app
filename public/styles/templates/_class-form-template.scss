@@ -1,0 +1,30 @@
+@import '../_mix-n-var.scss';
+
+main {
+	.main-content {
+		.content-container {
+			border: $border-styles;
+			border-radius: $border-rad;
+			background: $head-foot-color;
+
+			h3 {
+				padding-left: 15px;
+			}
+			p {
+				margin-left: 5px;
+			}
+			form {
+				margin: 15px 5px;
+				.form-group {
+					label {
+						margin-top: 5px;
+					}
+				}
+				#submit-btn {
+					display: block;
+					margin: 15px auto;
+				}
+			}
+		}
+	}
+}
