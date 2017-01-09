@@ -1,6 +1,6 @@
 'use strict';
 
-// var classData;
+var classData;
 
 function renderAlert(result, response) {
 	var mainContent = '.js-main-content',
@@ -33,7 +33,7 @@ function renderAlert(result, response) {
 	$(close).html('<span aria-hidden="true">&times;</span>');
 }
 
-function showClassToEdit(classData) {
+function showClassToEdit() {
 	let mainContent = '.js-main-content',
 		classInfo = '.class-info';
 
@@ -50,7 +50,7 @@ function showClassToEdit(classData) {
 }
 
 
-function renderForm(classData) {
+function renderForm() {
 	console.log(classData);
 	var form = 'form',
 		arr = ['className', 'subject', 'gradeLevel', 'term'],
@@ -107,10 +107,10 @@ function getKlass(klassID) {
 	.done(function(data) {
 		console.log('successful call to get class');
 		console.log(data);
-		var classData = data;
-		renderForm(classData);
-		showClassToEdit(classData);
-		handleSubmit(classData);
+		classData = data;
+		renderForm();
+		showClassToEdit();
+		handleSubmit();
 	})
 	.fail(function(err) {
 		console.log('unsuccessful call to get class');
@@ -150,7 +150,7 @@ function handleEditOrDeleteClick() {
 	getKlass(classID);
 }
 
-function handleSubmit(classData) {
+function handleSubmit() {
 	$('form').submit(function(e) {
 		e.preventDefault();
 		e.stopPropagation();
