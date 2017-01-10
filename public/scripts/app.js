@@ -131,7 +131,7 @@ function renderAlert(result, response) {
 	.text(response)
 	.attr('role', alertStr);
 
-	result === 'success' ? $(alert).addClass('alert-success') : $(alert).addClass('alert-warning');
+	result === 'success' ? $(alertSel).addClass('alert-success') : $(alertSel).addClass('alert-warning');
 
 	$(alertSel)
 	.append('<button></button>');
@@ -150,7 +150,7 @@ function renderAlert(result, response) {
 
 function showLightbox(klassId) {
 	$('.js-lightbox').css('display', 'block');
-	handleSubmit(klassId);
+	handleClassDeleteSubmit(klassId);
 }
 
 function renderInitialState(klasses, view) {	
@@ -250,8 +250,8 @@ function handleCleanUp(reqObj) {
 	getKlasses('index');
 }
 
-function handleSubmit(klassId) {
-	var form = '.js-lb-form';
+function handleClassDeleteSubmit(klassId) {
+	var form = '#js-lb-form';
 
 	$(form).submit(function(e) {
 		e.preventDefault();

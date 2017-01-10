@@ -1,16 +1,80 @@
 'use strict';
 
+// function drawTable(data) {
+// 	let classTable = '.js-class-table',
+// 		thead = 'thead'
+// 		keys = Object.keys(data);
+// 	$(classTable)
+// 	.append('<thead></thead>')
+// 	.append('<tfoot></tfoot>')
+// 	.append('<tbody></tbody>');
+
+// 	$(classTable).find('thead').append('<tr></tr>');
+	
+// 	keys.forEach(function(key) {
+// 		let tr = 'tr';
+// 		$(thead).find(tr).append('<th></th>');
+// 		$(tr).find('th')
+// 	});
+// }
+
+function drawClassPanel() {
+	let jsClassPanel = '.js-class-panel',
+		jsPanelHeading = '.js-panel-heading',
+		jsPanelBody = '.js-panel-body',
+		div = 'div';
+		// keys = Object.keys(data),
+
+	$(jsClassPanel).append('<div></div>')
+	.children(div)
+	.addClass('panel-heading')
+	.addClass('js-panel-heading')
+	.append('<h4></h4>');
+
+	$(jsPanelHeading).find('h4').text('Class');
+
+	$(jsClassPanel).append('<div></div>');
+
+	$(jsClassPanel)
+	.find('div:last-child')
+	.addClass('panel-body')
+	.addClass('js-panel-body');
+
+	let fakeObj = {'1': '1', '2': '2', '3': '3', '4': '4'},
+		keys = Object.keys(fakeObj);
+
+	for (let key of keys) {
+		let para = '<p><strong>' + key + ':</strong> ' + fakeObj[key] + '</p>';
+
+		$(jsPanelBody).append(para);
+	}
+}
+
 function renderClass() {
 	let contentContainer = '.js-content-container',
-		classView = '.class-view';
+		classView = '.class-view',
+		jsClassView = '.js-class-view',
+		div = 'div';
 
-	$(contentContainer).append("<div></div>");
+	$(contentContainer)
+	.append("<div></div>")
+	.find(div)
+	.addClass('js-class-view');
 
-	$(contentContainer).find('div').addClass('class-view');
+	$(jsClassView)
+	.append('<div></div>')
+	.children(div)
+	.addClass('panel')
+	.addClass('panel-default')
+	.addClass('class-panel')
+	.addClass('js-class-panel');
 
-	$(classView).append('<h3></h3>');
+	drawClassPanel();
 
-	$(classView).find('h3').text('Class');
+	// $('table')
+	// .addClass('table')
+	// .addClass('js-class-table');
+
 }
 
 function getClassToView(klassId) {
@@ -22,6 +86,7 @@ function getClassToView(klassId) {
 	.done(function(data) {
 		console.log('successful call to server');
 		console.log(data);
+		// drawClassPanel(data);
 	})
 	.done(function(err) {
 		console.error('unsuccessful call to server');

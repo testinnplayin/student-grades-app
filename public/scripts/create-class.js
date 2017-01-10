@@ -16,7 +16,7 @@ function renderAlert(result, response) {
 	.text(response)
 	.attr('role', alertStr);
 
-	result === 'success' ? $(alert).addClass('alert-success') : $(alert).addClass('alert-warning');
+	result === 'success' ? $(alertSel).addClass('alert-success') : $(alertSel).addClass('alert-warning');
 
 	$(alertSel)
 	.append('<button></button>');
