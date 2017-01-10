@@ -1,22 +1,97 @@
 'use strict';
 
-// function drawTable(data) {
-// 	let classTable = '.js-class-table',
-// 		thead = 'thead'
-// 		keys = Object.keys(data);
-// 	$(classTable)
-// 	.append('<thead></thead>')
-// 	.append('<tfoot></tfoot>')
-// 	.append('<tbody></tbody>');
+function drawTableRows(col, arrOrObj, row) {
+	let lng = arrOrObj.length;
 
-// 	$(classTable).find('thead').append('<tr></tr>');
-	
-// 	keys.forEach(function(key) {
-// 		let tr = 'tr';
-// 		$(thead).find(tr).append('<th></th>');
-// 		$(tr).find('th')
-// 	});
-// }
+	for (let j = 0; j < lng; j++) {
+		let tableItem = '<'+ col + '>' + arrOrObj[j] + '</' + col + '>';
+
+		$(row).append(tableItem);
+	}
+}
+
+function drawStudentTable() {
+	let classTable = '.js-class-table',
+		thead = 'thead',
+		tableArr = ['Student ID Number', 'Student Name', 'Grade Average'],
+		anotherFakeObj = {
+			'key1': 'value1',
+			'key2': 'value2',
+			'key3': 'value3',
+			'key4': 'value4',
+			'key5': [
+				{
+					'key5a': 'value5a', 
+					'key5b': {
+						'key5bi': 'value5bi',
+						'key5bii': 'value5bii'
+					}, 
+					'key5c': [
+						{
+							'key5ci': 'value5ci'	
+						},
+						{
+							'key5cii': 'value5cii'
+						},
+						{
+							'key5ciii': 'value5ciii'
+						}
+					]
+
+				},
+				{
+					'key5a': 'value5d',
+					'key5b': {
+						'key5bi': 'value5ei',
+						'key5bii': 'value5eii'
+					},
+					'key5c': [
+						{
+							'key5ci': 'value5fi'
+						},
+						{
+							'key5cii': 'value5fii'
+						},
+						{
+							'key5ciii': 'value5fiii'
+						}
+					]
+
+				}
+			]
+		},
+		lng = anotherFakeObj['key5'].length;
+
+	$(classTable)
+	.append('<thead></thead>')
+	.append('<tfoot></tfoot>')
+	.append('<tbody></tbody>');
+
+	$(classTable).find('thead').append('<tr></tr>');
+	drawTableRows('th', tableArr, 'tr');
+
+	for (let i = 0; i < lng; i++) {
+		let tbody = [],
+			objArr = anotherFakeObj['key5'],
+			tr = '<tr id="student-'+ i +'"></tr>',
+			td = 'td';
+
+			console.log(anotherFakeObj['key5']);
+
+		$(classTable).find('tbody').append(tr);
+
+		let lng = Object.keys(objArr).length;
+		console.log(Object.keys(objArr));
+
+		for (let j = 0; j < lng; j++) {
+			let tableItem = '<td>' + objArr[j]['key5a'] + '</td><td>' + objArr[j]['key5b']['key5bii'] + ', ' + objArr[j]['key5b']['key5bi'] + '</td><td>' + objArr[j]['key5c'] + '</td>',
+				trow = '#student-' + i;
+			$(trow).append(tableItem);
+		}
+
+	}
+
+}
 
 function drawClassPanel() {
 	let jsClassPanel = '.js-class-panel',
@@ -48,6 +123,15 @@ function drawClassPanel() {
 
 		$(jsPanelBody).append(para);
 	}
+
+	$(jsClassPanel)
+	.append('<table></table>')
+	.find('table')
+	.addClass('table')
+	.addClass('class-table')
+	.addClass('js-class-table');
+
+	drawStudentTable();
 }
 
 function renderClass() {
@@ -70,10 +154,6 @@ function renderClass() {
 	.addClass('js-class-panel');
 
 	drawClassPanel();
-
-	// $('table')
-	// .addClass('table')
-	// .addClass('js-class-table');
 
 }
 
