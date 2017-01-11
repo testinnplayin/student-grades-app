@@ -193,8 +193,10 @@ function getClassToView(klassId) {
 function calcStudentClassMed(gradeArr) {
 	let median,
 		lng = gradeArr.length,
-		halfWay = Math.floor(lng / 2),
+		halfWay,
 		sortedGrades = gradeArr.sort((a, b) => a - b);
+
+	((lng / 2) === 0.5) ? halfWay = Math.round(lng / 2) : halfWay = Math.floor(lng / 2);
 
 	if (lng % 2 === 0) {
 		let firstHalf,
