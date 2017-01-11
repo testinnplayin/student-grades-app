@@ -28,13 +28,13 @@ function drawStudentTable() {
 					}, 
 					'key5c': [
 						{
-							'key5ci': '4'	
+							'key5ci': '4.26'	
 						},
 						{
-							'key5cii': '5'
+							'key5cii': '5.58'
 						},
 						{
-							'key5ciii': '6'
+							'key5ciii': '6.7891'
 						}
 					]
 
@@ -175,12 +175,13 @@ function calcStudentClassAve(studentObj) {
 	for (let grade of studentGrades) {
 		let keys = Object.keys(grade);
 		for (let key of keys) {
-			sum += parseInt(grade[key]);
+			sum += parseFloat(grade[key]);
 		}
 	}
 
-	console.log(sum);
-	average = sum / gradeLng;
+	let tempAverage = sum / gradeLng;
+	tempAverage % 2 === 0 ? average = Math.floor(tempAverage * 1000) / 1000 : average = Math.round(tempAverage * 1000) / 1000; //normal scientific way of rounding numbers, good up to three significant figures
+
 	console.log(average);
 	return average;
 }
