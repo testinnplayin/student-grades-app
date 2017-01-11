@@ -34,7 +34,7 @@ function drawTableBodyRows(data) {
 			tr = '<tr id="student-'+ i +'"></tr>',
 			tRow = '#student-' + i,
 			tableItem = ('<td>' + objArr[i]['key5a'] + '</td><td>' + objArr[i]['key5b']['key5bii'] + ', ' + objArr[i]['key5b']['key5bi'] 
-						+ '</td><td>' + average + '</td><td>' + '<td>' + median + '</td><td>'
+						+ '</td><td>' + average + '</td><td>' + median + '</td><td>'
 						+ drawTableEditButton(tRow) + '</td>'
 						+ '<td>' + drawTableDeleteButton(tRow) + '</td>');
 			
