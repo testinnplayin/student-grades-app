@@ -28,10 +28,14 @@ function drawTableBodyRows(data) {
 
 	for (let i = 0; i < lng; i++) {
 		let tbody = [],
+			stats = calcStudentStats(objArr[i]),
+			average = stats[0],
+			median = stats[1],
 			tr = '<tr id="student-'+ i +'"></tr>',
 			tRow = '#student-' + i,
 			tableItem = ('<td>' + objArr[i]['key5a'] + '</td><td>' + objArr[i]['key5b']['key5bii'] + ', ' + objArr[i]['key5b']['key5bi'] 
-						+ '</td><td>' + calcStudentClassAve(objArr[i]) + '</td><td>' + drawTableEditButton(tRow) + '</td>'
+						+ '</td><td>' + average + '</td><td>' + '<td>' + median + '</td><td>'
+						+ drawTableEditButton(tRow) + '</td>'
 						+ '<td>' + drawTableDeleteButton(tRow) + '</td>');
 			
 		$(classTable).find('tbody').append(tr);
@@ -43,7 +47,7 @@ function drawTableBodyRows(data) {
 function drawStudentTable() {
 	let classTable = '.js-class-table',
 		thead = 'thead',
-		tableArr = ['Student ID Number', 'Student Name', 'Grade Average', 'Edit Student', 'Delete Student'],
+		tableArr = ['Student ID Number', 'Student Name', 'Grade Average', 'Median Grade', 'Edit Student', 'Delete Student'],
 		anotherFakeObj = {
 			'key1': 'value1',
 			'key2': 'value2',
@@ -84,6 +88,9 @@ function drawStudentTable() {
 						},
 						{
 							'key5ciii': '3'
+						},
+						{
+							'key5civ': '4'
 						}
 					]
 
@@ -183,24 +190,60 @@ function getClassToView(klassId) {
 	});
 }
 
-function calcStudentClassAve(studentObj) {
+function calcStudentClassMed(gradeArr) {
+	let median,
+		lng = gradeArr.length,
+		halfWay = Math.floor(lng / 2),
+		sortedGrades = gradeArr.sort((a, b) => a - b);
+
+	if (lng % 2 === 0) {
+		let firstHalf,
+			secondHalf,
+			minGrade,
+			maxGrade;
+
+		
+		firstHalf = sortedGrades.slice(0, halfWay);
+		secondHalf = sortedGrades.slice(halfWay, lng);
+		minGrade = Math.min.apply(null, secondHalf);
+		maxGrade = Math.max.apply(null, firstHalf);
+		median = (minGrade + maxGrade) / 2;
+
+		return median
+	} else {
+		median = sortedGrades[halfWay];
+
+		return median
+	}
+}
+
+function calcStudentStats(studentObj) {
 	let studentGrades = studentObj['key5c'],
 		sum = 0,
 		gradeLng = studentGrades.length,
-		average;
+		average,
+		median,
+		valArr = [],
+		stats = [];
 
 	for (let grade of studentGrades) {
 		let keys = Object.keys(grade);
 		for (let key of keys) {
 			sum += parseFloat(grade[key]);
+			valArr.push(grade[key]);
 		}
 	}
 
 	let tempAverage = sum / gradeLng;
+	median = calcStudentClassMed(valArr);
 	tempAverage % 2 === 0 ? average = Math.floor(tempAverage * 1000) / 1000 : average = Math.round(tempAverage * 1000) / 1000; //normal scientific way of rounding numbers, good up to three significant figures
 
-	console.log(average);
-	return average;
+	stats.push(average);
+	stats.push(median);
+
+	console.log(stats);
+
+	return stats;
 }
 
 function handleActions() {
