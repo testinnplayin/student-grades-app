@@ -28,13 +28,13 @@ function drawStudentTable() {
 					}, 
 					'key5c': [
 						{
-							'key5ci': 'value5ci'	
+							'key5ci': '4'	
 						},
 						{
-							'key5cii': 'value5cii'
+							'key5cii': '5'
 						},
 						{
-							'key5ciii': 'value5ciii'
+							'key5ciii': '6'
 						}
 					]
 
@@ -47,13 +47,13 @@ function drawStudentTable() {
 					},
 					'key5c': [
 						{
-							'key5ci': 'value5fi'
+							'key5ci': '1'
 						},
 						{
-							'key5cii': 'value5fii'
+							'key5cii': '2'
 						},
 						{
-							'key5ciii': 'value5fiii'
+							'key5ciii': '3'
 						}
 					]
 
@@ -74,21 +74,13 @@ function drawStudentTable() {
 		let tbody = [],
 			objArr = anotherFakeObj['key5'],
 			tr = '<tr id="student-'+ i +'"></tr>',
-			td = 'td';
-
-			console.log(anotherFakeObj['key5']);
-
+			td = 'td',
+			tableItem = '<td>' + objArr[i]['key5a'] + '</td><td>' + objArr[i]['key5b']['key5bii'] + ', ' + objArr[i]['key5b']['key5bi'] + '</td><td>' + calcStudentClassAve(objArr[i]) + '</td>',
+			tRow = '#student-' + i;
+			
 		$(classTable).find('tbody').append(tr);
-
-		let lng = Object.keys(objArr).length;
-		console.log(Object.keys(objArr));
-
-		for (let j = 0; j < lng; j++) {
-			let tableItem = '<td>' + objArr[j]['key5a'] + '</td><td>' + objArr[j]['key5b']['key5bii'] + ', ' + objArr[j]['key5b']['key5bi'] + '</td><td>' + objArr[j]['key5c'] + '</td>',
-				trow = '#student-' + i;
-			$(trow).append(tableItem);
-		}
-
+			
+		$(tRow).append(tableItem);
 	}
 
 }
@@ -172,6 +164,25 @@ function getClassToView(klassId) {
 		console.error('unsuccessful call to server');
 		console.error(err);
 	});
+}
+
+function calcStudentClassAve(studentObj) {
+	let studentGrades = studentObj['key5c'],
+		sum = 0,
+		gradeLng = studentGrades.length,
+		average;
+
+	for (let grade of studentGrades) {
+		let keys = Object.keys(grade);
+		for (let key of keys) {
+			sum += parseInt(grade[key]);
+		}
+	}
+
+	console.log(sum);
+	average = sum / gradeLng;
+	console.log(average);
+	return average;
 }
 
 function handleActions() {
