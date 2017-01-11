@@ -1,6 +1,6 @@
 'use strict';
 
-function drawTableRows(col, arrOrObj, row) {
+function drawTableHeaderRows(col, arrOrObj, row) {
 	let lng = arrOrObj.length;
 
 	for (let j = 0; j < lng; j++) {
@@ -10,10 +10,40 @@ function drawTableRows(col, arrOrObj, row) {
 	}
 }
 
+function drawTableEditButton(rowId) {
+	let editButton = '<a href="#" class="btn btn-info js-edit-student-btn">Edit Student</a>';
+
+	return editButton;
+}
+
+function drawTableDeleteButton(rowId) {
+	let deleteButton = '<button class="btn btn-danger js-delete-student-btn">Delete Student</button>';
+	return deleteButton;
+}
+
+function drawTableBodyRows(data) {
+	let classTable = '.js-class-table',
+		objArr = data['key5'],
+		lng = data['key5'].length;
+
+	for (let i = 0; i < lng; i++) {
+		let tbody = [],
+			tr = '<tr id="student-'+ i +'"></tr>',
+			tRow = '#student-' + i,
+			tableItem = ('<td>' + objArr[i]['key5a'] + '</td><td>' + objArr[i]['key5b']['key5bii'] + ', ' + objArr[i]['key5b']['key5bi'] 
+						+ '</td><td>' + calcStudentClassAve(objArr[i]) + '</td><td>' + drawTableEditButton(tRow) + '</td>'
+						+ '<td>' + drawTableDeleteButton(tRow) + '</td>');
+			
+		$(classTable).find('tbody').append(tr);
+			
+		$(tRow).append(tableItem);
+	}
+}
+
 function drawStudentTable() {
 	let classTable = '.js-class-table',
 		thead = 'thead',
-		tableArr = ['Student ID Number', 'Student Name', 'Grade Average'],
+		tableArr = ['Student ID Number', 'Student Name', 'Grade Average', 'Edit Student', 'Delete Student'],
 		anotherFakeObj = {
 			'key1': 'value1',
 			'key2': 'value2',
@@ -59,8 +89,7 @@ function drawStudentTable() {
 
 				}
 			]
-		},
-		lng = anotherFakeObj['key5'].length;
+		};
 
 	$(classTable)
 	.append('<thead></thead>')
@@ -68,20 +97,8 @@ function drawStudentTable() {
 	.append('<tbody></tbody>');
 
 	$(classTable).find('thead').append('<tr></tr>');
-	drawTableRows('th', tableArr, 'tr');
-
-	for (let i = 0; i < lng; i++) {
-		let tbody = [],
-			objArr = anotherFakeObj['key5'],
-			tr = '<tr id="student-'+ i +'"></tr>',
-			td = 'td',
-			tableItem = '<td>' + objArr[i]['key5a'] + '</td><td>' + objArr[i]['key5b']['key5bii'] + ', ' + objArr[i]['key5b']['key5bi'] + '</td><td>' + calcStudentClassAve(objArr[i]) + '</td>',
-			tRow = '#student-' + i;
-			
-		$(classTable).find('tbody').append(tr);
-			
-		$(tRow).append(tableItem);
-	}
+	drawTableHeaderRows('th', tableArr, 'tr');
+	drawTableBodyRows(anotherFakeObj);
 
 }
 
