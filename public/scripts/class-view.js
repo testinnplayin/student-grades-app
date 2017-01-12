@@ -198,9 +198,7 @@ function calcStudentClassMed(gradeArr) {
 
 	for (let grade of gradeArr) {
 		grade = parseFloat(grade);
-		console.log(grade);
 		newGradeArr.push(grade);
-		console.log(newGradeArr);
 	}
 
 	let sortedGrades = newGradeArr.sort((a, b) => a - b);
@@ -229,6 +227,24 @@ function calcStudentClassMed(gradeArr) {
 	}
 }
 
+function calcAve(num) {
+	let numArr = num.toString().split(''),
+		deciPnt = numArr.indexOf('.'),
+		deciPlaces = numArr.slice(deciPnt, numArr.length),
+		lng = deciPlaces.length,
+		lastPlc = deciPlaces[lng - 1],
+		thirdDeciPlc = deciPlaces[3],
+		newNum;
+
+	if (lastPlc <= 5 && thirdDeciPlc % 2 === 0) {
+	  newNum = Math.floor(num * 1000) / 1000;
+	} else {
+	  newNum = Math.round(num * 1000) / 1000;
+	}
+
+	return newNum;		
+}
+
 function calcStudentStats(studentObj) {
 	let studentGrades = studentObj['key5c'],
 		sum = 0,
@@ -247,11 +263,10 @@ function calcStudentStats(studentObj) {
 	}
 
 	let tempAverage = sum / gradeLng;
+	console.log(tempAverage);
 	median = calcStudentClassMed(valArr);
 
-	(tempAverage % 2 === 0) 
-		? average = Math.floor(tempAverage * 1000) / 1000 
-		: average = Math.round(tempAverage * 1000) / 1000; //normal scientific way of rounding numbers, good up to three significant figures
+	average = calcAve(tempAverage);
 
 	stats.push(average);
 	stats.push(median);
