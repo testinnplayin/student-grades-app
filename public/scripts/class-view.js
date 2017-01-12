@@ -212,12 +212,20 @@ function calcStudentStats(studentObj) {
 		valArr = [],
 		stats = [];
 
+	console.log(studentObj);
+	console.log(studentGrades);
+
 	for (let grade of studentGrades) {
 		let keys = Object.keys(grade);
+		console.log(keys);
+		console.log(grade);
 		for (let key of keys) {
+			console.log(key);
 			sum += parseFloat(grade[key]);
 			valArr.push(grade[key]);
 		}
+
+		
 	}
 
 	let tempAverage = sum / gradeLng;
