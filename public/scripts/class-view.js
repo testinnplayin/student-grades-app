@@ -194,9 +194,20 @@ function calcStudentClassMed(gradeArr) {
 	let median,
 		lng = gradeArr.length,
 		halfWay,
-		sortedGrades = gradeArr.sort((a, b) => a - b);
+		newGradeArr = [];
 
-	((lng / 2) === 0.5) ? halfWay = Math.round(lng / 2) : halfWay = Math.floor(lng / 2);
+	for (let grade of gradeArr) {
+		grade = parseFloat(grade);
+		console.log(grade);
+		newGradeArr.push(grade);
+		console.log(newGradeArr);
+	}
+
+	let sortedGrades = newGradeArr.sort((a, b) => a - b);
+
+	((lng / 2) === 0.5) 
+		? halfWay = Math.round(lng / 2) 
+		: halfWay = Math.floor(lng / 2);
 
 	if (lng % 2 === 0) {
 		let firstHalf,
@@ -204,7 +215,6 @@ function calcStudentClassMed(gradeArr) {
 			minGrade,
 			maxGrade;
 
-		
 		firstHalf = sortedGrades.slice(0, halfWay);
 		secondHalf = sortedGrades.slice(halfWay, lng);
 		minGrade = Math.min.apply(null, secondHalf);
@@ -238,7 +248,10 @@ function calcStudentStats(studentObj) {
 
 	let tempAverage = sum / gradeLng;
 	median = calcStudentClassMed(valArr);
-	tempAverage % 2 === 0 ? average = Math.floor(tempAverage * 1000) / 1000 : average = Math.round(tempAverage * 1000) / 1000; //normal scientific way of rounding numbers, good up to three significant figures
+
+	(tempAverage % 2 === 0) 
+		? average = Math.floor(tempAverage * 1000) / 1000 
+		: average = Math.round(tempAverage * 1000) / 1000; //normal scientific way of rounding numbers, good up to three significant figures
 
 	stats.push(average);
 	stats.push(median);
