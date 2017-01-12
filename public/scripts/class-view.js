@@ -23,8 +23,8 @@ function drawTableDeleteButton(rowId) {
 
 function drawTableBodyRows(data) {
 	let classTable = '.js-class-table',
-		objArr = data['key5'],
-		lng = data['key5'].length;
+		objArr = data['students'],
+		lng = objArr.length;
 
 	for (let i = 0; i < lng; i++) {
 		let tbody = [],
@@ -33,7 +33,7 @@ function drawTableBodyRows(data) {
 			median = stats[1],
 			tr = '<tr id="student-'+ i +'"></tr>',
 			tRow = '#student-' + i,
-			tableItem = ('<td>' + objArr[i]['key5a'] + '</td><td>' + objArr[i]['key5b']['key5bii'] + ', ' + objArr[i]['key5b']['key5bi'] 
+			tableItem = ('<td>' + objArr[i]['studentId'] + '</td><td>' + objArr[i]['name']['lastName'] + ', ' + objArr[i]['name']['firstName'] 
 						+ '</td><td>' + average + '</td><td>' + median + '</td><td>'
 						+ drawTableEditButton(tRow) + '</td>'
 						+ '<td>' + drawTableDeleteButton(tRow) + '</td>');
@@ -44,59 +44,10 @@ function drawTableBodyRows(data) {
 	}
 }
 
-function drawStudentTable() {
+function drawStudentTable(data) {
 	let classTable = '.js-class-table',
 		thead = 'thead',
-		tableArr = ['Student ID Number', 'Student Name', 'Grade Average', 'Median Grade', 'Edit Student', 'Delete Student'],
-		anotherFakeObj = {
-			'key1': 'value1',
-			'key2': 'value2',
-			'key3': 'value3',
-			'key4': 'value4',
-			'key5': [
-				{
-					'key5a': 'value5a', 
-					'key5b': {
-						'key5bi': 'value5bi',
-						'key5bii': 'value5bii'
-					}, 
-					'key5c': [
-						{
-							'key5ci': '4.26'	
-						},
-						{
-							'key5cii': '5.58'
-						},
-						{
-							'key5ciii': '6.7891'
-						}
-					]
-
-				},
-				{
-					'key5a': 'value5d',
-					'key5b': {
-						'key5bi': 'value5ei',
-						'key5bii': 'value5eii'
-					},
-					'key5c': [
-						{
-							'key5ci': '1'
-						},
-						{
-							'key5cii': '2'
-						},
-						{
-							'key5ciii': '3'
-						},
-						{
-							'key5civ': '4'
-						}
-					]
-
-				}
-			]
-		};
+		tableArr = ['Student ID Number', 'Student Name', 'Grade Average', 'Median Grade', 'Edit Student', 'Delete Student'];
 
 	$(classTable)
 	.append('<thead></thead>')
@@ -105,16 +56,17 @@ function drawStudentTable() {
 
 	$(classTable).find('thead').append('<tr></tr>');
 	drawTableHeaderRows('th', tableArr, 'tr');
-	drawTableBodyRows(anotherFakeObj);
+	drawTableBodyRows(data);
 
 }
 
-function drawClassPanel() {
+function drawClassPanel(data) {
 	let jsClassPanel = '.js-class-panel',
 		jsPanelHeading = '.js-panel-heading',
 		jsPanelBody = '.js-panel-body',
-		div = 'div';
-		// keys = Object.keys(data),
+		div = 'div',
+		keys = Object.keys(data),
+		lng = keys.length;
 
 	$(jsClassPanel).append('<div></div>')
 	.children(div)
@@ -131,11 +83,10 @@ function drawClassPanel() {
 	.addClass('panel-body')
 	.addClass('js-panel-body');
 
-	let fakeObj = {'1': '1', '2': '2', '3': '3', '4': '4'},
-		keys = Object.keys(fakeObj);
 
-	for (let key of keys) {
-		let para = '<p><strong>' + key + ':</strong> ' + fakeObj[key] + '</p>';
+	for (let i = 1; i < lng - 1; i++ ) {
+		let key = keys[i], 
+		para = '<p><strong>' + keys[i] + ':</strong> ' + data[key] + '</p>';
 
 		$(jsPanelBody).append(para);
 	}
@@ -147,14 +98,15 @@ function drawClassPanel() {
 	.addClass('class-table')
 	.addClass('js-class-table');
 
-	drawStudentTable();
+	drawStudentTable(data);
 }
 
 function renderClass() {
 	let contentContainer = '.js-content-container',
 		classView = '.class-view',
 		jsClassView = '.js-class-view',
-		div = 'div';
+		div = 'div',
+		whichClass;
 
 	$(contentContainer)
 	.append("<div></div>")
@@ -169,20 +121,26 @@ function renderClass() {
 	.addClass('class-panel')
 	.addClass('js-class-panel');
 
-	drawClassPanel();
+	whichClass = window.location.href;
+	whichClass = whichClass.split('/');
+	whichClass = whichClass[whichClass.length - 1];
+
+	getClassToView(whichClass);
+
+	// drawClassPanel(data);
 
 }
 
-function getClassToView(klassId) {
+function getClassToView(whichClass) {
 	$.ajax({
 		method: 'GET',
-		url: '/classes/view/class/' + klassId,
+		url: '/classes/view/class/' + whichClass,
 		dataType: 'json'
 	})
 	.done(function(data) {
 		console.log('successful call to server');
 		console.log(data);
-		// drawClassPanel(data);
+		drawClassPanel(data);
 	})
 	.done(function(err) {
 		console.error('unsuccessful call to server');
@@ -246,7 +204,7 @@ function calcAve(num) {
 }
 
 function calcStudentStats(studentObj) {
-	let studentGrades = studentObj['key5c'],
+	let studentGrades = studentObj['grades'],
 		sum = 0,
 		gradeLng = studentGrades.length,
 		average,
