@@ -103,6 +103,9 @@ function drawClassPanel(data) {
 		$(jsPanelBody).append(para);
 	}
 
+	$(jsPanelBody).append('<p><strong>Class Average: </strong>Average</p>')
+	.append('<p><strong>Class Median: </strong>class median</p>');
+
 	$(jsClassPanel)
 	.append('<table></table>')
 	.find('table')
@@ -160,6 +163,51 @@ function getClassToView(whichClass) {
 	});
 }
 
+function roundNums(num) {
+	let numArr = num.toString().split(''),
+		deciPnt = numArr.indexOf('.'),
+		deciPlaces = numArr.slice(deciPnt, numArr.length),
+		lng = deciPlaces.length,
+		lastPlc = deciPlaces[lng - 1],
+		thirdDeciPlc = deciPlaces[3],
+		newNum;
+
+	if (lastPlc <= 5 && thirdDeciPlc % 2 === 0) {
+	  newNum = Math.floor(num * 1000) / 1000;
+	} else {
+	  newNum = Math.round(num * 1000) / 1000;
+	}
+
+	return newNum;		
+}
+
+function calcStudentClassAverage(studentGrades) {
+	let sum = 0,
+		gradeLng = studentGrades.length,
+		average,
+		median,
+		valArr = [],
+		stats = [],
+		tempAverage;
+
+	for (let singleGrade of studentGrades) {
+		let keys = Object.keys(singleGrade);
+		let parsedGrade = parseFloat(singleGrade['grade']);
+		sum += parsedGrade;
+		valArr.push(parsedGrade);
+	}
+
+	tempAverage = sum / gradeLng;
+	median = calcStudentClassMed(valArr);
+
+	average = roundNums(tempAverage);
+
+	stats.push(average);
+	stats.push(median);
+
+	return stats;
+}
+
 function calcStudentClassMed(gradeArr) {
 	let median,
 		lng = gradeArr.length,
@@ -167,7 +215,6 @@ function calcStudentClassMed(gradeArr) {
 		newGradeArr = [];
 
 	for (let grade of gradeArr) {
-		grade = parseFloat(grade);
 		newGradeArr.push(grade);
 	}
 
@@ -187,60 +234,21 @@ function calcStudentClassMed(gradeArr) {
 		secondHalf = sortedGrades.slice(halfWay, lng);
 		minGrade = Math.min.apply(null, secondHalf);
 		maxGrade = Math.max.apply(null, firstHalf);
-		median = (minGrade + maxGrade) / 2;
+		median = roundNums((minGrade + maxGrade) / 2);
 
 		return median
 	} else {
-		median = sortedGrades[halfWay];
+		median = roundNums(sortedGrades[halfWay]);
 
-		return median
+		return median;
 	}
-}
-
-function calcAve(num) {
-	let numArr = num.toString().split(''),
-		deciPnt = numArr.indexOf('.'),
-		deciPlaces = numArr.slice(deciPnt, numArr.length),
-		lng = deciPlaces.length,
-		lastPlc = deciPlaces[lng - 1],
-		thirdDeciPlc = deciPlaces[3],
-		newNum;
-
-	if (lastPlc <= 5 && thirdDeciPlc % 2 === 0) {
-	  newNum = Math.floor(num * 1000) / 1000;
-	} else {
-	  newNum = Math.round(num * 1000) / 1000;
-	}
-
-	return newNum;		
 }
 
 function calcStudentStats(studentObj) {
 	let studentGrades = studentObj['grades'],
-		sum = 0,
-		gradeLng = studentGrades.length,
-		average,
-		median,
-		valArr = [],
-		stats = [],
-		tempAverage;
+		stats = [];
 
-	for (let singleGrade of studentGrades) {
-		let keys = Object.keys(singleGrade);
-		let parsedGrade = parseFloat(singleGrade['grade']);
-		sum += parsedGrade;
-		valArr.push(parsedGrade);
-	}
-
-	tempAverage = sum / gradeLng;
-	median = calcStudentClassMed(valArr);
-
-	average = calcAve(tempAverage);
-
-	stats.push(average);
-	stats.push(median);
-
-	console.log(stats);
+	stats = calcStudentClassAverage(studentGrades);
 
 	return stats;
 }
