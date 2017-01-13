@@ -22,9 +22,9 @@ const classSchema = mongoose.Schema({
 	}]
 });
 
-classSchema.virtual('studentFullName').get(function() {
-	return `${this.students.lastName}, ${this.students.firstName}`;
-});
+// classSchema.virtual('studentFullName').get(function() {
+// 	return `${this.students.lastName}, ${this.students.firstName}`;
+// });
 
 // classSchema.virtual('studentData').get(function() {
 // 	return `${}`
