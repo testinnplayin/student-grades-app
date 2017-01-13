@@ -127,8 +127,6 @@ function renderClass() {
 
 	getClassToView(whichClass);
 
-	// drawClassPanel(data);
-
 }
 
 function getClassToView(whichClass) {
@@ -210,26 +208,17 @@ function calcStudentStats(studentObj) {
 		average,
 		median,
 		valArr = [],
-		stats = [];
+		stats = [],
+		tempAverage;
 
-	console.log(studentObj);
-	console.log(studentGrades);
-
-	for (let grade of studentGrades) {
-		let keys = Object.keys(grade);
-		console.log(keys);
-		console.log(grade);
-		for (let key of keys) {
-			console.log(key);
-			sum += parseFloat(grade[key]);
-			valArr.push(grade[key]);
-		}
-
-		
+	for (let singleGrade of studentGrades) {
+		let keys = Object.keys(singleGrade);
+		let parsedGrade = parseFloat(singleGrade['grade']);
+		sum += parsedGrade;
+		valArr.push(parsedGrade);
 	}
 
-	let tempAverage = sum / gradeLng;
-	console.log(tempAverage);
+	tempAverage = sum / gradeLng;
 	median = calcStudentClassMed(valArr);
 
 	average = calcAve(tempAverage);
