@@ -140,7 +140,7 @@ function getClassToView(whichClass) {
 		console.log(data);
 		drawClassPanel(data);
 	})
-	.done(function(err) {
+	.fail(function(err) {
 		console.error('unsuccessful call to server');
 		console.error(err);
 	});
@@ -231,8 +231,4 @@ function calcStudentStats(studentObj) {
 	return stats;
 }
 
-function handleActions() {
-	renderClass();
-}
-
-$(document).ready(handleActions());
+$(document).ready(renderClass());
