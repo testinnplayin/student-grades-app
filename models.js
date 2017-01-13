@@ -9,8 +9,10 @@ const classSchema = mongoose.Schema({
 	term: String,
 	students: [{
 		studentId: String,
-		firstName: String,
-		lastName: String,
+		name: {
+			firstName: String,
+			lastName: String
+		},
 		grades: [
 			{
 				work: String,
@@ -49,26 +51,18 @@ classSchema.methods.studentApiRep = function() {
 		subject: this.subject,
 		gradeLevel: this.gradeLevel,
 		term: this.term,
-		students: this.students//[
-		// 	// {
-		// 	// 	studentId: this.students.studentId,
-		// 	// 	fullName: this.students.studentFullName,
-		// 	// 	grades: this.students.grades
-		// 	// }
-		// ]
+		students: [
+			{
+				studentId: this.students[0].studentId,
+				name: {
+					firstName: this.students[0].name.firstName,
+					lastName: this.students[0].name.lastName
+				},
+				grades: this.students[0].grades
+			}
+		]
 	};
 };
-
-// classSchema.methods.calculateClassAverage = function() {
-// 	return {
-// 		className: this.className,
-// 		students: [
-// 			{
-// 				grades: this.students.grades
-// 			}
-// 		]
-// 	};
-// };
 
 //add a method for getting teacher id later on
 
