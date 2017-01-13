@@ -286,15 +286,10 @@ describe('set up an API environment for testing Klass', function() {
 				.then(function(course) {
 					let students = course.students,
 						ourStudentIndex;
-					
-					for (let student of students) {
-						if (student.studentId === updateKlass.studentId) {
-							ourStudentIndex = students.indexOf(student.studentId);	
-						}
-					}
 
-					course.students[ourStudentIndex].name.firstName.should.equal(updateKlass.students[0].name.firstName);
-					course.students[ourStudentIndex].name.lastName.should.equal(updateKlass.students[0].name.lastName);
+					students[0].studentId.should.equal(updateKlass.students[0].studentId);
+					students[0].name.firstName.should.equal(updateKlass.students[0].name.firstName);
+					students[0].name.lastName.should.equal(updateKlass.students[0].name.lastName);
 				});
 		});
 	});
