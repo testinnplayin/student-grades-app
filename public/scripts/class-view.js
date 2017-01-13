@@ -21,6 +21,18 @@ function drawTableDeleteButton(rowId) {
 	return deleteButton;
 }
 
+function drawStudentCreateButton() {
+	$('.title-stuff').append('<a></a>');
+	$('.title-stuff')
+	.find('a')
+	.attr('href', '#')
+	.addClass('btn')
+	.addClass('btn-danger')
+	.addClass('create-student-btn')
+	.addClass('js-create-student-btn')
+	.text('Add a New Student');
+}
+
 function drawTableBodyRows(data) {
 	let classTable = '.js-class-table',
 		objArr = data['students'],
@@ -107,6 +119,8 @@ function renderClass() {
 		jsClassView = '.js-class-view',
 		div = 'div',
 		whichClass;
+
+	drawStudentCreateButton();
 
 	$(contentContainer)
 	.append("<div></div>")
