@@ -36,6 +36,10 @@ app.get('/classes/edit/:id', (req, res) => {
 	res.sendFile(__dirname + '/public/views/edit-class.html'); //, { resClassID : id } can pass in a variable directly to the sendFile method
 });
 
+app.get('/classes/class/view/:id', (req, res) => {
+	res.sendFile(__dirname + '/public/views/class-view.html');
+});
+
 
 //GET operations
 //classes GET for Read operation
@@ -79,7 +83,7 @@ app.get('/classes/:id', (req, res) => {
 
 });
 
-//class GET for Read operation
+//class GET for Read operation for specific class view
 
 app.get('/classes/view/class/:id', (req, res) => {
 	if (!req.params.id) {
@@ -100,7 +104,7 @@ app.get('/classes/view/class/:id', (req, res) => {
 	});
 });
 
-//classes POST for Create operation
+//classes POST for Create operation for a class
 
 app.post('/classes', (req, res) => {
 	const requiredFields = ['className', 'subject', 'gradeLevel', 'term'];
