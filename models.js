@@ -45,22 +45,30 @@ classSchema.methods.apiRepr = function() {
 };
 
 classSchema.methods.studentApiRep = function() {
+	let allStudents = [],
+		studentsLng = this.students.length;
+
+	for (let i = 0; i < studentsLng; i++) {
+		let studentObj = {};
+		studentObj = {
+			studentId: this.students[i].studentId,
+			name: {
+				firstName: this.students[i].name.firstName,
+				lastName: this.students[i].name.lastName
+			},
+			grades: this.students[i].grades
+		};
+
+		allStudents.push(studentObj);
+	}
+	
 	return {
 		id: this._id,
 		className: this.className,
 		subject: this.subject,
 		gradeLevel: this.gradeLevel,
 		term: this.term,
-		students: [
-			{
-				studentId: this.students[0].studentId,
-				name: {
-					firstName: this.students[0].name.firstName,
-					lastName: this.students[0].name.lastName
-				},
-				grades: this.students[0].grades
-			}
-		]
+		students: allStudents
 	};
 };
 
