@@ -22,7 +22,7 @@ function drawTableDeleteButton(rowId) {
 }
 
 function drawStudentCreateButton() {
-	let titleStuff = '.title-stuff',
+	let titleStuff = '.js-title-stuff',
 		whichClass = findClassInUrl();
 
 	$(titleStuff).append('<a></a>');
