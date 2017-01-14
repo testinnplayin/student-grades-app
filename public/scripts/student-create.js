@@ -1,5 +1,58 @@
 'use strict';
 
+function renderStudentCreateForm() {
+	var form = 'form',
+		arr = ['studentId', 'firstName', 'lastName'],
+		button = 'button',
+		panelBody = '.js-panel-body';
+
+	$(panelBody).append('<h3>Add New Student</h3>');
+
+	$(panelBody).append('<form></form>');
+
+	for (let item in arr) {
+		let jGrp = '.js-f-grp' + item;
+		$(form).append('<div class="form-group js-f-grp-' + item + '"></div>');
+		$(jGrp)
+		.append('<label></label>')
+		.append('<input />');
+	}
+	
+	for (let i = 0; i < arr.length; i++) {
+		let jsGrp = '.js-f-grp-' + i,
+			item = arr[i];
+
+		$(jsGrp)
+		.append("<label></label>")
+		.append("<input />");
+
+		$(jsGrp)
+		.find('label')
+		.attr('for', item)
+		.text(item + ':');
+
+		$(jsGrp)
+		.find('input')
+		.attr('id', item)
+		.attr('type', 'text')
+		.attr('placeholder', 'Enter ' + item)
+		.attr('required');
+
+		$(jsGrp)
+		.find('#' + item + '')
+		.addClass('form-control');
+	}
+	
+	$(form).append("<button>Add Student</button>");
+
+	$(button)
+	.attr('type', 'submit')
+	.addClass('btn')
+	.addClass('btn-danger')
+	.attr('id', 'submit-btn');
+
+}
+
 function drawSmallerClassPanel(data) {
 	let jsClassPanel = '.js-class-panel',
 		jsPanelHeading = '.js-panel-heading',
@@ -30,6 +83,8 @@ function drawSmallerClassPanel(data) {
 
 		$(jsPanelBody).append(para);
 	}
+
+	renderStudentCreateForm();
 }
 
 function renderSmallerClass() {
@@ -55,7 +110,6 @@ function renderSmallerClass() {
 	whichClass = getInfoFromUrl();
 
 	retrieveKlass(whichClass);
-
 }
 
 function retrieveKlass(classIdFromUrl) {
