@@ -51,6 +51,8 @@ function renderStudentCreateForm() {
 	.addClass('btn-danger')
 	.attr('id', 'submit-btn');
 
+	handleCreateStudentSubmit();
+
 }
 
 function drawSmallerClassPanel(data) {
@@ -136,6 +138,47 @@ function getInfoFromUrl() {
 	classIdFromUrl = classIdFromUrl[classIdFromUrl.length - 3];
 
 	return classIdFromUrl;
+}
+
+function handleCreateStudentSubmit() {
+	$('form').submit(e => {
+		e.preventDefault();
+		e.stopPropagation();
+
+		let studentId,
+			firstName, 
+			lastName,
+			studentObj = {},
+			reqObj = {},
+			classId,
+			arr = [];
+
+		studentId = $('input[id="studentId"]').val();
+		firstName = $('input[id="firstName"]').val();
+		lastName = $('input[id="lastName"]').val();
+
+		classId = getInfoFromUrl();
+
+		studentObj = {
+			studentId: studentId,
+			name: {
+				firstName: firstName,
+				lastName: lastName
+			},
+			grades: []
+		}
+
+		arr.push(studentObj);
+
+		reqObj = {
+			id : classId,
+			students : arr
+		};
+
+		console.log(reqObj.students);
+
+		return false;
+	});
 }
 
 $(document).ready(renderSmallerClass());
