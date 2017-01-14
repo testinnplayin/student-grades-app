@@ -256,10 +256,10 @@ describe('set up an API environment for testing Klass', function() {
 
 	describe('PUT verb at /classes/:id/student', function() {
 		it('should update a class with a new student field', function() {
-			const updateKlass = {
+			var updateKlass = {
 				students: [
 					{
-						studentId: '13',
+						studentId: '25',
 						name: {
 							firstName: 'John',
 							lastName: 'Doe'
@@ -285,11 +285,14 @@ describe('set up an API environment for testing Klass', function() {
 				})
 				.then(function(course) {
 					let students = course.students,
-						ourStudentIndex;
-
-					students[0].studentId.should.equal(updateKlass.students[0].studentId);
-					students[0].name.firstName.should.equal(updateKlass.students[0].name.firstName);
-					students[0].name.lastName.should.equal(updateKlass.students[0].name.lastName);
+						lng = students.length;
+					for (let i = 0; i < students.length; i++) {
+						if (students[i].studentId == updateKlass.students[0].studentId) {
+							students[i].name.firstName.should.equal(updateKlass.students[0].name.firstName);
+							students[i].name.lastName.should.equal(updateKlass.students[0].name.lastName);
+						}
+						
+					}
 				});
 		});
 	});

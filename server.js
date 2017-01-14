@@ -201,7 +201,6 @@ app.put('/classes/:id/student', (req, res) => {
 	});
 
 	forUpdating.students.push(studentObj);
-	console.log(forUpdating.students[0]);
 
 	Klass
 		.findByIdAndUpdate(req.params.id, { $push: {'students': forUpdating.students[0]} })
