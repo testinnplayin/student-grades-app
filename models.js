@@ -9,8 +9,10 @@ const classSchema = mongoose.Schema({
 	term: String,
 	students: [{
 		studentId: String,
-		firstName: String,
-		lastName: String,
+		name: {
+			firstName: String,
+			lastName: String
+		},
 		grades: [
 			{
 				work: String,
@@ -20,9 +22,9 @@ const classSchema = mongoose.Schema({
 	}]
 });
 
-classSchema.virtual('studentFullName').get(function() {
-	return `${this.students.lastName}, ${this.students.firstName}`;
-});
+// classSchema.virtual('studentFullName').get(function() {
+// 	return `${this.students.lastName}, ${this.students.firstName}`;
+// });
 
 // classSchema.virtual('studentData').get(function() {
 // 	return `${}`
@@ -43,32 +45,32 @@ classSchema.methods.apiRepr = function() {
 };
 
 classSchema.methods.studentApiRep = function() {
+	let allStudents = [],
+		studentsLng = this.students.length;
+
+	for (let i = 0; i < studentsLng; i++) {
+		let studentObj = {};
+		studentObj = {
+			studentId: this.students[i].studentId,
+			name: {
+				firstName: this.students[i].name.firstName,
+				lastName: this.students[i].name.lastName
+			},
+			grades: this.students[i].grades
+		};
+
+		allStudents.push(studentObj);
+	}
+	
 	return {
 		id: this._id,
 		className: this.className,
 		subject: this.subject,
 		gradeLevel: this.gradeLevel,
 		term: this.term,
-		students: this.students//[
-		// 	// {
-		// 	// 	studentId: this.students.studentId,
-		// 	// 	fullName: this.students.studentFullName,
-		// 	// 	grades: this.students.grades
-		// 	// }
-		// ]
+		students: allStudents
 	};
 };
-
-// classSchema.methods.calculateClassAverage = function() {
-// 	return {
-// 		className: this.className,
-// 		students: [
-// 			{
-// 				grades: this.students.grades
-// 			}
-// 		]
-// 	};
-// };
 
 //add a method for getting teacher id later on
 

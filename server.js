@@ -178,6 +178,42 @@ app.put('/classes/:id', (req, res) => {
 		});
 });
 
+app.put('/classes/:id/student', (req, res) => {
+	if (!(req.params && req.body.id && (req.params.id === req.body.id))) {
+		const msg = `Request path id parameter ${req.params.id} and the request body id ${req.body.id} must match`;
+		console.error(msg);
+		res.status(400).json({ message : msg });
+	}
+
+	let forUpdating = {};
+	let lng = req.body.students.length;
+	const updateFields = ['studentId', 'name', 'grades'];
+	let studentObj = {};
+
+	forUpdating = {
+		students: []
+	};
+
+	updateFields.forEach(field => {
+		if (field in req.body.students[0]) {
+			studentObj[field] = req.body.students[0][field];
+		}
+	});
+
+	forUpdating.students.push(studentObj);
+
+	Klass
+		.findByIdAndUpdate(req.params.id, { $push: {'students': forUpdating.students[0]} })
+		.exec()
+		.then(function(course) {
+			res.status(204).end();
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({ message: 'Internal server error, cannot update' });
+		});
+});
+
 //any use case
 
 app.use('*', function(req, res) {
