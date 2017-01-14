@@ -40,6 +40,10 @@ app.get('/classes/class/view/:id', (req, res) => {
 	res.sendFile(__dirname + '/public/views/class-view.html');
 });
 
+app.get('/classes/class/:id/student/create', (req, res) => {
+	res.sendFile(__dirname + '/public/views/student-create.html');
+});
+
 
 //GET operations
 //classes GET for Read operation
