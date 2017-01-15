@@ -1,47 +1,49 @@
 'use strict';
 
-'use strict';
+// function renderAlerts(result, response) {
+// 	var mainContent = '.js-main-content',
+// 		alertSel = '.alert',
+// 		alertStr = 'alert',
+// 		closeSel = '.close',
+// 		closeStr = 'close';
 
-function renderAlerts(result, response) {
-	var mainContent = '.js-main-content',
-		alertSel = '.alert',
-		alertStr = 'alert',
-		closeSel = '.close',
-		closeStr = 'close';
+// 	$(mainContent).prepend('<div></div>');
 
-	$(mainContent).prepend('<div></div>');
+// 	$('.js-main-content div')
+// 	.first()
+// 	.addClass(alertStr)
+// 	.addClass('alert-dismissable')
+// 	.text(response)
+// 	.attr('role', alertStr);
 
-	$('.js-main-content div')
-	.first()
-	.addClass(alertStr)
-	.addClass('alert-dismissable')
-	.text(response)
-	.attr('role', alertStr);
+// 	result === 'success' ? $(alertSel).addClass('alert-success') : $(alertSel).addClass('alert-warning');
 
-	result === 'success' ? $(alertSel).addClass('alert-success') : $(alertSel).addClass('alert-warning');
+// 	$(alertSel)
+// 	.append('<button></button>');
 
-	$(alertSel)
-	.append('<button></button>');
+// 	$(alertSel)
+// 	.find('button')
+// 	.addClass(closeStr)
+// 	.attr('type', 'button')
+// 	.attr('data-dismiss', alertStr)
+// 	.attr('aria-label', closeStr);
 
-	$(alertSel)
-	.find('button')
-	.addClass(closeStr)
-	.attr('type', 'button')
-	.attr('data-dismiss', alertStr)
-	.attr('aria-label', closeStr);
+// 	$(closeSel).append('<span></span>');
 
-	$(closeSel).append('<span></span>');
+// 	$(closeSel).html('<span aria-hidden="true">&times;</span>');
+// }
 
-	$(closeSel).html('<span aria-hidden="true">&times;</span>');
-}
 
 function renderStudentEditForm(data) {
 	var form = 'form',
 		arr = ['studentId', 'firstName', 'lastName'],
 		button = 'button',
-		classPanel = '.js-class-panel';
+		classPanel = '.js-class-panel',
+		studentObj = findStudentObj(data);
 
-	$(classPanel).append('<h3>Add New Student</h3>');
+	console.log(studentObj);
+
+	$(classPanel).append('<h3>Edit Student</h3>');
 
 	$(classPanel).append('<form></form>');
 
@@ -70,15 +72,19 @@ function renderStudentEditForm(data) {
 		.find('input')
 		.attr('id', item)
 		.attr('type', 'text')
-		.attr('placeholder', 'Enter ' + item)
 		.attr('required');
 
 		$(jsGrp)
 		.find('#' + item + '')
 		.addClass('form-control');
 	}
+
+	$('#studentId').attr('value', studentObj['studentId']);
+	$('#firstName').attr('value', studentObj['name']['firstName']);
+	$('#lastName').attr('value', studentObj['name']['lastName']);
+
 	
-	$(form).append("<button>Add Student</button>");
+	$(form).append("<button>Edit Student</button>");
 
 	$(button)
 	.attr('type', 'submit')
@@ -104,22 +110,17 @@ function drawTableBodyRows(data, whichClass) {
 	let classTable = '.js-class-table',
 		objArr = data['students'],
 		lng = objArr.length,
-		whichStudent;
-
-	whichStudent = getInfoForStudent();
+		whichStudent = getInfoForStudent(),
+		studentObj = {};
 
 	$(classTable).find('tbody').append(`<tr id=${whichStudent}></tr>`);
 
-	for (let i = 0; i < lng; i++) {
-		if (objArr[i].studentId === whichStudent) {
-			console.log(objArr[i]);
-			let tRow = `#${objArr[i].studentId}`,
-			tableItem = ('<td>' + objArr[i]['studentId'] + '</td><td>' + objArr[i]['name']['lastName'] + ', ' + objArr[i]['name']['firstName'] 
-						+ '</td>');
+	studentObj = findStudentObj(data);
+			let tRow = `#${studentObj.studentId}`,
+			tableItem = ('<td>' + studentObj.studentId + '</td><td>' + studentObj.name.lastName + ', ' + studentObj.name.firstName 
+							+ '</td>');
 		
 		$(tRow).append(tableItem);
-		}
-	}		
 	
 }
 
@@ -230,6 +231,21 @@ function getInfoForStudent() {
 	return studentIdFromUrl;
 }
 
+function findStudentObj(data) {
+	let objArr = data.students,
+		whichStudent = getInfoForStudent(),
+		lng = objArr.length,
+		studentObject = {};
+
+	for (let i = 0; i < lng; i++) {
+		if (objArr[i].studentId === whichStudent) {
+			studentObject = objArr[i];
+		}
+	}	
+
+	return studentObject;
+}
+
 function retrieveKlassInfo(classIdFromUrl) {
 	let addy = '/classes/view/class/' + classIdFromUrl;
 	$.ajax({
@@ -267,14 +283,6 @@ function retrieveKlassInfo(classIdFromUrl) {
 // 		console.error('student creation was unsuccessful');
 // 		console.error(err);
 // 	});
-// }
-
-// function getInfoFromUrl() {
-// 	let classIdFromUrl = window.location.href;
-// 	classIdFromUrl = classIdFromUrl.split('/');
-// 	classIdFromUrl = classIdFromUrl[classIdFromUrl.length - 3];
-
-// 	return classIdFromUrl;
 // }
 
 // function handleCreateStudentSubmit(data) {
