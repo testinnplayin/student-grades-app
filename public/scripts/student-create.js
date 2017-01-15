@@ -1,5 +1,38 @@
 'use strict';
 
+function renderAlerts(result, response) {
+	var mainContent = '.js-main-content',
+		alertSel = '.alert',
+		alertStr = 'alert',
+		closeSel = '.close',
+		closeStr = 'close';
+
+	$(mainContent).prepend('<div></div>');
+
+	$('.js-main-content div')
+	.first()
+	.addClass(alertStr)
+	.addClass('alert-dismissable')
+	.text(response)
+	.attr('role', alertStr);
+
+	result === 'success' ? $(alertSel).addClass('alert-success') : $(alertSel).addClass('alert-warning');
+
+	$(alertSel)
+	.append('<button></button>');
+
+	$(alertSel)
+	.find('button')
+	.addClass(closeStr)
+	.attr('type', 'button')
+	.attr('data-dismiss', alertStr)
+	.attr('aria-label', closeStr);
+
+	$(closeSel).append('<span></span>');
+
+	$(closeSel).html('<span aria-hidden="true">&times;</span>');
+}
+
 function renderStudentCreateForm(data) {
 	var form = 'form',
 		arr = ['studentId', 'firstName', 'lastName'],
@@ -132,18 +165,22 @@ function retrieveKlass(classIdFromUrl) {
 	});
 }
 
-function createStudent(reqObj, id) {
-	console.info(reqObj);
-
+function createStudent(requestObject, id) {
 	$.ajax({
 		method: 'PUT',
 		url: `/classes/${id}/student`,
-		data: reqObj,
+		data: requestObject,
+		dataType: 'json'
 	})
 	.done(() => {
+		let result = 'success',
+			response = 'Student successfully added to the class';
 		console.log('student creation was successful');
+		renderAlerts(result, response);
 	})
 	.fail(err => {
+		let result = 'failure',
+			response = 'There has been a problem adding the student to the class';
 		console.error('student creation was unsuccessful');
 		console.error(err);
 	});
@@ -199,8 +236,6 @@ function handleCreateStudentSubmit(data) {
 			term: data.term,
 			students: arr
 		};
-
-		console.log(requestObject.students[0]);
 
 		createStudent(requestObject, id);
 
