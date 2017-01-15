@@ -1,6 +1,6 @@
 'use strict';
 
-function renderStudentCreateForm() {
+function renderStudentCreateForm(data) {
 	var form = 'form',
 		arr = ['studentId', 'firstName', 'lastName'],
 		button = 'button',
@@ -51,7 +51,7 @@ function renderStudentCreateForm() {
 	.addClass('btn-danger')
 	.attr('id', 'submit-btn');
 
-	handleCreateStudentSubmit();
+	handleCreateStudentSubmit(data);
 
 }
 
@@ -86,7 +86,7 @@ function drawSmallerClassPanel(data) {
 		$(jsPanelBody).append(para);
 	}
 
-	renderStudentCreateForm();
+	renderStudentCreateForm(data);
 }
 
 function renderSmallerClass() {
@@ -132,6 +132,23 @@ function retrieveKlass(classIdFromUrl) {
 	});
 }
 
+function createStudent(reqObj, id) {
+	console.info(reqObj);
+
+	$.ajax({
+		method: 'PUT',
+		url: `/classes/${id}/student`,
+		data: reqObj,
+	})
+	.done(() => {
+		console.log('student creation was successful');
+	})
+	.fail(err => {
+		console.error('student creation was unsuccessful');
+		console.error(err);
+	});
+}
+
 function getInfoFromUrl() {
 	let classIdFromUrl = window.location.href;
 	classIdFromUrl = classIdFromUrl.split('/');
@@ -140,7 +157,7 @@ function getInfoFromUrl() {
 	return classIdFromUrl;
 }
 
-function handleCreateStudentSubmit() {
+function handleCreateStudentSubmit(data) {
 	$('form').submit(e => {
 		e.preventDefault();
 		e.stopPropagation();
@@ -149,33 +166,43 @@ function handleCreateStudentSubmit() {
 			firstName, 
 			lastName,
 			studentObj = {},
-			reqObj = {},
-			classId,
+			requestObject = {},
+			id,
 			arr = [];
 
 		studentId = $('input[id="studentId"]').val();
 		firstName = $('input[id="firstName"]').val();
 		lastName = $('input[id="lastName"]').val();
 
-		classId = getInfoFromUrl();
+		console.log(studentId);
 
 		studentObj = {
-			studentId: studentId,
+			studentid: studentId,
 			name: {
 				firstName: firstName,
 				lastName: lastName
 			},
 			grades: []
-		}
+		};
+
+		console.log(studentObj);
 
 		arr.push(studentObj);
 
-		reqObj = {
-			id : classId,
-			students : arr
+		id = getInfoFromUrl();
+
+		requestObject = {
+			id: id,
+			className: data.className,
+			subject: data.subject,
+			gradeLevel: data.gradeLevel,
+			term: data.term,
+			students: arr
 		};
 
-		console.log(reqObj.students);
+		console.log(requestObject.students[0]);
+
+		createStudent(requestObject, id);
 
 		return false;
 	});
