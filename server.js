@@ -40,6 +40,10 @@ app.get('/classes/class/view/:id', (req, res) => {
 	res.sendFile(__dirname + '/public/views/class-view.html');
 });
 
+app.get('/classes/class/:id/student/create', (req, res) => {
+	res.sendFile(__dirname + '/public/views/student-create.html');
+});
+
 
 //GET operations
 //classes GET for Read operation
@@ -186,21 +190,19 @@ app.put('/classes/:id/student', (req, res) => {
 	}
 
 	let forUpdating = {};
-	let lng = req.body.students.length;
-	const updateFields = ['studentId', 'name', 'grades'];
-	let studentObj = {};
+	let studentObj = {},
+		students = [],
+		name = {};
 
-	forUpdating = {
-		students: []
-	};
+	name.firstName = req.body['students[0][name][firstName]'];
+	name.lastName = req.body['students[0][name][lastName]'];
 
-	updateFields.forEach(field => {
-		if (field in req.body.students[0]) {
-			studentObj[field] = req.body.students[0][field];
-		}
-	});
+	studentObj.studentId = req.body['students[0][studentid]'];
+	studentObj.name = name;
+	studentObj.grades = req.body['students[0][grades]'];
 
-	forUpdating.students.push(studentObj);
+	students.push(studentObj);
+	forUpdating.students = students;
 
 	Klass
 		.findByIdAndUpdate(req.params.id, { $push: {'students': forUpdating.students[0]} })

@@ -22,10 +22,13 @@ function drawTableDeleteButton(rowId) {
 }
 
 function drawStudentCreateButton() {
-	$('.title-stuff').append('<a></a>');
-	$('.title-stuff')
+	let titleStuff = '.js-title-stuff',
+		whichClass = findClassInUrl();
+
+	$(titleStuff).append('<a></a>');
+	$(titleStuff)
 	.find('a')
-	.attr('href', '#')
+	.attr('href', `/classes/class/${whichClass}/student/create`)
 	.addClass('btn')
 	.addClass('btn-danger')
 	.addClass('create-student-btn')
@@ -138,10 +141,8 @@ function renderClass() {
 	.addClass('class-panel')
 	.addClass('js-class-panel');
 
-	whichClass = window.location.href;
-	whichClass = whichClass.split('/');
-	whichClass = whichClass[whichClass.length - 1];
-
+	whichClass = findClassInUrl();
+	
 	getClassToView(whichClass);
 
 }
@@ -161,6 +162,14 @@ function getClassToView(whichClass) {
 		console.error('unsuccessful call to server');
 		console.error(err);
 	});
+}
+
+function findClassInUrl() {
+	let whichClass = window.location.href;
+	whichClass = whichClass.split('/');
+	whichClass = whichClass[whichClass.length - 1];
+
+	return whichClass;
 }
 
 function roundNums(num) {
