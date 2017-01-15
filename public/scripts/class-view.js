@@ -10,8 +10,8 @@ function drawTableHeaderRows(col, arrOrObj, row) {
 	}
 }
 
-function drawTableEditButton(rowId) {
-	let editButton = '<a href="#" class="btn btn-info js-edit-student-btn">Edit Student</a>';
+function drawTableEditButton(rowId, whichClass) {
+	let editButton = `<a href="/classes/class/${whichClass}/student/edit" class="btn btn-info js-edit-student-btn">Edit Student</a>`;
 
 	return editButton;
 }
@@ -21,9 +21,8 @@ function drawTableDeleteButton(rowId) {
 	return deleteButton;
 }
 
-function drawStudentCreateButton() {
-	let titleStuff = '.js-title-stuff',
-		whichClass = findClassInUrl();
+function drawStudentCreateButton(whichClass) {
+	let titleStuff = '.js-title-stuff';
 
 	$(titleStuff).append('<a></a>');
 	$(titleStuff)
@@ -36,7 +35,7 @@ function drawStudentCreateButton() {
 	.text('Add a New Student');
 }
 
-function drawTableBodyRows(data) {
+function drawTableBodyRows(data, whichClass) {
 	let classTable = '.js-class-table',
 		objArr = data['students'],
 		lng = objArr.length;
@@ -50,7 +49,7 @@ function drawTableBodyRows(data) {
 			tRow = '#student-' + i,
 			tableItem = ('<td>' + objArr[i]['studentId'] + '</td><td>' + objArr[i]['name']['lastName'] + ', ' + objArr[i]['name']['firstName'] 
 						+ '</td><td>' + average + '</td><td>' + median + '</td><td>'
-						+ drawTableEditButton(tRow) + '</td>'
+						+ drawTableEditButton(tRow, whichClass) + '</td>'
 						+ '<td>' + drawTableDeleteButton(tRow) + '</td>');
 			
 		$(classTable).find('tbody').append(tr);
@@ -59,7 +58,7 @@ function drawTableBodyRows(data) {
 	}
 }
 
-function drawStudentTable(data) {
+function drawStudentTable(data, whichClass) {
 	let classTable = '.js-class-table',
 		thead = 'thead',
 		tableArr = ['Student ID Number', 'Student Name', 'Grade Average', 'Median Grade', 'Edit Student', 'Delete Student'];
@@ -71,11 +70,11 @@ function drawStudentTable(data) {
 
 	$(classTable).find('thead').append('<tr></tr>');
 	drawTableHeaderRows('th', tableArr, 'tr');
-	drawTableBodyRows(data);
+	drawTableBodyRows(data, whichClass);
 
 }
 
-function drawClassPanel(data) {
+function drawClassPanel(data, whichClass) {
 	let jsClassPanel = '.js-class-panel',
 		jsPanelHeading = '.js-panel-heading',
 		jsPanelBody = '.js-panel-body',
@@ -116,7 +115,7 @@ function drawClassPanel(data) {
 	.addClass('class-table')
 	.addClass('js-class-table');
 
-	drawStudentTable(data);
+	drawStudentTable(data, whichClass);
 }
 
 function renderClass() {
@@ -126,7 +125,8 @@ function renderClass() {
 		div = 'div',
 		whichClass;
 
-	drawStudentCreateButton();
+	whichClass = findClassInUrl();
+	drawStudentCreateButton(whichClass);
 
 	$(contentContainer)
 	.append("<div></div>")
@@ -140,8 +140,6 @@ function renderClass() {
 	.addClass('panel-default')
 	.addClass('class-panel')
 	.addClass('js-class-panel');
-
-	whichClass = findClassInUrl();
 	
 	getClassToView(whichClass);
 
@@ -156,7 +154,7 @@ function getClassToView(whichClass) {
 	.done(function(data) {
 		console.log('successful call to server');
 		console.log(data);
-		drawClassPanel(data);
+		drawClassPanel(data, whichClass);
 	})
 	.fail(function(err) {
 		console.error('unsuccessful call to server');
