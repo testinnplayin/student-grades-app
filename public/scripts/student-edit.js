@@ -41,8 +41,6 @@ function renderStudentEditForm(data) {
 		classPanel = '.js-class-panel',
 		studentObj = findStudentObj(data);
 
-	console.log(studentObj);
-
 	$(classPanel).append('<h3>Edit Student</h3>');
 
 	$(classPanel).append('<form></form>');
@@ -147,7 +145,7 @@ function drawClassPanelWithStudent(data, whichClass) {
 		div = 'div',
 		keys = Object.keys(data), 
 		lng = keys.length;
-
+	console.log(keys);
 
 	$(jsClassPanel).append('<div></div>')
 	.children(div)
@@ -285,7 +283,7 @@ function retrieveKlassInfo(classIdFromUrl) {
 // 	});
 // }
 
-// function handleCreateStudentSubmit(data) {
+// function handleEditStudentSubmit(data) {
 // 	$('form').submit(e => {
 // 		e.preventDefault();
 // 		e.stopPropagation();
