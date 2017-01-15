@@ -10,8 +10,8 @@ function drawTableHeaderRows(col, arrOrObj, row) {
 	}
 }
 
-function drawTableEditButton(rowId, whichClass) {
-	let editButton = `<a href="/classes/class/${whichClass}/student/edit" class="btn btn-info js-edit-student-btn">Edit Student</a>`;
+function drawTableEditButton(rowId, whichClass, studentObj) {
+	let editButton = `<a href="/classes/class/${whichClass}/student/${studentObj.studentId}/edit" class="btn btn-info js-edit-student-btn">Edit Student</a>`;
 
 	return editButton;
 }
@@ -49,7 +49,7 @@ function drawTableBodyRows(data, whichClass) {
 			tRow = '#student-' + i,
 			tableItem = ('<td>' + objArr[i]['studentId'] + '</td><td>' + objArr[i]['name']['lastName'] + ', ' + objArr[i]['name']['firstName'] 
 						+ '</td><td>' + average + '</td><td>' + median + '</td><td>'
-						+ drawTableEditButton(tRow, whichClass) + '</td>'
+						+ drawTableEditButton(tRow, whichClass, objArr[i]) + '</td>'
 						+ '<td>' + drawTableDeleteButton(tRow) + '</td>');
 			
 		$(classTable).find('tbody').append(tr);

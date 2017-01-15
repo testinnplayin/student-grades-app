@@ -35,60 +35,60 @@ function renderAlerts(result, response) {
 	$(closeSel).html('<span aria-hidden="true">&times;</span>');
 }
 
-// function renderStudentCreateForm(data) {
-// 	var form = 'form',
-// 		arr = ['studentId', 'firstName', 'lastName'],
-// 		button = 'button',
-// 		panelBody = '.js-panel-body';
+function renderStudentEditForm(data) {
+	var form = 'form',
+		arr = ['studentId', 'firstName', 'lastName'],
+		button = 'button',
+		classPanel = '.js-class-panel';
 
-// 	$(panelBody).append('<h3>Add New Student</h3>');
+	$(classPanel).append('<h3>Add New Student</h3>');
 
-// 	$(panelBody).append('<form></form>');
+	$(classPanel).append('<form></form>');
 
-// 	for (let item in arr) {
-// 		let jGrp = '.js-f-grp' + item;
-// 		$(form).append('<div class="form-group js-f-grp-' + item + '"></div>');
-// 		$(jGrp)
-// 		.append('<label></label>')
-// 		.append('<input />');
-// 	}
+	for (let item in arr) {
+		let jGrp = '.js-f-grp' + item;
+		$(form).append('<div class="form-group js-f-grp-' + item + '"></div>');
+		$(jGrp)
+		.append('<label></label>')
+		.append('<input />');
+	}
 	
-// 	for (let i = 0; i < arr.length; i++) {
-// 		let jsGrp = '.js-f-grp-' + i,
-// 			item = arr[i];
+	for (let i = 0; i < arr.length; i++) {
+		let jsGrp = '.js-f-grp-' + i,
+			item = arr[i];
 
-// 		$(jsGrp)
-// 		.append("<label></label>")
-// 		.append("<input />");
+		$(jsGrp)
+		.append("<label></label>")
+		.append("<input />");
 
-// 		$(jsGrp)
-// 		.find('label')
-// 		.attr('for', item)
-// 		.text(item + ':');
+		$(jsGrp)
+		.find('label')
+		.attr('for', item)
+		.text(item + ':');
 
-// 		$(jsGrp)
-// 		.find('input')
-// 		.attr('id', item)
-// 		.attr('type', 'text')
-// 		.attr('placeholder', 'Enter ' + item)
-// 		.attr('required');
+		$(jsGrp)
+		.find('input')
+		.attr('id', item)
+		.attr('type', 'text')
+		.attr('placeholder', 'Enter ' + item)
+		.attr('required');
 
-// 		$(jsGrp)
-// 		.find('#' + item + '')
-// 		.addClass('form-control');
-// 	}
+		$(jsGrp)
+		.find('#' + item + '')
+		.addClass('form-control');
+	}
 	
-// 	$(form).append("<button>Add Student</button>");
+	$(form).append("<button>Add Student</button>");
 
-// 	$(button)
-// 	.attr('type', 'submit')
-// 	.addClass('btn')
-// 	.addClass('btn-danger')
-// 	.attr('id', 'submit-btn');
+	$(button)
+	.attr('type', 'submit')
+	.addClass('btn')
+	.addClass('btn-danger')
+	.attr('id', 'submit-btn');
 
-// 	handleCreateStudentSubmit(data);
+	// handleCreateStudentSubmit(data);
 
-// }
+}
 
 function drawTableHeaderRows(col, arrOrObj, row) {
 	let lng = arrOrObj.length;
@@ -103,28 +103,30 @@ function drawTableHeaderRows(col, arrOrObj, row) {
 function drawTableBodyRows(data, whichClass) {
 	let classTable = '.js-class-table',
 		objArr = data['students'],
-		lng = objArr.length;
+		lng = objArr.length,
+		whichStudent;
+
+	whichStudent = getInfoForStudent();
+
+	$(classTable).find('tbody').append(`<tr id=${whichStudent}></tr>`);
 
 	for (let i = 0; i < lng; i++) {
-		let tbody = [],
-			// stats = calcStudentStats(objArr[i]),
-			// average = stats[0],
-			// median = stats[1],
-			tr = '<tr id="student-'+ i +'"></tr>',
-			tRow = '#student-' + i,
+		if (objArr[i].studentId === whichStudent) {
+			console.log(objArr[i]);
+			let tRow = `#${objArr[i].studentId}`,
 			tableItem = ('<td>' + objArr[i]['studentId'] + '</td><td>' + objArr[i]['name']['lastName'] + ', ' + objArr[i]['name']['firstName'] 
 						+ '</td>');
-			
-		$(classTable).find('tbody').append(tr);
-			
+		
 		$(tRow).append(tableItem);
-	}
+		}
+	}		
+	
 }
 
 function drawStudentPanel(data, whichClass) {
 	let classTable = '.js-class-table',
 		thead = 'thead',
-		tableArr = ['Student ID Number', 'Student Name', 'Grade Average', 'Median Grade', 'Edit Student', 'Delete Student'];
+		tableArr = ['Student ID Number', 'Student Name', 'Grade Average', 'Median Grade'];
 
 	$(classTable)
 	.append('<thead></thead>')
@@ -142,8 +144,9 @@ function drawClassPanelWithStudent(data, whichClass) {
 		jsPanelHeading = '.js-panel-heading',
 		jsPanelBody = '.js-panel-body',
 		div = 'div',
-		keys = Object.keys(data), //bug
+		keys = Object.keys(data), 
 		lng = keys.length;
+
 
 	$(jsClassPanel).append('<div></div>')
 	.children(div)
@@ -168,9 +171,19 @@ function drawClassPanelWithStudent(data, whichClass) {
 		$(jsPanelBody).append(para);
 	}
 
+	$(jsPanelBody).append('<p><strong>Class Average: </strong>Average</p>')
+	.append('<p><strong>Class Median: </strong>class median</p>');
+
+	$(jsClassPanel)
+	.append('<table></table>')
+	.find('table')
+	.addClass('table')
+	.addClass('class-table')
+	.addClass('js-class-table');
+
 	drawStudentPanel(data, whichClass);
 
-	// renderStudentCreateForm(data);
+	renderStudentEditForm(data);
 }
 
 function renderClassAndStudent() {
@@ -179,7 +192,8 @@ function renderClassAndStudent() {
 		jsClassView = '.js-class-view',
 		div = 'div',
 		data,
-		whichClass;
+		whichClass,
+		whichStudent;
 
 	$(contentContainer)
 	.append("<div></div>")
@@ -194,20 +208,27 @@ function renderClassAndStudent() {
 	.addClass('class-panel')
 	.addClass('js-class-panel');
 
-	whichClass = getInfoFromUrl();
+	whichClass = getInfoForClass();
 
 	data = retrieveKlassInfo(whichClass);
 	drawClassPanelWithStudent(data, whichClass);
 }
 
-function getInfoFromUrl() {
+function getInfoForClass() {
 	let classIdFromUrl = window.location.href;
 	classIdFromUrl = classIdFromUrl.split('/');
-	classIdFromUrl = classIdFromUrl[classIdFromUrl.length - 3];
+	classIdFromUrl = classIdFromUrl[classIdFromUrl.length - 4];
 
 	return classIdFromUrl;
 }
 
+function getInfoForStudent() {
+	let studentIdFromUrl = window.location.href;
+	studentIdFromUrl = studentIdFromUrl.split('/');
+	studentIdFromUrl = studentIdFromUrl[studentIdFromUrl.length - 2];
+
+	return studentIdFromUrl;
+}
 
 function retrieveKlassInfo(classIdFromUrl) {
 	let addy = '/classes/view/class/' + classIdFromUrl;
@@ -256,53 +277,53 @@ function retrieveKlassInfo(classIdFromUrl) {
 // 	return classIdFromUrl;
 // }
 
-function handleCreateStudentSubmit(data) {
-	$('form').submit(e => {
-		e.preventDefault();
-		e.stopPropagation();
+// function handleCreateStudentSubmit(data) {
+// 	$('form').submit(e => {
+// 		e.preventDefault();
+// 		e.stopPropagation();
 
-		let studentId,
-			firstName, 
-			lastName,
-			studentObj = {},
-			requestObject = {},
-			id,
-			arr = [];
+// 		let studentId,
+// 			firstName, 
+// 			lastName,
+// 			studentObj = {},
+// 			requestObject = {},
+// 			id,
+// 			arr = [];
 
-		studentId = $('input[id="studentId"]').val();
-		firstName = $('input[id="firstName"]').val();
-		lastName = $('input[id="lastName"]').val();
+// 		studentId = $('input[id="studentId"]').val();
+// 		firstName = $('input[id="firstName"]').val();
+// 		lastName = $('input[id="lastName"]').val();
 
-		console.log(studentId);
+// 		console.log(studentId);
 
-		studentObj = {
-			studentid: studentId,
-			name: {
-				firstName: firstName,
-				lastName: lastName
-			},
-			grades: []
-		};
+// 		studentObj = {
+// 			studentid: studentId,
+// 			name: {
+// 				firstName: firstName,
+// 				lastName: lastName
+// 			},
+// 			grades: []
+// 		};
 
-		console.log(studentObj);
+// 		console.log(studentObj);
 
-		arr.push(studentObj);
+// 		arr.push(studentObj);
 
-		id = getInfoFromUrl();
+// 		id = getInfoFromUrl();
 
-		requestObject = {
-			id: id,
-			className: data.className,
-			subject: data.subject,
-			gradeLevel: data.gradeLevel,
-			term: data.term,
-			students: arr
-		};
+// 		requestObject = {
+// 			id: id,
+// 			className: data.className,
+// 			subject: data.subject,
+// 			gradeLevel: data.gradeLevel,
+// 			term: data.term,
+// 			students: arr
+// 		};
 
-		createStudent(requestObject, id);
+// 		createStudent(requestObject, id);
 
-		return false;
-	});
-}
+// 		return false;
+// 	});
+// }
 
 $(document).ready(renderClassAndStudent());
