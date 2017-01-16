@@ -48,7 +48,7 @@ function generateClassData() {
 		term: generateSomeData(['Spring, 2017', 'Fall, 2016', 'Fall, 2015', 'Spring, 2015', 'Spring, 2016']),
 		students: [
 			{
-				studentID: faker.random.number,
+				studentId: faker.random.number,
 				name: {
 					firstName: faker.name.firstName,
 					lastName: faker.name.lastName
@@ -81,6 +81,8 @@ describe('set up an API environment for testing Klass', function() {
 	after(function() {
 		return closeServer();
 	});
+
+	//GET operations
 
 	describe('GET verb at /classes', function() {
 		it('should return a list of all classes', function() {
@@ -121,6 +123,54 @@ describe('set up an API environment for testing Klass', function() {
 		});
 	});
 
+	describe('GET verb at /classes/:id', function() {
+		it('should return a class object for viewing with the right fields', function() {
+			var course = {};
+
+			return Klass
+			.findOne()
+			.exec()
+			.then(function(_course) {
+				course.id = _course.id;
+				return chai.request(app).get(`/classes/${course.id}`);
+			})
+			.then(function(res) {
+				res.should.have.status(200);
+				res.should.be.json;
+				res.body.should.be.a('object');
+				res.body.should.include.keys('id', 'className', 'subject', 'gradeLevel', 'term');
+				res.body.id.should.equal(course.id);
+
+				return Klass.findById(course.id);
+			});
+		});
+	});
+
+	describe('GET verb at /classes/view/class/:id', function() {
+		it('should return a class object for viewing with the right fields', function() {
+			var course = {};
+
+			return Klass
+			.findOne()
+			.exec()
+			.then(function(_course) {
+				course.id = _course.id;
+				return chai.request(app).get(`/classes/view/class/${course.id}`);
+			})
+			.then(function(res) {
+				res.should.have.status(200);
+				res.should.be.json;
+				res.body.should.be.a('object');
+				res.body.should.include.keys('id', 'className', 'subject', 'gradeLevel', 'term', 'students');
+				res.body.id.should.equal(course.id);
+
+				return Klass.findById(course.id);
+			});
+		});
+	});
+
+	//POST operations
+
 	describe('POST verb at /classes', function() {
 		it('should create a new class with the right fields', function() {
 			const newClass = generateClassData();
@@ -150,6 +200,8 @@ describe('set up an API environment for testing Klass', function() {
 		});
 	});
 
+	//DELETE operations
+
 	describe('DELETE verb at /classes/:id', function() {
 		it('should delete a class', function() {
 			let course;
@@ -170,6 +222,8 @@ describe('set up an API environment for testing Klass', function() {
 				});
 		});
 	});
+
+	//PUT operations
 
 	describe('PUT verb at /classes/:id', function() {
 		it('should update a class with the fields you send', function() {
@@ -196,6 +250,49 @@ describe('set up an API environment for testing Klass', function() {
 				.then(function(course) {
 					course.className.should.equal(updateKlass.className);
 					course.subject.should.equal(updateKlass.subject);
+				});
+		});
+	});
+
+	describe('PUT verb at /classes/:id/student', function() {
+		it('should update a class with a new student field', function() {
+			var updateKlass = {
+				students: [
+					{
+						studentId: '25',
+						name: {
+							firstName: 'John',
+							lastName: 'Doe'
+						}
+					}
+				]
+			};
+
+			return Klass
+				.findOne()
+				.exec()
+				.then(function(course) {
+					updateKlass.id = course.id;
+
+					return chai.request(app)
+						.put(`/classes/${course.id}/student`)
+						.send(updateKlass);
+				})
+				.then(function(res) {
+					res.should.have.status(204);
+
+					return Klass.findById(updateKlass.id).exec();
+				})
+				.then(function(course) {
+					let students = course.students,
+						lng = students.length;
+					for (let i = 0; i < students.length; i++) {
+						if (students[i].studentId == updateKlass.students[0].studentId) {
+							students[i].name.firstName.should.equal(updateKlass.students[0].name.firstName);
+							students[i].name.lastName.should.equal(updateKlass.students[0].name.lastName);
+						}
+						
+					}
 				});
 		});
 	});

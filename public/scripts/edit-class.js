@@ -4,33 +4,35 @@ var classData;
 
 function renderAlert(result, response) {
 	var mainContent = '.js-main-content',
-		alert = '.alert',
-		close = '.close';
+		alertSel = '.alert',
+		alertStr = 'alert',
+		closeSel = '.close',
+		closeStr = 'close';
 
 	$(mainContent).prepend('<div></div>');
 
 	$('.js-main-content div')
 	.first()
-	.addClass('alert')
+	.addClass(alertStr)
 	.addClass('alert-dismissable')
 	.text(response)
-	.attr('role', 'alert');
+	.attr('role', alertStr);
 
-	result === 'success' ? $(alert).addClass('alert-success') : $(alert).addClass('alert-warning');
+	result === 'success' ? $(alertSel).addClass('alert-success') : $(alertSel).addClass('alert-warning');
 
-	$(alert)
+	$(alertSel)
 	.append('<button></button>');
 
-	$(alert)
+	$(alertSel)
 	.find('button')
-	.addClass('close')
+	.addClass(closeStr)
 	.attr('type', 'button')
-	.attr('data-dismiss', 'alert')
-	.attr('aria-label', 'close');
+	.attr('data-dismiss', alertStr)
+	.attr('aria-label', closeStr);
 
-	$(close).append('<span></span>');
+	$(closeSel).append('<span></span>');
 
-	$(close).html('<span aria-hidden="true">&times;</span>');
+	$(closeSel).html('<span aria-hidden="true">&times;</span>');
 }
 
 function showClassToEdit() {
@@ -140,7 +142,7 @@ function sendEditedClass(klass) {
 	});
 }
 
-function handleEditOrDeleteClick() {
+function handleEditClick() {
 	var classID;
 
 	classID = window.location.href;//pulls id from end of url
@@ -185,7 +187,7 @@ function handleSubmit() {
 
 function handleActions() {
 	let currentView = 'editClass';
-	handleEditOrDeleteClick();
+	handleEditClick();
 }
 
 $(document).ready(handleActions());

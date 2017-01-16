@@ -1,3 +1,5 @@
+'use strict';
+
 const state = {
 	viewProps: {
 		'index': {
@@ -70,7 +72,7 @@ function drawLbButtons(value, style, actn, type, txt) {
 	.text(txt);
 }
 
-function drawEditButton(text, href, style, value) {
+function drawAnchorButton(text, href, style, value) {
 	var ele = '#' + value,
 		fullHref = href + value;
 
@@ -115,57 +117,94 @@ function drawLightbox() {
 
 function renderAlert(result, response) {
 	var mainContent = '.js-main-content',
-		alert = '.alert',
-		close = '.close';
+		alertSel = '.alert',
+		alertStr = 'alert',
+		closeSel = '.close',
+		closeStr = 'close';
 
 	$(mainContent).prepend('<div></div>');
 
 	$('.js-main-content div')
 	.first()
-	.addClass('alert')
+	.addClass(alertStr)
 	.addClass('alert-dismissable')
 	.text(response)
-	.attr('role', 'alert');
+	.attr('role', alertStr);
 
-	result === 'success' ? $(alert).addClass('alert-success') : $(alert).addClass('alert-warning');
+	result === 'success' ? $(alertSel).addClass('alert-success') : $(alertSel).addClass('alert-warning');
 
-	$(alert)
+	$(alertSel)
 	.append('<button></button>');
 
-	$(alert)
+	$(alertSel)
 	.find('button')
-	.addClass('close')
+	.addClass(closeStr)
 	.attr('type', 'button')
-	.attr('data-dismiss', 'alert')
-	.attr('aria-label', 'close');
+	.attr('data-dismiss', alertStr)
+	.attr('aria-label', closeStr);
 
-	$(close).append('<span></span>');
+	$(closeSel).append('<span></span>');
 
-	$(close).html('<span aria-hidden="true">&times;</span>');
+	$(closeSel).html('<span aria-hidden="true">&times;</span>');
 }
 
 function showLightbox(klassId) {
 	$('.js-lightbox').css('display', 'block');
-	handleSubmit(klassId);
+	handleClassDeleteSubmit(klassId);
+}
+
+function drawBodyRows(klasses) {
+	let lng = klasses.classes.length;
+
+	for (let i = 0; i < lng; i++) {
+		let value = klasses.classes[i].id,
+			classItem = `<td>${klasses.classes[i].className}</td><td>${klasses.classes[i].subject}</td><td>${klasses.classes[i].gradeLevel}</td><td>${klasses.classes[i].term}</td>`;
+
+
+		$('tbody').append('<tr id="' + value + '"></tr>').find('#' + value).append(classItem);
+		drawAnchorButton('Edit', '/classes/edit/', 'btn-info', value);
+		drawLbButtons(value, 'danger', 'send-to-del', 'button', 'Delete');
+		drawAnchorButton('Go to Class', '/classes/class/view/', 'btn-default', value);
+		$('.js-send-to-del-trigger').val(value);
+	}
+}
+
+function drawHeadRow(klasses) {
+	let arr = ['Class Name', 'Subject', 'Grade Level', 'Term'],
+		lng = arr.length;
+
+	for (let i = 0; i < lng; i++) {
+		let classTitle = `<th>${arr[i]}:</th>`;
+		$('thead').append(`<tr id="js-table-title"></tr>`).find(`#js-table-title`).append(classTitle);
+	}
+
+}
+
+function drawClassTable(klasses) {
+	let table = '.js-class-table';
+
+	$(table).append('<thead></thead>').append('<tbody></tbody>');
+
+	drawHeadRow(klasses);
+	drawBodyRows(klasses);
 }
 
 function renderInitialState(klasses, view) {	
-	let jsKlasses = '.js-classes';
-	$('.js-content-container').append('<h3>List of Classes:</h3>');
+	let jsKlasses = '.js-classes',
+		contentContainer = '.js-content-container';
 
-	for (let klass of klasses.classes) {
-		var classContainer = '.js-content-container',
-			classItem = "<li class='list-group-item' id='" + klass.id + "'><a href='#' value='" + klass.id + "''>Class Name: " + klass.className + " Subject: " 
-			+ klass.subject + " Grade Level: " + klass.gradeLevel + " Term: " + klass.term + "</a></li>",
-			value = klass.id; 
+	$(contentContainer)
+	.append('<h3>List of Classes:</h3>')
+	.append('<div></div>')
+	.find('div')
+	.addClass('table-responsive')
+	.append('<table></table>')
+	.find('table')
+	.addClass('table')
+	.addClass('class-table')
+	.addClass('js-class-table');
 
-		$(classContainer).append(classItem);
-
-
-		drawEditButton('Edit', '/classes/edit/', 'btn-info', value);
-		drawLbButtons(value, 'danger', 'send-to-del', 'button', 'Delete');		
-		$('.js-send-to-del-trigger').val(value);
-	}
+	drawClassTable(klasses);
 
 	renderSelectClass(jsKlasses, view);
 	setCurrentSpan(jsKlasses, view);
@@ -246,8 +285,8 @@ function handleCleanUp(reqObj) {
 	getKlasses('index');
 }
 
-function handleSubmit(klassId) {
-	var form = '.js-lb-form';
+function handleClassDeleteSubmit(klassId) {
+	var form = '#js-lb-form';
 
 	$(form).submit(function(e) {
 		e.preventDefault();
