@@ -72,7 +72,7 @@ function drawLbButtons(value, style, actn, type, txt) {
 	.text(txt);
 }
 
-function drawEditButton(text, href, style, value) {
+function drawAnchorButton(text, href, style, value) {
 	var ele = '#' + value,
 		fullHref = href + value;
 
@@ -162,18 +162,19 @@ function drawBodyRows(klasses) {
 
 
 		$('tbody').append('<tr id="' + value + '"></tr>').find('#' + value).append(classItem);
-		drawEditButton('Edit', '/classes/edit/', 'btn-info', value);
+		drawAnchorButton('Edit', '/classes/edit/', 'btn-info', value);
 		drawLbButtons(value, 'danger', 'send-to-del', 'button', 'Delete');
+		drawAnchorButton('Go to Class', '/classes/class/view/', 'btn-default', value);
 		$('.js-send-to-del-trigger').val(value);
 	}
 }
 
 function drawHeadRow(klasses) {
-	let keys = Object.keys(klasses.classes[0]),
-		lng = keys.length;
+	let arr = ['Class Name', 'Subject', 'Grade Level', 'Term'],
+		lng = arr.length;
 
-	for (let i = 1; i < lng; i++) {
-		let classTitle = `<th>${keys[i]}:</th>`;
+	for (let i = 0; i < lng; i++) {
+		let classTitle = `<th>${arr[i]}:</th>`;
 		$('thead').append(`<tr id="js-table-title"></tr>`).find(`#js-table-title`).append(classTitle);
 	}
 
@@ -194,10 +195,13 @@ function renderInitialState(klasses, view) {
 
 	$(contentContainer)
 	.append('<h3>List of Classes:</h3>')
+	.append('<div></div>')
+	.find('div')
+	.addClass('table-responsive')
 	.append('<table></table>')
 	.find('table')
 	.addClass('table')
-	.addClass('classTable')
+	.addClass('class-table')
 	.addClass('js-class-table');
 
 	drawClassTable(klasses);
