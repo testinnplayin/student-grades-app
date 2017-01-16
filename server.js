@@ -192,9 +192,9 @@ app.put('/classes/:id/student', (req, res) => {
 		console.error(msg);
 		res.status(400).json({ message : msg });
 	}
-
-	let forUpdating = {};
-	let studentObj = {},
+	console.log(req.body);
+	let forUpdating = {},
+		studentObj = {},
 		students = [],
 		name = {};
 
@@ -216,7 +216,37 @@ app.put('/classes/:id/student', (req, res) => {
 		})
 		.catch(err => {
 			console.error(err);
-			res.status(500).json({ message: 'Internal server error, cannot update' });
+			res.status(500).json({ message: 'Internal server error, cannot create student' });
+		});
+});
+
+app.put('/classes/:id/student/:studentId', (req, res) => {
+	console.log(req.body);
+	if(!(req.params && req.body.id && (req.params.id === req.body.id))) {
+		const msg = `Request path id parameter ${req.params.id} and the request body id ${req.body.id} must match`;
+		console.error(msg);
+		res.status(400).json({ message : msg });
+	}
+
+	let studentObj = {},
+		name = {};
+
+	name.firstName = req.body['students[0][name][firstName]'];
+	name.lastName = req.body['students[0][name][lastName]'];
+
+	studentObj.studentId = req.body['students[0][studentId]'];
+	studentObj.name = name;
+	// student.grades = req.body['students[0][grades]'];
+
+	Klass
+		.findByIdAndUpdate(req.params.id, {$set: {'students': studentObj}})
+		.exec()
+		.then(function(course) {
+			res.status(204).end();
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({ message : 'Internal server error, cannot update' });
 		});
 });
 

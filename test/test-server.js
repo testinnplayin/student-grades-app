@@ -297,7 +297,7 @@ describe('set up an API environment for testing Klass', function() {
 		});
 	});
 
-	describe('PUT verb at /classes/:id/student/:studentId/', function() {
+	describe('PUT verb at /classes/:id/student/:studentId', function() {
 		it('should update a class\'s student\'s fields', function() {
 			var updateStudent = {
 				name: {
