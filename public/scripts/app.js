@@ -153,23 +153,54 @@ function showLightbox(klassId) {
 	handleClassDeleteSubmit(klassId);
 }
 
-function renderInitialState(klasses, view) {	
-	let jsKlasses = '.js-classes';
-	$('.js-content-container').append('<h3>List of Classes:</h3>');
+function drawBodyRows(klasses) {
+	let lng = klasses.classes.length;
 
-	for (let klass of klasses.classes) {
-		var classContainer = '.js-content-container',
-			classItem = "<li class='list-group-item' id='" + klass.id + "'><a href='classes/class/view/" + klass.id + "'' value='" + klass.id + "''>Class Name: " + klass.className + " Subject: " 
-			+ klass.subject + " Grade Level: " + klass.gradeLevel + " Term: " + klass.term + "</a></li>",
-			value = klass.id; 
-
-		$(classContainer).append(classItem);
+	for (let i = 0; i < lng; i++) {
+		let value = klasses.classes[i].id,
+			classItem = `<td>${klasses.classes[i].className}</td><td>${klasses.classes[i].subject}</td><td>${klasses.classes[i].gradeLevel}</td><td>${klasses.classes[i].term}</td>`;
 
 
+		$('tbody').append('<tr id="' + value + '"></tr>').find('#' + value).append(classItem);
 		drawEditButton('Edit', '/classes/edit/', 'btn-info', value);
-		drawLbButtons(value, 'danger', 'send-to-del', 'button', 'Delete');		
+		drawLbButtons(value, 'danger', 'send-to-del', 'button', 'Delete');
 		$('.js-send-to-del-trigger').val(value);
 	}
+}
+
+function drawHeadRow(klasses) {
+	let keys = Object.keys(klasses.classes[0]),
+		lng = keys.length;
+
+	for (let i = 1; i < lng; i++) {
+		let classTitle = `<th>${keys[i]}:</th>`;
+		$('thead').append(`<tr id="js-table-title"></tr>`).find(`#js-table-title`).append(classTitle);
+	}
+
+}
+
+function drawClassTable(klasses) {
+	let table = '.js-class-table';
+
+	$(table).append('<thead></thead>').append('<tbody></tbody>');
+
+	drawHeadRow(klasses);
+	drawBodyRows(klasses);
+}
+
+function renderInitialState(klasses, view) {	
+	let jsKlasses = '.js-classes',
+		contentContainer = '.js-content-container';
+
+	$(contentContainer)
+	.append('<h3>List of Classes:</h3>')
+	.append('<table></table>')
+	.find('table')
+	.addClass('table')
+	.addClass('classTable')
+	.addClass('js-class-table');
+
+	drawClassTable(klasses);
 
 	renderSelectClass(jsKlasses, view);
 	setCurrentSpan(jsKlasses, view);
