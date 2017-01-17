@@ -239,7 +239,24 @@ app.put('/classes/:id/student/:studentId', (req, res) => {
 	// student.grades = req.body['students[0][grades]'];
 
 	Klass
-		.findByIdAndUpdate(req.params.id, {$set: {'students': studentObj}})
+		.findOneAndUpdate({
+			$and: [{
+				_id: req.params.id
+			},
+				{students: 
+					{$elemMatch: {
+						studentId: req.params.studentId
+					}
+				}
+			}]}, 
+			{
+				$set: 
+				{
+					'name.firstName': name.firstName,
+					'name.lastName': name.lastName
+				}
+			}
+		)
 		.exec()
 		.then(function(course) {
 			res.status(204).end();

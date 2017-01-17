@@ -105,6 +105,7 @@ function drawTableHeaderRows(col, arrOrObj, row) {
 }
 
 function drawTableBodyRows(data, whichClass) {
+	console.log(data);
 	let classTable = '.js-class-table',
 		objArr = data['students'],
 		lng = objArr.length,
@@ -143,9 +144,9 @@ function drawClassPanelWithStudent(data, whichClass) {
 		jsPanelHeading = '.js-panel-heading',
 		jsPanelBody = '.js-panel-body',
 		div = 'div',
-		keys = Object.keys(data), 
-		lng = keys.length;
+		keys = [];
 	console.log(keys);
+	console.log(Array.isArray(keys));
 
 	$(jsClassPanel).append('<div></div>')
 	.children(div)
@@ -162,13 +163,20 @@ function drawClassPanelWithStudent(data, whichClass) {
 	.addClass('panel-body')
 	.addClass('js-panel-body');
 
-
-	for (let i = 1; i < lng - 1; i++ ) {
+	for (var k in data) {
+	    if( data.hasOwnProperty(k) ) {
+			keys.push(k)
+	    } 
+	}
+	console.log(keys, data);
+	for (let i = 0; i < keys.length; i++ ) {
 		let key = keys[i], 
 		para = '<p><strong>' + keys[i] + ':</strong> ' + data[key] + '</p>';
 
 		$(jsPanelBody).append(para);
 	}
+
+	
 
 	$(jsPanelBody).append('<p><strong>Class Average: </strong>Average</p>')
 	.append('<p><strong>Class Median: </strong>class median</p>');
@@ -180,7 +188,7 @@ function drawClassPanelWithStudent(data, whichClass) {
 	.addClass('class-table')
 	.addClass('js-class-table');
 
-	drawStudentPanel(data, whichClass);
+	// drawStudentPanel(data, whichClass);
 
 	renderStudentEditForm(data);
 }
