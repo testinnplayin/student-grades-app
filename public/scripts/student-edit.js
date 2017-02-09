@@ -274,18 +274,21 @@ function retrieveKlassInfo(classIdFromUrl) {
 
 function editStudent(requestObject, classId, id) {
 	console.log('editing: ' ,requestObject, classId, id);
-	
-	$.ajax({
+
+	let ajaxObj = {
 		method: 'PUT',
 		url: `/classes/${classId}/student/${id}`,
 		data: requestObject,
 		dataType: 'json'
-	})
+	};
+	console.log('ajaxObj',ajaxObj);
+
+	$.ajax(ajaxObj)
 	.done(() => {
 		let result = 'success',
 			response = 'Student successfully added to the class';
-		console.log('student creation was successful');
-		renderAlerts(result, response);
+		console.log('student creation was successful:');
+		console.info(result, response);
 	})
 	.fail(err => {
 		let result = 'failure',

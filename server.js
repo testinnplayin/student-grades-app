@@ -221,12 +221,11 @@ app.put('/classes/:id/student', (req, res) => {
 });
 
 app.put('/classes/:id/student/:studentId', (req, res) => {
-	//https://gist.github.com/testinnplayin/2d4635b304eb7a6d0967665c72b79324
-	console.log('->',req.body);
-	alert('!');
-	if(!(req.params && req.body.id && (req.params.id === req.body.id))) {
-		const msg = `Request path id parameter ${req.params.id} and the request body id ${req.body.id} must match`;
+
+	if(!(req.params && req.body.id && (req.params.studentId === req.body.id))) {
+		const msg = `Request path id parameter ${req.params.studentId} and the request body id ${req.body.id} must match`;
 		console.error(msg);
+		let retReq = req.body;
 		res.status(400).json({ message : msg });
 	}
 
@@ -236,42 +235,18 @@ app.put('/classes/:id/student/:studentId', (req, res) => {
 	name.firstName = req.body['students[0][name][firstName]'];
 	name.lastName = req.body['students[0][name][lastName]'];
 
-	studentObj.studentId = req.body['students[0][studentId]'];
+	studentObj.studentId = req.body['students[0][studentid]'];
 	studentObj.name = name;
-	// student.grades = req.body['students[0][grades]'];
 
-/*
-var documentID = ObjectId('xyz');
-db.klasses.findOneAndUpdate({$and: [{_id: documentID}, {students: {$elemMatch: {studentId: 'abc'}}}]}, {$set: {'name.firstName': 'Joe'}});
- be careful with {} and ()
-{
-//stuff,
-students: [
-studentId: 'abc',
-name: {}
-]
-}
-*/
-
-	Klass
-		.findOneAndUpdate({
-			$and: [{
-				_id: req.params.id
-			},
-				{students:
-					{$elemMatch: {
-						studentId: req.params.studentId
-					}
-				}
-			}]},
-			{
-				$set:
-				{
-					'name.firstName': name.firstName,
-					'name.lastName': name.lastName
-				}
+	Klass.update(
+		{"students._id":req.params.studentId},
+		{
+			$set:{
+				"students.$.studentId":studentObj.studentId,
+				"students.$.name.firstName":name.firstName,
+				"students.$.name.lastName":name.lastName
 			}
-		)
+		})
 		.exec()
 		.then(function(course) {
 			res.status(204).end();
