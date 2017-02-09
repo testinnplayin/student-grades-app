@@ -221,6 +221,7 @@ app.put('/classes/:id/student', (req, res) => {
 });
 
 app.put('/classes/:id/student/:studentId', (req, res) => {
+	//https://gist.github.com/testinnplayin/2d4635b304eb7a6d0967665c72b79324
 	console.log(req.body);
 	if(!(req.params && req.body.id && (req.params.id === req.body.id))) {
 		const msg = `Request path id parameter ${req.params.id} and the request body id ${req.body.id} must match`;
@@ -243,14 +244,14 @@ app.put('/classes/:id/student/:studentId', (req, res) => {
 			$and: [{
 				_id: req.params.id
 			},
-				{students: 
+				{students:
 					{$elemMatch: {
 						studentId: req.params.studentId
 					}
 				}
-			}]}, 
+			}]},
 			{
-				$set: 
+				$set:
 				{
 					'name.firstName': name.firstName,
 					'name.lastName': name.lastName
