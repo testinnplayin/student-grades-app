@@ -35,6 +35,7 @@
 
 
 function renderStudentEditForm(data) {
+	console.log('--=',data);
 	var form = 'form',
 		arr = ['studentId', 'firstName', 'lastName'],
 		button = 'button',
@@ -43,7 +44,7 @@ function renderStudentEditForm(data) {
 
 	$(classPanel).append('<h3>Edit Student</h3>');
 
-	$(classPanel).append('<form></form>');
+	$(classPanel).append('<form data-student-klass-id="'+studentObj['studentKlassId']+'"></form>');
 
 	for (let item in arr) {
 		let jGrp = '.js-f-grp' + item;
@@ -52,7 +53,7 @@ function renderStudentEditForm(data) {
 		.append('<label></label>')
 		.append('<input />');
 	}
-	
+
 	for (let i = 0; i < arr.length; i++) {
 		let jsGrp = '.js-f-grp-' + i,
 			item = arr[i];
@@ -76,13 +77,13 @@ function renderStudentEditForm(data) {
 		.find('#' + item + '')
 		.addClass('form-control');
 	}
-
+console.log('xxx',studentObj);
 	$('#studentId').attr('value', studentObj['studentId']);
 	$('#firstName').attr('value', studentObj['name']['firstName']);
 	$('#lastName').attr('value', studentObj['name']['lastName']);
 
-	
-	$(form).append("<button>Edit Student</button>");
+
+	$(form).append('<button>Edit Student</button>');
 
 	$(button)
 	.attr('type', 'submit')
@@ -90,7 +91,7 @@ function renderStudentEditForm(data) {
 	.addClass('btn-danger')
 	.attr('id', 'submit-btn');
 
-	// handleCreateStudentSubmit(data);
+	handleEditStudentSubmit(data);
 
 }
 
@@ -116,11 +117,11 @@ function drawTableBodyRows(data, whichClass) {
 
 	studentObj = findStudentObj(data);
 			let tRow = `#${studentObj.studentId}`,
-			tableItem = ('<td>' + studentObj.studentId + '</td><td>' + studentObj.name.lastName + ', ' + studentObj.name.firstName 
+			tableItem = ('<td>' + studentObj.studentId + '</td><td>' + studentObj.name.lastName + ', ' + studentObj.name.firstName
 							+ '</td>');
-		
+
 		$(tRow).append(tableItem);
-	
+
 }
 
 function drawStudentPanel(data, whichClass) {
@@ -166,17 +167,17 @@ function drawClassPanelWithStudent(data, whichClass) {
 	for (var k in data) {
 	    if( data.hasOwnProperty(k) ) {
 			keys.push(k)
-	    } 
+	    }
 	}
 	console.log(keys, data);
 	for (let i = 0; i < keys.length; i++ ) {
-		let key = keys[i], 
+		let key = keys[i],
 		para = '<p><strong>' + keys[i] + ':</strong> ' + data[key] + '</p>';
 
 		$(jsPanelBody).append(para);
 	}
 
-	
+
 
 	$(jsPanelBody).append('<p><strong>Class Average: </strong>Average</p>')
 	.append('<p><strong>Class Median: </strong>class median</p>');
@@ -202,7 +203,7 @@ function renderClassAndStudent() {
 		whichClass,
 		whichStudent;
 
-	$(contentContainer)
+	$(contentContainer).html('')
 	.append("<div></div>")
 	.find(div)
 	.addClass('js-class-view');
@@ -238,6 +239,7 @@ function getInfoForStudent() {
 }
 
 function findStudentObj(data) {
+	console.log('==-',data.students);
 	let objArr = data.students,
 		whichStudent = getInfoForStudent(),
 		lng = objArr.length,
@@ -247,7 +249,7 @@ function findStudentObj(data) {
 		if (objArr[i].studentId === whichStudent) {
 			studentObject = objArr[i];
 		}
-	}	
+	}
 
 	return studentObject;
 }
@@ -270,74 +272,76 @@ function retrieveKlassInfo(classIdFromUrl) {
 	});
 }
 
-// function createStudent(requestObject, id) {
-// 	$.ajax({
-// 		method: 'PUT',
-// 		url: `/classes/${id}/student`,
-// 		data: requestObject,
-// 		dataType: 'json'
-// 	})
-// 	.done(() => {
-// 		let result = 'success',
-// 			response = 'Student successfully added to the class';
-// 		console.log('student creation was successful');
-// 		renderAlerts(result, response);
-// 	})
-// 	.fail(err => {
-// 		let result = 'failure',
-// 			response = 'There has been a problem adding the student to the class';
-// 		console.error('student creation was unsuccessful');
-// 		console.error(err);
-// 	});
-// }
+function editStudent(requestObject, classId, id) {
+	console.log('editing: ' ,requestObject, classId, id);
+	
+	$.ajax({
+		method: 'PUT',
+		url: `/classes/${classId}/student/${id}`,
+		data: requestObject,
+		dataType: 'json'
+	})
+	.done(() => {
+		let result = 'success',
+			response = 'Student successfully added to the class';
+		console.log('student creation was successful');
+		renderAlerts(result, response);
+	})
+	.fail(err => {
+		let result = 'failure',
+			response = 'There has been a problem adding the student to the class';
+		console.error('student creation was unsuccessful');
+		console.error(err);
+	});
+}
 
-// function handleEditStudentSubmit(data) {
-// 	$('form').submit(e => {
-// 		e.preventDefault();
-// 		e.stopPropagation();
+function handleEditStudentSubmit(data) {
+	$('form').submit(e => {
+		e.preventDefault();
+		e.stopPropagation();
 
-// 		let studentId,
-// 			firstName, 
-// 			lastName,
-// 			studentObj = {},
-// 			requestObject = {},
-// 			id,
-// 			arr = [];
+		let studentId,
+			firstName,
+			lastName,
+			studentObj = {},
+			requestObject = {},
+			id = $(e.target).data('studentKlassId'),
+			arr = [],
+			classId = getInfoForClass();
 
-// 		studentId = $('input[id="studentId"]').val();
-// 		firstName = $('input[id="firstName"]').val();
-// 		lastName = $('input[id="lastName"]').val();
+		studentId = $('input[id="studentId"]').val();
+		firstName = $('input[id="firstName"]').val();
+		lastName = $('input[id="lastName"]').val();
 
-// 		console.log(studentId);
+		console.log(':',studentId,' / ',id);
 
-// 		studentObj = {
-// 			studentid: studentId,
-// 			name: {
-// 				firstName: firstName,
-// 				lastName: lastName
-// 			},
-// 			grades: []
-// 		};
+		studentObj = {
+			studentid: studentId,
+			name: {
+				firstName: firstName,
+				lastName: lastName
+			},
+			grades: []
+		};
 
-// 		console.log(studentObj);
+		console.log(studentObj);
 
-// 		arr.push(studentObj);
+		arr.push(studentObj);
 
-// 		id = getInfoFromUrl();
+		// id = getInfoFromUrl();
 
-// 		requestObject = {
-// 			id: id,
-// 			className: data.className,
-// 			subject: data.subject,
-// 			gradeLevel: data.gradeLevel,
-// 			term: data.term,
-// 			students: arr
-// 		};
+		requestObject = {
+			id: id,
+			className: data.className,
+			subject: data.subject,
+			gradeLevel: data.gradeLevel,
+			term: data.term,
+			students: arr
+		};
+		editStudent(requestObject, classId, id);
 
-// 		createStudent(requestObject, id);
+		return false;
+	});
+ }
 
-// 		return false;
-// 	});
-// }
-
-$(document).ready(renderClassAndStudent());
+$(document).ready(renderClassAndStudent);
