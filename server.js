@@ -157,6 +157,8 @@ app.delete('/classes/:id', (req, res) => {
 
 //classes PUT for Update operation
 
+//updating class
+
 app.put('/classes/:id', (req, res) => {
 
 	if (!(req.params.id && req.body.id && (req.params.id === req.body.id))) {
@@ -185,6 +187,8 @@ app.put('/classes/:id', (req, res) => {
 			res.status(500).json({ message : 'Internal server error, cannot update'});
 		});
 });
+
+//adding new student to a class
 
 app.put('/classes/:id/student', (req, res) => {
 	if (!(req.params && req.body.id && (req.params.id === req.body.id))) {
@@ -219,6 +223,8 @@ app.put('/classes/:id/student', (req, res) => {
 			res.status(500).json({ message: 'Internal server error, cannot create student' });
 		});
 });
+
+//updating a student
 
 app.put('/classes/:id/student/:studentId', (req, res) => {
 

@@ -146,8 +146,6 @@ function drawClassPanelWithStudent(data, whichClass) {
 		jsPanelBody = '.js-panel-body',
 		div = 'div',
 		keys = [];
-	console.log(keys);
-	console.log(Array.isArray(keys));
 
 	$(jsClassPanel).append('<div></div>')
 	.children(div)
@@ -189,7 +187,7 @@ function drawClassPanelWithStudent(data, whichClass) {
 	.addClass('class-table')
 	.addClass('js-class-table');
 
-	// drawStudentPanel(data, whichClass);
+	drawStudentPanel(data, whichClass);
 
 	renderStudentEditForm(data);
 }
@@ -219,7 +217,6 @@ function renderClassAndStudent() {
 	whichClass = getInfoForClass();
 
 	data = retrieveKlassInfo(whichClass);
-	drawClassPanelWithStudent(data, whichClass);
 }
 
 function getInfoForClass() {
@@ -239,7 +236,7 @@ function getInfoForStudent() {
 }
 
 function findStudentObj(data) {
-	console.log('==-',data.students);
+	console.log('==-',data);
 	let objArr = data.students,
 		whichStudent = getInfoForStudent(),
 		lng = objArr.length,
@@ -264,7 +261,7 @@ function retrieveKlassInfo(classIdFromUrl) {
 	.done((data) => {
 		console.log('successful get from server');
 		console.log(data);
-		drawClassPanelWithStudent(data);
+		drawClassPanelWithStudent(data, classIdFromUrl);
 	})
 	.fail((err) => {
 		console.error('unsuccessful get from server');
