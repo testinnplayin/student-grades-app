@@ -44,7 +44,7 @@ app.get('/classes/class/:id/student/create', (req, res) => {
 	res.sendFile(__dirname + '/public/views/student-create.html');
 });
 
-app.get('/classes/class/:id/student/:studentKlassId/edit', (req, res) => {
+app.get('/classes/class/:id/student/:studentId/edit', (req, res) => {
 	res.sendFile(__dirname + '/public/views/student-edit.html');
 });
 
@@ -226,14 +226,14 @@ app.put('/classes/:id/student', (req, res) => {
 
 //updating a student
 
-app.put('/classes/:id/student/:studentKlassId', (req, res) => {
+app.put('/classes/:id/student/:studentId', (req, res) => {
 
-	if(!(req.params && req.body.id && (req.params.studentId === req.body.id))) {
-		const msg = `Request path id parameter ${req.params.studentId} and the request body id ${req.body.id} must match`;
-		console.error(msg);
-		let retReq = req.body;
-		res.status(400).json({ message : msg });
-	}
+	// if(!(req.params && req.body.id && (req.params.studentId === req.body.id))) {
+	// 	const msg = `Request path id parameter ${req.params.studentId} and the request body id ${req.body.id} must match`;
+	// 	console.error(msg);
+	// 	let retReq = req.body;
+	// 	res.status(400).json({ message : msg });
+	// }
 
 	let studentObj = {},
 		name = {};
@@ -245,7 +245,7 @@ app.put('/classes/:id/student/:studentKlassId', (req, res) => {
 	studentObj.name = name;
 
 	Klass.update(
-		{"students._id":req.params.studentId},
+		{"students.studentId":req.params.studentId},
 		{
 			$set:{
 				"students.$.studentId":studentObj.studentId,

@@ -1,37 +1,37 @@
 'use strict';
 
-// function renderAlerts(result, response) {
-// 	var mainContent = '.js-main-content',
-// 		alertSel = '.alert',
-// 		alertStr = 'alert',
-// 		closeSel = '.close',
-// 		closeStr = 'close';
+function renderAlerts(result, response) {
+	var mainContent = '.js-main-content',
+		alertSel = '.alert',
+		alertStr = 'alert',
+		closeSel = '.close',
+		closeStr = 'close';
 
-// 	$(mainContent).prepend('<div></div>');
+	$(mainContent).prepend('<div></div>');
 
-// 	$('.js-main-content div')
-// 	.first()
-// 	.addClass(alertStr)
-// 	.addClass('alert-dismissable')
-// 	.text(response)
-// 	.attr('role', alertStr);
+	$('.js-main-content div')
+	.first()
+	.addClass(alertStr)
+	.addClass('alert-dismissable')
+	.text(response)
+	.attr('role', alertStr);
 
-// 	result === 'success' ? $(alertSel).addClass('alert-success') : $(alertSel).addClass('alert-warning');
+	result === 'success' ? $(alertSel).addClass('alert-success') : $(alertSel).addClass('alert-warning');
 
-// 	$(alertSel)
-// 	.append('<button></button>');
+	$(alertSel)
+	.append('<button></button>');
 
-// 	$(alertSel)
-// 	.find('button')
-// 	.addClass(closeStr)
-// 	.attr('type', 'button')
-// 	.attr('data-dismiss', alertStr)
-// 	.attr('aria-label', closeStr);
+	$(alertSel)
+	.find('button')
+	.addClass(closeStr)
+	.attr('type', 'button')
+	.attr('data-dismiss', alertStr)
+	.attr('aria-label', closeStr);
 
-// 	$(closeSel).append('<span></span>');
+	$(closeSel).append('<span></span>');
 
-// 	$(closeSel).html('<span aria-hidden="true">&times;</span>');
-// }
+	$(closeSel).html('<span aria-hidden="true">&times;</span>');
+}
 
 
 function renderStudentEditForm(data) {
@@ -284,14 +284,21 @@ function editStudent(requestObject, classId, id) {
 	.done(() => {
 		let result = 'success',
 			response = 'Student successfully added to the class';
-		console.log('student creation was successful:');
+		console.log('student edit was successful:');
 		console.info(result, response);
+
+		if (requestObject.id !== getInfoForStudent()) {
+			window.location.href = window.location.href.replace(/student\/\d.*(?=\/edit)/gi,'student/' + requestObject.id);
+		}
+
+		renderAlerts(result, response);
 	})
 	.fail(err => {
 		let result = 'failure',
 			response = 'There has been a problem adding the student to the class';
 		console.error('student creation was unsuccessful');
 		console.error(err);
+		renderAlerts(result, response);
 	});
 }
 
@@ -300,18 +307,14 @@ function handleEditStudentSubmit(data) {
 		e.preventDefault();
 		e.stopPropagation();
 
-		let studentId,
-			firstName,
-			lastName,
+		let studentId = $('input[id="studentId"]').val(),
+			firstName = $('input[id="firstName"]').val(),
+			lastName = $('input[id="lastName"]').val(),
 			studentObj = {},
 			requestObject = {},
-			id = $(e.target).data('studentKlassId'),
+			id = $(e.target).data('studentId'),
 			arr = [],
 			classId = getInfoForClass();
-
-		studentId = $('input[id="studentId"]').val();
-		firstName = $('input[id="firstName"]').val();
-		lastName = $('input[id="lastName"]').val();
 
 		console.log(':',studentId,' / ',id);
 
@@ -331,14 +334,14 @@ function handleEditStudentSubmit(data) {
 		// id = getInfoFromUrl();
 
 		requestObject = {
-			id: id,
+			id: studentId,
 			className: data.className,
 			subject: data.subject,
 			gradeLevel: data.gradeLevel,
 			term: data.term,
 			students: arr
 		};
-		editStudent(requestObject, classId, id);
+		editStudent(requestObject, classId, getInfoForStudent());
 
 		return false;
 	});
