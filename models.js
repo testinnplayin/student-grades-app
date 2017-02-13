@@ -51,6 +51,7 @@ classSchema.methods.studentApiRep = function() {
 	for (let i = 0; i < studentsLng; i++) {
 		let studentObj = {};
 		studentObj = {
+			studentKlassId: this.students[i]._id,
 			studentId: this.students[i].studentId,
 			name: {
 				firstName: this.students[i].name.firstName,
@@ -61,7 +62,7 @@ classSchema.methods.studentApiRep = function() {
 
 		allStudents.push(studentObj);
 	}
-	
+
 	return {
 		id: this._id,
 		className: this.className,
