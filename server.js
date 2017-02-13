@@ -157,6 +157,8 @@ app.delete('/classes/:id', (req, res) => {
 
 //classes PUT for Update operation
 
+//updating class
+
 app.put('/classes/:id', (req, res) => {
 
 	if (!(req.params.id && req.body.id && (req.params.id === req.body.id))) {
@@ -186,15 +188,17 @@ app.put('/classes/:id', (req, res) => {
 		});
 });
 
+//adding new student to a class
+
 app.put('/classes/:id/student', (req, res) => {
 	if (!(req.params && req.body.id && (req.params.id === req.body.id))) {
 		const msg = `Request path id parameter ${req.params.id} and the request body id ${req.body.id} must match`;
 		console.error(msg);
 		res.status(400).json({ message : msg });
 	}
-
-	let forUpdating = {};
-	let studentObj = {},
+	console.log(req.body);
+	let forUpdating = {},
+		studentObj = {},
 		students = [],
 		name = {};
 
@@ -216,7 +220,46 @@ app.put('/classes/:id/student', (req, res) => {
 		})
 		.catch(err => {
 			console.error(err);
-			res.status(500).json({ message: 'Internal server error, cannot update' });
+			res.status(500).json({ message: 'Internal server error, cannot create student' });
+		});
+});
+
+//updating a student
+
+app.put('/classes/:id/student/:studentId', (req, res) => {
+
+	// if(!(req.params && req.body.id && (req.params.studentId === req.body.id))) {
+	// 	const msg = `Request path id parameter ${req.params.studentId} and the request body id ${req.body.id} must match`;
+	// 	console.error(msg);
+	// 	let retReq = req.body;
+	// 	res.status(400).json({ message : msg });
+	// }
+
+	let studentObj = {},
+		name = {};
+
+	name.firstName = req.body['students[0][name][firstName]'];
+	name.lastName = req.body['students[0][name][lastName]'];
+
+	studentObj.studentId = req.body['students[0][studentid]'];
+	studentObj.name = name;
+
+	Klass.update(
+		{"students.studentId":req.params.studentId},
+		{
+			$set:{
+				"students.$.studentId":studentObj.studentId,
+				"students.$.name.firstName":name.firstName,
+				"students.$.name.lastName":name.lastName
+			}
+		})
+		.exec()
+		.then(function(course) {
+			res.status(204).end();
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({ message : 'Internal server error, cannot update' });
 		});
 });
 
