@@ -77,7 +77,6 @@ function renderStudentEditForm(data) {
 		.find('#' + item + '')
 		.addClass('form-control');
 	}
-console.log('xxx',studentObj);
 	$('#studentId').attr('value', studentObj['studentId']);
 	$('#firstName').attr('value', studentObj['name']['firstName']);
 	$('#lastName').attr('value', studentObj['name']['lastName']);
@@ -278,14 +277,12 @@ function editStudent(requestObject, classId, id) {
 		data: requestObject,
 		dataType: 'json'
 	};
-	console.log('ajaxObj',ajaxObj);
 
 	$.ajax(ajaxObj)
 	.done(() => {
 		let result = 'success',
 			response = 'Student successfully added to the class';
 		console.log('student edit was successful:');
-		console.info(result, response);
 
 		if (requestObject.id !== getInfoForStudent()) {
 			window.location.href = window.location.href.replace(/student\/\d.*(?=\/edit)/gi,'student/' + requestObject.id);
@@ -316,8 +313,6 @@ function handleEditStudentSubmit(data) {
 			arr = [],
 			classId = getInfoForClass();
 
-		console.log(':',studentId,' / ',id);
-
 		studentObj = {
 			studentid: studentId,
 			name: {
@@ -326,8 +321,6 @@ function handleEditStudentSubmit(data) {
 			},
 			grades: []
 		};
-
-		console.log(studentObj);
 
 		arr.push(studentObj);
 
