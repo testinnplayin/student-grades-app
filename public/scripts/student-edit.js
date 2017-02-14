@@ -35,7 +35,6 @@ function renderAlerts(result, response) {
 
 
 function renderStudentEditForm(data) {
-	console.log('--=',data);
 	var form = 'form',
 		arr = ['studentId', 'firstName', 'lastName'],
 		button = 'button',
@@ -166,10 +165,12 @@ function drawClassPanelWithStudent(data, whichClass) {
 			keys.push(k)
 	    }
 	}
-	console.log(keys, data);
-	for (let i = 0; i < keys.length; i++ ) {
+
+	var prettyKeys = ['Class Name', 'Subject', 'Grade Level', 'Term'];
+
+	for (let i = 1; i < keys.length - 1; i++ ) {
 		let key = keys[i],
-		para = '<p><strong>' + keys[i] + ':</strong> ' + data[key] + '</p>';
+		para = '<p><strong>' + prettyKeys[i-1] + ':</strong> ' + data[key] + '</p>';
 
 		$(jsPanelBody).append(para);
 	}
@@ -235,7 +236,6 @@ function getInfoForStudent() {
 }
 
 function findStudentObj(data) {
-	console.log('==-',data);
 	let objArr = data.students,
 		whichStudent = getInfoForStudent(),
 		lng = objArr.length,

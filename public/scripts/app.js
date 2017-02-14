@@ -50,7 +50,8 @@ function renderAddClassBtn(view) {
 		.attr('href', "/classes/class/create")
 		.attr('id', 'js-add-class-btn')
 		.addClass('btn')
-		.addClass('btn-danger');
+		.addClass('btn-danger')
+		.addClass('add-class-btn');
 	} else {
 		$(titleStuff)
 		.find('a')

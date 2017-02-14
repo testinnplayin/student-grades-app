@@ -107,6 +107,13 @@ h1 {
 .col-xs-4 li {
   margin-left: -10px; }
 
+.create-student-btn,
+.add-class-btn {
+  margin-bottom: 10px; }
+
+.class-finder {
+  margin: 0 5px; }
+
 main {
   padding: 20px 0 75px 0;
   margin-bottom: 50px;
