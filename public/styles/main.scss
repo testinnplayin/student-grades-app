@@ -79,12 +79,25 @@ main {
 		content: "";
 		display: block;
 	}
-	.main-content {
-		.content-container {
-			border: $border-styles;
-			border-radius: $border-rad;
-			h3 {
-				padding-left: 15px;
+	.container {
+		.title-stuff {
+			.btn {
+				margin-bottom: 10px;
+			}
+		}
+		.main-content {
+			.content-container {
+				border: $border-styles;
+				border-radius: $border-rad;
+				h3 {
+					padding-left: 15px;
+				}
+				.class-table {
+					.btn {
+						margin-left: $border-rad;
+						margin-right: $border-rad;
+					}
+				}
 			}
 		}
 	}

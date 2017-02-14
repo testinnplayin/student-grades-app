@@ -41,8 +41,7 @@ function drawTableBodyRows(data, whichClass) {
 		lng = objArr.length;
 
 	for (let i = 0; i < lng; i++) {
-		let tbody = [],
-			stats = calcStudentStats(objArr[i]),
+		let stats = calcStudentStats(objArr[i]),
 			average = stats[0],
 			median = stats[1],
 			tr = '<tr id="student-'+ i +'"></tr>',
