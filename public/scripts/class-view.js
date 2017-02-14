@@ -96,10 +96,11 @@ function drawClassPanel(data, whichClass) {
 	.addClass('panel-body')
 	.addClass('js-panel-body');
 
+	var prettyKeys = ['Class Name', 'Subject', 'Grade Level', 'Term'];
 
 	for (let i = 1; i < lng - 1; i++ ) {
 		let key = keys[i], 
-		para = '<p><strong>' + keys[i] + ':</strong> ' + data[key] + '</p>';
+		para = '<p><strong>' + prettyKeys[i - 1] + ':</strong> ' + data[key] + '</p>';
 
 		$(jsPanelBody).append(para);
 	}

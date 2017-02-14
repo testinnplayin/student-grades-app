@@ -22,18 +22,6 @@ const classSchema = mongoose.Schema({
 	}]
 });
 
-// classSchema.virtual('studentFullName').get(function() {
-// 	return `${this.students.lastName}, ${this.students.firstName}`;
-// });
-
-// classSchema.virtual('studentData').get(function() {
-// 	return `${}`
-// });
-
-// classSchema.virtual('student average').get(function() {
-// 	const getAverage = this.students.grades.reduce(function() {});
-// });
-
 classSchema.methods.apiRepr = function() {
 	return {
 		id: this._id,

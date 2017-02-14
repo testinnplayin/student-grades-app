@@ -47,12 +47,12 @@ h1 {
 
 .navbar-stacked li:last-child {
 	@media screen and (min-width: $break-small) {
-		margin-top: 5px;
+		margin-top: $fiver;
 	}
 }
 
 .nav-stacked>li+li {
-	margin-top: 5px;
+	margin-top: $fiver;
 }
 
 
@@ -60,6 +60,15 @@ h1 {
 	li {
 		margin-left: -10px;
 	}
+}
+
+.create-student-btn,
+.add-class-btn {
+	margin-bottom: $tenner;
+}
+
+.class-finder {
+	margin: 0 5px;
 }
 
 main {
@@ -100,6 +109,7 @@ footer {
 	margin-top: $main-margin;
 	.container {
 		margin-top: 20px;
+		margin-left: $tenner;
 		.col-xs-4 {
 			li {
 				margin-left: -10px;
