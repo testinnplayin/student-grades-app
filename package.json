@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha",
     "babel-watch": "babel public/scripts/app.js --watch --out-file public/scripts/app-compiled.js",
-    "start": "http-server -a localhost -p 1337",
+    "start": "node start",
     "build-css": "node-sass --include-path scss public/styles/main.scss public/styles/main.css"
   },
   "keywords": [
