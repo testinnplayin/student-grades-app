@@ -27,16 +27,5 @@
     "normalize.css": "^5.0.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-core": "^6.21.0",
-    "babel-preset-env": "^1.1.4",
-    "babel-preset-latest": "^6.16.0",
-    "babel-register": "^6.18.0",
-    "chai": "^3.5.0",
-    "chai-http": "^3.0.0",
-    "debug.log": "0.0.3",
-    "faker": "^3.1.0",
-    "mocha": "^3.2.0",
-    "node-sass": "^4.1.1"
   }
 }
