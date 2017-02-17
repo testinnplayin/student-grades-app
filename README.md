@@ -1,3 +1,5 @@
+Can be found on Heroku at: https://enigmatic-reaches-94677.herokuapp.com/
+
 #Introduction:
 
 This app is to solve a pain point many teachers face: how to deal with all of their students grades in several classes? Teachers can end up teaching multiple classes every term, every year and these classes can have a lot of students in them. Recording grades in some sort of database/spreadsheet takes a long time. Once this app is completed it will do several things:
