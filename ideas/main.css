@@ -33,6 +33,12 @@ ul li a {
 	text-decoration: none;
 }
 
+ul li a:focus,
+ul li a:hover {
+	background-color: #845bff;
+
+}
+
 main {
 	margin-top: -10px;
 	height: auto;
@@ -102,6 +108,12 @@ nav ul li a {
 .secondary-nav li,
 .secondary-nav li a {
 	text-transform: uppercase;
+}
+
+.secondary-nav li a:focus,
+.secondary-nav li a:hover {
+	color: #fff;
+
 }
 
 .secondary-nav li {
@@ -181,6 +193,12 @@ nav ul li a {
 	display: block;
 	margin-left: 30px;
 	font-weight: bold;
+	cursor: pointer;
+}
+
+.filters button:focus,
+.filters button:hover {
+	border: 1px solid #845bff;
 }
 
 
@@ -202,6 +220,11 @@ nav ul li a {
 	width: 40%;
 	text-align: center;
 	text-decoration: none;
+}
+
+.title-stuff a:focus,
+.title-stuff a:hover {
+	background-color: #845bff;
 }
 
 
@@ -272,6 +295,11 @@ th {
 	font-size: 12px;
 }
 
+.dropdown-btn:focus,
+.dropdown-btn:hover {
+	background-color: #c1adff
+}
+
 .dropdown {
 	float: right;
 	position: relative;
@@ -340,7 +368,7 @@ p {
 
 footer {
 	background-color: #63f;
-	height: 500px;
+	height: 700px;
 	width: 100%;
 	margin-top: 25px;
 }
@@ -368,18 +396,18 @@ footer {
 .footer-div ul li a {
 	display: block;
 	text-decoration: none;
-	font-weight: normal;
+	font-weight: bold;
 	color: #33197f;
 	text-transform: uppercase;
+	padding: 15px 0;
+	width: 35%;
 }
 
-
-
-/* PSEUDO-CLASSES */
-
-a::hover {
-	background-color: #845bff;
+.footer-div ul li a:focus,
+.footer-div ul li a:hover {
+	color: #d1c1ff;
 }
+
 
 
 /* MEDIA QUERIES */
@@ -415,7 +443,7 @@ a::hover {
 	}
 
 	footer {
-		height: 300px;
+		height: 400px;
 	}
 
 	.footer-container {
