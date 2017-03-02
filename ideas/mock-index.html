@@ -48,7 +48,7 @@
 					<li><input type="radio" name='grade-level' id='grade-level'><label for="grade-level">Grade Level (eg. 6th grade)</label></li>
 					<li><input type="radio" name="term" id="term"><label for="term">Term (eg. Spring, 2017)</label></li>
 					<li><input type="radio" name="category" id='category'><label for="category">Category (eg. Science)</label></li>
-					<li><input type="checkbox" name='alphabet-order' id='alphabet-order'><label for="alphabet-order">Alphabetical Order</label></li>
+					<li><input type="radio" name='alphabet-order' id='alphabet-order'><label for="alphabet-order">Alphabetical Order</label></li>
 				</ul>
 				<button type="button">Reset Filters</button>
 			</section>
@@ -59,7 +59,7 @@
 			</section>
 			<section class="main-content js-main-content">
 				<div class="content-container js-content-container">
-					<h3>List of Classes</h3>
+					<h3><i class="fa fa-book"></i> List of Classes</h3>
 					<table class="table class-table js-class-table">
 						<thead>
 							<tr id="js-table-title">
@@ -72,7 +72,7 @@
 						<tbody>
 							<tr id="class-number">
 								<td>Chem1</td>
-								<td><i class="fa fa-book"></i> Chemistry</td>
+								<td>Chemistry</td>
 								<td>6th</td>
 								<td>Fall, 2016</td>
 								<td>
@@ -88,7 +88,7 @@
 							</tr>
 							<tr id="class-number1">
 								<td>Phys1</td>
-								<td><i class="fa fa-book"></i> Physics</td>
+								<td>Physics</td>
 								<td>8th</td>
 								<td>Fall, 2016</td>
 								<td>									
@@ -104,7 +104,7 @@
 							</tr>
 							<tr id="class-number2">
 								<td>Chem2</td>
-								<td><i class="fa fa-book"></i> Chemistry</td>
+								<td>Chemistry</td>
 								<td>6th</td>
 								<td>Spring, 2017</td>
 								<td>									
@@ -120,7 +120,7 @@
 							</tr>
 							<tr id="class-number3">
 								<td>Eng1</td>
-								<td><i class="fa fa-book"></i> English</td>
+								<td>English</td>
 								<td>8th</td>
 								<td>Fall, 2016</td>
 								<td>									
@@ -149,26 +149,28 @@
 		</main>
 
 		<footer>
-			<div class="left footer-div">
-				<p>By</p>
-				<ul class="nav">
-					<li><a href="#">R. Wood, 2016</a></li>
-				</ul>				
-			</div>
-			<div class="center footer-div">
-				<p>Powered by</p>
-				<ul class="nav">
-					<li><a href="#">jQuery</a></li>
-					<li><a href="#">Node.js</a></li>
-					<li><a href="#">Express</a></li>
-				</ul>
-			</div>	
-			<div class="right footer-div">
-				<p>Thanks to</p>
-				<ul class="nav">
-					<li><a href="#">Font Awesome</a></li>
-				</ul>
-			</div>
+			<section class="footer-container">
+				<div class="left footer-div">
+					<p>By</p>
+					<ul>
+						<li><a href="#">R. Wood, 2016</a></li>
+					</ul>				
+				</div>
+				<div class="center footer-div">
+					<p>Powered by</p>
+					<ul>
+						<li><a href="#">jQuery</a></li>
+						<li><a href="#">Node.js</a></li>
+						<li><a href="#">Express</a></li>
+					</ul>
+				</div>	
+				<div class="right footer-div">
+					<p>Thanks to</p>
+					<ul>
+						<li><a href="#">Font Awesome</a></li>
+					</ul>
+				</div>
+			</section>
 		</footer>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 		<script src="dropdown.js"></script>

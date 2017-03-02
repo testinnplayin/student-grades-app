@@ -208,11 +208,24 @@ nav ul li a {
 
 /* MAIN-CONTENT STYLES */
 
+.main-content {
+	height: auto;
+	width: 100%;
+	margin: 0 auto;
+	padding: 25px;
+}
+
 .main-content .content-container h3 {
 	text-transform: uppercase;
 	font-weight: bold;
 	text-align: center;
 	color: #140a33;
+}
+
+.content-container {
+	height: auto;
+	width: 100%;
+	margin: 15px auto;
 }
 
 
@@ -221,16 +234,18 @@ nav ul li a {
 
 td {
 	color: #777;
+	font-size: 12px;
 }
 
 th {
 	color: #140a33;
+	font-size: 12px;
 }
 
 .table thead tr th,
 .table tbody tr td {
 	text-align: justify;
-	padding-left: 7px;
+	padding-right: 7px;
 }
 
 .table thead tr th {
@@ -244,8 +259,6 @@ th {
 
 
 
-
-
 /* TABLE DROPDOWN BUTTON */
 
 .dropdown-btn {
@@ -256,7 +269,7 @@ th {
 	padding: 10px 15px;
 	cursor: pointer;
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 12px;
 }
 
 .dropdown {
@@ -332,6 +345,11 @@ footer {
 	margin-top: 25px;
 }
 
+.footer-container {
+	margin: 0 auto;
+	width: 55%;
+}
+
 .footer-div {
 	margin: 20px auto;
 	width: 80%;
@@ -353,4 +371,68 @@ footer {
 	font-weight: normal;
 	color: #33197f;
 	text-transform: uppercase;
+}
+
+
+
+/* MEDIA QUERIES */
+
+@media screen and (min-width: 365px) {
+	th,
+	td,
+	.dropdown-btn {
+		font-size: 16px;
+	}
+}
+
+@media screen and (min-width: 640px) {
+	nav {
+		height: 400px;
+		padding: 25px;
+	}
+	
+	nav ul li {
+		margin: 15px 40px 10px 0;
+	}
+
+	.filters {
+		width: 50%;
+	}
+
+	.footer-div {
+		width: 25%;
+	}
+
+	.table {
+		width: 100%;
+	}
+
+	footer {
+		height: 300px;
+	}
+
+	.footer-container {
+		width: 80%;
+	}
+
+	.footer-div {
+		display: inline-block;
+	}
+
+	.left,
+	.right {
+		height: 193px;
+	}
+
+	.left {
+		float: left;
+	}
+
+	.middle {
+		clear: both;
+	}
+
+	.right {
+		float: right;
+	}
 }
