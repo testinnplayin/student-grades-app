@@ -375,6 +375,13 @@ footer {
 
 
 
+/* PSEUDO-CLASSES */
+
+a::hover {
+	background-color: #845bff;
+}
+
+
 /* MEDIA QUERIES */
 
 @media screen and (min-width: 365px) {
@@ -435,4 +442,84 @@ footer {
 	.right {
 		float: right;
 	}
+}
+
+@media screen and (min-width: 1000px) {
+	nav {
+		height: 115px;
+	}
+
+	nav ul {
+		padding: 15px;
+	}
+
+	nav ul li,
+	.secondary-nav ul li {
+		display: inline-block;
+	}
+
+	nav ul li a,
+	.secondary-nav ul li a {
+		display: inline;
+	}
+
+	.secondary-nav {
+		padding: 10px 20px;
+		height: 100px;
+	}
+
+	.secondary-nav ul li {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+
+	
+
+	.tertiary-nav {
+		width: 100%;
+		margin-top: 0;
+		height: 100px;
+	}
+
+	.tertial-nav ul, 
+	form {
+		display: inline-block;
+	}
+
+	.tertiary-nav ul {
+		width: 75%;
+		margin: 0;
+		float: left;
+		padding-top: 40px;
+	}
+
+	.tertiary-nav ul li {
+		display: inline-block;
+		margin-right: 20px;
+	}
+
+	.tertiary-nav ul li a {
+		display: inline;
+		background-color: #fff;
+	}
+
+	.tertiary-nav ul li:first-child > a {
+		padding-bottom: 35px;
+	}
+
+	form {
+		float: right;
+		padding-top: 25px;
+	}
+
+	.filters {
+		width: 100%;
+	}
+
+	.filters h2 {
+		text-align: center;
+	}
+
+	.filters 
+
 }
