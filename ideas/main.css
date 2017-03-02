@@ -64,9 +64,10 @@ header {
 
 nav {
 	background: #63f;
-	height: auto;
+	height: 530px;
 	margin-left: auto;
 	margin-right: auto;
+	padding-top: 50px;
 }
 
 nav ul {
@@ -153,6 +154,7 @@ nav ul li a {
 	font-size: 16px;
 	width: 90%;
 	font-size: 16px;
+	color: #140a33;
 }
 
 .filters h2 {
@@ -199,6 +201,7 @@ nav ul li a {
 	margin: 10px auto;
 	width: 40%;
 	text-align: center;
+	text-decoration: none;
 }
 
 
@@ -209,6 +212,7 @@ nav ul li a {
 	text-transform: uppercase;
 	font-weight: bold;
 	text-align: center;
+	color: #140a33;
 }
 
 
@@ -219,6 +223,16 @@ td {
 	color: #777;
 }
 
+th {
+	color: #140a33;
+}
+
+.table thead tr th,
+.table tbody tr td {
+	text-align: justify;
+	padding-left: 7px;
+}
+
 .table thead tr th {
 	text-transform: uppercase;
 	border-bottom: 1px solid #777;
@@ -227,6 +241,8 @@ td {
 .table tbody tr td {
 	border-top: none;
 }
+
+
 
 
 
@@ -288,4 +304,53 @@ td {
 
 .show {
 	display: block;
+}
+
+
+
+/* LIGHTBOX STYLES */
+
+.lightbox {
+	display: none;
+}
+
+
+
+/* FOOTER STYLES */
+
+p {
+	font-weight: normal;
+	font-size: 16px;
+	color: #d1c1ff;
+	text-transform: uppercase;
+}
+
+footer {
+	background-color: #63f;
+	height: 500px;
+	width: 100%;
+	margin-top: 25px;
+}
+
+.footer-div {
+	margin: 20px auto;
+	width: 80%;
+	padding-top: 15px;
+}
+
+.footer-div ul {
+	margin: 20px auto;
+	padding: 15px 10px;
+}
+
+.footer-div li {
+	margin: 5px 0;
+}
+
+.footer-div ul li a {
+	display: block;
+	text-decoration: none;
+	font-weight: normal;
+	color: #33197f;
+	text-transform: uppercase;
 }
