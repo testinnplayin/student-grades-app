@@ -16,6 +16,11 @@ a {
 	font-weight: bold;
 }
 
+body {
+	height: 100%;
+	width: 100%;
+}
+
 
 
 /* GENERAL STYLES */
@@ -28,6 +33,25 @@ ul li a {
 	text-decoration: none;
 }
 
+main {
+	margin-top: -10px;
+	height: auto;
+	width: 100%;
+}
+
+
+
+/* SCREEN READER */
+
+.screen-reader {
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
 
 
 /* NAV STYLES */
@@ -35,7 +59,7 @@ ul li a {
 header {
 	height: auto;
 	width: 100%;
-	margin-top: -15px;
+	margin-top: -25px;
 }
 
 nav {
@@ -92,7 +116,7 @@ nav ul li a {
 	background: #a384ff;
 	margin-top: -17px;
 	height: auto;
-	padding; 20px;
+	padding: 20px;
 }
 
 .tertiary-nav ul {
@@ -107,9 +131,53 @@ nav ul li a {
 	color: #33197f;
 	display: block;
 	background: #c1adff;
-	width: 35%;
+	width: 40%;
 	margin: 15px auto;
 	text-align: center;
 	padding: 15px;
 	text-transform: uppercase;
+}
+
+#search-form {
+	text-align: center;
+}
+
+
+
+/* FILTERS STYLES */
+
+.filters {
+	margin: 10px auto;
+	padding: 5px 0;
+	text-transform: uppercase;
+	font-size: 16px;
+	width: 90%;
+	font-size: 16px;
+}
+
+.filters h2 {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.filters ul li {
+	padding: 10px 0;
+	font-weight: bold;
+}
+
+.filters ul li input {
+	margin-right: 5px;
+	margin-bottom: 10px;
+}
+
+.filters button {
+	
+	text-transform: uppercase;
+	background: #fff;
+	color: #33197f;
+	padding: 10px;
+	border: none;
+	display: block;
+	margin-left: 30px;
+	font-weight: bold;
 }

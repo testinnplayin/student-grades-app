@@ -34,23 +34,36 @@
 					<li><a href="#" role="tab">Languages</a></li>
 					<li><a href="#" role="tab">Social Sciences</a></li>
 				</ul>
-				<form>
-					<label for="search">Search:</label>
+				<form id="search-form">
+					<label for="search" aria-label="search" aria-hidden="true" class="screen-reader">Search:</label>
 					<input type="text" name="search" id="search" placeholder="Search" />
 					<button type="submit"><span class="glyphicon glyphicon-search"></span></button>
 				</form>
 			</div>
 		</header>
 		<main>
-			
-			
 			<section class="filters">
+				<h2>Filter By:</h2>
 				<ul>
 					<li><input type="radio" name='grade-level' id='grade-level'><label for="grade-level">Grade Level (eg. 6th grade)</label></li>
 					<li><input type="radio" name="term" id="term"><label for="term">Term (eg. Spring, 2017)</label></li>
 					<li><input type="radio" name="category" id='category'><label for="category">Category (eg. Science)</label></li>
 					<li><input type="checkbox" name='alphabet-order' id='alphabet-order'><label for="alphabet-order">Alphabetical Order</label></li>
 				</ul>
+				<button type="button">Reset Filters</button>
+			</section>
+			<section class="main-table">
+				<div class="title-area">
+					<h1>List of Classes:</h1>
+					<div class="title-stuff">
+						<a href="/classes/class/create" id="js-add-class-btn" role="button" class="add-class-btn">Add A Class</a>
+					</div>
+				</div>
+				<table>
+					<thead>
+						<tr></tr>
+					</thead>
+				</table>
 			</section>
 		</main>
 	</body>
