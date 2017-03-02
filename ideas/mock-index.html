@@ -52,18 +52,45 @@
 				</ul>
 				<button type="button">Reset Filters</button>
 			</section>
-			<section class="main-table">
-				<div class="title-area">
-					<h1>List of Classes:</h1>
-					<div class="title-stuff">
-						<a href="/classes/class/create" id="js-add-class-btn" role="button" class="add-class-btn">Add A Class</a>
-					</div>
+			<section class="title-area">
+				<div class="title-stuff">
+					<a href="/classes/class/create" id="js-add-class-btn" role="button" class="add-class-btn">Add A Class</a>
 				</div>
-				<table>
-					<thead>
-						<tr></tr>
-					</thead>
-				</table>
+			</section>
+			<section class="main-content js-main-content">
+				<div class="content-container js-content-container">
+					<h3>List of Classes:</h3>
+					<table class="table class-table js-class-table">
+						<thead>
+							<tr id="js-table-title">
+								<th>Class Name</th>
+								<th>Subject</th>
+								<th>Grade Level</th>
+								<th>Term</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr id="class-number">
+								<td>Chem1</td>
+								<td>Chemistry</td>
+								<td>6th</td>
+								<td>Fall, 2016</td>
+								<td><a href="/classes/edit/class-number" role="button" value="class-number" class="class-finder">Edit</a></td>
+								<td><button type="button" class="js-send-to-del-trigger" value="class-number">Delete</button></td>
+								<td><a href="/classes/class/view/class-number" role="button" value="class-number" class="class-finder">Go To Class</a></td>
+							</tr>
+							<tr id="class-number1">
+								<td>Phys1</td>
+								<td>Physics</td>
+								<td>8th</td>
+								<td>Fall, 2016</td>
+								<td><a href="/classes/edit/class-number1" role="button" value="class-number1" class="class-finder">Edit</a></td>
+								<td><button type="button" class="js-send-to-del-trigger" value="class-number1">Delete</button></td>
+								<td><a href="/classes/class/view/class-number1" role="button" value="class-number1" class="class-finder">Go To Class</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</section>
 		</main>
 	</body>

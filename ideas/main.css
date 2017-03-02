@@ -171,7 +171,6 @@ nav ul li a {
 }
 
 .filters button {
-	
 	text-transform: uppercase;
 	background: #fff;
 	color: #33197f;
@@ -180,4 +179,36 @@ nav ul li a {
 	display: block;
 	margin-left: 30px;
 	font-weight: bold;
+}
+
+
+
+/* TITLE AREA STYLES */
+
+.title-area {
+	height: auto;
+	margin: 15px auto;
+}
+
+.title-stuff a {
+	color: #33197f;
+	text-transform: uppercase;
+	padding: 10px;
+	background: #a384ff;
+	display: block;
+	margin: 10px auto;
+	width: 40%;
+	text-align: center;
+}
+
+
+
+/* MAIN-CONTENT STYLES */
+
+
+
+/* TABLE STYLES */
+
+table thead tr th {
+	text-transform: uppercase;
 }
