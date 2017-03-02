@@ -631,3 +631,54 @@ footer {
 	}
 
 }
+
+@media screen and (min-width: 1200px) {
+	nav ul li {
+		margin: 15px 60px 10px 60px;
+	}
+
+	.secondary-nav ul li {
+		padding: 0 30px;
+		margin: 15px 60px;
+	}
+
+	#search-form {
+		width: 35%;
+	}
+
+	#search-form input {
+		width: 60%;
+	}
+
+	.filters ul li {
+		padding: 0;
+	}
+
+	.filters ul li,
+	.filters ul li:last-child {
+		margin: 15px 20px;
+	}
+
+	.filters button {
+		margin: 0;
+	}
+
+	.title-stuff a {
+		width: 10%;
+	}
+
+	.table thead tr th,
+	.table tbody tr td {
+		padding: 15px 40px;
+	}
+
+	.footer-container {
+		width: 100%;
+	}
+
+	.footer-div {
+		width: 28%;
+		margin-left: 30px;
+		margin-right: 30px;
+	}
+}
