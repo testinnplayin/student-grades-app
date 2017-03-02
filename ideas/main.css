@@ -240,10 +240,17 @@ nav ul li a {
 	margin: 15px auto;
 }
 
+h1 {
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #140a33;
+}
+
 .title-stuff a {
 	color: #33197f;
 	text-transform: uppercase;
-	padding: 10px;
+	padding: 15px 10px;
 	background: #a384ff;
 	display: block;
 	margin: 10px auto;
@@ -603,7 +610,24 @@ footer {
 
 	.filters button {
 		display: inline-block;
-		margin: 0;
+		margin: 0 0 0 95px;
+	}
+
+	.title-stuff a {
+		width: 30%;
+	}
+
+	.table thead tr th,
+	.table tbody tr td {
+		padding: 15px 25px;
+	}
+
+	.footer-container {
+		width: 90%;
+	}
+
+	.footer-div {
+		margin-left: 50px;
 	}
 
 }
