@@ -151,8 +151,38 @@ nav ul li a {
 	text-transform: uppercase;
 }
 
+.tertiary-nav ul li a:focus,
+.tertiary-nav ul li a:hover {
+	background-color: #fff;
+}
+
 #search-form {
 	text-align: center;
+}
+
+#search-form input,
+#search-form button {
+	padding: 10px 15px;
+
+}
+
+#search-form input {
+	background-color: #fff;
+}
+
+#search-form button {
+	background-color: #c1adff;
+}
+
+#search-form input:focus,
+#search-form input:hover {
+	background-color: #c1adff;
+}
+
+#search-form button:focus,
+#search-form button:hover {
+	background-color: #fff;
+	cursor: pointer;
 }
 
 
@@ -401,6 +431,7 @@ footer {
 	text-transform: uppercase;
 	padding: 15px 0;
 	width: 35%;
+	margin-left: -5px;
 }
 
 .footer-div ul li a:focus,
@@ -501,8 +532,6 @@ footer {
 		margin-right: 20px;
 	}
 
-	
-
 	.tertiary-nav {
 		width: 100%;
 		margin-top: 0;
@@ -515,7 +544,7 @@ footer {
 	}
 
 	.tertiary-nav ul {
-		width: 75%;
+		width: 65%;
 		margin: 0;
 		float: left;
 		padding-top: 40px;
@@ -531,6 +560,11 @@ footer {
 		background-color: #fff;
 	}
 
+	.tertiary-nav ul li a:focus,
+	.tertiary-nav ul li a:hover {
+		text-decoration: underline;
+	}
+
 	.tertiary-nav ul li:first-child > a {
 		padding-bottom: 35px;
 	}
@@ -538,6 +572,11 @@ footer {
 	form {
 		float: right;
 		padding-top: 25px;
+	}
+
+	#search-form input,
+	#search-form button {
+		padding: 13px;
 	}
 
 	.filters {
@@ -548,6 +587,23 @@ footer {
 		text-align: center;
 	}
 
-	.filters 
+	.filters ul {
+		display: inline;
+	}
+
+	.filters ul li {
+		display: inline;
+		margin: 15px 20px;
+		padding: 10px 20px;
+	}
+
+	.filters ul li:last-child {
+		margin-left: 60px; 
+	}
+
+	.filters button {
+		display: inline-block;
+		margin: 0;
+	}
 
 }
