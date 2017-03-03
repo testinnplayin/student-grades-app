@@ -17,21 +17,47 @@
 	}
 }
 
-$container-width: 100%;
-$head-foot-color: #eee;
-$border-styles: 1px solid #000;
-$text-center: center;
-$border-rad: 5px;
-$break-small: 740px;
-$break-large: 1000px;
-$hund-height: 100%;
-$main-margin: 50px;
-$selected-background: #222;
-$selected-color: #fff;
-$zero: 0;
-$absolute: absolute;
-$twenty-pix: 20px;
-$half: 50%;
-$fiver: 5px;
-$tenner: 10px;
+@mixin full-d ($width, $height) {
+	width: $width;
+	height: $height;
+}
 
+@mixin height-n-col ($height, $bck-col) {
+	height: $height;
+	background-color: $bck-col;
+}
+
+$back-color: (
+	m-dark: #845bff,
+	dark: #63f
+);
+
+$t-weight: (
+	normal: normal,
+	bold: bold
+);
+
+$axes: 1px 1px 1px 1px;
+$axes-c: 1px, 1px, 1px, 1px;
+
+$font-fam: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+$zero: 0;
+$quat-dim: 25%;
+$half-dim: 50%;
+$full-dim: 100%;
+
+$sm-scr: 640px;
+
+$t-cent: center;
+$t-xs-size: 12px;
+$t-sm-size: 16px;
+
+$f-left: left;
+$f-right: right;
+
+$m-z-aut: 0 auto;
+$m-dim-1: 40px;
+
+$none: none;
+$auto: auto;

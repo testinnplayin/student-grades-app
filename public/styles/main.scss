@@ -1,119 +1,662 @@
 @import "_mix-n-var";
+@import "grid";
 @import "templates/_class-list-template";
 @import "templates/_class-form-template";
 @import "templates/_lightbox-styles";
 
+
+
+/* GENERAL STYLES */
+
+html {
+	font-family: $font-fam;
+}
+
 html,
 body {
-	height: $hund-height;
+	height: $full-dim;
 }
 
-h1 {
-	text-align: $text-center;
-	margin-bottom: 30px;
-	font-size: 30px;
-	font-weight: bold;
+body {
+	width: $full-dim;
 }
 
-.navbar {
-	border-bottom: $border-styles;
+p,
+a {
+	font-size: $t-sm-size;
+	font-weight: map-get($t-weight, bold);
 }
 
-.nav-stacked li {
-	margin: 5px 0;
-	a {
-		padding: 10px 20px;
-		border: $border-styles;
-		background: $head-foot-color;
-		border-radius: $border-rad;	
-	}
-	.selected{
-		background: $selected-background;
-		&:link {
-			color: $selected-color;
+ul {
+	list-style: $none;
+	li {
+		a {
+			text-decoration: $none;
+		}
+		&:focus,
+		&:hover {
+			background-color: map-get($back-color, m-dark);
 		}
 	}
-}
-
-
-.navbar-nav li a {
-	@include links(#bbb, #fff, #eee);
-}
-
-.nav-stacked li a:last-child,
-.navbar-text {
-	margin-left: 15px;
-}
-
-.navbar-stacked li:last-child {
-	@media screen and (min-width: $break-small) {
-		margin-top: $fiver;
-	}
-}
-
-.nav-stacked>li+li {
-	margin-top: $fiver;
-}
-
-
-.col-xs-4 {
-	li {
-		margin-left: -10px;
-	}
-}
-
-.create-student-btn,
-.add-class-btn {
-	margin-bottom: $tenner;
-}
-
-.class-finder {
-	margin: 0 5px;
 }
 
 main {
-	padding: 20px 0 75px 0;
-	margin-bottom: $main-margin;
-	min-height: $hund-height;
-	&:after {
-		content: "";
-		display: block;
-	}
-	.container {
-		.title-stuff {
-			.btn {
-				margin-bottom: 10px;
-			}
-		}
-		.main-content {
-			.content-container {
-				border: $border-styles;
-				border-radius: $border-rad;
-				h3 {
-					padding-left: 15px;
-				}
-				.class-table {
-					.btn {
-						margin-left: $border-rad;
-						margin-right: $border-rad;
-					}
-				}
-			}
-		}
+	margin-top: -10px;
+	height: $auto;
+	width: $full-dim;
+}
+
+
+
+/* SCREEN READER */
+
+.screen-reader {
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect($axes);
+	clip: rect($axes-c);
+}
+
+
+
+/* NAV STYLES */
+
+header {
+	@include full-d($full-dim, $auto);
+	margin-top: -25px;
+}
+
+nav {
+	@include height-n-col($auto, map-get($back-color, dark));
+	padding-top: 30px;
+	ul {
+		margin-right: $m-dim-1;
 	}
 }
 
+.secondary-nav {
+	@include height-n-col($auto, map-get($back-color, m-dark));
+	padding: 20px 0;
+	ul {
+		margin-right: $m-dim-1;
+	}
+}
+
+.secondary-nav ul {
+}
+
+nav ul li a,
+.secondary-nav ul li {
+	color: #d1c1ff;
+	text-align: center;
+}
+
+nav ul li a {
+	padding: 15px 10px 15px 15px;
+	margin: 5px auto;
+	display: block;
+	width: 50%;
+	text-transform: uppercase;
+}
+
+.secondary-nav li,
+.secondary-nav li a {
+	text-transform: uppercase;
+}
+
+.secondary-nav li a:focus,
+.secondary-nav li a:hover {
+	color: #fff;
+
+}
+
+.secondary-nav li {
+	margin: 15px 0;
+}
+
+.secondary-nav li a {
+	display: inline;
+	color: #140a33;
+}
+
+.tertiary-nav {
+	background: #a384ff;
+	margin-top: -17px;
+	height: auto;
+	padding: 20px 0;
+}
+
+.tertiary-nav ul {
+	padding: 15px 0;
+}
+
+.tertiary-nav ul li a {
+	color: #33197f;
+	display: block;
+	background: #c1adff;
+	width: 40%;
+	margin: 15px auto;
+	text-align: center;
+	padding: 15px;
+	text-transform: uppercase;
+}
+
+.tertiary-nav ul li a:focus,
+.tertiary-nav ul li a:hover {
+	background-color: #fff;
+}
+
+#search-form {
+	text-align: center;
+}
+
+#search-form input,
+#search-form button {
+	padding: 10px 15px;
+
+}
+
+#search-form input {
+	background-color: #fff;
+}
+
+#search-form button {
+	background-color: #c1adff;
+}
+
+#search-form input:focus,
+#search-form input:hover {
+	background-color: #c1adff;
+}
+
+#search-form button:focus,
+#search-form button:hover {
+	background-color: #fff;
+	cursor: pointer;
+}
+
+
+
+/* FILTERS STYLES */
+
+.filters {
+	margin: 10px auto;
+	padding: 5px 0;
+	text-transform: uppercase;
+	font-size: $t-sm-size;
+	width: 90%;
+	color: #140a33;
+}
+
+.filters h2 {
+	font-size: $t-sm-size;
+	font-weight: bold;
+}
+
+.filters ul li {
+	padding: 10px 0;
+	font-weight: bold;
+}
+
+.filters ul li input {
+	margin-right: 5px;
+	margin-bottom: 10px;
+}
+
+.filters button {
+	text-transform: uppercase;
+	background: #fff;
+	color: #33197f;
+	padding: 10px;
+	border: none;
+	display: block;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.filters button:focus,
+.filters button:hover {
+	border: 1px solid #845bff;
+}
+
+
+
+/* TITLE AREA STYLES */
+
+.title-area {
+	height: auto;
+	margin: 15px auto;
+}
+
+h1 {
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #140a33;
+}
+
+.title-stuff a {
+	color: #33197f;
+	text-transform: uppercase;
+	padding: 15px 10px;
+	background: #a384ff;
+	display: block;
+	margin: 10px auto;
+	width: 40%;
+	text-align: center;
+	text-decoration: none;
+}
+
+.title-stuff a:focus,
+.title-stuff a:hover {
+	background-color: #845bff;
+}
+
+
+
+/* MAIN-CONTENT STYLES */
+
+.main-content {
+	height: auto;
+	width: 100%;
+	margin: 0 auto;
+	padding: 25px;
+}
+
+.main-content .content-container h3 {
+	text-transform: uppercase;
+	font-weight: bold;
+	text-align: center;
+	color: #140a33;
+}
+
+.content-container {
+	height: auto;
+	width: 100%;
+	margin: 15px auto;
+}
+
+
+
+/* TABLE STYLES */
+
+td {
+	color: #777;
+	font-size: $t-xs-size;
+}
+
+th {
+	color: #140a33;
+	font-size: $t-xs-size;
+}
+
+.table thead tr th,
+.table tbody tr td {
+	text-align: justify;
+	padding-right: 7px;
+}
+
+.table thead tr th {
+	text-transform: uppercase;
+	border-bottom: 1px solid #777;
+}
+
+.table tbody tr td {
+	border-top: none;
+}
+
+
+
+/* TABLE DROPDOWN BUTTON */
+
+.dropdown-btn {
+	text-transform: uppercase;
+	border: none;
+	background: #845bff;
+	color: #d1c1ff;
+	padding: 10px;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: $t-xs-size;
+}
+
+.dropdown-btn:focus,
+.dropdown-btn:hover {
+	background-color: #c1adff
+}
+
+.dropdown {
+	float: right;
+	position: relative;
+	display: inline-block;
+}
+
+.actions-dropdown {
+	display: none;
+	position: absolute;
+	background-color: #d1c1ff;
+	min-width: 160px;
+	overflow: auto;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 0;
+    z-index: 1;
+}
+
+.actions-dropdown a,
+.actions-dropdown button {
+	color: #000;
+	font-weight: bold;
+	font-size: $t-sm-size;
+	text-transform: uppercase;
+	padding: 15px;
+}
+
+.actions-dropdown a {
+	text-decoration: none;
+	display: block;
+	text-align: center;
+}
+
+.actions-dropdown button {
+	background-color: #d1c1ff;
+	border: none;
+	width: 100%;
+}
+
+.dropdown a:hover,
+.dropdown button:hover {
+	background-color: #845bff;
+}
+
+.show {
+	display: block;
+}
+
+
+
+/* LIGHTBOX STYLES */
+
+.lightbox {
+	display: none;
+}
+
+
+
+/* FOOTER STYLES */
+
+p {
+	font-weight: normal;
+	font-size: $t-sm-size;
+	color: #d1c1ff;
+	text-transform: uppercase;
+}
+
 footer {
-	background: $head-foot-color;
-	border-top: $border-styles;
-	margin-top: $main-margin;
-	.container {
-		margin-top: 20px;
-		margin-left: $tenner;
-		.col-xs-4 {
-			li {
-				margin-left: -10px;
-			}
-		}
+	background-color: #63f;
+	height: 700px;
+	width: 100%;
+	margin-top: 25px;
+}
+
+.footer-container {
+	margin: 0 auto;
+	width: 55%;
+}
+
+.footer-div {
+	margin: 20px auto;
+	width: 80%;
+}
+
+.footer-div ul {
+	padding: 15px 10px;
+}
+
+.footer-div ul li a {
+	display: block;
+	text-decoration: none;
+	font-weight: bold;
+	color: #33197f;
+	text-transform: uppercase;
+	padding: 15px 0;
+	width: 40%;
+	margin-left: -5px;
+}
+
+.footer-div ul li a:focus,
+.footer-div ul li a:hover {
+	color: #d1c1ff;
+}
+
+
+
+/* MEDIA QUERIES */
+
+@media screen and (min-width: 365px) {
+	th,
+	td,
+	.dropdown-btn {
+		font-size: $t-sm-size;
+	}
+}
+
+@media screen and (min-width: 640px) {
+	nav {
+		height: 400px;
+		padding: 25px;
+	}
+	
+	nav ul li {
+		margin: 15px 40px 10px 0;
+	}
+
+	.filters {
+		width: 50%;
+	}
+
+	.footer-div {
+		width: 25%;
+	}
+
+	.table {
+		width: 100%;
+	}
+
+	footer {
+		height: 400px;
+	}
+
+	.footer-container {
+		width: 100%;
+	}
+
+	.footer-div {
+		display: inline-block;
+	}
+
+	.left {
+		float: left;
+	}
+
+	.middle {
+		clear: both;
+	}
+
+	.right {
+		float: right;
+	}
+}
+
+@media screen and (min-width: 1000px) {
+	nav {
+		height: auto;
+	}
+
+	nav ul {
+		padding-top: 15px;
+	}
+
+	nav ul li,
+	.secondary-nav ul li {
+		display: inline-block;
+	}
+
+	nav ul li a,
+	.secondary-nav ul li a {
+		display: inline;
+	}
+
+	.secondary-nav {
+		padding: 10px 20px;
+	}
+
+
+	.secondary-nav ul li {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+
+	.tertiary-nav {
+		width: 100%;
+		margin-top: 0;
+		height: 100px;
+	}
+
+	.tertial-nav ul, 
+	form {
+		display: inline-block;
+	}
+
+	.tertiary-nav ul {
+		width: 65%;
+		margin: 0;
+		float: left;
+		padding-top: 40px;
+	}
+
+	.tertiary-nav ul li {
+		display: inline-block;
+		margin-right: 20px;
+	}
+
+	.tertiary-nav ul li a {
+		display: inline;
+		background-color: #fff;
+	}
+
+	.tertiary-nav ul li a:focus,
+	.tertiary-nav ul li a:hover {
+		text-decoration: underline;
+	}
+
+	.tertiary-nav ul li:first-child > a {
+		padding-bottom: 35px;
+	}
+
+	form {
+		float: right;
+		padding-top: 25px;
+	}
+
+	#search-form input,
+	#search-form button {
+		padding: 13px;
+	}
+
+	.filters {
+		width: 100%;
+	}
+
+	.filters .row {
+		max-width: 100%;
+	}
+
+	.filters h2 {
+		text-align: center;
+	}
+
+	.filters ul {
+		display: inline-block;
+		margin: 10px 40px;
+	}
+
+	.filters ul li {
+		display: inline-block;
+		margin: 15px 20px;
+		padding: 10px 20px;
+	}
+
+	.filters button {
+		display: inline-block;
+		margin: 0 0 0 95px;
+	}
+
+	.title-stuff a {
+		width: 30%;
+	}
+
+	.table thead tr th,
+	.table tbody tr td {
+		padding: 15px 25px;
+	}
+
+	.footer-container {
+		width: 90%;
+	}
+
+	.footer-div {
+		margin-left: 50px;
+	}
+
+	.footer-div li {
+		margin: 5px 0;
+	}
+
+}
+
+@media screen and (min-width: 1200px) {
+	nav .row,
+	.tertiary-nav .row {
+		max-width: 100%;
+	}
+
+	#search-form {
+		width: 35%;
+	}
+
+	#search-form input {
+		width: 60%;
+	}
+
+	.filters ul li {
+		padding: 0;
+	}
+
+	.filters ul li,
+	.filters ul li:last-child {
+		margin: 15px 20px;
+	}
+
+	.filters button {
+		margin: 0;
+	}
+
+	.title-stuff a {
+		width: 10%;
+	}
+
+	.table thead tr th,
+	.table tbody tr td {
+		padding: 15px 40px;
+	}
+
+	.footer-container {
+		width: 100%;
+	}
+
+	.footer-container .row {
+		max-width: 100%;
 	}
 }

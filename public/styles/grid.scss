@@ -1,0 +1,67 @@
+@import '_mix-n-var';
+
+%pseudo-block {
+	display: table;
+	content: '';
+}
+
+%box-size {
+	box-sizing: inherit;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+* {
+	@extend %box-size;
+	&:before {
+		@extend %box-size;
+	}
+	&:after {
+		@extend %box-size;
+	}
+}
+
+.row {
+	max-width: 1000px;
+	padding: 0 20px;
+	margin: $m-z-aut;
+	&:before {
+		@extend %pseudo-block;
+	}
+	&:after {
+		@extend %pseudo-block;
+		clear: both;
+	}
+}
+
+.col-2, .col-3, .col-4, .col-6, .col-12 {
+	padding: 0 1.04167%;
+	float: $f-left;
+	width: $full-dim;
+}
+
+@media screen and (min-width: $sm-scr) {
+
+	.col-2 {
+		width: 20%;
+	}
+
+	.col-3 {
+		width: $quat-dim;
+	}
+
+	.col-4 {
+		width: 33.3333%;
+	}
+
+	.col-6 {
+		width: $half-dim;
+	}
+
+	.col-12 {
+		width: $full-dim;
+	}
+}
+
