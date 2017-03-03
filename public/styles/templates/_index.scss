@@ -171,11 +171,11 @@ h1 {
 }
 
 .table {
+	border-collapse: collapse;
 	thead {
 		tr {
 			th {
 				text-transform: $t-up;
-				border-bottom: 1px solid #777;
 				color: map-get($t-color, med);
 			}
 		}

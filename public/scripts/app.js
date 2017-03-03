@@ -43,14 +43,12 @@ function renderAddClassBtn(view) {
 	var titleStuff = '.title-stuff';
 	$(titleStuff).empty();
 	if (state.viewProps[view].addClassBtn) {
-		$(titleStuff).append('<a>Add a Class</a>');
+		$(titleStuff).append('<a>Add A Class</a>');
 		$(titleStuff)
 		.find('a')
 		.attr('role', 'button')
 		.attr('href', "/classes/class/create")
 		.attr('id', 'js-add-class-btn')
-		.addClass('btn')
-		.addClass('btn-danger')
 		.addClass('add-class-btn');
 	} else {
 		$(titleStuff)
@@ -59,7 +57,7 @@ function renderAddClassBtn(view) {
 	}
 }
 
-function drawLbButtons(value, style, actn, type, txt) {
+function drawLbButtons(value, actn, type, txt) {
 	let ele = '#' + value;
 	$(ele)
 	.append('<button></button>');
@@ -67,26 +65,24 @@ function drawLbButtons(value, style, actn, type, txt) {
 	$(ele)
 	.find('button')
 	.attr('type', type)
-	.addClass('btn')
-	.addClass('btn-' + style)
 	.addClass('js-' + actn + '-trigger')
 	.text(txt);
 }
 
-function drawAnchorButton(text, href, style, value) {
+function drawAnchorButton(text, href, value) {
 	var ele = '#' + value,
 		fullHref = href + value;
 
-	$(ele).append('<a></a>');
+	$(ele).append('<td></td>');
 
 	$(ele)
+	.find('td')
+	.append('<a></a>')
 	.find('a')
 	.last()
 	.attr('role', 'button')
-	.attr('id', value)
+	.attr('data', value)
 	.addClass('class-finder')
-	.addClass('btn')
-	.addClass(style)
 	.text(text)
 	.attr('href', fullHref);
 }
@@ -163,19 +159,20 @@ function drawBodyRows(klasses) {
 
 
 		$('tbody').append('<tr id="' + value + '"></tr>').find('#' + value).append(classItem);
-		drawAnchorButton('Edit', '/classes/edit/', 'btn-info', value);
-		drawLbButtons(value, 'danger', 'send-to-del', 'button', 'Delete');
-		drawAnchorButton('Go to Class', '/classes/class/view/', 'btn-default', value);
+		//this will have to change because dropdown menu on small screens
+		// drawAnchorButton('Edit', '/classes/edit/', value);
+		// drawLbButtons(value, 'send-to-del', 'button', 'Delete');
+		// drawAnchorButton('Go to Class', '/classes/class/view/', value);
 		$('.js-send-to-del-trigger').val(value);
 	}
 }
 
 function drawHeadRow(klasses) {
-	let arr = ['Class Name', 'Subject', 'Grade Level', 'Term'],
+	let arr = ['Class', 'Subject', 'Grade', 'Term'],
 		lng = arr.length;
 
 	for (let i = 0; i < lng; i++) {
-		let classTitle = `<th>${arr[i]}:</th>`;
+		let classTitle = `<th>${arr[i]}</th>`;
 		$('thead').append(`<tr id="js-table-title"></tr>`).find(`#js-table-title`).append(classTitle);
 	}
 
@@ -195,10 +192,7 @@ function renderInitialState(klasses, view) {
 		contentContainer = '.js-content-container';
 
 	$(contentContainer)
-	.append('<h3>List of Classes:</h3>')
-	.append('<div></div>')
-	.find('div')
-	.addClass('table-responsive')
+	.append('<h3><i class="fa fa-book"></i> List of Classes</h3>')
 	.append('<table></table>')
 	.find('table')
 	.addClass('table')

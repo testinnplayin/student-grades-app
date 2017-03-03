@@ -168,17 +168,16 @@ h1 {
   padding-right: 7px;
   font-size: 12px; }
 
-.table thead tr th {
-  text-transform: uppercase;
-  border-bottom: 1px solid #777;
-  color: #140a33; }
-
-.table tbody tr:nth-child(odd) {
-  background-color: #d1c1ff; }
-
-.table tbody tr td {
-  border-top: none;
-  color: #777; }
+.table {
+  border-collapse: collapse; }
+  .table thead tr th {
+    text-transform: uppercase;
+    color: #140a33; }
+  .table tbody tr:nth-child(odd) {
+    background-color: #d1c1ff; }
+  .table tbody tr td {
+    border-top: none;
+    color: #777; }
 
 /* TABLE DROPDOWN BUTTON */
 .dropdown-btn {
