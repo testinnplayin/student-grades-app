@@ -42,7 +42,7 @@ html {
 	width: $full-dim;
 }
 
-@media screen and (min-width: $sm-scr) {
+@media screen and (min-width: map-get($breaks, sm-scr)) {
 
 	.col-2 {
 		width: 20%;

@@ -40,6 +40,11 @@
 	border-width: $thick;
 }
 
+@mixin disp-marg ($disp, $marg) {
+	display: $disp;
+	margin: $marg;
+}
+
 $back-color: (
 	m-dark: #845bff,
 	dark: #63f,
@@ -74,16 +79,21 @@ $disp: (
 	no: none
 );
 
+$breaks: (
+	v-sm-scr: 365px,
+	sm-scr: 640px,
+	md-scr: 1000px,
+	lg-scr: 1200px
+);
+
 $zero: 0;
 $tenth: 10%;
 $quat-dim: 25%;
 $half-dim: 50%;
 $full-dim: 100%;
 
-$v-sm-scr: 365px;
-$sm-scr: 640px;
-
 $val-1: 5px;
+$val-2: 400px;
 
 $t-cent: center;
 $t-xs-size: 12px;

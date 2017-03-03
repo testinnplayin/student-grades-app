@@ -124,6 +124,7 @@ h1 {
 
 .title-stuff a {
 	@include t-bck-lists(map-get($back-color, light), map-get($back-color, m-dark));
+	@include disp-marg(map-get($disp, bl), 2 * $val-1 auto);
 	color: map-get($t-color, dark);
 	text: {
 		transform: $t-up;
@@ -131,8 +132,6 @@ h1 {
 		decoration: $none;
 	}
 	padding: 3 * $val-1 2 * $val-1;
-	display: map-get($disp, bl);
-	margin: 2 * $val-1 auto;
 	width: 4 * $tenth;
 }
 

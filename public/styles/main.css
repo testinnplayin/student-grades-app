@@ -32,6 +32,7 @@ html {
   .col-12 {
     width: 100%; } }
 
+/* SECONDARY AND TERTIARY NAVS */
 .secondary-nav {
   height: auto;
   background-color: #845bff;
@@ -131,13 +132,13 @@ h1 {
 
 .title-stuff a {
   background-color: #a384ff;
+  display: block;
+  margin: 10px auto;
   color: #33197f;
   text-transform: uppercase;
   text-align: center;
   text-decoration: none;
   padding: 15px 10px;
-  display: block;
-  margin: 10px auto;
   width: 40%; }
   .title-stuff a:focus, .title-stuff a:hover {
     background-color: #845bff; }
@@ -265,6 +266,130 @@ footer {
       width: 80%;
       margin-left: -5px; }
 
+@media screen and (min-width: 365px) {
+  th,
+  td,
+  .dropdown-btn {
+    font-size: 16px; } }
+
+@media screen and (min-width: 640px) {
+  nav {
+    height: 400px;
+    padding: 25px; }
+    nav ul li {
+      margin: 15px 40px 10px 0; }
+  .filters {
+    width: 50%; }
+  .footer-div {
+    width: 25%; }
+  .table,
+  .footer-container {
+    width: 100%; }
+  footer {
+    height: 400px; }
+  .footer-div {
+    display: inline-block; }
+  .left {
+    float: left; }
+  .middle {
+    clear: both; }
+  .right {
+    float: right; } }
+
+@media screen and (min-width: 1000px) {
+  nav {
+    height: auto; }
+    nav ul {
+      padding-top: 15px; }
+  nav ul li,
+  .secondary-nav ul li {
+    display: inline; }
+  .secondary-nav {
+    padding: 10px 20px; }
+    .secondary-nav ul li {
+      margin-left: 20px;
+      margin-right: 20px; }
+  .tertiary-nav {
+    width: 100%;
+    height: 100px;
+    margin-top: 0; }
+    .tertiary-nav ul {
+      display: inline-block;
+      width: 65%;
+      float: left;
+      padding-top: 40px; }
+      .tertiary-nav ul li {
+        display: inline-block;
+        margin-right: 20px; }
+        .tertiary-nav ul li:first-child > a {
+          padding-bottom: 35px; }
+        .tertiary-nav ul li a {
+          display: inline;
+          background-color: #fff; }
+          .tertiary-nav ul li a:focus, .tertiary-nav ul li a:hover {
+            text-decoration: underline; }
+  form {
+    display: inline-block;
+    float: right;
+    padding-top: 25px; }
+  #search-form input,
+  #search-form button {
+    padding: 13px; }
+  .filters {
+    width: 100%; }
+    .filters .row {
+      max-width: 100%; }
+    .filters h2 {
+      text-align: center; }
+    .filters ul {
+      display: inline-block;
+      margin: 10px 40px; }
+      .filters ul li {
+        display: inline-block;
+        margin: 15px 20px;
+        padding: 10px 20px; }
+    .filters button {
+      display: inline-block;
+      margin: 0 0 0 95px; }
+  .title-stuff a {
+    width: 30%; }
+  .table thead tr th,
+  .table tbody tr td {
+    padding: 15px 25px; }
+  .footer-container {
+    width: 90%; }
+  .footer-div {
+    margin-left: 50px; }
+    .footer-div li {
+      margin: 5px 0; } }
+
+@media screen and (min-width: 1200px) {
+  nav {
+    padding: 10px 25px; }
+    nav .row,
+    nav .tertiary-nav .row {
+      max-width: 100%; }
+  #search-form {
+    width: 35%; }
+    #search-form input {
+      width: 60%; }
+  .filters ul li,
+  .filters ul li:last-child {
+    margin: 15px 20px; }
+  .filters ul li {
+    padding: 0; }
+  .filters button {
+    margin: 0; }
+  .title-stuff a {
+    width: 10%; }
+  .table thead tr th,
+  .table tbody tr td {
+    padding: 15px 40px; }
+  .footer-container {
+    width: 100%; }
+    .footer-container .row {
+      max-width: 100%; } }
+
 main .main-content .content-container h3 {
   padding-left: 15px; }
 
@@ -337,135 +462,3 @@ nav ul li a {
   margin: 5px auto;
   width: 50%;
   display: block; }
-
-/* MEDIA QUERIES */
-@media screen and (min-width: 365px) {
-  th,
-  td,
-  .dropdown-btn {
-    font-size: 16px; } }
-
-@media screen and (min-width: 640px) {
-  nav {
-    height: 400px;
-    padding: 25px; }
-  nav ul li {
-    margin: 15px 40px 10px 0; }
-  .filters {
-    width: 50%; }
-  .footer-div {
-    width: 25%; }
-  .table {
-    width: 100%; }
-  footer {
-    height: 400px; }
-  .footer-container {
-    width: 100%; }
-  .footer-div {
-    display: inline-block; }
-  .left {
-    float: left; }
-  .middle {
-    clear: both; }
-  .right {
-    float: right; } }
-
-@media screen and (min-width: 1000px) {
-  nav {
-    height: auto; }
-  nav ul {
-    padding-top: 15px; }
-  nav ul li,
-  .secondary-nav ul li {
-    display: inline-block; }
-  nav ul li a,
-  .secondary-nav ul li a {
-    display: inline; }
-  .secondary-nav {
-    padding: 10px 20px; }
-  .secondary-nav ul li {
-    margin-left: 20px;
-    margin-right: 20px; }
-  .tertiary-nav {
-    width: 100%;
-    margin-top: 0;
-    height: 100px; }
-  .tertial-nav ul,
-  form {
-    display: inline-block; }
-  .tertiary-nav ul {
-    width: 65%;
-    margin: 0;
-    float: left;
-    padding-top: 40px; }
-  .tertiary-nav ul li {
-    display: inline-block;
-    margin-right: 20px; }
-  .tertiary-nav ul li a {
-    display: inline;
-    background-color: #fff; }
-  .tertiary-nav ul li a:focus,
-  .tertiary-nav ul li a:hover {
-    text-decoration: underline; }
-  .tertiary-nav ul li:first-child > a {
-    padding-bottom: 35px; }
-  form {
-    float: right;
-    padding-top: 25px; }
-  #search-form input,
-  #search-form button {
-    padding: 13px; }
-  .filters {
-    width: 100%; }
-  .filters .row {
-    max-width: 100%; }
-  .filters h2 {
-    text-align: center; }
-  .filters ul {
-    display: inline-block;
-    margin: 10px 40px; }
-  .filters ul li {
-    display: inline-block;
-    margin: 15px 20px;
-    padding: 10px 20px; }
-  .filters button {
-    display: inline-block;
-    margin: 0 0 0 95px; }
-  .title-stuff a {
-    width: 30%; }
-  .table thead tr th,
-  .table tbody tr td {
-    padding: 15px 25px; }
-  .footer-container {
-    width: 90%; }
-  .footer-div {
-    margin-left: 50px; }
-  .footer-div li {
-    margin: 5px 0; } }
-
-@media screen and (min-width: 1200px) {
-  nav {
-    padding: 10px 25px; }
-  nav .row,
-  .tertiary-nav .row {
-    max-width: 100%; }
-  #search-form {
-    width: 35%; }
-  #search-form input {
-    width: 60%; }
-  .filters ul li {
-    padding: 0; }
-  .filters ul li,
-  .filters ul li:last-child {
-    margin: 15px 20px; }
-  .filters button {
-    margin: 0; }
-  .title-stuff a {
-    width: 10%; }
-  .table thead tr th,
-  .table tbody tr td {
-    padding: 15px 40px; }
-  .footer-container {
-    width: 100%; }
-  .footer-container .row {
-    max-width: 100%; } }
