@@ -45,7 +45,8 @@ $back-color: (
 	dark: #63f,
 	light: #a384ff,
 	v-light: #c1adff,
-	wh: #fff
+	wh: #fff,
+	v-v-light: #d1c1ff
 );
 
 $t-color: (
@@ -69,8 +70,8 @@ $font-fam: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $disp: (
 	bl: block,
 	inln: inline,
-	in-b: inline-block;
-	no: none;
+	in-b: inline-block,
+	no: none
 );
 
 $zero: 0;

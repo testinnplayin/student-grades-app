@@ -301,42 +301,40 @@ h1 {
 .actions-dropdown {
 	display: map-get($disp, no);
 	position: absolute;
-	background-color: #d1c1ff;
-	min-width: 160px;
-	overflow: auto;
+	min-width: 32 * $val-1;
+	overflow: $auto;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     right: 0;
     z-index: 1;
-}
+    a,
+    button {
+    	@include t-bck-lists(map-get($back-color, v-v-light), map-get($back-color, m-dark))
+		color: map-get($t-color, med);
+		font: {
+			weight: map-get($t-weight, bold);
+			size: $t-sm-size;
+		}
+		text-transform: $t-up;
+		padding: 3 * $val-1;
+    }
 
-.actions-dropdown a,
-.actions-dropdown button {
-	color: #000;
-	font-weight: bold;
-	font-size: $t-sm-size;
-	text-transform: uppercase;
-	padding: 15px;
-}
+    a {
+		text: {
+			decoration: $none;
+			align: $t-cent;
+		}
+		display: map-get($disp, bl);
+    }
 
-.actions-dropdown a {
-	text-decoration: none;
-	display: block;
-	text-align: center;
-}
-
-.actions-dropdown button {
-	background-color: #d1c1ff;
-	border: none;
-	width: 100%;
-}
-
-.dropdown a:hover,
-.dropdown button:hover {
-	background-color: #845bff;
+    button {
+		background-color: map-get($back-color, v-v-light);
+		border: $none;
+		width: $full-dim;
+    }
 }
 
 .show {
-	display: block;
+	display: map-get($disp, bl);
 }
 
 

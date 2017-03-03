@@ -269,34 +269,31 @@ h1 {
 .actions-dropdown {
   display: none;
   position: absolute;
-  background-color: #d1c1ff;
   min-width: 160px;
   overflow: auto;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   right: 0;
   z-index: 1; }
-
-.actions-dropdown a,
-.actions-dropdown button {
-  color: #000;
-  font-weight: bold;
-  font-size: 16px;
-  text-transform: uppercase;
-  padding: 15px; }
-
-.actions-dropdown a {
-  text-decoration: none;
-  display: block;
-  text-align: center; }
-
-.actions-dropdown button {
-  background-color: #d1c1ff;
-  border: none;
-  width: 100%; }
-
-.dropdown a:hover,
-.dropdown button:hover {
-  background-color: #845bff; }
+  .actions-dropdown a,
+  .actions-dropdown button {
+    background-color: #d1c1ff;
+    color: #140a33;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 15px; }
+    .actions-dropdown a:focus, .actions-dropdown a:hover,
+    .actions-dropdown button:focus,
+    .actions-dropdown button:hover {
+      background-color: #845bff; }
+  .actions-dropdown a {
+    text-decoration: none;
+    text-align: center;
+    display: block; }
+  .actions-dropdown button {
+    background-color: #d1c1ff;
+    border: none;
+    width: 100%; }
 
 .show {
   display: block; }
