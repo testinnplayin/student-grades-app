@@ -215,7 +215,6 @@ nav ul li a {
 	padding: 10px;
 	border: none;
 	display: block;
-	margin-left: 30px;
 	font-weight: bold;
 	cursor: pointer;
 }
@@ -584,23 +583,28 @@ footer {
 		width: 100%;
 	}
 
+	.filters .row {
+		max-width: 100%;
+	}
+
 	.filters h2 {
 		text-align: center;
 	}
 
 	.filters ul {
-		display: inline;
+		display: inline-block;
+		margin: 10px 40px;
 	}
 
 	.filters ul li {
-		display: inline;
+		display: inline-block;
 		margin: 15px 20px;
 		padding: 10px 20px;
 	}
 
-	.filters ul li:last-child {
+	/*.filters ul li:last-child {
 		margin-left: 60px; 
-	}
+	}*/
 
 	.filters button {
 		display: inline-block;
