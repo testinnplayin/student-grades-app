@@ -34,6 +34,12 @@
 	color: map-get($t-color, $color);
 }
 
+@mixin bord-style ($thick, $style, $color) {
+	border-color: $color;
+	border-style: $style;
+	border-width: $thick;
+}
+
 $back-color: (
 	m-dark: #845bff,
 	dark: #63f,
@@ -46,7 +52,8 @@ $t-color: (
 	light: #d1c1ff,
 	wh: #fff,
 	med: #140a33,
-	dark: #33197f
+	dark: #33197f,
+	gr: #777
 );
 
 $t-weight: (
@@ -58,6 +65,13 @@ $axes: 1px 1px 1px 1px;
 $axes-c: 1px, 1px, 1px, 1px;
 
 $font-fam: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+$disp: (
+	bl: block,
+	inln: inline,
+	in-b: inline-block;
+	no: none;
+);
 
 $zero: 0;
 $tenth: 10%;
@@ -81,8 +95,5 @@ $m-z-aut: 0 auto;
 
 $none: none;
 $auto: auto;
-
-$block: block;
-$inln: inline;
 
 $point: pointer;

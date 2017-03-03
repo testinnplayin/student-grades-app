@@ -187,7 +187,9 @@ nav ul li a {
     cursor: pointer;
     border: none; }
     .filters button:focus, .filters button:hover {
-      border: 1px solid #845bff; }
+      border-color: #845bff;
+      border-style: solid;
+      border-width: 1px; }
 
 /* TITLE AREA STYLES */
 .title-area {
@@ -201,73 +203,63 @@ h1 {
   color: #140a33; }
 
 .title-stuff a {
+  background-color: #a384ff;
   color: #33197f;
   text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
   padding: 15px 10px;
-  background: #a384ff;
   display: block;
   margin: 10px auto;
-  width: 40%;
-  text-align: center;
-  text-decoration: none; }
-
-.title-stuff a:focus,
-.title-stuff a:hover {
-  background-color: #845bff; }
+  width: 40%; }
+  .title-stuff a:focus, .title-stuff a:hover {
+    background-color: #845bff; }
 
 /* MAIN-CONTENT STYLES */
 .main-content {
-  height: auto;
   width: 100%;
+  height: auto;
   margin: 0 auto;
   padding: 25px; }
 
 .main-content .content-container h3 {
   text-transform: uppercase;
-  font-weight: bold;
   text-align: center;
+  font-weight: bold;
   color: #140a33; }
 
 .content-container {
-  height: auto;
   width: 100%;
+  height: auto;
   margin: 15px auto; }
 
 /* TABLE STYLES */
-td {
-  color: #777;
-  font-size: 12px; }
-
-th {
-  color: #140a33;
-  font-size: 12px; }
-
 .table thead tr th,
 .table tbody tr td {
   text-align: justify;
-  padding-right: 7px; }
+  padding-right: 7px;
+  font-size: 12px; }
 
 .table thead tr th {
   text-transform: uppercase;
-  border-bottom: 1px solid #777; }
+  border-bottom: 1px solid #777;
+  color: #140a33; }
 
 .table tbody tr td {
-  border-top: none; }
+  border-top: none;
+  color: #777; }
 
 /* TABLE DROPDOWN BUTTON */
 .dropdown-btn {
+  background-color: #845bff;
   text-transform: uppercase;
   border: none;
-  background: #845bff;
-  color: #d1c1ff;
   padding: 10px;
   cursor: pointer;
   font-weight: bold;
   font-size: 12px; }
-
-.dropdown-btn:focus,
-.dropdown-btn:hover {
-  background-color: #c1adff; }
+  .dropdown-btn:focus, .dropdown-btn:hover {
+    background-color: #c1adff; }
 
 .dropdown {
   float: right;

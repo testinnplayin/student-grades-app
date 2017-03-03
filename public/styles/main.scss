@@ -91,7 +91,7 @@ nav ul li a {
 		transform: $t-up;
 	}
 	@include p-m-w(3 * $val-1 2 * $val-1 3 * $val-1 3 * $val-1, $val-1 auto, $half-dim);
-	display: $block;
+	display: map-get($disp, bl);
 }
 
 .secondary-nav ul {
@@ -103,7 +103,7 @@ nav ul li a {
 		@include t-cl-lists(map-get($t-color, med), map-get($t-color, wh));
 		a {
 			text-transform: $t-up;
-			display: $inln;
+			display: map-get($disp, inln);
 			color: map-get($t-color, med);
 		}
 	}
@@ -120,7 +120,7 @@ nav ul li a {
 				@include t-bck-lists(map-get($back-color, v-light), map-get($back-color, wh));
 				@include p-m-w(3 * $val-1, 3 * $val-1 auto, 4 * $tenth);
 				color: map-get($t-color, dark);
-				display: $block;
+				display: map-get($disp, bl);
 				text: {
 					align: $t-cent;
 					transform: $t-up;
@@ -175,7 +175,7 @@ nav ul li a {
 	}
 
 	button {
-		@include text-disp-col($t-up, $block, dark);
+		@include text-disp-col($t-up, map-get($disp, bl), dark);
 		background-color: map-get($back-color, wh);
 		padding: 2 * $val-1;
 		font-weight: map-get($t-weight, bold);
@@ -183,7 +183,7 @@ nav ul li a {
 		border: $none;
 		&:focus,
 		&:hover {
-			border: 1px solid #845bff;
+			@include bord-style(1px, solid, #845bff);
 		}
 	}
 }
@@ -207,7 +207,7 @@ h1 {
 }
 
 .title-stuff a {
-	@include t-bck-lists(map-get($back-color, light), map-get($back-color, $m-dark));
+	@include t-bck-lists(map-get($back-color, light), map-get($back-color, m-dark));
 	color: map-get($t-color, dark);
 	text: {
 		transform: $t-up;
@@ -215,7 +215,7 @@ h1 {
 		decoration: $none;
 	}
 	padding: 3 * $val-1 2 * $val-1;
-	display: $block;
+	display: map-get($disp, bl);
 	margin: 2 * $val-1 auto;
 	width: 4 * $tenth;
 }
@@ -225,52 +225,54 @@ h1 {
 /* MAIN-CONTENT STYLES */
 
 .main-content {
-	height: auto;
-	width: 100%;
-	margin: 0 auto;
-	padding: 25px;
+	@include full-d($full-dim, $auto);
+	margin: $m-z-aut;
+	padding: 5 * $val-1;
 }
 
 .main-content .content-container h3 {
-	text-transform: uppercase;
-	font-weight: bold;
-	text-align: center;
-	color: #140a33;
+	text: {
+		transform: $t-up;
+		align: $t-cent;
+	}
+	font-weight: map-get($t-weight, bold);
+	color: map-get($t-color, med);
 }
 
 .content-container {
-	height: auto;
-	width: 100%;
-	margin: 15px auto;
+	@include full-d($full-dim, $auto);
+	margin: 3 * $val-1 auto;
 }
 
 
 
 /* TABLE STYLES */
 
-td {
-	color: #777;
-	font-size: $t-xs-size;
-}
-
-th {
-	color: #140a33;
-	font-size: $t-xs-size;
-}
-
 .table thead tr th,
 .table tbody tr td {
 	text-align: justify;
 	padding-right: 7px;
+	font-size: $t-xs-size;
 }
 
-.table thead tr th {
-	text-transform: uppercase;
-	border-bottom: 1px solid #777;
-}
-
-.table tbody tr td {
-	border-top: none;
+.table {
+	thead {
+		tr {
+			th {
+				text-transform: $t-up;
+				border-bottom: 1px solid #777;
+				color: map-get($t-color, med);
+			}
+		}
+	}
+	tbody {
+		tr {
+			td {
+				border-top: $none;
+				color: map-get($t-color, gr);
+			}
+		}
+	}
 }
 
 
@@ -278,29 +280,26 @@ th {
 /* TABLE DROPDOWN BUTTON */
 
 .dropdown-btn {
-	text-transform: uppercase;
-	border: none;
-	background: #845bff;
-	color: #d1c1ff;
-	padding: 10px;
-	cursor: pointer;
-	font-weight: bold;
-	font-size: $t-xs-size;
-}
-
-.dropdown-btn:focus,
-.dropdown-btn:hover {
-	background-color: #c1adff
+	@include t-bck-lists(map-get($back-color, m-dark), map-get($back-color, v-light));
+	text-transform: $t-up;
+	border: $none;
+	color: map-get($t-color, v-light);
+	padding: 2 * $val-1;
+	cursor: $point;
+	font: {
+		weight: map-get($t-weight, bold);
+		size: $t-xs-size;
+	}
 }
 
 .dropdown {
-	float: right;
+	float: $f-right;
 	position: relative;
-	display: inline-block;
+	display: map-get($disp, in-b);
 }
 
 .actions-dropdown {
-	display: none;
+	display: map-get($disp, no);
 	position: absolute;
 	background-color: #d1c1ff;
 	min-width: 160px;
