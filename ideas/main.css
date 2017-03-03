@@ -282,6 +282,10 @@ h1 {
 
 /* TABLE STYLES */
 
+.table {
+	border-collapse: collapse;
+}
+
 td {
 	color: #777;
 	font-size: 12px;
@@ -292,6 +296,10 @@ th {
 	font-size: 12px;
 }
 
+.table tbody tr:nth-child(odd) {
+	background-color: #d1c1ff;
+}
+
 .table thead tr th,
 .table tbody tr td {
 	text-align: justify;
@@ -300,7 +308,6 @@ th {
 
 .table thead tr th {
 	text-transform: uppercase;
-	border-bottom: 1px solid #777;
 }
 
 .table tbody tr td {
