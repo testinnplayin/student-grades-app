@@ -2,6 +2,7 @@
 
 html {
 	box-sizing: border-box;
+	font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 *,
@@ -70,18 +71,12 @@ header {
 
 nav {
 	background: #63f;
-	height: 530px;
-	margin-left: auto;
-	margin-right: auto;
-	padding-top: 50px;
+	height: auto;
+	padding-top: 30px;
 }
 
 nav ul {
-	margin: 0 auto;
-}
-
-nav ul li {
-	margin: 25px 40px 10px 0;
+	margin-right: 40px;
 }
 
 .secondary-nav {
