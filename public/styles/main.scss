@@ -23,8 +23,10 @@ body {
 
 p,
 a {
-	font-size: $t-sm-size;
-	font-weight: map-get($t-weight, bold);
+	font: {
+		size: $t-sm-size;
+		weight: map-get($t-weight, bold);
+	}
 }
 
 ul {
@@ -42,8 +44,7 @@ ul {
 
 main {
 	margin-top: -10px;
-	height: $auto;
-	width: $full-dim;
+	@include full-d($full-dim, $auto);
 }
 
 
@@ -52,8 +53,7 @@ main {
 
 .screen-reader {
 	position: absolute !important;
-	height: 1px;
-	width: 1px;
+	@include full-d(1px, 1px);
 	overflow: hidden;
 	clip: rect($axes);
 	clip: rect($axes-c);
@@ -78,103 +78,77 @@ nav {
 
 .secondary-nav {
 	@include height-n-col($auto, map-get($back-color, m-dark));
-	padding: 20px 0;
+	padding: $p-dim-1;
 	ul {
 		margin-right: $m-dim-1;
 	}
 }
 
-.secondary-nav ul {
-}
-
-nav ul li a,
-.secondary-nav ul li {
-	color: #d1c1ff;
-	text-align: center;
-}
-
 nav ul li a {
+	color: map-get($t-color, light);
+	text: {
+		align: $t-cent;
+		transform: $t-up;
+	}
 	padding: 15px 10px 15px 15px;
 	margin: 5px auto;
-	display: block;
-	width: 50%;
-	text-transform: uppercase;
+	display: $block;
+	width: $half-dim;
 }
 
-.secondary-nav li,
-.secondary-nav li a {
-	text-transform: uppercase;
-}
-
-.secondary-nav li a:focus,
-.secondary-nav li a:hover {
-	color: #fff;
-
-}
-
-.secondary-nav li {
-	margin: 15px 0;
-}
-
-.secondary-nav li a {
-	display: inline;
-	color: #140a33;
+.secondary-nav ul {
+	text-align: $t-cent;
+	li {
+		color: map-get($t-color, light);
+		text-transform: $t-up;
+		margin: 15px 0;
+		@include t-cl-lists(map-get($t-color, med), map-get($t-color, wh));
+		a {
+			text-transform: $t-up;
+			display: $inln;
+			color: map-get($t-color, med);
+		}
+	}
 }
 
 .tertiary-nav {
-	background: #a384ff;
 	margin-top: -17px;
-	height: auto;
-	padding: 20px 0;
-}
-
-.tertiary-nav ul {
-	padding: 15px 0;
-}
-
-.tertiary-nav ul li a {
-	color: #33197f;
-	display: block;
-	background: #c1adff;
-	width: 40%;
-	margin: 15px auto;
-	text-align: center;
-	padding: 15px;
-	text-transform: uppercase;
-}
-
-.tertiary-nav ul li a:focus,
-.tertiary-nav ul li a:hover {
-	background-color: #fff;
+	@include height-n-col($auto, map-get($back-color, light));
+	padding: $p-dim-1;
+	ul {
+		padding: 15px 0;
+		li {
+			a {
+				@include t-bck-lists(map-get($back-color, v-light), map-get($back-color, wh));
+				color: map-get($t-color, dark);
+				display: $block;
+				width: 40%;
+				margin: 15px auto;
+				text: {
+					align: $t-cent;
+					transform: $t-up;
+				}
+				padding: 15px;
+			}
+		}
+	}
 }
 
 #search-form {
-	text-align: center;
-}
+	text-align: $t-cent;
+	input,
+	button {
+		padding: 10px 15px;
+	}
 
-#search-form input,
-#search-form button {
-	padding: 10px 15px;
+	input {
+		@include t-bck-lists(map-get($back-color, wh), map-get($back-color, v-light));
+	}
 
-}
-
-#search-form input {
-	background-color: #fff;
-}
-
-#search-form button {
-	background-color: #c1adff;
-}
-
-#search-form input:focus,
-#search-form input:hover {
-	background-color: #c1adff;
-}
-
-#search-form button:focus,
-#search-form button:hover {
-	background-color: #fff;
-	cursor: pointer;
+	button {
+		@include t-bck-lists(map-get($back-color, v-light), map-get($back-color, wh));
+		cursor: $point;
+	}
 }
 
 

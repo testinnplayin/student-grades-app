@@ -10,10 +10,17 @@
 	}
 }
 
-@mixin lists ($normal, $hover) {
-	background: $normal;
+@mixin t-cl-lists ($normal, $hover) {
+	color: $normal;
 	&:hover, &:focus {
-		background: $hover;
+		color: $hover;
+	}
+}
+
+@mixin t-bck-lists ($normal, $hover) {
+	background-color: $normal;
+	&:focus, &:hover {
+		background-color: $hover;
 	}
 }
 
@@ -29,7 +36,17 @@
 
 $back-color: (
 	m-dark: #845bff,
-	dark: #63f
+	dark: #63f,
+	light: #a384ff,
+	v-light: #c1adff,
+	wh: #fff
+);
+
+$t-color: (
+	light: #d1c1ff,
+	wh: #fff,
+	med: #140a33,
+	dark: #33197f
 );
 
 $t-weight: (
@@ -52,6 +69,7 @@ $sm-scr: 640px;
 $t-cent: center;
 $t-xs-size: 12px;
 $t-sm-size: 16px;
+$t-up: uppercase;
 
 $f-left: left;
 $f-right: right;
@@ -59,5 +77,12 @@ $f-right: right;
 $m-z-aut: 0 auto;
 $m-dim-1: 40px;
 
+$p-dim-1: 20px 0;
+
 $none: none;
 $auto: auto;
+
+$block: block;
+$inln: inline;
+
+$point: pointer;
