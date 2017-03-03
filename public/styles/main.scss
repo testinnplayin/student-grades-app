@@ -43,7 +43,7 @@ ul {
 }
 
 main {
-	margin-top: -10px;
+	margin-top: -2 * $val-1;
 	@include full-d($full-dim, $auto);
 }
 
@@ -65,22 +65,22 @@ main {
 
 header {
 	@include full-d($full-dim, $auto);
-	margin-top: -25px;
+	margin-top: -5 * $val-1;
 }
 
 nav {
 	@include height-n-col($auto, map-get($back-color, dark));
-	padding-top: 30px;
+	padding-top: 6 * $val-1;
 	ul {
-		margin-right: $m-dim-1;
+		margin-right: 8 * $val-1;
 	}
 }
 
 .secondary-nav {
 	@include height-n-col($auto, map-get($back-color, m-dark));
-	padding: $p-dim-1;
+	padding: 4 * $val-1 0;
 	ul {
-		margin-right: $m-dim-1;
+		margin-right: 8 * $val-1;
 	}
 }
 
@@ -90,10 +90,8 @@ nav ul li a {
 		align: $t-cent;
 		transform: $t-up;
 	}
-	padding: 15px 10px 15px 15px;
-	margin: 5px auto;
+	@include p-m-w(3 * $val-1 2 * $val-1 3 * $val-1 3 * $val-1, $val-1 auto, $half-dim);
 	display: $block;
-	width: $half-dim;
 }
 
 .secondary-nav ul {
@@ -101,7 +99,7 @@ nav ul li a {
 	li {
 		color: map-get($t-color, light);
 		text-transform: $t-up;
-		margin: 15px 0;
+		margin: 3 * $val-1 0;
 		@include t-cl-lists(map-get($t-color, med), map-get($t-color, wh));
 		a {
 			text-transform: $t-up;
@@ -114,21 +112,19 @@ nav ul li a {
 .tertiary-nav {
 	margin-top: -17px;
 	@include height-n-col($auto, map-get($back-color, light));
-	padding: $p-dim-1;
+	padding: 4 * $val-1 0;
 	ul {
-		padding: 15px 0;
+		padding: 3 * $val-1 0;
 		li {
 			a {
 				@include t-bck-lists(map-get($back-color, v-light), map-get($back-color, wh));
+				@include p-m-w(3 * $val-1, 3 * $val-1 auto, 40%);
 				color: map-get($t-color, dark);
 				display: $block;
-				width: 40%;
-				margin: 15px auto;
 				text: {
 					align: $t-cent;
 					transform: $t-up;
 				}
-				padding: 15px;
 			}
 		}
 	}
@@ -138,7 +134,7 @@ nav ul li a {
 	text-align: $t-cent;
 	input,
 	button {
-		padding: 10px 15px;
+		padding: 2 * $val-1 3 * $val-1;
 	}
 
 	input {
@@ -156,43 +152,40 @@ nav ul li a {
 /* FILTERS STYLES */
 
 .filters {
-	margin: 10px auto;
-	padding: 5px 0;
-	text-transform: uppercase;
+	@include p-m-w($val-1 0, 2 * $val-1 auto, $almost-f);
+	text-transform: $t-up;
 	font-size: $t-sm-size;
-	width: 90%;
-	color: #140a33;
-}
+	color: map-get($t-color, med);
+	h2 {
+		font: {
+			size: $t-sm-size;
+			weight: map-get($t-weight, bold);
+		}
+	}
 
-.filters h2 {
-	font-size: $t-sm-size;
-	font-weight: bold;
-}
+	ul {
+		li {
+			font-weight: map-get($t-weight, bold);
+			padding: 2 * $val-1 0;
+			input {
+				margin-right: $val-1;
+				margin-left: 2 * $val-1;
+			}
+		}
+	}
 
-.filters ul li {
-	padding: 10px 0;
-	font-weight: bold;
-}
-
-.filters ul li input {
-	margin-right: 5px;
-	margin-bottom: 10px;
-}
-
-.filters button {
-	text-transform: uppercase;
-	background: #fff;
-	color: #33197f;
-	padding: 10px;
-	border: none;
-	display: block;
-	font-weight: bold;
-	cursor: pointer;
-}
-
-.filters button:focus,
-.filters button:hover {
-	border: 1px solid #845bff;
+	button {
+		@include text-disp-col($t-up, $block, dark);
+		background-color: map-get($back-color, wh);
+		padding: 2 * $val-1;
+		font-weight: map-get($t-weight, bold);
+		cursor: $point;
+		border: $none;
+		&:focus,
+		&:hover {
+			border: 1px solid #845bff;
+		}
+	}
 }
 
 
@@ -200,15 +193,17 @@ nav ul li a {
 /* TITLE AREA STYLES */
 
 .title-area {
-	height: auto;
-	margin: 15px auto;
+	height: $auto;
+	margin: 3 * $val-1 auto;
 }
 
 h1 {
-	text-align: center;
-	text-transform: uppercase;
-	font-weight: bold;
-	color: #140a33;
+	text: {
+		align: $t-cent;
+		transform: $t-up;
+	}
+	font-weight: map-get($t-weight, bold);
+	color: map-get($t-color, med);
 }
 
 .title-stuff a {

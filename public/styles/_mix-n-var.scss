@@ -1,15 +1,3 @@
-@mixin links ($link, $hover, $active) {
-	& {
-		color: $link;
-		&:hover {
-			color: $hover;
-		}
-		&:active, &:focus {
-			color: $active;
-		}
-	}
-}
-
 @mixin t-cl-lists ($normal, $hover) {
 	color: $normal;
 	&:hover, &:focus {
@@ -32,6 +20,18 @@
 @mixin height-n-col ($height, $bck-col) {
 	height: $height;
 	background-color: $bck-col;
+}
+
+@mixin p-m-w ($pad, $marg, $wid) {
+	padding: $pad;
+	margin: $marg;
+	width: $wid;
+}
+
+@mixin text-disp-col ($text, $disp, $color) {
+	text-transform: $text;
+	display: $disp;
+	color: map-get($t-color, $color);
 }
 
 $back-color: (
@@ -62,9 +62,12 @@ $font-fam: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $zero: 0;
 $quat-dim: 25%;
 $half-dim: 50%;
+$almost-f: 90%;
 $full-dim: 100%;
 
 $sm-scr: 640px;
+
+$val-1: 5px;
 
 $t-cent: center;
 $t-xs-size: 12px;
@@ -75,9 +78,6 @@ $f-left: left;
 $f-right: right;
 
 $m-z-aut: 0 auto;
-$m-dim-1: 40px;
-
-$p-dim-1: 20px 0;
 
 $none: none;
 $auto: auto;

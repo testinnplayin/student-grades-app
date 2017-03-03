@@ -109,8 +109,8 @@ nav ul li a {
   text-transform: uppercase;
   padding: 15px 10px 15px 15px;
   margin: 5px auto;
-  display: block;
-  width: 50%; }
+  width: 50%;
+  display: block; }
 
 .secondary-nav ul {
   text-align: center; }
@@ -135,13 +135,13 @@ nav ul li a {
     padding: 15px 0; }
     .tertiary-nav ul li a {
       background-color: #c1adff;
+      padding: 15px;
+      margin: 15px auto;
+      width: 40%;
       color: #33197f;
       display: block;
-      width: 40%;
-      margin: 15px auto;
       text-align: center;
-      text-transform: uppercase;
-      padding: 15px; }
+      text-transform: uppercase; }
       .tertiary-nav ul li a:focus, .tertiary-nav ul li a:hover {
         background-color: #fff; }
 
@@ -162,38 +162,32 @@ nav ul li a {
 
 /* FILTERS STYLES */
 .filters {
-  margin: 10px auto;
   padding: 5px 0;
-  text-transform: uppercase;
-  font-size: 16px;
+  margin: 10px auto;
   width: 90%;
-  color: #140a33; }
-
-.filters h2 {
-  font-size: 16px;
-  font-weight: bold; }
-
-.filters ul li {
-  padding: 10px 0;
-  font-weight: bold; }
-
-.filters ul li input {
-  margin-right: 5px;
-  margin-bottom: 10px; }
-
-.filters button {
   text-transform: uppercase;
-  background: #fff;
-  color: #33197f;
-  padding: 10px;
-  border: none;
-  display: block;
-  font-weight: bold;
-  cursor: pointer; }
-
-.filters button:focus,
-.filters button:hover {
-  border: 1px solid #845bff; }
+  font-size: 16px;
+  color: #140a33; }
+  .filters h2 {
+    font-size: 16px;
+    font-weight: bold; }
+  .filters ul li {
+    font-weight: bold;
+    padding: 10px 0; }
+    .filters ul li input {
+      margin-right: 5px;
+      margin-left: 10px; }
+  .filters button {
+    text-transform: uppercase;
+    display: block;
+    color: #33197f;
+    background-color: #fff;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none; }
+    .filters button:focus, .filters button:hover {
+      border: 1px solid #845bff; }
 
 /* TITLE AREA STYLES */
 .title-area {
