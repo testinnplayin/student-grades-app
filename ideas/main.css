@@ -319,7 +319,7 @@ th {
 	border: none;
 	background: #845bff;
 	color: #d1c1ff;
-	padding: 10px 15px;
+	padding: 10px;
 	cursor: pointer;
 	font-weight: bold;
 	font-size: 12px;
@@ -411,16 +411,10 @@ footer {
 .footer-div {
 	margin: 20px auto;
 	width: 80%;
-	padding-top: 15px;
 }
 
 .footer-div ul {
-	margin: 20px auto;
 	padding: 15px 10px;
-}
-
-.footer-div li {
-	margin: 5px 0;
 }
 
 .footer-div ul li a {
@@ -430,7 +424,7 @@ footer {
 	color: #33197f;
 	text-transform: uppercase;
 	padding: 15px 0;
-	width: 35%;
+	width: 40%;
 	margin-left: -5px;
 }
 
@@ -478,16 +472,11 @@ footer {
 	}
 
 	.footer-container {
-		width: 80%;
+		width: 100%;
 	}
 
 	.footer-div {
 		display: inline-block;
-	}
-
-	.left,
-	.right {
-		height: 193px;
 	}
 
 	.left {
@@ -602,10 +591,6 @@ footer {
 		padding: 10px 20px;
 	}
 
-	/*.filters ul li:last-child {
-		margin-left: 60px; 
-	}*/
-
 	.filters button {
 		display: inline-block;
 		margin: 0 0 0 95px;
@@ -627,10 +612,19 @@ footer {
 	.footer-div {
 		margin-left: 50px;
 	}
+	
+	.footer-div li {
+		margin: 5px 0;
+	}
 
 }
 
 @media screen and (min-width: 1200px) {
+	nav .row,
+	.tertiary-nav .row {
+		max-width: 100%;
+	}
+
 	#search-form {
 		width: 35%;
 	}
@@ -665,9 +659,7 @@ footer {
 		width: 100%;
 	}
 
-	.footer-div {
-		width: 28%;
-		margin-left: 30px;
-		margin-right: 30px;
+	.footer-container .row {
+		max-width: 100%;
 	}
 }
