@@ -83,8 +83,71 @@ function drawAnchorButton(text, href, value) {
 	.attr('role', 'button')
 	.attr('data', value)
 	.addClass('class-finder')
+	.addClass('hidden')
 	.text(text)
 	.attr('href', fullHref);
+}
+
+function drawDelButton(value) {
+	var ele = '#' + value;
+
+	$(ele).append('<td></td>');
+
+	$(ele).find('td')
+	.append('<button></button>')
+	.find('button')
+	.attr('type', 'button')
+	.attr("data", value)
+	.addClass('js-send-to-del-trigger')
+	.addClass('hidden')
+	.text('Delete');
+}
+
+function drawDropdown(value, index) {
+	var id = '#' + value;
+
+	$(id).append('<td></td>')
+	.find('td')
+	.last()
+	.append('<div></div>')
+	.find('div')
+	.addClass('dropdown')
+	.addClass('js-dropdown' + index)
+	.append('<button></button>')
+	.find('button')
+	.addClass('dropdown-btn')
+	.addClass('js-dropdown-btn' + index)
+	.attr('type', 'button')
+	.text('More');
+
+	$('.js-dropdown')
+	.append('<div></div>')
+	.find('div')
+	.className('actions-dropdown')
+	.className('js-actions-dropdown')
+	.append('<a></a>')
+	.find('a').
+	.attr('href', '/classes/edit/' + value)
+	.addClass('class-finder')
+	.attr('role', 'button')
+	.attr('value', value)
+	.text('Edit');
+
+	$('.js-actions-dropdown').append('<button></button>')
+	.find('button')
+	.className('js-send-to-del-trigger')
+	.attr('type', 'button')
+	.attr('value', value)
+	.text('Delete');
+
+	$('.js-actions-dropdown').append('<a></a>')
+	.find('a')
+	.last()
+	.className('class-finder')
+	.attr('href', '/classes/class/view' + value)
+	.attr('role', 'button')
+	.attr('value', value)
+	.text('Go To Class');
 }
 
 function drawLightbox() {
@@ -160,9 +223,10 @@ function drawBodyRows(klasses) {
 
 		$('tbody').append('<tr id="' + value + '"></tr>').find('#' + value).append(classItem);
 		//this will have to change because dropdown menu on small screens
-		// drawAnchorButton('Edit', '/classes/edit/', value);
-		// drawLbButtons(value, 'send-to-del', 'button', 'Delete');
-		// drawAnchorButton('Go to Class', '/classes/class/view/', value);
+		drawAnchorButton('Edit', '/classes/edit/', value);
+		drawDelButton(value);
+		drawAnchorButton('Go to Class', '/classes/class/view/', value);
+		drawDropdown(value, index);
 		$('.js-send-to-del-trigger').val(value);
 	}
 }

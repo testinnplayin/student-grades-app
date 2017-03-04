@@ -49,6 +49,10 @@ main {
 	@include full-d($full-dim, $auto);
 }
 
+.hidden {
+	display: map-get($disp, no);
+}
+
 
 
 /* SCREEN READER */
