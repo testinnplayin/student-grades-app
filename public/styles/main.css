@@ -219,6 +219,9 @@ h1 {
   margin: 15px auto; }
 
 /* TABLE STYLES */
+.table {
+  width: 100%; }
+
 .table thead tr th,
 .table tbody tr td {
   text-align: justify;
@@ -323,12 +326,16 @@ footer {
     .footer-div ul li a {
       text-decoration: none;
       text-transform: uppercase;
+      text-decoration: none;
+      background-color: #63f;
       color: #33197f;
       display: block;
       font-weight: bold;
       padding: 15px 0;
       width: 20%;
       margin-left: -5px; }
+      .footer-div ul li a:focus, .footer-div ul li a:hover {
+        background-color: #845bff; }
 
 @media screen and (min-width: 365px) {
   th,
@@ -423,7 +430,8 @@ footer {
     width: 30%; }
   .table thead tr th,
   .table tbody tr td {
-    padding: 15px 25px; }
+    padding: 15px 25px;
+    font-size: 16px; }
   .dropdown {
     display: none; }
   .hidden {

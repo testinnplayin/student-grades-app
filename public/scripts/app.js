@@ -247,7 +247,7 @@ function drawBodyRows(klasses) {
 
 	for (let i = 0; i < lng; i++) {
 		let value = klasses.classes[i].id,
-			classItem = `<td>${klasses.classes[i].addClass}</td><td>${klasses.classes[i].subject}</td><td>${klasses.classes[i].gradeLevel}</td><td>${klasses.classes[i].term}</td>`;
+			classItem = `<td>${klasses.classes[i].className}</td><td>${klasses.classes[i].subject}</td><td>${klasses.classes[i].gradeLevel}</td><td>${klasses.classes[i].term}</td>`;
 
 
 		$('tbody').append('<tr id="' + value + '"></tr>').find('#' + value).append(classItem);

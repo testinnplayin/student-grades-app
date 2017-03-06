@@ -236,6 +236,10 @@ h1 {
 
 /* TABLE STYLES */
 
+.table {
+	width: $full-dim;
+}
+
 .table thead tr th,
 .table tbody tr td {
 	text-align: justify;
@@ -375,7 +379,9 @@ footer {
 					decoration: $none;
 					transform: $t-up;
 				}
-				@include t-cl-lists(map-get($t-color, dark), map-get($t-color, v-v-light));
+				text-decoration: $none;
+				@include t-bck-lists(map-get($back-color, dark), map-get($back-color, m-dark))
+				color: map-get($t-color, dark);
 				display: map-get($disp, bl);
 				font-weight: map-get($t-weight, bold);
 				padding: 3 * $val-1 0;
