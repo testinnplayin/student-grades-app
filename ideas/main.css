@@ -100,6 +100,11 @@ nav ul li a {
 	text-transform: uppercase;
 }
 
+.current {
+	border: 1px solid #d1c1ff;
+	padding: 15px 10px 15px 15px;
+}
+
 .secondary-nav li,
 .secondary-nav li a {
 	text-transform: uppercase;
@@ -203,6 +208,33 @@ nav ul li a {
 .filters ul li input {
 	margin-right: 5px;
 	margin-bottom: 10px;
+}
+
+.filters ul li input[type="radio"] {
+	display: none;
+}
+
+.filters ul li label {
+	cursor: pointer;
+}
+
+.filters ul li label::before {
+	content: "";
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin-right: 10px;
+	background-color: #a384ff;
+	box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+	border-radius: 8px;
+}
+
+.filters ul li input[type="radio"]:checked + label::before {
+	content: "\2022";
+	color: #d1c1ff;
+	font-size: 30px;
+	text-align: center;
+	line-height: 18px;
 }
 
 .filters button {
@@ -327,6 +359,7 @@ th {
 	cursor: pointer;
 	font-weight: bold;
 	font-size: 12px;
+	margin-right: -15px;
 }
 
 .dropdown-btn:focus,
@@ -454,7 +487,7 @@ footer {
 		height: 400px;
 		padding: 25px;
 	}
-	
+
 	nav ul li {
 		margin: 15px 40px 10px 0;
 	}
@@ -531,7 +564,7 @@ footer {
 		height: 100px;
 	}
 
-	.tertial-nav ul, 
+	.tertial-nav ul,
 	form {
 		display: inline-block;
 	}
@@ -607,6 +640,10 @@ footer {
 	.table thead tr th,
 	.table tbody tr td {
 		padding: 15px 25px;
+	}
+
+	.dropdown-btn {
+		margin-right: 0px;
 	}
 
 	.footer-container {

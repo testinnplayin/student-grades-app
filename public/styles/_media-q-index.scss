@@ -147,6 +147,10 @@
 		padding: 3 * $val-1 5 * $val-1;
 	}
 
+	.dropdown-btn {
+		margin-right: $zero;
+	}
+
 	.footer-container {
 		width: 9 * $tenth;
 	}
@@ -157,13 +161,27 @@
 			margin: $val-1 0;
 		}
 	}
+
+	.lb-content {
+		top: $quat-dim;
+		height: $half-dim;
+		left: 2 * $tenth;
+		width: 6 * $tenth;
+	}
+
+	.lb-container {
+		width: $half-dim;
+		padding: 5 * $val-1 0;
+		margin: 150px auto;
+	}
+
 }
 
 @media screen and (min-width: map-get($breaks, lg-scr)) {
 
 	nav {
 		padding: 2 * $val-1 5 * $val-1;
-		.row, 
+		.row,
 		.tertiary-nav .row {
 			max-width: $full-dim;
 		}

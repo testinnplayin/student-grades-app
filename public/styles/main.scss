@@ -53,6 +53,10 @@ main {
 	display: map-get($disp, no);
 }
 
+.show {
+	display: map-get($disp, bl);
+}
+
 
 
 /* SCREEN READER */

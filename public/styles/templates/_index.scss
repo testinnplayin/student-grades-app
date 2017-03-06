@@ -204,6 +204,7 @@ h1 {
 	border: $none;
 	color: map-get($t-color, v-light);
 	padding: 2 * $val-1;
+	margin-right: -3 * $val-1;
 	cursor: $point;
 	font: {
 		weight: map-get($t-weight, bold);
@@ -254,14 +255,6 @@ h1 {
 
 .show {
 	display: map-get($disp, bl);
-}
-
-
-
-/* LIGHTBOX STYLES */
-
-.lightbox {
-	display: map-get($disp, no);
 }
 
 

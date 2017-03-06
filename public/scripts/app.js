@@ -36,7 +36,7 @@ function setCurrentSpan(ele, view) {
 		$(ele).find('span').text('Current');
 	} else {
 		$(ele).find('span').text('');
-	}	
+	}
 }
 
 function renderAddClassBtn(view) {
@@ -103,8 +103,24 @@ function drawDelButton(value) {
 	.text('Delete');
 }
 
+function handleMoreClick() {
+	$('.js-dropdown-btn-1').click(function(e) {
+		e.preventDefault();
+
+		$('.js-actions-dropdown-1').toggleClass('show');
+	});
+
+	window.onclick = function(e) {
+		if (!e.target.matches('.js-dropdown-btn-1')) {
+			$('.js-actions-dropdown-1').removeClass('show');
+		}
+	}
+}
+
 function drawDropdown(value, index) {
-	var id = '#' + value;
+	var id = '#' + value,
+		url2 = '/classes/class/view' + value,
+		url1 = '/classes/edit/' + value;
 
 	$(id).append('<td></td>')
 	.find('td')
@@ -112,42 +128,44 @@ function drawDropdown(value, index) {
 	.append('<div></div>')
 	.find('div')
 	.addClass('dropdown')
-	.addClass('js-dropdown' + index)
+	.addClass('js-dropdown-' + index)
 	.append('<button></button>')
 	.find('button')
 	.addClass('dropdown-btn')
-	.addClass('js-dropdown-btn' + index)
+	.addClass('js-dropdown-btn-' + index)
 	.attr('type', 'button')
 	.text('More');
 
-	$('.js-dropdown')
+	$('.js-dropdown-' + index)
 	.append('<div></div>')
 	.find('div')
-	.className('actions-dropdown')
-	.className('js-actions-dropdown')
+	.addClass('actions-dropdown')
+	.addClass('js-actions-dropdown-' + index)
 	.append('<a></a>')
-	.find('a').
-	.attr('href', '/classes/edit/' + value)
+	.find('a')
+	.attr('href', url1)
 	.addClass('class-finder')
 	.attr('role', 'button')
 	.attr('value', value)
 	.text('Edit');
 
-	$('.js-actions-dropdown').append('<button></button>')
+	$('.js-actions-dropdown-' + index).append('<button></button>')
 	.find('button')
-	.className('js-send-to-del-trigger')
+	.addClass('js-send-to-del-trigger')
 	.attr('type', 'button')
 	.attr('value', value)
 	.text('Delete');
 
-	$('.js-actions-dropdown').append('<a></a>')
+	$('.js-actions-dropdown-' + index).append('<a></a>')
 	.find('a')
 	.last()
-	.className('class-finder')
-	.attr('href', '/classes/class/view' + value)
+	.addClass('class-finder')
+	.attr('href', url2)
 	.attr('role', 'button')
 	.attr('value', value)
 	.text('Go To Class');
+
+	handleMoreClick();
 }
 
 function drawLightbox() {
@@ -218,7 +236,7 @@ function drawBodyRows(klasses) {
 
 	for (let i = 0; i < lng; i++) {
 		let value = klasses.classes[i].id,
-			classItem = `<td>${klasses.classes[i].className}</td><td>${klasses.classes[i].subject}</td><td>${klasses.classes[i].gradeLevel}</td><td>${klasses.classes[i].term}</td>`;
+			classItem = `<td>${klasses.classes[i].addClass}</td><td>${klasses.classes[i].subject}</td><td>${klasses.classes[i].gradeLevel}</td><td>${klasses.classes[i].term}</td>`;
 
 
 		$('tbody').append('<tr id="' + value + '"></tr>').find('#' + value).append(classItem);
@@ -226,7 +244,7 @@ function drawBodyRows(klasses) {
 		drawAnchorButton('Edit', '/classes/edit/', value);
 		drawDelButton(value);
 		drawAnchorButton('Go to Class', '/classes/class/view/', value);
-		drawDropdown(value, index);
+		drawDropdown(value, i);
 		$('.js-send-to-del-trigger').val(value);
 	}
 }
@@ -251,7 +269,7 @@ function drawClassTable(klasses) {
 	drawBodyRows(klasses);
 }
 
-function renderInitialState(klasses, view) {	
+function renderInitialState(klasses, view) {
 	let jsKlasses = '.js-classes',
 		contentContainer = '.js-content-container';
 
@@ -276,7 +294,7 @@ function renderInitialState(klasses, view) {
 function checkState(currentView) {
 	if (currentView === 'index') {
 		getKlasses(currentView);
-	} 
+	}
 }
 
 function deleteKlass(reqObj) {
@@ -326,7 +344,7 @@ function getKlasses(currentView) {
 
 function closeLb() {
 	$('.js-lightbox').css('display', 'none');
-	$('.js-lb-content .js-lb-style').html('');	
+	$('.js-lb-content .js-lb-style').html('');
 }
 
 function handleClose() {
@@ -352,7 +370,7 @@ function handleClassDeleteSubmit(klassId) {
 		e.stopPropagation();
 
 		var reqObj = {};
-		
+
 		reqObj.id = klassId;
 		console.log('request obj');
 		console.log(reqObj.id);

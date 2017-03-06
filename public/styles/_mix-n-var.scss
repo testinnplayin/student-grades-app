@@ -51,7 +51,8 @@ $back-color: (
 	light: #a384ff,
 	v-light: #c1adff,
 	wh: #fff,
-	v-v-light: #d1c1ff
+	v-v-light: #d1c1ff,
+	lb: rgba(0, 0, 0, 0.7)
 );
 
 $t-color: (
@@ -98,6 +99,7 @@ $val-2: 400px;
 $t-cent: center;
 $t-xs-size: 12px;
 $t-sm-size: 16px;
+$t-m-size: 20px;
 $t-up: uppercase;
 
 $f-left: left;
@@ -107,5 +109,6 @@ $m-z-aut: 0 auto;
 
 $none: none;
 $auto: auto;
+$abs: absolute;
 
 $point: pointer;

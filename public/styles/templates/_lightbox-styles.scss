@@ -1,46 +1,36 @@
 @import '../_mix-n-var.scss';
 
-// .lightbox {
-// 	width: $container-width;
-// 	height: $hund-height;
-// 	top: $zero;
-// 	left: $zero;
-// 	text-align: $text-center;
-// 	position: fixed;
-// 	display: none;
-// 	background-color: rgba(0, 0, 0, 0.7);
-// 	.lb-content {
-// 		vertical-align: middle;
-// 		background-color: $head-foot-color;
-// 		overflow: scroll;
-// 		position: $absolute;
-// 		z-index: 20;
-// 		width: $container-width;
-// 		top: 15%;
-// 		left: $zero;
-// 		@media screen and (min-width: $break-large) {
-// 			top: 25%;
-// 			height: $half;
-// 			left: 20%;
-// 			width: 60%;
-// 		}
-// 		.lb-close {
-// 			color: #000;
-// 			font-size: $twenty-pix;
-// 			font-weight: bold;
-// 			position: $absolute;
-// 			top: 10px;
-// 			right: $twenty-pix;
-// 		}
-// 		.lb-container {
-// 			width: 90%;
-// 			margin-top: 10px;
-// 			@media screen and (min-width: $break-large) {
-// 				width: $half;
-// 				padding: 50px 0;
-// 				margin: 150px auto;
-// 			}
-// 		}
-// 	}
-// }
+.lightbox {
+  @include full-d($full-dim, $full-dim);
+	top: $zero;
+	left: $zero;
+	text-align: $t-cent;
+	position: fixed;
+	display: map-get($disp, no);
+	background-color: map-get($back-color, lb);
+	.lb-content {
+		vertical-align: middle;
+		background-color: map-get($back-color, dark);
+		overflow: scroll;
+		position: $abs;
+		z-index: 4 * $val-1;
+		width: $full-dim;
+		top: 5 * $tenth;
+		left: $zero;
 
+		.lb-close {
+			color: #000;
+			font: {
+        weight: map-get($t-weight, bold);
+        size: $t-m-size;
+      }
+			position: $abs;
+			top: 10px;
+			right: 4 * $val-1;
+		}
+		.lb-container {
+			width: 9 * $tenth;
+			margin-top: 2 * $val-1;
+		}
+	}
+}
