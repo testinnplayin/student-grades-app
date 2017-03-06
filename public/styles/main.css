@@ -32,6 +32,39 @@ html {
   .col-12 {
     width: 100%; } }
 
+/* GENERAL STYLES FOR INDEX */
+.hidden {
+  display: none; }
+
+.show {
+  display: block; }
+
+/* NAV STYLES */
+header {
+  width: 100%;
+  height: auto;
+  margin-top: -25px; }
+
+nav {
+  height: auto;
+  background-color: #63f;
+  padding-top: 30px; }
+  nav ul {
+    margin-right: 40px;
+    list-style: none; }
+    nav ul li a {
+      text-decoration: none;
+      background-color: #63f;
+      color: #d1c1ff;
+      text-align: center;
+      text-transform: uppercase;
+      padding: 15px 10px 15px 15px;
+      margin: 5px auto;
+      width: 50%;
+      display: block; }
+      nav ul li a:focus, nav ul li a:hover {
+        background-color: #845bff; }
+
 /* SECONDARY AND TERTIARY NAVS */
 .secondary-nav {
   height: auto;
@@ -41,6 +74,7 @@ html {
     margin-right: 40px; }
 
 .secondary-nav ul {
+  list-style: none;
   text-align: center; }
   .secondary-nav ul li {
     color: #d1c1ff;
@@ -50,6 +84,7 @@ html {
     .secondary-nav ul li:hover, .secondary-nav ul li:focus {
       color: #fff; }
     .secondary-nav ul li a {
+      text-decoration: none;
       text-transform: uppercase;
       display: inline;
       color: #140a33; }
@@ -60,6 +95,7 @@ html {
   background-color: #a384ff;
   padding: 20px 0; }
   .tertiary-nav ul {
+    list-style: none;
     padding: 15px 0; }
     .tertiary-nav ul li a {
       background-color: #c1adff;
@@ -99,12 +135,14 @@ html {
   .filters h2 {
     font-size: 16px;
     font-weight: bold; }
-  .filters ul li {
-    font-weight: bold;
-    padding: 10px 0; }
-    .filters ul li input {
-      margin-right: 5px;
-      margin-left: 10px; }
+  .filters ul {
+    list-style: none; }
+    .filters ul li {
+      font-weight: bold;
+      padding: 10px 0; }
+      .filters ul li input {
+        margin-right: 5px;
+        margin-left: 10px; }
   .filters button {
     text-transform: uppercase;
     display: block;
@@ -180,7 +218,13 @@ h1 {
     color: #777; }
 
 /* TABLE DROPDOWN BUTTON */
-.dropdown-btn {
+.hidden a {
+  text-decoration: none;
+  color: #140a33; }
+
+.dropdown-btn,
+.hidden a,
+.hidden button {
   background-color: #845bff;
   text-transform: uppercase;
   border: none;
@@ -189,7 +233,11 @@ h1 {
   cursor: pointer;
   font-weight: bold;
   font-size: 12px; }
-  .dropdown-btn:focus, .dropdown-btn:hover {
+  .dropdown-btn:focus, .dropdown-btn:hover,
+  .hidden a:focus,
+  .hidden a:hover,
+  .hidden button:focus,
+  .hidden button:hover {
     background-color: #c1adff; }
 
 .dropdown {
@@ -259,7 +307,7 @@ footer {
       display: block;
       font-weight: bold;
       padding: 15px 0;
-      width: 80%;
+      width: 20%;
       margin-left: -5px; }
 
 @media screen and (min-width: 365px) {
@@ -293,13 +341,16 @@ footer {
     float: right; } }
 
 @media screen and (min-width: 1000px) {
+  nav ul li,
+  .secondary-nav ul li {
+    display: inline; }
+  nav ul li a,
+  .secondary-nav ul li a {
+    display: inline; }
   nav {
     height: auto; }
     nav ul {
       padding-top: 15px; }
-  nav ul li,
-  .secondary-nav ul li {
-    display: inline; }
   .secondary-nav {
     padding: 10px 20px; }
     .secondary-nav ul li {
@@ -352,8 +403,10 @@ footer {
   .table thead tr th,
   .table tbody tr td {
     padding: 15px 25px; }
-  .dropdown-btn {
-    margin-right: 0; }
+  .dropdown {
+    display: none; }
+  .hidden {
+    display: inline-block; }
   .footer-container {
     width: 90%; }
   .footer-div {
@@ -456,23 +509,10 @@ a {
   font-size: 16px;
   font-weight: bold; }
 
-ul {
-  list-style: none; }
-  ul li a {
-    text-decoration: none; }
-  ul li:focus, ul li:hover {
-    background-color: #845bff; }
-
 main {
   margin-top: -10px;
   width: 100%;
   height: auto; }
-
-.hidden {
-  display: none; }
-
-.show {
-  display: block; }
 
 /* SCREEN READER */
 .screen-reader {
@@ -482,25 +522,3 @@ main {
   overflow: hidden;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px); }
-
-/* NAV STYLES */
-header {
-  width: 100%;
-  height: auto;
-  margin-top: -25px; }
-
-nav {
-  height: auto;
-  background-color: #63f;
-  padding-top: 30px; }
-  nav ul {
-    margin-right: 40px; }
-
-nav ul li a {
-  color: #d1c1ff;
-  text-align: center;
-  text-transform: uppercase;
-  padding: 15px 10px 15px 15px;
-  margin: 5px auto;
-  width: 50%;
-  display: block; }

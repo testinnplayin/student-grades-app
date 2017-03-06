@@ -54,16 +54,22 @@
 }
 
 @media screen and (min-width: map-get($breaks, md-scr)) {
+
+	nav ul li,
+	.secondary-nav ul li {
+		display: map-get($disp, inln);
+	}
+
+	nav ul li a,
+	.secondary-nav ul li a {
+		display: map-get($disp, inln);
+	}
+	
 	nav {
 		height: $auto;
 		ul {
 			padding-top: 3 * $val-1;
 		}
-	}
-
-	nav ul li,
-	.secondary-nav ul li {
-		display: map-get($disp, inln);
 	}
 
 	.secondary-nav {
@@ -147,8 +153,12 @@
 		padding: 3 * $val-1 5 * $val-1;
 	}
 
-	.dropdown-btn {
-		margin-right: $zero;
+	.dropdown {
+		display: map-get($disp, no);
+	}
+
+	.hidden {
+		display: map-get($disp, in-b);
 	}
 
 	.footer-container {

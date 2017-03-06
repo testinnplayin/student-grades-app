@@ -77,13 +77,14 @@ function drawAnchorButton(text, href, value) {
 
 	$(ele)
 	.find('td')
+	.last()
+	.addClass('hidden')
 	.append('<a></a>')
 	.find('a')
 	.last()
 	.attr('role', 'button')
 	.attr('data', value)
 	.addClass('class-finder')
-	.addClass('hidden')
 	.text(text)
 	.attr('href', fullHref);
 }
@@ -94,12 +95,13 @@ function drawDelButton(value) {
 	$(ele).append('<td></td>');
 
 	$(ele).find('td')
+	.last()
+	.addClass('hidden')
 	.append('<button></button>')
 	.find('button')
 	.attr('type', 'button')
 	.attr("data", value)
 	.addClass('js-send-to-del-trigger')
-	.addClass('hidden')
 	.text('Delete');
 }
 
