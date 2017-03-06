@@ -88,6 +88,7 @@ nav {
 				text: {
 					align: $t-cent;
 					transform: $t-up;
+					decoration: $none;
 				}
 			}
 		}
@@ -132,9 +133,27 @@ nav {
 		li {
 			font-weight: map-get($t-weight, bold);
 			padding: 2 * $val-1 0;
-			input {
-				margin-right: $val-1;
-				margin-left: 2 * $val-1;
+			input[type="radio"] {
+				display: map-get($disp, no);
+				&:checked + label::before {
+					content: "\2022";
+					color: map-get($t-color, light);
+					font-size: 6 * $val-1;
+					text-align: center;
+					line-height: 18px;
+				}
+			}
+			label {
+				cursor: $point;
+				&::before {
+					content: "";
+					display: map-get($disp, in-b);
+					@include full-d(16px, 16px);
+					margin-right: 2 * $val-1;
+					background-color: map-get($back-color, light);
+					box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+					border-radius: 8px;
+				}
 			}
 		}
 	}

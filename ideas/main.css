@@ -205,11 +205,6 @@ nav ul li a {
 	font-weight: bold;
 }
 
-.filters ul li input {
-	margin-right: 5px;
-	margin-bottom: 10px;
-}
-
 .filters ul li input[type="radio"] {
 	display: none;
 }

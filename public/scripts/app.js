@@ -23,6 +23,15 @@ const state = {
 	}
 };
 
+function selectTabs() {
+	$('.js-tab').click(function(e) {
+		e.preventDefault();
+
+		$('.js-tab.curr-tab').removeClass('curr-tab');
+		$(this).addClass('curr-tab');
+	});
+}
+
 function renderSelectClass(ele, view) {
 	if (state.viewProps[view].selected) {
 		$(ele).addClass('selected');
@@ -403,6 +412,7 @@ function handleActions() {
 	var currentView = 'index';
 
 	checkState(currentView);
+	selectTabs();
 }
 
 $(document).ready(handleActions());

@@ -64,7 +64,7 @@
 	.secondary-nav ul li a {
 		display: map-get($disp, inln);
 	}
-	
+
 	nav {
 		height: $auto;
 		ul {
@@ -87,15 +87,16 @@
 		margin-top: $zero;
 		ul {
 			display: map-get($disp, in-b);
+			margin: $zero;
 			width: 65%;
 			float: $f-left;
 			padding-top: 8 * $val-1;
+			.curr-tab {
+				padding-bottom: 7 * $val-1
+			}
 			li {
 				display: map-get($disp, in-b);
 				margin-right: 4 * $val-1;
-				&:first-child > a {
-					padding-bottom: 7 * $val-1;
-				}
 				a {
 					display: map-get($disp, inln);
 					background-color: map-get($back-color, wh);

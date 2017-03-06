@@ -105,7 +105,8 @@ nav {
       color: #33197f;
       display: block;
       text-align: center;
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      text-decoration: none; }
       .tertiary-nav ul li a:focus, .tertiary-nav ul li a:hover {
         background-color: #fff; }
 
@@ -140,9 +141,25 @@ nav {
     .filters ul li {
       font-weight: bold;
       padding: 10px 0; }
-      .filters ul li input {
-        margin-right: 5px;
-        margin-left: 10px; }
+      .filters ul li input[type="radio"] {
+        display: none; }
+        .filters ul li input[type="radio"]:checked + label::before {
+          content: "\2022";
+          color: #d1c1ff;
+          font-size: 30px;
+          text-align: center;
+          line-height: 18px; }
+      .filters ul li label {
+        cursor: pointer; }
+        .filters ul li label::before {
+          content: "";
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          margin-right: 10px;
+          background-color: #a384ff;
+          box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px 0px rgba(255, 255, 255, 0.8);
+          border-radius: 8px; }
   .filters button {
     text-transform: uppercase;
     display: block;
@@ -299,6 +316,7 @@ footer {
   margin: 20px auto;
   width: 80%; }
   .footer-div ul {
+    list-style: none;
     padding: 15px 10px; }
     .footer-div ul li a {
       text-decoration: none;
@@ -362,14 +380,15 @@ footer {
     margin-top: 0; }
     .tertiary-nav ul {
       display: inline-block;
+      margin: 0;
       width: 65%;
       float: left;
       padding-top: 40px; }
+      .tertiary-nav ul .curr-tab {
+        padding-bottom: 35px; }
       .tertiary-nav ul li {
         display: inline-block;
         margin-right: 20px; }
-        .tertiary-nav ul li:first-child > a {
-          padding-bottom: 35px; }
         .tertiary-nav ul li a {
           display: inline;
           background-color: #fff; }
