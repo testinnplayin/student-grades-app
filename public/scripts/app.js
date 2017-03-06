@@ -103,18 +103,18 @@ function drawDelButton(value) {
 	.text('Delete');
 }
 
-function handleMoreClick() {
-	$('.js-dropdown-btn-1').click(function(e) {
+function handleMoreClick(index) {
+	$('.js-dropdown-btn-' + index).click(function(e) {
 		e.preventDefault();
 
-		$('.js-actions-dropdown-1').toggleClass('show');
+		$('.js-actions-dropdown-' + index).toggleClass('show');
 	});
 
-	window.onclick = function(e) {
-		if (!e.target.matches('.js-dropdown-btn-1')) {
-			$('.js-actions-dropdown-1').removeClass('show');
+	$(window).click(function(e) {
+		if (!e.target.matches('.js-dropdown-btn-' + index)) {
+			$('.js-actions-dropdown-' + index).removeClass('show');
 		}
-	}
+	});
 }
 
 function drawDropdown(value, index) {
@@ -165,7 +165,7 @@ function drawDropdown(value, index) {
 	.attr('value', value)
 	.text('Go To Class');
 
-	handleMoreClick();
+	handleMoreClick(index);
 }
 
 function drawLightbox() {
