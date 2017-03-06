@@ -41,6 +41,11 @@ nav {
 	}
 }
 
+.current {
+	border: $border-l;
+	padding: 15px 10px 15px 15px;
+}
+
 
 
 /* SECONDARY AND TERTIARY NAVS */
@@ -60,12 +65,12 @@ nav {
 		color: map-get($t-color, light);
 		text-transform: $t-up;
 		margin: 3 * $val-1 0;
-		@include t-cl-lists(map-get($t-color, med), map-get($t-color, wh));
 		a {
 			text: {
 				decoration: $none;
 				transform: $t-up;
 			}
+			@include t-cl-lists(map-get($t-color, med), map-get($t-color, wh));
 			display: map-get($disp, inln);
 			color: map-get($t-color, med);
 		}
@@ -167,7 +172,7 @@ nav {
 		border: $none;
 		&:focus,
 		&:hover {
-			@include bord-style(1px, solid, #845bff);
+			border: $border-d;
 		}
 	}
 }

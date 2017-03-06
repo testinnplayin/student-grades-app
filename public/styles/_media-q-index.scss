@@ -192,8 +192,13 @@
 
 	nav {
 		padding: 2 * $val-1 5 * $val-1;
-		.row,
-		.tertiary-nav .row {
+		.row {
+			max-width: $full-dim;
+		}
+	}
+
+	.tertiary-nav {
+		.row {
 			max-width: $full-dim;
 		}
 	}
