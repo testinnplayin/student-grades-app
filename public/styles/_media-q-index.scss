@@ -163,6 +163,13 @@
 		display: map-get($disp, in-b);
 	}
 
+	.hidden a,
+	.hidden button {
+		padding: 2 * $val-1 12px;
+		@include t-cl-lists(map-get($t-color, med), map-get($t-color, wh));
+		@include t-bck-lists(map-get($back-color, m-dark), map-get($back-color, dark));
+	}
+
 	.footer-container {
 		width: 9 * $tenth;
 	}
@@ -236,6 +243,10 @@
 	.table thead tr th,
 	.table tbody tr td {
 		padding: 3 * $val-1 8 * $val-1;
+	}
+
+	.table tbody tr .edit {
+		padding-left: 700px;
 	}
 
 	.footer-container {

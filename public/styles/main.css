@@ -154,7 +154,10 @@ nav {
           text-align: center;
           line-height: 18px; }
       .filters ul li label {
-        cursor: pointer; }
+        cursor: pointer;
+        color: #140a33; }
+        .filters ul li label:hover, .filters ul li label:focus {
+          color: #33197f; }
         .filters ul li label::before {
           content: "";
           display: inline-block;
@@ -326,13 +329,13 @@ footer {
     .footer-div ul li a {
       text-decoration: none;
       text-transform: uppercase;
-      text-decoration: none;
+      text-align: center;
       background-color: #63f;
       color: #33197f;
       display: block;
       font-weight: bold;
       padding: 15px 0;
-      width: 20%;
+      width: 40%;
       margin-left: -5px; }
       .footer-div ul li a:focus, .footer-div ul li a:hover {
         background-color: #845bff; }
@@ -436,6 +439,19 @@ footer {
     display: none; }
   .hidden {
     display: inline-block; }
+  .hidden a,
+  .hidden button {
+    padding: 10px 12px;
+    color: #140a33;
+    background-color: #845bff; }
+    .hidden a:hover, .hidden a:focus,
+    .hidden button:hover,
+    .hidden button:focus {
+      color: #fff; }
+    .hidden a:focus, .hidden a:hover,
+    .hidden button:focus,
+    .hidden button:hover {
+      background-color: #63f; }
   .footer-container {
     width: 90%; }
   .footer-div {
@@ -475,6 +491,8 @@ footer {
   .table thead tr th,
   .table tbody tr td {
     padding: 15px 40px; }
+  .table tbody tr .edit {
+    padding-left: 700px; }
   .footer-container {
     width: 100%; }
     .footer-container .row {
