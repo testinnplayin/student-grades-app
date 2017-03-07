@@ -196,7 +196,7 @@ h1 {
 	color: map-get($t-color, med);
 }
 
-.title-stuff a {
+.title-area a {
 	@include t-bck-lists(map-get($back-color, light), map-get($back-color, m-dark));
 	@include disp-marg(map-get($disp, bl), 2 * $val-1 auto);
 	color: map-get($t-color, dark);

@@ -190,7 +190,7 @@ h1 {
   font-weight: bold;
   color: #140a33; }
 
-.title-stuff a {
+.title-area a {
   background-color: #a384ff;
   display: block;
   margin: 10px auto;
@@ -200,7 +200,7 @@ h1 {
   text-decoration: none;
   padding: 15px 10px;
   width: 40%; }
-  .title-stuff a:focus, .title-stuff a:hover {
+  .title-area a:focus, .title-area a:hover {
     background-color: #845bff; }
 
 /* MAIN-CONTENT STYLES */
@@ -429,7 +429,7 @@ footer {
     .filters button {
       display: inline-block;
       margin: 0 0 0 95px; }
-  .title-stuff a {
+  .title-area a {
     width: 30%; }
   .table thead tr th,
   .table tbody tr td {
@@ -486,7 +486,7 @@ footer {
     padding: 0; }
   .filters button {
     margin: 0; }
-  .title-stuff a {
+  .title-area a {
     width: 10%; }
   .table thead tr th,
   .table tbody tr td {

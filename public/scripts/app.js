@@ -49,18 +49,21 @@ function setCurrentSpan(ele, view) {
 }
 
 function renderAddClassBtn(view) {
-	var titleStuff = '.title-stuff';
-	$(titleStuff).empty();
+	var titleArea = '.title-area';
+	$(titleArea).empty();
 	if (state.viewProps[view].addClassBtn) {
-		$(titleStuff).append('<a>Add A Class</a>');
-		$(titleStuff)
+		$(titleArea)
+		.append('<h1>Student Grades App</h1>')
+		.append('<a>Add A Class</a>');
+		
+		$(titleArea)
 		.find('a')
 		.attr('role', 'button')
 		.attr('href', "/classes/class/create")
 		.attr('id', 'js-add-class-btn')
 		.addClass('add-class-btn');
 	} else {
-		$(titleStuff)
+		$(titleArea)
 		.find('a')
 		.remove();
 	}
