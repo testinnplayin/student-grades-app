@@ -3,15 +3,15 @@
 // example for one button
 
 function handleMoreClick() {
-	$('.js-dropdown-btn-1').click(function(e) {
+	$('.js-dropdown-btn-classes').click(function(e) {
 		e.preventDefault();
 
-		$('.js-actions-dropdown-1').toggleClass('show');
+		$('.js-actions-dropdown-classes').toggleClass('show');
 	});
 
 	window.onclick = function(e) {
-		if (!e.target.matches('.js-dropdown-btn-1')) {
-			$('.js-actions-dropdown-1').removeClass('show');
+		if (!e.target.matches('.js-dropdown-btn-classes')) {
+			$('.js-actions-dropdown-classes').removeClass('show');
 		}
 	}
 }
