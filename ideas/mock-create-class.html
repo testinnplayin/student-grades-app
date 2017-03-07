@@ -10,6 +10,7 @@
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 		<link rel="stylesheet" href="./grid.css" type="text/css">
 		<link rel="stylesheet" href="./main.css" type="text/css" />
+    <link rel="stylesheet" href="/create-class.css" />
 	</head>
 	<body>
 		<header>
@@ -22,7 +23,7 @@
                 <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
                 <button class="dropdown-btn js-dropdown-btn-classes" type="button">Classes</button>
                 <div class="actions-dropdown js-actions-dropdown-classes">
-                  <a href="/classes/class/create" role="button" value="class-number" class="class-finder">Add Class</a
+                  <a href="/classes/class/create" role="button" value="class-number" class="class-finder">Add Class</a>
                   <a href="/classes/edit/class-number" role="button" value="class-number" class="class-finder">Edit Class</a>
                   <button type="button" class="js-send-to-del-trigger" value="class-number">Delete Class</button>
                   <a href="/classes/class/view/class-number" role="button" value="class-number" class="class-finder">Go To Class</a>
@@ -48,18 +49,28 @@
 		<main>
 			<section class="main-content js-main-content">
 				<div class="content-container js-content-container">
-					<h3><i class="fa fa-book"></i> Add A Class</h3>
-					
+					<h3>Add New Class</h3>
+         			<form id="create-class-form">
+         				<div class="name-group js-f-group-0">
+         					<label for="class-name">Class Name</label>
+         					<input type="text" id="class-name" name="class-creation" placeholder="Enter class name (eg. Chem01)" />
+         				</div>
+         				<div class="subject-group js-f-group-1">
+         					<label for="subject">Subject</label>
+         					<input type="text" id="subject" name="class-creation" placeholder="Enter subject (eg. Chemistry)" />
+         				</div>
+         				<div class="grade-group js-f-group-2">
+         					<label for="grade-level">Grade Level</label>
+         					<input type="text" id="grade-level" name="class-creation" placeholder="Enter grade level (eg. 6th grade)" />
+         				</div>
+         				<div class="term-group js-f-group-3">
+         					<label for="term">Term</label>
+         					<input type="text" id="term" name="class-creation" placeholder="Enter term (eg. Spring, 2016)" />
+         				</div>
+                <button type="submit" name="button">Add Class</button>
+         			</form>
 				</div>
 			</section>
-			<div class="lightbox js-lightbox">
-				<div class="lb-content js-lb-content">
-					<div class="lb-close js-lb-close">X</div>
-					<div class="lb-container js-lb-container">
-						<!-- Where content will load -->
-					</div>
-				</div>
-			</div>
 		</main>
 
 		<footer>
