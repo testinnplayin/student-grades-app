@@ -76,6 +76,11 @@ nav ul {
 	margin-right: 40px;
 }
 
+nav ul li:hover,
+nav ul li:focus {
+	background-color: #845bff;
+}
+
 .secondary-nav {
 	background: #845bff;
 	padding: 20px 0;
@@ -98,6 +103,18 @@ nav ul li a {
 	display: block;
 	width: 50%;
 	text-transform: uppercase;
+}
+
+nav ul li button {
+	color: #d1c1ff;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+nav ul li button:hover,
+nav ul li button:focus {
+	background-color: #845bff;
+	color: #d1c1ff;
 }
 
 .current {
@@ -362,25 +379,36 @@ th {
 	background-color: #c1adff
 }
 
+/*.btn-div:focus,
+.btn-div:hover {
+	background-color: #c1adff;
+}*/
+
 .dropdown {
 	float: right;
 	position: relative;
 	display: inline-block;
 }
 
-.actions-dropdown {
+.actions-dropdown,
+.actions-dropdown-classes {
 	display: none;
 	position: absolute;
 	background-color: #d1c1ff;
 	min-width: 160px;
 	overflow: auto;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    right: 0;
-    z-index: 1;
+  z-index: 1;
+}
+
+.actions-dropdown {
+  right: 0;
 }
 
 .actions-dropdown a,
-.actions-dropdown button {
+.actions-dropdown button,
+.actions-dropdown-classes a,
+.actions-dropdown-classes button {
 	color: #000;
 	font-weight: bold;
 	font-size: 16px;
@@ -388,13 +416,15 @@ th {
 	padding: 15px;
 }
 
-.actions-dropdown a {
+.actions-dropdown a,
+.actions-dropdown-classes a {
 	text-decoration: none;
 	display: block;
 	text-align: center;
 }
 
-.actions-dropdown button {
+.actions-dropdown button,
+.actions-dropdown-classes button {
 	background-color: #d1c1ff;
 	border: none;
 	width: 100%;
@@ -407,6 +437,12 @@ th {
 
 .show {
 	display: block;
+}
+
+.dropdown-btn-classes {
+	background-color: #63f;
+	border: none;
+	position:static;
 }
 
 
@@ -497,6 +533,10 @@ footer {
 
 	.table {
 		width: 100%;
+	}
+
+	.actions-dropdown-classes {
+		min-width: 448px;
 	}
 
 	footer {
@@ -639,6 +679,10 @@ footer {
 
 	.dropdown-btn {
 		margin-right: 0px;
+	}
+
+	.actions-dropdown-classes {
+		min-width: 114px;
 	}
 
 	.footer-container {

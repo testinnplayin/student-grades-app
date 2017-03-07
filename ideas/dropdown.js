@@ -2,7 +2,7 @@
 
 // example for one button
 
-function handleMoreClick() {
+function handleNavClick() {
 	$('.js-dropdown-btn-classes').click(function(e) {
 		e.preventDefault();
 
@@ -16,4 +16,23 @@ function handleMoreClick() {
 	}
 }
 
-$(document).ready(handleMoreClick());
+function handleMoreClick() {
+	$('.js-dropdown-btn-1').click(function(e) {
+		e.preventDefault();
+
+		$('.js-actions-dropdown-1').toggleClass('show');
+	});
+
+	window.onclick = function(e) {
+		if (!e.target.matches('.js-dropdown-btn-1')) {
+			$('.js-actions-dropdown-1').removeClass('show');
+		}
+	}
+}
+
+function handleActions() {
+	handleMoreClick();
+	handleNavClick();
+}
+
+$(document).ready(handleActions());
