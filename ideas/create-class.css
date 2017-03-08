@@ -76,16 +76,6 @@ nav ul {
 	margin-right: 40px;
 }
 
-.secondary-nav {
-	background: #845bff;
-	padding: 20px 0;
-	height: auto;
-}
-
-.secondary-nav ul {
-	margin-right: 40px;
-}
-
 nav ul li a,
 .secondary-nav ul li {
 	color: #d1c1ff;
@@ -100,9 +90,25 @@ nav ul li a {
 	text-transform: uppercase;
 }
 
+nav ul li button {
+	color: #d1c1ff;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
 .current {
 	border: 1px solid #d1c1ff;
 	padding: 15px 10px 15px 15px;
+}
+
+.secondary-nav {
+	background: #845bff;
+	padding: 20px 0;
+	height: auto;
+}
+
+.secondary-nav ul {
+	margin-right: 40px;
 }
 
 .secondary-nav li,
