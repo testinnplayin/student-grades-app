@@ -121,18 +121,22 @@ main {
   main:after {
     content: "";
     display: block; }
-  main .main-content .content-container {
+  main .container .title-stuff .btn {
+    margin-bottom: 10px; }
+  main .container .main-content .content-container {
     border: 1px solid #000;
     border-radius: 5px; }
-    main .main-content .content-container h3 {
+    main .container .main-content .content-container h3 {
       padding-left: 15px; }
+    main .container .main-content .content-container .class-table .btn {
+      margin-left: 5px;
+      margin-right: 5px; }
 
 footer {
   background: #eee;
   border-top: 1px solid #000;
   margin-top: 50px; }
   footer .container {
-    margin-top: 20px;
-    margin-left: 10px; }
+    margin-top: 20px; }
     footer .container .col-xs-4 li {
       margin-left: -10px; }
