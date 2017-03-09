@@ -32,6 +32,10 @@
 		width: $full-dim;
 	}
 
+	.actions-dropdown-classes {
+		min-width: 448px;
+	}
+
 	footer {
 		height: $val-2;
 	}
@@ -57,7 +61,7 @@
 
 	nav ul li,
 	.secondary-nav ul li {
-		display: map-get($disp, inln);
+		display: map-get($disp, in-b);
 	}
 
 	nav ul li a,

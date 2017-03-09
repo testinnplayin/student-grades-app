@@ -27,15 +27,25 @@ nav {
 		list-style: $none;
 		li {
 			a {
-				text-decoration: $none;
 				@include t-bck-lists(map-get($back-color, dark), map-get($back-color, m-dark))
 				color: map-get($t-color, light);
 				text: {
 					align: $t-cent;
 					transform: $t-up;
+					decoration: $none;
 				}
-				@include p-m-w(3 * $val-1 2 * $val-1 3 * $val-1 3 * $val-1, $val-1 auto, $half-dim);
+				margin: $val-1 auto;
+				width: $half-dim;
 				display: map-get($disp, bl);
+			}
+			button {
+				color: map-get($t-color, light);
+				text-transform: $t-up;
+				font-weight: map-get($t-weight, bold);
+				&:focus,
+				&:hover {
+					background-color: map-get($back-color, m-dark);
+				}
 			}
 		}
 	}
@@ -43,7 +53,7 @@ nav {
 
 .current {
 	border: $border-l;
-	padding: 15px 10px 15px 15px;
+	// padding: 15px 10px 15px 15px;
 }
 
 
@@ -305,43 +315,66 @@ h1 {
 	display: map-get($disp, in-b);
 }
 
-.actions-dropdown {
+.actions-dropdown,
+.actions-dropdown-classes {
 	display: map-get($disp, no);
 	position: absolute;
 	min-width: 32 * $val-1;
 	overflow: $auto;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    right: 0;
-    z-index: 1;
-    a,
-    button {
-    	@include t-bck-lists(map-get($back-color, v-v-light), map-get($back-color, m-dark))
+  z-index: 1;
+  a,
+  button {
+  	@include t-bck-lists(map-get($back-color, v-v-light), map-get($back-color, m-dark))
 		color: map-get($t-color, med);
 		font: {
 			weight: map-get($t-weight, bold);
 			size: $t-sm-size;
 		}
-		text-transform: $t-up;
-		padding: 3 * $val-1;
-    }
-
-    a {
 		text: {
-			decoration: $none;
+			transform: $t-up;
 			align: $t-cent;
 		}
-		display: map-get($disp, bl);
-    }
+		padding: 3 * $val-1;
+		width: 100%;
+  }
 
-    button {
-		background-color: map-get($back-color, v-v-light);
-		border: $none;
-		width: $full-dim;
-    }
+  a {
+	text: {
+		decoration: $none;
+		align: $t-cent;
+	}
+	display: map-get($disp, bl);
+  }
+
+  button {
+	background-color: map-get($back-color, v-v-light);
+	border: $none;
+	width: $full-dim;
+  }
+}
+
+.actions-dropdown-classes a {
+		width: 100%;
+}
+
+.actions-dropdown {
+	right: 0;
 }
 
 .show {
 	display: map-get($disp, bl);
+}
+
+.dropdown-btn-classes {
+	@include t-bck-lists(map-get($back-color, dark), map-get($back-color, m-dark));
+	border: $none;
+	width: $full-dim;
+	position: static;
+	padding: 3 * $val-1 2 * $val-1 3 * $val-1;
+	color: map-get($t-color, light);
+	text-transform: $t-up;
+	font-weight: map-get($t-weight, bold);
 }
 
 

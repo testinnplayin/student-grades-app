@@ -98,7 +98,7 @@ nav ul li button {
 nav ul li button:hover,
 nav ul li button:focus {
 	background-color: #845bff;
-	color: #d1c1ff;
+	/*color: #d1c1ff;*/
 }
 
 .current {
