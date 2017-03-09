@@ -55,7 +55,7 @@ function renderAddClassBtn(view) {
 		$(titleArea)
 		.append('<h1>Student Grades App</h1>')
 		.append('<a>Add A Class</a>');
-		
+
 		$(titleArea)
 		.find('a')
 		.attr('role', 'button')
@@ -119,7 +119,7 @@ function drawDelButton(value) {
 	.text('Delete');
 }
 
-function handleMoreClick(index) {
+function handleDropDownClick(index) {
 	$('.js-dropdown-btn-' + index).click(function(e) {
 		e.preventDefault();
 
@@ -181,7 +181,7 @@ function drawDropdown(value, index) {
 	.attr('value', value)
 	.text('Go To Class');
 
-	handleMoreClick(index);
+	handleDropDownClick(index);
 }
 
 function drawLightbox() {
@@ -413,11 +413,19 @@ function handleDeleteClick() {
 	});
 }
 
+function handleNavClicks(navs) {
+	navs.forEach(function(nav) {
+		handleDropDownClick(nav);
+	});
+}
+
 function handleActions() {
-	var currentView = 'index';
+	var currentView = 'index',
+		navs = ['classes'];
 
 	checkState(currentView);
 	selectTabs();
+	handleNavClicks(navs);
 }
 
 $(document).ready(handleActions());
