@@ -76,21 +76,6 @@ nav ul {
 	margin-right: 40px;
 }
 
-nav ul li:hover,
-nav ul li:focus {
-	background-color: #845bff;
-}
-
-.secondary-nav {
-	background: #845bff;
-	padding: 20px 0;
-	height: auto;
-}
-
-.secondary-nav ul {
-	margin-right: 40px;
-}
-
 nav ul li a,
 .secondary-nav ul li {
 	color: #d1c1ff;
@@ -118,6 +103,16 @@ nav ul li button:focus {
 
 .current {
 	border: 1px solid #d1c1ff;
+}
+
+.secondary-nav {
+	background: #845bff;
+	padding: 20px 0;
+	height: auto;
+}
+
+.secondary-nav ul {
+	margin-right: 40px;
 }
 
 .secondary-nav li,
@@ -265,6 +260,30 @@ nav ul li button:focus {
 
 
 
+/* MAIN-CONTENT STYLES */
+
+.main-content {
+	height: auto;
+	width: 100%;
+	margin: 0 auto;
+	padding: 25px;
+}
+
+.main-content .content-container h3 {
+	text-transform: uppercase;
+	font-weight: bold;
+	text-align: center;
+	color: #140a33;
+}
+
+.content-container {
+	height: auto;
+	width: 100%;
+	margin: 15px auto;
+}
+
+
+
 /* TITLE AREA STYLES */
 
 .title-area {
@@ -294,30 +313,6 @@ h1 {
 .title-stuff a:focus,
 .title-stuff a:hover {
 	background-color: #845bff;
-}
-
-
-
-/* MAIN-CONTENT STYLES */
-
-.main-content {
-	height: auto;
-	width: 100%;
-	margin: 0 auto;
-	padding: 25px;
-}
-
-.main-content .content-container h3 {
-	text-transform: uppercase;
-	font-weight: bold;
-	text-align: center;
-	color: #140a33;
-}
-
-.content-container {
-	height: auto;
-	width: 100%;
-	margin: 15px auto;
 }
 
 
@@ -375,11 +370,6 @@ th {
 .dropdown-btn:hover {
 	background-color: #c1adff
 }
-
-/*.btn-div:focus,
-.btn-div:hover {
-	background-color: #c1adff;
-}*/
 
 .dropdown {
 	float: right;

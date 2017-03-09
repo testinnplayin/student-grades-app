@@ -83,7 +83,6 @@ nav ul li a,
 }
 
 nav ul li a {
-	padding: 15px 10px 15px 15px;
 	margin: 5px auto;
 	display: block;
 	width: 50%;
@@ -94,6 +93,12 @@ nav ul li button {
 	color: #d1c1ff;
 	text-transform: uppercase;
 	font-weight: bold;
+}
+
+nav ul li button:hover,
+nav ul li button:focus {
+	background-color: #845bff;
+	color: #d1c1ff;
 }
 
 .current {
@@ -192,11 +197,6 @@ h1 {
 	background-color: #c1adff
 }
 
-.btn-div:focus,
-.btn-div:hover {
-	background-color: #c1adff;
-}
-
 .dropdown {
 	float: right;
 	position: relative;
@@ -256,6 +256,7 @@ h1 {
 	background-color: #63f;
 	border: none;
 	position:static;
+	padding: 15px 10px 15px 15px;
 }
 
 
