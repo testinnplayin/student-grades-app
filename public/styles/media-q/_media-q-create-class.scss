@@ -1,0 +1,21 @@
+@import "../_mix-n-var";
+
+
+@media screen and (min-width: map-get($breaks, md-scr)) {
+  form {
+    width: 7 * $tenth;
+    button {
+      max-width: 30%;
+      margin: 3 * $val-1 auto 3 * $val-1 3 * $val-1;
+    }
+  }
+}
+
+@media screen and (min-width: map-get($breaks, lg-scr)) {
+  form {
+    width: 6 * $tenth;
+    button {
+      width: 3 * $val-1;
+    }
+  }
+}

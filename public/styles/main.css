@@ -372,6 +372,33 @@ footer {
       .footer-div ul li a:focus, .footer-div ul li a:hover {
         background-color: #845bff; }
 
+form {
+  margin: 20px auto;
+  width: 95%; }
+  form .form-group {
+    margin: 10px auto;
+    width: 95%; }
+    form .form-group label {
+      text-transform: uppercase;
+      display: block;
+      font-weight: bold;
+      line-height: 1.5em;
+      margin-bottom: 15px; }
+    form .form-group input {
+      padding: 10px 15px;
+      width: 100%;
+      background-color: #fff; }
+      form .form-group input:focus, form .form-group input:hover {
+        background-color: #c1adff; }
+  form button {
+    padding: 10px;
+    margin: 15px auto 15px 15px;
+    width: 95%;
+    background-color: #63f;
+    color: #d1c1ff; }
+    form button:focus, form button:hover {
+      background-color: #845bff; }
+
 main .main-content .content-container h3 {
   padding-left: 15px; }
 
@@ -574,6 +601,19 @@ main .main-content .content-container form {
     width: 100%; }
     .footer-container .row {
       max-width: 100%; } }
+
+@media screen and (min-width: 1000px) {
+  form {
+    width: 70%; }
+    form button {
+      max-width: 30%;
+      margin: 15px auto 15px 15px; } }
+
+@media screen and (min-width: 1200px) {
+  form {
+    width: 60%; }
+    form button {
+      width: 15px; } }
 
 /* GENERAL STYLES */
 html {
