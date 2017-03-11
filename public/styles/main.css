@@ -372,6 +372,49 @@ footer {
       .footer-div ul li a:focus, .footer-div ul li a:hover {
         background-color: #845bff; }
 
+main .main-content .content-container h3 {
+  padding-left: 15px; }
+
+main .main-content .content-container p {
+  margin-left: 5px; }
+
+main .main-content .content-container form {
+  margin: 15px 5px; }
+  main .main-content .content-container form .form-group label {
+    margin-top: 5px; }
+  main .main-content .content-container form #submit-btn {
+    display: block;
+    margin: 15px auto; }
+
+.lightbox {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  text-align: center;
+  position: fixed;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.7); }
+  .lightbox .lb-content {
+    vertical-align: middle;
+    background-color: #63f;
+    overflow: scroll;
+    position: absolute;
+    z-index: 20px;
+    width: 100%;
+    top: 50%;
+    left: 0; }
+    .lightbox .lb-content .lb-close {
+      color: #000;
+      font-weight: bold;
+      font-size: 20px;
+      position: absolute;
+      top: 10px;
+      right: 20px; }
+    .lightbox .lb-content .lb-container {
+      width: 90%;
+      margin-top: 10px; }
+
 @media screen and (min-width: 365px) {
   th,
   td,
@@ -531,49 +574,6 @@ footer {
     width: 100%; }
     .footer-container .row {
       max-width: 100%; } }
-
-main .main-content .content-container h3 {
-  padding-left: 15px; }
-
-main .main-content .content-container p {
-  margin-left: 5px; }
-
-main .main-content .content-container form {
-  margin: 15px 5px; }
-  main .main-content .content-container form .form-group label {
-    margin-top: 5px; }
-  main .main-content .content-container form #submit-btn {
-    display: block;
-    margin: 15px auto; }
-
-.lightbox {
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  text-align: center;
-  position: fixed;
-  display: none;
-  background-color: rgba(0, 0, 0, 0.7); }
-  .lightbox .lb-content {
-    vertical-align: middle;
-    background-color: #63f;
-    overflow: scroll;
-    position: absolute;
-    z-index: 20px;
-    width: 100%;
-    top: 50%;
-    left: 0; }
-    .lightbox .lb-content .lb-close {
-      color: #000;
-      font-weight: bold;
-      font-size: 20px;
-      position: absolute;
-      top: 10px;
-      right: 20px; }
-    .lightbox .lb-content .lb-container {
-      width: 90%;
-      margin-top: 10px; }
 
 /* GENERAL STYLES */
 html {

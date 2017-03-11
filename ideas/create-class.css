@@ -178,6 +178,54 @@ h1 {
 
 
 
+/* FORM STYLES */
+
+form {
+	margin: 20px auto;
+	width: 95%;
+}
+
+.form-group {
+	margin: 10px auto;
+	width: 95%;
+}
+
+.form-group label {
+	font-weight: bold;
+	text-transform: uppercase;
+	line-height: 1.5em;
+	display: block;
+	margin-bottom: 15px;
+	color: #140a33;
+}
+
+.form-group input {
+	padding: 10px 15px;
+	background-color: #fff;
+	width: 100%;
+}
+
+.form-group input:focus,
+.form-group input:hover {
+	background-color: #c1adff;
+}
+
+form button {
+	padding: 10px 15px;
+	font-weight: bold;
+	text-transform: uppercase;
+	display: inline-block;
+	margin: 15px auto 15px 5px;
+	width: 95%;
+}
+
+form button:focus,
+form button:hover {
+	background-color: #fff;
+	cursor: pointer;
+}
+
+
 /* TABLE DROPDOWN BUTTON */
 
 .dropdown-btn {
@@ -305,4 +353,133 @@ footer {
 .footer-div ul li a:focus,
 .footer-div ul li a:hover {
 	color: #d1c1ff;
+}
+
+
+
+/* MEDIA QUERIES */
+
+@media screen and (min-width: 640px) {
+	nav {
+		height: 400px;
+		padding: 25px;
+	}
+
+	nav ul li {
+		margin: 15px 40px 10px 0;
+	}
+
+	.footer-div {
+		width: 25%;
+	}
+
+	.actions-dropdown-classes {
+		min-width: 448px;
+	}
+
+	footer {
+		height: 400px;
+	}
+
+	.footer-container {
+		width: 100%;
+	}
+
+	.footer-div {
+		display: inline-block;
+	}
+
+	.left {
+		float: left;
+	}
+
+	.middle {
+		clear: both;
+	}
+
+	.right {
+		float: right;
+	}
+}
+
+@media screen and (min-width: 1000px) {
+	nav {
+		height: auto;
+	}
+
+	nav ul {
+		padding-top: 15px;
+	}
+
+	nav ul li,
+	.secondary-nav ul li {
+		display: inline-block;
+	}
+
+	nav ul li a,
+	.secondary-nav ul li a {
+		display: inline;
+	}
+
+	.secondary-nav {
+		padding: 10px 20px;
+	}
+
+
+	.secondary-nav ul li {
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+
+	form {
+		width: 70%;
+	}
+
+	form button {
+		max-width: 30%;
+		margin: 15px auto 15px 15px;
+	}
+
+	.dropdown-btn {
+		margin-right: 0px;
+	}
+
+	.actions-dropdown-classes {
+		min-width: 114px;
+	}
+
+	.footer-container {
+		width: 90%;
+	}
+
+	.footer-div {
+		margin-left: 50px;
+	}
+
+	.footer-div li {
+		margin: 5px 0;
+	}
+
+}
+
+@media screen and (min-width: 1200px) {
+	nav .row {
+		max-width: 100%;
+	}
+
+	form {
+		width: 60%;
+	}
+
+	form button {
+		width: 15%;
+	}
+
+	.footer-container {
+		width: 100%;
+	}
+
+	.footer-container .row {
+		max-width: 100%;
+	}
 }
