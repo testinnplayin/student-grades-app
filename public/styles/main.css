@@ -32,13 +32,6 @@ html {
   .col-12 {
     width: 100%; } }
 
-/* GENERAL STYLES FOR INDEX */
-.hidden {
-  display: none; }
-
-.show {
-  display: block; }
-
 /* NAV STYLES */
 header {
   width: 100%;
@@ -54,12 +47,13 @@ nav {
     list-style: none; }
     nav ul li a {
       background-color: #63f;
+      padding: 15px 10px 15px;
+      margin: 5px auto;
+      width: 50%;
       color: #d1c1ff;
       text-align: center;
       text-transform: uppercase;
       text-decoration: none;
-      margin: 5px auto;
-      width: 50%;
       display: block; }
       nav ul li a:focus, nav ul li a:hover {
         background-color: #845bff; }
@@ -72,6 +66,13 @@ nav {
 
 .current {
   border: 1px solid #d1c1ff; }
+
+/* GENERAL STYLES FOR INDEX */
+.hidden {
+  display: none; }
+
+.show {
+  display: block; }
 
 /* SECONDARY AND TERTIARY NAVS */
 .secondary-nav {

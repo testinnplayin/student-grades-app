@@ -12,52 +12,6 @@
 
 
 
-/* NAV STYLES */
-
-header {
-	@include full-d($full-dim, $auto);
-	margin-top: -5 * $val-1;
-}
-
-nav {
-	@include height-n-col($auto, map-get($back-color, dark));
-	padding-top: 6 * $val-1;
-	ul {
-		margin-right: 8 * $val-1;
-		list-style: $none;
-		li {
-			a {
-				@include t-bck-lists(map-get($back-color, dark), map-get($back-color, m-dark))
-				color: map-get($t-color, light);
-				text: {
-					align: $t-cent;
-					transform: $t-up;
-					decoration: $none;
-				}
-				margin: $val-1 auto;
-				width: $half-dim;
-				display: map-get($disp, bl);
-			}
-			button {
-				color: map-get($t-color, light);
-				text-transform: $t-up;
-				font-weight: map-get($t-weight, bold);
-				&:focus,
-				&:hover {
-					background-color: map-get($back-color, m-dark);
-				}
-			}
-		}
-	}
-}
-
-.current {
-	border: $border-l;
-	// padding: 15px 10px 15px 15px;
-}
-
-
-
 /* SECONDARY AND TERTIARY NAVS */
 
 .secondary-nav {
