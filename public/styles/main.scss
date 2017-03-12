@@ -1,6 +1,8 @@
 @import "_mix-n-var";
 @import "_grid";
 @import "templates/_main-nav";
+@import "templates/_second-third-navs";
+@import "templates/_filters-banner";
 @import "templates/_index";
 @import "templates/_class-create-template";
 @import "templates/_class-list-template";
@@ -48,4 +50,15 @@ main {
 	overflow: hidden;
 	clip: rect($axes);
 	clip: rect($axes-c);
+}
+
+
+/* SHOWING and HIDING */
+
+.hidden {
+	display: map-get($disp, no);
+}
+
+.show {
+	display: map-get($disp, bl);
 }

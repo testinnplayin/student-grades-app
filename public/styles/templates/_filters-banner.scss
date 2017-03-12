@@ -1,0 +1,62 @@
+@import '../_mix-n-var';
+
+
+
+/* FILTERS STYLES */
+
+.filters {
+	@include p-m-w($val-1 0, 2 * $val-1 auto, 9 * $tenth);
+	text-transform: $t-up;
+	font-size: $t-sm-size;
+	color: map-get($t-color, med);
+	h2 {
+		font: {
+			size: $t-sm-size;
+			weight: map-get($t-weight, bold);
+		}
+	}
+
+	ul {
+		list-style: $none;
+		li {
+			font-weight: map-get($t-weight, bold);
+			padding: 2 * $val-1 0;
+			input[type="radio"] {
+				display: map-get($disp, no);
+				&:checked + label::before {
+					content: "\2022";
+					color: map-get($t-color, light);
+					font-size: 6 * $val-1;
+					text-align: center;
+					line-height: 18px;
+				}
+			}
+			label {
+				cursor: $point;
+				@include t-cl-lists(map-get($t-color, med), map-get($t-color, dark));
+				&::before {
+					content: "";
+					display: map-get($disp, in-b);
+					@include full-d(16px, 16px);
+					margin-right: 2 * $val-1;
+					background-color: map-get($back-color, light);
+					box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+					border-radius: 8px;
+				}
+			}
+		}
+	}
+
+	button {
+		@include text-disp-col($t-up, map-get($disp, bl), dark);
+		background-color: map-get($back-color, wh);
+		padding: 2 * $val-1;
+		font-weight: map-get($t-weight, bold);
+		cursor: $point;
+		border: $none;
+		&:focus,
+		&:hover {
+			border: $border-d;
+		}
+	}
+}

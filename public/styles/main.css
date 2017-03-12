@@ -67,13 +67,6 @@ nav {
 .current {
   border: 1px solid #d1c1ff; }
 
-/* GENERAL STYLES FOR INDEX */
-.hidden {
-  display: none; }
-
-.show {
-  display: block; }
-
 /* SECONDARY AND TERTIARY NAVS */
 .secondary-nav {
   height: auto;
@@ -631,3 +624,10 @@ main {
   overflow: hidden;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px); }
+
+/* SHOWING and HIDING */
+.hidden {
+  display: none; }
+
+.show {
+  display: block; }
