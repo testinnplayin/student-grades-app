@@ -70,14 +70,20 @@
 		</header>
 		<main>
 			<section class="filters">
+				<h2>Filter By:</h2>
 				<div class="row">
-					<h2>Filter By:</h2>
-					<ul>
-						<li><input type="radio" name='filter' id='grade-level'><label for="grade-level">Grade Level (eg. 6th grade)</label></li>
-						<li><input type="radio" name="filter" id="term"><label for="term">Term (eg. Spring, 2017)</label></li>
-						<li><input type="radio" name="filter" id='category'><label for="category">Category (eg. Science)</label></li>
-						<li><input type="radio" name='filter' id='alphabet-order'><label for="alphabet-order">Alphabetical Order</label></li>
-					</ul>
+					<div class="col-6">
+						<ul>
+							<li><input type="radio" name='filter' id='grade-level'><label for="grade-level">Grade Level (eg. 6th grade)</label></li>
+							<li><input type="radio" name="filter" id="term"><label for="term">Term (eg. Spring, 2017)</label></li>
+						</ul>
+					</div>
+					<div class="col-6">
+						<ul>
+							<li><input type="radio" name="filter" id='category'><label for="category">Category (eg. Science)</label></li>
+							<li><input type="radio" name='filter' id='alphabet-order'><label for="alphabet-order">Alphabetical Order</label></li>
+						</ul>
+					</div>
 					<button type="button">Reset Filters</button>
 				</div>
 			</section>
