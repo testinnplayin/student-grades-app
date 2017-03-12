@@ -27,7 +27,17 @@
 								</div>
 							</div>
 						</li>
-						<li><a href="#">Students</a></li>
+						<li>
+							<div class="dropdown-classes js-dropdown-students">
+								<button type="button" name="dropdown-btn" class="dropdown-btn-classes js-dropdown-btn-students"><i class="fa fa-caret-square-o-down" aria-hidden="true"></i> Students</button>
+								<div class="actions-dropdown-classes js-actions-dropdown-students">
+									<a href="/students" role="button" value="class-number" class="class-finder">Add Student</a>
+									<a href="/students" role="button" value="class-number" class="class-finder">Edit Student</a>
+									<button type="button" class="js-send-to-del-trigger" value="class-number">Delete Student</button>
+									<a href="/students" role="button" value="class-number" class="class-finder">Go To Student</a>
+								</div>
+							</div>
+						</li>
 						<li><a href="#">Work</a></li>
 						<li><a href="#">Grades</a></li>
 					</ul>
@@ -46,8 +56,6 @@
 		<main>
 			<section class="main-content js-main-content">
 				<div class="content-container js-content-container">
-					<h3>Add New Class</h3>
-
 					<!-- Data loads here -->
 				</div>
 			</section>

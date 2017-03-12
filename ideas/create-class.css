@@ -180,7 +180,7 @@ h1 {
 
 /* FORM STYLES */
 
-form {
+.class-form {
 	margin: 20px auto;
 	width: 95%;
 }

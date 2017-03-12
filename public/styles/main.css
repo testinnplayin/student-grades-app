@@ -399,20 +399,6 @@ footer {
     .class-form button:focus, .class-form button:hover {
       background-color: #845bff; }
 
-main .main-content .content-container h3 {
-  padding-left: 15px; }
-
-main .main-content .content-container p {
-  margin-left: 5px; }
-
-main .main-content .content-container form {
-  margin: 15px 5px; }
-  main .main-content .content-container form .form-group label {
-    margin-top: 5px; }
-  main .main-content .content-container form #submit-btn {
-    display: block;
-    margin: 15px auto; }
-
 .lightbox {
   width: 100%;
   height: 100%;
@@ -510,7 +496,7 @@ main .main-content .content-container form {
           background-color: #fff; }
           .tertiary-nav ul li a:focus, .tertiary-nav ul li a:hover {
             text-decoration: underline; }
-  form {
+  #search-form {
     display: inline-block;
     float: right;
     padding-top: 25px; }
@@ -596,7 +582,7 @@ main .main-content .content-container form {
   .table tbody tr td {
     padding: 15px 40px; }
   .table tbody tr .edit {
-    padding-left: 700px; }
+    padding-left: 150px; }
   .footer-container {
     width: 100%; }
     .footer-container .row {

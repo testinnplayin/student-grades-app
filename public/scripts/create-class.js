@@ -1,5 +1,19 @@
 'use strict';
 
+function handleDropDownClickClassCreate(index) {
+	$('.js-dropdown-btn-' + index).click(function(e) {
+		e.preventDefault();
+
+		$('.js-actions-dropdown-' + index).toggleClass('show');
+	});
+
+	$(window).click(function(e) {
+		if (!e.target.matches('.js-dropdown-btn-' + index)) {
+			$('.js-actions-dropdown-' + index).removeClass('show');
+		}
+	});
+}
+
 function renderAlert(result, response) {
 	var mainContent = '.js-main-content',
 		alertSel = '.alert',
@@ -35,21 +49,25 @@ function renderAlert(result, response) {
 
 function renderForm() {
 	var form = 'form',
-		arr = ['className', 'subject', 'gradeLevel', 'term'],
+		arr = ['Class Name', 'Subject', 'Grade Level', 'Term'],
 		button = 'button',
 		contentContainer = '.js-content-container';
 
 	$(contentContainer).append('<h3>Add New Class</h3>');
 
-	$(contentContainer).append('<form></form>');
+	$(contentContainer).append('<form></form>')
+	.find('form')
+	.addClass('class-form');
 
 	for (let item in arr) {
 		$(form).append('<div class="form-group js-f-grp-' + item + '"></div>');
 	}
-	
+
 	for (let i = 0; i < arr.length; i++) {
 		let jsGrp = '.js-f-grp-' + i,
-			item = arr[i];
+			item = arr[i],
+			itemArr = item.toLowerCase().split(' '),
+			newItem = itemArr.join('-');
 
 		$(jsGrp)
 		.append("<label></label>")
@@ -57,12 +75,12 @@ function renderForm() {
 
 		$(jsGrp)
 		.find('label')
-		.attr('for', item)
+		.attr('for', newItem)
 		.text(item + ':');
 
 		$(jsGrp)
 		.find('input')
-		.attr('id', item)
+		.attr('id', newItem)
 		.attr('type', 'text')
 		.attr('placeholder', 'Enter ' + item)
 		.attr('required');
@@ -71,7 +89,7 @@ function renderForm() {
 		.find('#' + item + '')
 		.addClass('form-control');
 	}
-	
+
 	$(form).append("<button>Add Class</button>");
 
 	$(button)
@@ -145,6 +163,7 @@ function handleActions() {
 
 	checkState(currentView);
 	handleSubmit();
+	handleDropDownClickClassCreate('classes');
 }
 
 $(document).ready(handleActions());

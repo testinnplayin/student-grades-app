@@ -113,7 +113,7 @@
 		}
 	}
 
-	form {
+	#search-form {
 		display: map-get($disp, in-b);
 		float: $f-right;
 		padding-top: 5 * $val-1;
@@ -250,7 +250,7 @@
 	}
 
 	.table tbody tr .edit {
-		padding-left: 700px;
+		padding-left: 150px;
 	}
 
 	.footer-container {
