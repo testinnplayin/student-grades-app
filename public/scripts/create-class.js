@@ -158,12 +158,19 @@ function handleSubmit() {
 	});
 }
 
+function handleCreateNavClicks(navs) {
+	navs.forEach(function(nav) {
+		handleDropDownClickClassCreate(nav);
+	});
+}
+
 function handleActions() {
-	let currentView = 'createClass';
+	let currentView = 'createClass',
+		navs = ['classes', 'students'];
 
 	checkState(currentView);
+	handleCreateNavClicks(navs);
 	handleSubmit();
-	handleDropDownClickClassCreate('classes');
 }
 
 $(document).ready(handleActions());

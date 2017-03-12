@@ -421,7 +421,7 @@ function handleNavClicks(navs) {
 
 function handleActions() {
 	var currentView = 'index',
-		navs = ['classes'];
+		navs = ['classes', 'students'];
 
 	checkState(currentView);
 	selectTabs();

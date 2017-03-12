@@ -3,17 +3,21 @@
 // example for one button
 
 function handleMoreClick() {
-	$('.js-dropdown-btn-1').click(function(e) {
-		e.preventDefault();
+	let arr = ['classes', 'students'];
 
-		$('.js-actions-dropdown-1').toggleClass('show');
-	});
+	arr.forEach(function(item) {
+		$('.js-dropdown-btn-' + item).click(function(e) {
+			e.preventDefault();
 
-	window.onclick = function(e) {
-		if (!e.target.matches('.js-dropdown-btn-1')) {
-			$('.js-actions-dropdown-1').removeClass('show');
+			$('.js-actions-dropdown-' + item).toggleClass('show');
+		});
+
+		window.onclick = function(e) {
+			if (!e.target.matches('.js-dropdown-btn-' + item)) {
+				$('.js-actions-dropdown-' + item).removeClass('show');
+			}
 		}
-	}
+	});
 }
 
 $(document).ready(handleMoreClick());
