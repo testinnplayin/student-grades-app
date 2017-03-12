@@ -7,6 +7,7 @@
 @import "templates/_class-create-template";
 @import "templates/_class-list-template";
 @import "templates/_lightbox-styles";
+@import "templates/_footer";
 @import "media-q/_media-q-index";
 @import "media-q/_media-q-create-class";
 
@@ -61,4 +62,59 @@ main {
 
 .show {
 	display: map-get($disp, bl);
+}
+
+
+
+/* TITLE AREA STYLES */
+
+.title-area {
+	height: $auto;
+	margin: 3 * $val-1 auto;
+}
+
+h1 {
+	text: {
+		align: $t-cent;
+		transform: $t-up;
+	}
+	font-weight: map-get($t-weight, bold);
+	color: map-get($t-color, med);
+}
+
+.title-area a {
+	@include t-bck-lists(map-get($back-color, light), map-get($back-color, m-dark));
+	@include disp-marg(map-get($disp, bl), 2 * $val-1 auto);
+	color: map-get($t-color, dark);
+	text: {
+		transform: $t-up;
+		align: $t-cent;
+		decoration: $none;
+	}
+	padding: 3 * $val-1 2 * $val-1;
+	width: 4 * $tenth;
+}
+
+
+
+/* MAIN-CONTENT STYLES */
+
+.main-content {
+	@include full-d($full-dim, $auto);
+	margin: $m-z-aut;
+	padding: 5 * $val-1;
+}
+
+.main-content .content-container h3 {
+	text: {
+		transform: $t-up;
+		align: $t-cent;
+	}
+	font-weight: map-get($t-weight, bold);
+	color: map-get($t-color, med);
+}
+
+.content-container {
+	@include full-d($full-dim, $auto);
+	margin: 3 * $val-1 auto;
 }

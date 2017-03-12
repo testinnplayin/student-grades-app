@@ -2,61 +2,6 @@
 
 
 
-/* TITLE AREA STYLES */
-
-.title-area {
-	height: $auto;
-	margin: 3 * $val-1 auto;
-}
-
-h1 {
-	text: {
-		align: $t-cent;
-		transform: $t-up;
-	}
-	font-weight: map-get($t-weight, bold);
-	color: map-get($t-color, med);
-}
-
-.title-area a {
-	@include t-bck-lists(map-get($back-color, light), map-get($back-color, m-dark));
-	@include disp-marg(map-get($disp, bl), 2 * $val-1 auto);
-	color: map-get($t-color, dark);
-	text: {
-		transform: $t-up;
-		align: $t-cent;
-		decoration: $none;
-	}
-	padding: 3 * $val-1 2 * $val-1;
-	width: 4 * $tenth;
-}
-
-
-
-/* MAIN-CONTENT STYLES */
-
-.main-content {
-	@include full-d($full-dim, $auto);
-	margin: $m-z-aut;
-	padding: 5 * $val-1;
-}
-
-.main-content .content-container h3 {
-	text: {
-		transform: $t-up;
-		align: $t-cent;
-	}
-	font-weight: map-get($t-weight, bold);
-	color: map-get($t-color, med);
-}
-
-.content-container {
-	@include full-d($full-dim, $auto);
-	margin: 3 * $val-1 auto;
-}
-
-
-
 /* TABLE STYLES */
 
 .table {
@@ -187,53 +132,4 @@ h1 {
 	color: map-get($t-color, light);
 	text-transform: $t-up;
 	font-weight: map-get($t-weight, bold);
-}
-
-
-
-/* FOOTER STYLES */
-
-p {
-	font {
-		weight: normal;
-		size: $t-sm-size;
-	}
-	color: #d1c1ff;
-	text-transform: $t-up;
-}
-
-footer {
-	background-color: map-get($back-color, dark);
-	@include full-d($full-dim, 700px);
-	margin-top: 5 * $val-1;
-}
-
-.footer-container {
-	margin: $m-z-aut;
-	width: 55%;
-}
-
-.footer-div {
-	margin: 4 * $val-1 auto;
-	width: 80%;
-	ul {
-		list-style: $none;
-		padding: 3 * $val-1 2 * $val-1;
-		li {
-			a {
-				text: {
-					decoration: $none;
-					transform: $t-up;
-					align: $t-cent;
-				}
-				@include t-bck-lists(map-get($back-color, dark), map-get($back-color, m-dark))
-				color: map-get($t-color, dark);
-				display: map-get($disp, bl);
-				font-weight: map-get($t-weight, bold);
-				padding: 3 * $val-1 0;
-				width: 4 * $tenth;
-				margin-left: -$val-1;
-			}
-		}
-	}
 }
