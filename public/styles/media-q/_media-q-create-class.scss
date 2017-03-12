@@ -2,7 +2,7 @@
 
 
 @media screen and (min-width: map-get($breaks, md-scr)) {
-  form {
+  .class-form {
     width: 7 * $tenth;
     button {
       max-width: 30%;
@@ -12,7 +12,7 @@
 }
 
 @media screen and (min-width: map-get($breaks, lg-scr)) {
-  form {
+  .class-form {
     width: 6 * $tenth;
     button {
       width: 3 * $val-1;
