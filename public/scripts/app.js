@@ -23,6 +23,15 @@ const state = {
 	}
 };
 
+function selectTabs() {
+	$('.js-tab').click(function(e) {
+		e.preventDefault();
+
+		$('.js-tab.curr-tab').removeClass('curr-tab');
+		$(this).addClass('curr-tab');
+	});
+}
+
 function renderSelectClass(ele, view) {
 	if (state.viewProps[view].selected) {
 		$(ele).addClass('selected');
@@ -36,30 +45,31 @@ function setCurrentSpan(ele, view) {
 		$(ele).find('span').text('Current');
 	} else {
 		$(ele).find('span').text('');
-	}	
+	}
 }
 
 function renderAddClassBtn(view) {
-	var titleStuff = '.title-stuff';
-	$(titleStuff).empty();
+	var titleArea = '.title-area';
+	$(titleArea).empty();
 	if (state.viewProps[view].addClassBtn) {
-		$(titleStuff).append('<a>Add a Class</a>');
-		$(titleStuff)
+		$(titleArea)
+		.append('<h1>Student Grades App</h1>')
+		.append('<a>Add A Class</a>');
+
+		$(titleArea)
 		.find('a')
 		.attr('role', 'button')
 		.attr('href', "/classes/class/create")
 		.attr('id', 'js-add-class-btn')
-		.addClass('btn')
-		.addClass('btn-danger')
 		.addClass('add-class-btn');
 	} else {
-		$(titleStuff)
+		$(titleArea)
 		.find('a')
 		.remove();
 	}
 }
 
-function drawLbButtons(value, style, actn, type, txt) {
+function drawLbButtons(value, actn, type, txt) {
 	let ele = '#' + value;
 	$(ele)
 	.append('<button></button>');
@@ -67,28 +77,111 @@ function drawLbButtons(value, style, actn, type, txt) {
 	$(ele)
 	.find('button')
 	.attr('type', type)
-	.addClass('btn')
-	.addClass('btn-' + style)
 	.addClass('js-' + actn + '-trigger')
 	.text(txt);
 }
 
-function drawAnchorButton(text, href, style, value) {
+function drawAnchorButton(text, href, value) {
 	var ele = '#' + value,
 		fullHref = href + value;
 
-	$(ele).append('<a></a>');
+	$(ele).append('<td></td>');
 
 	$(ele)
+	.find('td')
+	.last()
+	.addClass('hidden')
+	.addClass(text.toLowerCase())
+	.append('<a></a>')
 	.find('a')
 	.last()
 	.attr('role', 'button')
-	.attr('id', value)
+	.attr('data', value)
 	.addClass('class-finder')
-	.addClass('btn')
-	.addClass(style)
 	.text(text)
 	.attr('href', fullHref);
+}
+
+function drawDelButton(value) {
+	var ele = '#' + value;
+
+	$(ele).append('<td></td>');
+
+	$(ele).find('td')
+	.last()
+	.addClass('hidden')
+	.addClass('delete')
+	.append('<button></button>')
+	.find('button')
+	.attr('type', 'button')
+	.attr("data", value)
+	.addClass('js-send-to-del-trigger')
+	.text('Delete');
+}
+
+function handleDropDownClick(index) {
+	$('.js-dropdown-btn-' + index).click(function(e) {
+		e.preventDefault();
+
+		$('.js-actions-dropdown-' + index).toggleClass('show');
+	});
+
+	$(window).click(function(e) {
+		if (!e.target.matches('.js-dropdown-btn-' + index)) {
+			$('.js-actions-dropdown-' + index).removeClass('show');
+		}
+	});
+}
+
+function drawDropdown(value, index) {
+	var id = '#' + value,
+		url2 = '/classes/class/view' + value,
+		url1 = '/classes/edit/' + value;
+
+	$(id).append('<td></td>')
+	.find('td')
+	.last()
+	.append('<div></div>')
+	.find('div')
+	.addClass('dropdown')
+	.addClass('js-dropdown-' + index)
+	.append('<button></button>')
+	.find('button')
+	.addClass('dropdown-btn')
+	.addClass('js-dropdown-btn-' + index)
+	.attr('type', 'button')
+	.text('More');
+
+	$('.js-dropdown-' + index)
+	.append('<div></div>')
+	.find('div')
+	.addClass('actions-dropdown')
+	.addClass('js-actions-dropdown-' + index)
+	.append('<a></a>')
+	.find('a')
+	.attr('href', url1)
+	.addClass('class-finder')
+	.attr('role', 'button')
+	.attr('value', value)
+	.text('Edit');
+
+	$('.js-actions-dropdown-' + index).append('<button></button>')
+	.find('button')
+	.addClass('js-send-to-del-trigger')
+	.attr('type', 'button')
+	.attr('value', value)
+	.text('Delete');
+
+	$('.js-actions-dropdown-' + index).append('<a></a>')
+	.find('a')
+	.last()
+	.addClass('class-finder')
+	.attr('href', url2)
+	.attr('role', 'button')
+	.attr('value', value)
+	.text('Go To Class');
+
+	handleDropDownClick(index);
 }
 
 function drawLightbox() {
@@ -163,19 +256,21 @@ function drawBodyRows(klasses) {
 
 
 		$('tbody').append('<tr id="' + value + '"></tr>').find('#' + value).append(classItem);
-		drawAnchorButton('Edit', '/classes/edit/', 'btn-info', value);
-		drawLbButtons(value, 'danger', 'send-to-del', 'button', 'Delete');
-		drawAnchorButton('Go to Class', '/classes/class/view/', 'btn-default', value);
+		//this will have to change because dropdown menu on small screens
+		drawAnchorButton('Edit', '/classes/edit/', value);
+		drawDelButton(value);
+		drawAnchorButton('Go to Class', '/classes/class/view/', value);
+		drawDropdown(value, i);
 		$('.js-send-to-del-trigger').val(value);
 	}
 }
 
 function drawHeadRow(klasses) {
-	let arr = ['Class Name', 'Subject', 'Grade Level', 'Term'],
+	let arr = ['Class', 'Subject', 'Grade', 'Term'],
 		lng = arr.length;
 
 	for (let i = 0; i < lng; i++) {
-		let classTitle = `<th>${arr[i]}:</th>`;
+		let classTitle = `<th>${arr[i]}</th>`;
 		$('thead').append(`<tr id="js-table-title"></tr>`).find(`#js-table-title`).append(classTitle);
 	}
 
@@ -190,15 +285,12 @@ function drawClassTable(klasses) {
 	drawBodyRows(klasses);
 }
 
-function renderInitialState(klasses, view) {	
+function renderInitialState(klasses, view) {
 	let jsKlasses = '.js-classes',
 		contentContainer = '.js-content-container';
 
 	$(contentContainer)
-	.append('<h3>List of Classes:</h3>')
-	.append('<div></div>')
-	.find('div')
-	.addClass('table-responsive')
+	.append('<h3><i class="fa fa-book"></i> List of Classes</h3>')
 	.append('<table></table>')
 	.find('table')
 	.addClass('table')
@@ -218,7 +310,7 @@ function renderInitialState(klasses, view) {
 function checkState(currentView) {
 	if (currentView === 'index') {
 		getKlasses(currentView);
-	} 
+	}
 }
 
 function deleteKlass(reqObj) {
@@ -268,7 +360,7 @@ function getKlasses(currentView) {
 
 function closeLb() {
 	$('.js-lightbox').css('display', 'none');
-	$('.js-lb-content .js-lb-style').html('');	
+	$('.js-lb-content .js-lb-style').html('');
 }
 
 function handleClose() {
@@ -294,7 +386,7 @@ function handleClassDeleteSubmit(klassId) {
 		e.stopPropagation();
 
 		var reqObj = {};
-		
+
 		reqObj.id = klassId;
 		console.log('request obj');
 		console.log(reqObj.id);
@@ -321,10 +413,19 @@ function handleDeleteClick() {
 	});
 }
 
+function handleNavClicks(navs) {
+	navs.forEach(function(nav) {
+		handleDropDownClick(nav);
+	});
+}
+
 function handleActions() {
-	var currentView = 'index';
+	var currentView = 'index',
+		navs = ['classes', 'students'];
 
 	checkState(currentView);
+	selectTabs();
+	handleNavClicks(navs);
 }
 
 $(document).ready(handleActions());

@@ -1,119 +1,120 @@
 @import "_mix-n-var";
+@import "_grid";
+@import "templates/_main-nav";
+@import "templates/_second-third-navs";
+@import "templates/_filters-banner";
+@import "templates/_index";
+@import "templates/_class-create-template";
 @import "templates/_class-list-template";
-@import "templates/_class-form-template";
 @import "templates/_lightbox-styles";
+@import "templates/_footer";
+@import "media-q/_media-q-index";
+@import "media-q/_media-q-create-class";
+
+
+
+/* GENERAL STYLES */
+
+html {
+	font-family: $font-fam;
+}
 
 html,
 body {
-	height: $hund-height;
+	height: $full-dim;
 }
 
-h1 {
-	text-align: $text-center;
-	margin-bottom: 30px;
-	font-size: 30px;
-	font-weight: bold;
+body {
+	width: $full-dim;
 }
 
-.navbar {
-	border-bottom: $border-styles;
-}
-
-.nav-stacked li {
-	margin: 5px 0;
-	a {
-		padding: 10px 20px;
-		border: $border-styles;
-		background: $head-foot-color;
-		border-radius: $border-rad;	
+p,
+a {
+	font: {
+		size: $t-sm-size;
+		weight: map-get($t-weight, bold);
 	}
-	.selected{
-		background: $selected-background;
-		&:link {
-			color: $selected-color;
-		}
-	}
-}
-
-
-.navbar-nav li a {
-	@include links(#bbb, #fff, #eee);
-}
-
-.nav-stacked li a:last-child,
-.navbar-text {
-	margin-left: 15px;
-}
-
-.navbar-stacked li:last-child {
-	@media screen and (min-width: $break-small) {
-		margin-top: $fiver;
-	}
-}
-
-.nav-stacked>li+li {
-	margin-top: $fiver;
-}
-
-
-.col-xs-4 {
-	li {
-		margin-left: -10px;
-	}
-}
-
-.create-student-btn,
-.add-class-btn {
-	margin-bottom: $tenner;
-}
-
-.class-finder {
-	margin: 0 5px;
 }
 
 main {
-	padding: 20px 0 75px 0;
-	margin-bottom: $main-margin;
-	min-height: $hund-height;
-	&:after {
-		content: "";
-		display: block;
-	}
-	.container {
-		.title-stuff {
-			.btn {
-				margin-bottom: 10px;
-			}
-		}
-		.main-content {
-			.content-container {
-				border: $border-styles;
-				border-radius: $border-rad;
-				h3 {
-					padding-left: 15px;
-				}
-				.class-table {
-					.btn {
-						margin-left: $border-rad;
-						margin-right: $border-rad;
-					}
-				}
-			}
-		}
-	}
+	margin-top: -2 * $val-1;
+	@include full-d($full-dim, $auto);
 }
 
-footer {
-	background: $head-foot-color;
-	border-top: $border-styles;
-	margin-top: $main-margin;
-	.container {
-		margin-top: 20px;
-		margin-left: $tenner;
-		.col-xs-4 {
-			li {
-				margin-left: -10px;
-			}
-		}
+
+
+/* SCREEN READER */
+
+.screen-reader {
+	position: absolute !important;
+	@include full-d(1px, 1px);
+	overflow: hidden;
+	clip: rect($axes);
+	clip: rect($axes-c);
+}
+
+
+/* SHOWING and HIDING */
+
+.hidden {
+	display: map-get($disp, no);
+}
+
+.show {
+	display: map-get($disp, bl);
+}
+
+
+
+/* TITLE AREA STYLES */
+
+.title-area {
+	height: $auto;
+	margin: 3 * $val-1 auto;
+}
+
+h1 {
+	text: {
+		align: $t-cent;
+		transform: $t-up;
 	}
+	font-weight: map-get($t-weight, bold);
+	color: map-get($t-color, med);
+}
+
+.title-area a {
+	@include t-bck-lists(map-get($back-color, light), map-get($back-color, m-dark));
+	@include disp-marg(map-get($disp, bl), 2 * $val-1 auto);
+	color: map-get($t-color, dark);
+	text: {
+		transform: $t-up;
+		align: $t-cent;
+		decoration: $none;
+	}
+	padding: 3 * $val-1 2 * $val-1;
+	width: 4 * $tenth;
+}
+
+
+
+/* MAIN-CONTENT STYLES */
+
+.main-content {
+	@include full-d($full-dim, $auto);
+	margin: $m-z-aut;
+	padding: 5 * $val-1;
+}
+
+.main-content .content-container h3 {
+	text: {
+		transform: $t-up;
+		align: $t-cent;
+	}
+	font-weight: map-get($t-weight, bold);
+	color: map-get($t-color, med);
+}
+
+.content-container {
+	@include full-d($full-dim, $auto);
+	margin: 3 * $val-1 auto;
 }

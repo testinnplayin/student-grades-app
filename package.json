@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha",
     "babel-watch": "babel public/scripts/app.js --watch --out-file public/scripts/app-compiled.js",
-    "start": "node start",
+    "start": "node server.js",
     "build-css": "node-sass --include-path scss public/styles/main.scss public/styles/main.css"
   },
   "keywords": [
@@ -34,6 +34,7 @@
     "babel-register": "^6.18.0",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
+    "chai-spies": "^0.7.1",
     "debug.log": "0.0.3",
     "faker": "^3.1.0",
     "mocha": "^3.2.0",

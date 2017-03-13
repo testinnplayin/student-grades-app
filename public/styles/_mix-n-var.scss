@@ -1,37 +1,119 @@
-@mixin links ($link, $hover, $active) {
-	& {
-		color: $link;
-		&:hover {
-			color: $hover;
-		}
-		&:active, &:focus {
-			color: $active;
-		}
-	}
-}
-
-@mixin lists ($normal, $hover) {
-	background: $normal;
+@mixin t-cl-lists ($normal, $hover) {
+	color: $normal;
 	&:hover, &:focus {
-		background: $hover;
+		color: $hover;
 	}
 }
 
-$container-width: 100%;
-$head-foot-color: #eee;
-$border-styles: 1px solid #000;
-$text-center: center;
-$border-rad: 5px;
-$break-small: 740px;
-$break-large: 1000px;
-$hund-height: 100%;
-$main-margin: 50px;
-$selected-background: #222;
-$selected-color: #fff;
-$zero: 0;
-$absolute: absolute;
-$twenty-pix: 20px;
-$half: 50%;
-$fiver: 5px;
-$tenner: 10px;
+@mixin t-bck-lists ($normal, $hover) {
+	background-color: $normal;
+	&:focus, &:hover {
+		background-color: $hover;
+	}
+}
 
+@mixin full-d ($width, $height) {
+	width: $width;
+	height: $height;
+}
+
+@mixin height-n-col ($height, $bck-col) {
+	height: $height;
+	background-color: $bck-col;
+}
+
+@mixin p-m-w ($pad, $marg, $wid) {
+	padding: $pad;
+	margin: $marg;
+	width: $wid;
+}
+
+@mixin text-disp-col ($text, $disp, $color) {
+	text-transform: $text;
+	display: $disp;
+	color: map-get($t-color, $color);
+}
+
+@mixin bord-style ($thick, $style, $color) {
+	border-color: $color;
+	border-style: $style;
+	border-width: $thick;
+}
+
+@mixin disp-marg ($disp, $marg) {
+	display: $disp;
+	margin: $marg;
+}
+
+$border-l: 1px solid #d1c1ff;
+$border-d: 1px solid #845bff;
+
+$back-color: (
+	m-dark: #845bff,
+	dark: #63f,
+	light: #a384ff,
+	v-light: #c1adff,
+	wh: #fff,
+	v-v-light: #d1c1ff,
+	lb: rgba(0, 0, 0, 0.7)
+);
+
+$t-color: (
+	light: #d1c1ff,
+	wh: #fff,
+	med: #140a33,
+	dark: #33197f,
+	gr: #777
+);
+
+$t-weight: (
+	normal: normal,
+	bold: bold
+);
+
+$axes: 1px 1px 1px 1px;
+$axes-c: 1px, 1px, 1px, 1px;
+
+$font-fam: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+$disp: (
+	bl: block,
+	inln: inline,
+	in-b: inline-block,
+	no: none
+);
+
+$breaks: (
+	v-sm-scr: 365px,
+	sm-scr: 640px,
+	md-scr: 1000px,
+	lg-scr: 1200px
+);
+
+$zero: 0;
+$tenth: 10%;
+$quat-dim: 25%;
+$half-dim: 50%;
+$full-dim: 100%;
+
+$val-1: 5px;
+$val-2: 400px;
+
+$t-cent: center;
+$t-xs-size: 12px;
+$t-sm-size: 16px;
+$t-m-size: 20px;
+$t-up: uppercase;
+
+$f-left: left;
+$f-right: right;
+
+$m-z-aut: 0 auto;
+
+$p-1: 15px 10px 15px;
+
+$none: none;
+$auto: auto;
+$abs: absolute;
+
+$point: pointer;
