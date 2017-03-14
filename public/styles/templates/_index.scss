@@ -1,0 +1,147 @@
+@import '../_mix-n-var';
+
+
+
+/* TABLE STYLES */
+
+.table {
+	width: $full-dim;
+}
+
+.table thead tr th,
+.table tbody tr td {
+	text-align: justify;
+	padding-right: 7px;
+	font-size: $t-xs-size;
+}
+
+.table {
+	border-collapse: collapse;
+	thead {
+		tr {
+			th {
+				text-transform: $t-up;
+				color: map-get($t-color, med);
+			}
+		}
+	}
+
+	tbody {
+		tr {
+			&:nth-child(odd) {
+				background-color: map-get($back-color, v-v-light);
+			}
+			td {
+				border-top: $none;
+				color: map-get($t-color, gr);
+			}
+		}
+	}
+}
+
+
+
+/* TABLE DROPDOWN BUTTON */
+
+
+
+/* SHOWING and HIDING */
+
+.hidden {
+	display: map-get($disp, no);
+}
+
+.show {
+	display: map-get($disp, bl);
+}
+
+.hidden {
+	a {
+		text-decoration: $none;
+		color: map-get($t-color, med);
+	}
+}
+
+.dropdown-btn,
+.hidden a,
+.hidden button {
+	@include t-bck-lists(map-get($back-color, m-dark), map-get($back-color, v-light));
+	text-transform: $t-up;
+	border: $none;
+	color: map-get($t-color, v-light);
+	padding: 2 * $val-1;
+	margin-right: -3 * $val-1;
+	cursor: $point;
+	font: {
+		weight: map-get($t-weight, bold);
+		size: $t-xs-size;
+	}
+}
+
+.dropdown {
+	float: $f-right;
+	position: relative;
+	display: map-get($disp, in-b);
+}
+
+.actions-dropdown,
+.actions-dropdown-classes {
+	display: map-get($disp, no);
+	position: absolute;
+	min-width: 32 * $val-1;
+	overflow: $auto;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  a,
+  button {
+  	@include t-bck-lists(map-get($back-color, v-v-light), map-get($back-color, m-dark))
+		color: map-get($t-color, med);
+		font: {
+			weight: map-get($t-weight, bold);
+			size: $t-sm-size;
+		}
+		text: {
+			transform: $t-up;
+			align: $t-cent;
+		}
+		padding: 3 * $val-1;
+		width: 100%;
+  }
+
+  a {
+	text: {
+		decoration: $none;
+		align: $t-cent;
+	}
+	display: map-get($disp, bl);
+  }
+
+  button {
+	background-color: map-get($back-color, v-v-light);
+	border: $none;
+	width: $full-dim;
+  }
+}
+
+.actions-dropdown-classes a {
+		width: 100%;
+}
+
+.actions-dropdown {
+	right: 0;
+}
+
+.show {
+	display: map-get($disp, bl);
+}
+
+.dropdown-btn-classes {
+	@include t-bck-lists(map-get($back-color, dark), map-get($back-color, m-dark));
+	border: $none;
+	width: $full-dim;
+	position: static;
+	padding: 3 * $val-1 2 * $val-1 3 * $val-1;
+	color: map-get($t-color, light);
+	text-transform: $t-up;
+	font-weight: map-get($t-weight, bold);
+}

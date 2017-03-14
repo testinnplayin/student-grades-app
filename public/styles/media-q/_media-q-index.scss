@@ -1,0 +1,262 @@
+@import '../_mix-n-var';
+
+@media screen and (min-width: map-get($breaks, v-sm-scr)) {
+	th,
+	td,
+	.dropdown-btn {
+		font-size: $t-sm-size;
+	}
+}
+
+@media screen and (min-width: map-get($breaks, sm-scr)) {
+	nav {
+		height: $val-2;
+		padding: 5 * $val-1;
+		ul {
+			li {
+				margin: 3 * $val-1 8 * $val-1 2 * $val-1 0;
+			}
+		}
+	}
+
+	.filters {
+		width: $half-dim;
+	}
+
+	.footer-div {
+		width: $quat-dim;
+	}
+
+	.table,
+	.footer-container {
+		width: $full-dim;
+	}
+
+	.actions-dropdown-classes {
+		min-width: 448px;
+	}
+
+	footer {
+		height: $val-2;
+	}
+
+	.footer-div {
+		display: map-get($disp, in-b);
+	}
+
+	.left {
+		float: $f-left;
+	}
+
+	.middle {
+		clear: both;
+	}
+
+	.right {
+		float: $f-right;
+	}
+}
+
+@media screen and (min-width: map-get($breaks, md-scr)) {
+
+	nav ul li,
+	.secondary-nav ul li {
+		display: map-get($disp, in-b);
+	}
+
+	nav ul li a,
+	.secondary-nav ul li a {
+		display: map-get($disp, inln);
+	}
+
+	nav {
+		height: $auto;
+		ul {
+			padding-top: 3 * $val-1;
+		}
+	}
+
+	.secondary-nav {
+		padding: 2 * $val-1 4 * $val-1;
+		ul {
+			li {
+				margin-left: 4 * $val-1;
+				margin-right: 4 * $val-1;
+			}
+		}
+	}
+
+	.tertiary-nav {
+		@include full-d($full-dim, 100px);
+		margin-top: $zero;
+		ul {
+			display: map-get($disp, in-b);
+			margin: $zero;
+			width: 65%;
+			float: $f-left;
+			padding-top: 8 * $val-1;
+			.curr-tab {
+				padding-bottom: 7 * $val-1
+			}
+			li {
+				display: map-get($disp, in-b);
+				margin-right: 4 * $val-1;
+				a {
+					display: map-get($disp, inln);
+					background-color: map-get($back-color, wh);
+					&:focus,
+					&:hover {
+						text-decoration: underline;
+					}
+				}
+			}
+		}
+	}
+
+	#search-form {
+		display: map-get($disp, in-b);
+		float: $f-right;
+		padding-top: 5 * $val-1;
+	}
+
+	#search-form {
+		input,
+		button {
+			padding: 13px;
+		}
+	}
+
+	.filters {
+		width: $full-dim;
+		.row {
+			max-width: $full-dim;
+		}
+
+		h2 {
+			text-align: $t-cent;
+		}
+
+		ul {
+			@include disp-marg(map-get($disp, in-b), 2 * $val-1 8 * $val-1);
+			li {
+				@include disp-marg(map-get($disp, in-b), 3 * $val-1 4 * $val-1);
+				padding: 2 * $val-1 4 * $val-1;
+			}
+		}
+
+		button {
+			@include disp-marg(map-get($disp, in-b), 0 0 0 95px);
+		}
+	}
+
+	.title-area a {
+		width: 3 * $tenth;
+	}
+
+	.table thead tr th,
+	.table tbody tr td {
+		padding: 3 * $val-1 5 * $val-1;
+		font-size: $t-sm-size;
+	}
+
+	.dropdown {
+		display: map-get($disp, no);
+	}
+
+	.hidden {
+		display: map-get($disp, in-b);
+	}
+
+	.hidden a,
+	.hidden button {
+		padding: 2 * $val-1 12px;
+		@include t-cl-lists(map-get($t-color, med), map-get($t-color, wh));
+		@include t-bck-lists(map-get($back-color, m-dark), map-get($back-color, dark));
+	}
+
+	.footer-container {
+		width: 9 * $tenth;
+	}
+
+	.footer-div {
+		margin-left: 10 * $val-1;
+		li {
+			margin: $val-1 0;
+		}
+	}
+
+	.lb-content {
+		top: $quat-dim;
+		height: $half-dim;
+		left: 2 * $tenth;
+		width: 6 * $tenth;
+	}
+
+	.lb-container {
+		width: $half-dim;
+		padding: 5 * $val-1 0;
+		margin: 150px auto;
+	}
+
+}
+
+@media screen and (min-width: map-get($breaks, lg-scr)) {
+
+	nav {
+		padding: 2 * $val-1 5 * $val-1;
+		.row {
+			max-width: $full-dim;
+		}
+	}
+
+	.tertiary-nav {
+		.row {
+			max-width: $full-dim;
+		}
+	}
+
+	#search-form {
+		width: 35%;
+		input {
+			width: 6 * $tenth;
+		}
+	}
+
+	.filters {
+		ul li,
+		ul li:last-child {
+			margin: 3 * $val-1 4 * $val-1;
+		}
+
+		ul {
+			li {
+				padding: $zero;
+			}
+		}
+
+		button {
+			margin: $zero;
+		}
+
+	}
+
+	.title-area a {
+		width: $tenth;
+	}
+
+	.table thead tr th,
+	.table tbody tr td {
+		padding: 3 * $val-1 8 * $val-1;
+	}
+
+	.table tbody tr .edit {
+		padding-left: 150px;
+	}
+
+	.footer-container {
+		width: $full-dim;
+		.row {
+			max-width: $full-dim;
+		}
+	}
+}

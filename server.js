@@ -48,6 +48,10 @@ app.get('/classes/class/:id/student/:studentId/edit', (req, res) => {
 	res.sendFile(__dirname + '/public/views/student-edit.html');
 });
 
+app.get('/classes/coming-soon', (req, res) => {
+	res.sendFile(__dirname + '/public/views/coming-soon.html');
+});
+
 
 //GET operations
 //classes GET for Read operation
