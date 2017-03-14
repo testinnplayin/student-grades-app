@@ -11,25 +11,46 @@
 	</head>
 	<body>
 		<header>
-			<nav class="navbar navbar-default">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false"></button>
-						<span class="sr-only">Toggle navigation bar</span>
-						<a href="/" class="navbar-brand">Student Grades App</a>
-					</div>
-					<div class="collapse navbar-collapse" id="collapsable-nav">
-						<ul class="navbar-nav nav nav-stacked">
-							<li role="presentation"><a href="/" class="js-classes">Classes<span class="sr-only"></span></a></li>
-							<li role="presentation"><a href="#" class="js-students">Students<span class="sr-only"></span></a></li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li role="presentation"><p class="navbar-text">Signed in as <a href="#">The Dude</a></p></li>						
-						</ul>
-					</div>
-					
+			<nav>
+				<div class="row">
+					<ul>
+						<li><a href="/">Student Grades App</a></li>
+						<li class="current">
+							<div class="dropdown-classes js-dropdown-classes">
+								<button type="button" name="dropdown-btn" class="dropdown-btn-classes js-dropdown-btn-classes"><i class="fa fa-caret-square-o-down" aria-hidden="true"></i> Classes</button>
+								<div class="actions-dropdown-classes js-actions-dropdown-classes">
+									<a href="/classes/class/create" role="button" value="class-number" class="class-finder">Add Class</a>
+									<a href="/classes/coming-soon" role="button" value="class-number" class="class-finder">Edit Class</a>
+									<button type="button" class="js-send-to-del-trigger" value="class-number">Delete Class</button>
+									<a href="/classes/coming-soon" role="button" value="class-number" class="class-finder">Go To Class</a>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="dropdown-classes js-dropdown-students">
+								<button type="button" name="dropdown-btn" class="dropdown-btn-classes js-dropdown-btn-students"><i class="fa fa-caret-square-o-down" aria-hidden="true"></i> Students</button>
+								<div class="actions-dropdown-classes js-actions-dropdown-students">
+									<a href="/classes/coming-soon" role="button" value="class-number" class="class-finder">Add Student</a>
+									<a href="/classes/coming-soon" role="button" value="class-number" class="class-finder">Edit Student</a>
+									<button type="button" class="js-send-to-del-trigger" value="class-number">Delete Student</button>
+									<a href="/classes/coming-soon" role="button" value="class-number" class="class-finder">Go To Student</a>
+								</div>
+							</div>
+						</li>
+						<li><a href="/classes/coming-soon">Work</a></li>
+						<li><a href="/classes/coming-soon">Grades</a></li>
+					</ul>
 				</div>
-			</nav>	
+			</nav>
+			<div class="secondary-nav">
+				<div class="row">
+					<ul>
+						<li>Logged in as: <a href="/classes/coming-soon">The Dude</a></li>
+						<li>Hello The Dude!</li>
+						<li>Date: 20th of February, 2017</li>
+					</ul>
+				</div>
+			</div>
 		</header>
 
 		<main>
@@ -59,31 +80,30 @@
 		</main>
 
 		<footer>
-			<div class="container">
+			<section class="footer-container">
 				<div class="row">
-					<div class="col-xs-4">
-						<ul class="nav">
-							<li><p>By R. Wood, 2016</p></li>
+					<div class="left footer-div col-4">
+						<p>By</p>
+						<ul>
+							<li><a href="/classes/coming-soon">R. Wood, 2016</a></li>
 						</ul>
-						
 					</div>
-					<div class="col-xs-4">
-						<p>Powered by:</p>
-						<ul class="nav">
+					<div class="center footer-div col-4">
+						<p>Powered by</p>
+						<ul>
 							<li><a href="#">jQuery</a></li>
-							<li><a href="#">Bootstrap</a></li>
 							<li><a href="#">Node.js</a></li>
 							<li><a href="#">Express</a></li>
 						</ul>
 					</div>
-					<div class="col-xs-4">
-						<p>Thanks to:</p>
-						<ul class="nav">
-							<li><a href="#">Glyphicon</a></li>
+					<div class="right footer-div col-4">
+						<p>Thanks to</p>
+						<ul>
+							<li><a href="#">Font Awesome</a></li>
 						</ul>
 					</div>
 				</div>
-			</div>
+			</section>
 		</footer>
 		<!-- SCRIPTS -->
 		<!-- Libraries -->
