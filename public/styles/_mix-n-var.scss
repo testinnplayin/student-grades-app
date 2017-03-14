@@ -45,8 +45,7 @@
 	margin: $marg;
 }
 
-$border-l: 1px solid #d1c1ff;
-$border-d: 1px solid #845bff;
+$light: #d1c1ff;
 
 $back-color: (
 	m-dark: #845bff,
@@ -54,12 +53,12 @@ $back-color: (
 	light: #a384ff,
 	v-light: #c1adff,
 	wh: #fff,
-	v-v-light: #d1c1ff,
+	v-v-light: $light,
 	lb: rgba(0, 0, 0, 0.7)
 );
 
 $t-color: (
-	light: #d1c1ff,
+	light: $light,
 	wh: #fff,
 	med: #140a33,
 	dark: #33197f,
@@ -89,6 +88,9 @@ $breaks: (
 	md-scr: 1000px,
 	lg-scr: 1200px
 );
+
+$border-l: 1px solid $light;
+$border-d: 1px solid #845bff;
 
 $zero: 0;
 $tenth: 10%;

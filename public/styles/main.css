@@ -199,6 +199,13 @@ nav {
     color: #777; }
 
 /* TABLE DROPDOWN BUTTON */
+/* SHOWING and HIDING */
+.hidden {
+  display: none; }
+
+.show {
+  display: block; }
+
 .hidden a {
   text-decoration: none;
   color: #140a33; }
@@ -582,13 +589,6 @@ main {
   overflow: hidden;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px); }
-
-/* SHOWING and HIDING */
-.hidden {
-  display: none; }
-
-.show {
-  display: block; }
 
 /* TITLE AREA STYLES */
 .title-area {

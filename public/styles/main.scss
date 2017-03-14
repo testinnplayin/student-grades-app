@@ -54,17 +54,6 @@ main {
 }
 
 
-/* SHOWING and HIDING */
-
-.hidden {
-	display: map-get($disp, no);
-}
-
-.show {
-	display: map-get($disp, bl);
-}
-
-
 
 /* TITLE AREA STYLES */
 
