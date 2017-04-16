@@ -159,6 +159,21 @@ app.delete('/classes/:id', (req, res) => {
 		});
 });
 
+app.delete('/classes/:id/student/:studentId', (req, res) => {
+	
+	Klass
+	.findByIdAndRemove(
+		{"students.studentId": req.params.studentId})
+		.exec()
+		.then(function(course) {
+			res.status(204).end();
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({ message : 'Internal server error, cannot delete student' });
+		});
+});
+
 //classes PUT for Update operation
 
 //updating class
