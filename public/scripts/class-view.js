@@ -51,7 +51,7 @@ function drawTableEditButton(rowId, whichClass, studentObj) {
 }
 
 function drawTableDeleteButton(rowId, whichClass, studentObj) {
-	let deleteButton = `<button href="/classes/${whichClass}/student/${studentObj.studentId}" value=${whichClass} class="btn btn-danger js-delete-student-btn js-send-to-del-trigger" role="button">Delete Student</button>`;
+	let deleteButton = `<button href="/xclasses/${whichClass}/student/${studentObj.studentId}" value=${whichClass} class="btn btn-danger js-delete-student-btn js-send-to-del-trigger" role="button">Delete Student</button>`;
 	return deleteButton;
 }
 

@@ -145,22 +145,8 @@ app.post('/classes', (req, res) => {
 
 //classes DELETE for Delete operation
 
-app.delete('/classes/:id', (req, res) => {
-
-	Klass
-		.findByIdAndRemove(req.params.id)
-		.exec()
-		.then(function(course) {
-			res.status(204).end();
-		})
-		.catch(err => {
-			console.error(err);
-			res.status(500).json({ message : 'Internal server error, cannot delete' });
-		});
-});
-
-app.delete('/classes/:id/student/:studentId', (req, res) => {
-	
+app.delete('/xclasses/:id/student/:studentId', (req, res) => {
+	alert('1');
 	Klass
 	.findByIdAndRemove(
 		{"students.studentId": req.params.studentId})
@@ -171,6 +157,20 @@ app.delete('/classes/:id/student/:studentId', (req, res) => {
 		.catch(err => {
 			console.error(err);
 			res.status(500).json({ message : 'Internal server error, cannot delete student' });
+		});
+});
+
+app.delete('/classes/:id', (req, res) => {
+alert('2');
+	Klass
+		.findByIdAndRemove(req.params.id)
+		.exec()
+		.then(function(course) {
+			res.status(204).end();
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({ message : 'Internal server error, cannot delete' });
 		});
 });
 
