@@ -267,7 +267,7 @@ function doDeleteStudent(reqObj) {
 	})
 	.done(function(data) {
 		let result = 'success',
-			response = 'Class successfully deleted';
+			response = 'Student successfully deleted';
 
 		console.log('successful delete operation');
 		closeLb();
@@ -276,7 +276,7 @@ function doDeleteStudent(reqObj) {
 	})
 	.fail(function(err) {
 		let result = 'fail',
-			response = 'Class was not successfully deleted';
+			response = 'Student was not successfully deleted';
 
 		console.error('unsuccessful delete operation');
 		console.error(err);

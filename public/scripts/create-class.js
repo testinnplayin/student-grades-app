@@ -107,6 +107,7 @@ function checkState(currentView) {
 }
 
 function sendClass(data) {
+	console.log(data);
 	$.ajax({
 		type: 'POST',
 		url: '/classes',
@@ -121,7 +122,7 @@ function sendClass(data) {
 		renderAlert(result, response);
 	})
 	.fail(function(err) {
-		let result = "failure".
+		let result = "failure",
 			response = "post to back end was not successful";
 
 		console.error(err);
@@ -140,9 +141,9 @@ function handleSubmit() {
 			gradeLevel,
 			term;
 
-		className = $('input[id="className"]').val();
+		className = $('input[id="class-name"]').val();
 		subject = $('input[id="subject"]').val();
-		gradeLevel = $('input[id="gradeLevel"]').val();
+		gradeLevel = $('input[id="grade-level"]').val();
 		term = $('input[id="term"]').val();
 
 		reqObj = {
