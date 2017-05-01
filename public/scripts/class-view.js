@@ -262,7 +262,7 @@ function doDeleteStudent(reqObj) {
 	console.log(reqObj);
 	$.ajax({
 		method: 'DELETE',
-		url: '/classes/' + reqObj.id,
+		url: '/classes/' + reqObj + '/student/007',
 		dataType: 'json'
 	})
 	.done(function(data) {

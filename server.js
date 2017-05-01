@@ -145,11 +145,11 @@ app.post('/classes', (req, res) => {
 
 //classes DELETE for Delete operation
 
-app.delete('/xclasses/:id/student/:studentId', (req, res) => {
-	alert('1');
+app.delete('/classes/:id/student/:studentId', (req, res) => {
+	console.log('1');
 	Klass
 	.findByIdAndRemove(
-		{"students.studentId": req.params.studentId})
+		{"students.studentId": parseInt(req.params.studentId)})
 		.exec()
 		.then(function(course) {
 			res.status(204).end();
@@ -161,7 +161,7 @@ app.delete('/xclasses/:id/student/:studentId', (req, res) => {
 });
 
 app.delete('/classes/:id', (req, res) => {
-alert('2');
+console.log('2');
 	Klass
 		.findByIdAndRemove(req.params.id)
 		.exec()

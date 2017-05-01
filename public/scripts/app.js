@@ -115,6 +115,7 @@ function drawDelButton(value) {
 	.find('button')
 	.attr('type', 'button')
 	.attr("data", value)
+	.attr('value', value)
 	.addClass('js-send-to-del-trigger')
 	.text('Delete');
 }
@@ -261,7 +262,7 @@ function drawBodyRows(klasses) {
 		drawDelButton(value);
 		drawAnchorButton('Go to Class', '/classes/class/view/', value);
 		drawDropdown(value, i);
-		$('.js-send-to-del-trigger').val(value);
+		// $('.js-send-to-del-trigger').val(value);
 	}
 }
 
