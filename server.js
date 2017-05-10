@@ -8,7 +8,7 @@ const babel = require('babel-core');
 const path = require('path');
 
 const {DATABASE_URL, PORT} = require('./config');
-const {Klass} = require('./models');
+const {Klass,Student} = require('./models');
 
 const app = express();
 
@@ -21,6 +21,11 @@ mongoose.Promise = global.Promise;
 
 
 //temporary place for API calls
+//creating students w studentSchema
+//-- inserting schema into klass objArr
+//filter student schema based on class obj id
+//update student crud methods to use shema
+
 
 //file sending
 
@@ -71,6 +76,19 @@ app.get('/classes', (req, res) => { //classes.data
 		res.status(500).json({ message : 'Internal server error' });
 	});
 });
+app.get('/students', (req, res) => { //classes.data
+	Student
+	.find()
+	.limit(10)
+	.exec()
+	.then(students => {
+		res.json({ students });
+	})
+	.catch(err => {
+		console.error(err);
+		res.status(500).json({ message : 'Internal server error' });
+	});
+});
 
 //get a specific class
 
@@ -108,7 +126,8 @@ app.get('/classes/view/class/:id', (req, res) => {
 	.findById(req.params.id)
 	.exec()
 	.then(function(course) {
-		res.json(course.studentApiRep());
+		// res.json(course.studentApiRep());
+		res.json(course);
 	})
 	.catch(function(err) {
 		console.error(err);
@@ -146,12 +165,22 @@ app.post('/classes', (req, res) => {
 //classes DELETE for Delete operation
 
 app.delete('/classes/:id/student/:studentId', (req, res) => {
-	console.log('1');
+	console.log('--> 1');
+
 	Klass
-	.findByIdAndRemove(
-		{"students.studentId": parseInt(req.params.studentId)})
+	// .findById(req.params.id)
+	.find({"students.studentId": parseInt(req.params.studentId)})
 		.exec()
 		.then(function(course) {
+			console.log('removing ----');
+			course.find({'students.studentId':req.params.studentId})
+			console.log(course);
+			console.log('----');
+			// Klass.find({'students.studentId':req.params.studentId})
+			// .exec()
+			// .then(function(student){console.log(student); console.log('bye bye student'); })
+			// {"students.studentId": parseInt(req.params.studentId)})
+
 			res.status(204).end();
 		})
 		.catch(err => {
@@ -243,8 +272,40 @@ app.put('/classes/:id/student', (req, res) => {
 		});
 });
 
-//updating a student
+//creating a student
+app.post('/classes/:id/student/', (req,res) =>{
+	console.log(req.body);
+	/*
+	{ id: '587d391361ad5f7944d5efb2',
+  className: 'Chem1',
+  subject: 'Chemistry',
+  gradeLevel: '6th',
+  term: 'Fall, 2017',
+  'students[0][studentid]': 'a',
+  'students[0][name][firstName]': 'b',
+  'students[0][name][lastName]': 'c' }
+	*/
+	// return;
 
+	Student
+		.create({
+			studentKlassId:req.body.id,
+			studentId: req.body['students[0][studentid]'],
+			name: {
+				firstName: req.body['students[0][name][firstName]'],
+				lastName: req.body['students[0][name][lastName]']
+			}
+		})
+		.then(function() {
+			res.redirect('/');
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({ message : 'Internal server error, cannot create' })
+		});
+});
+
+//updating a student
 app.put('/classes/:id/student/:studentId', (req, res) => {
 
 	// if(!(req.params && req.body.id && (req.params.studentId === req.body.id))) {

@@ -50,7 +50,7 @@ function renderStudentCreateForm(data) {
 		.append('<label></label>')
 		.append('<input />');
 	}
-	
+
 	for (let i = 0; i < arr.length; i++) {
 		let jsGrp = '.js-f-grp-' + i,
 			item = arr[i];
@@ -75,7 +75,7 @@ function renderStudentCreateForm(data) {
 		.find('#' + item + '')
 		.addClass('form-control');
 	}
-	
+
 	$(form).append("<button>Add Student</button>");
 
 	$(button)
@@ -113,7 +113,7 @@ function drawSmallerClassPanel(data) {
 
 
 	for (let i = 1; i < lng - 1; i++ ) {
-		let key = keys[i], 
+		let key = keys[i],
 		para = '<p><strong>' + keys[i] + ':</strong> ' + data[key] + '</p>';
 
 		$(jsPanelBody).append(para);
@@ -167,7 +167,7 @@ function retrieveKlass(classIdFromUrl) {
 
 function createStudent(requestObject, id) {
 	$.ajax({
-		method: 'PUT',
+		method: 'POST',
 		url: `/classes/${id}/student`,
 		data: requestObject,
 		dataType: 'json'
@@ -200,7 +200,7 @@ function handleCreateStudentSubmit(data) {
 		e.stopPropagation();
 
 		let studentId,
-			firstName, 
+			firstName,
 			lastName,
 			studentObj = {},
 			requestObject = {},
