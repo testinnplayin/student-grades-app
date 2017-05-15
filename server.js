@@ -102,7 +102,7 @@ app.get('/classes/:id', (req, res) => {
 
 	Klass
 	.findById(req.params.id)
-	.populate('_creator')
+	.populate('students')
 	.exec()
 	.then(function(course) {
 		res.json( course.apiRepr() );
@@ -300,6 +300,15 @@ app.put('/classes/:id/student', (req, res) => {
 app.post('/classes/:id/student/', (req,res) =>{
 	// let stdnt = JSON.parse(req.body);
 	console.log(req.body);
+	let stdntObj = {
+		_creator:req.body.studentKlassId,
+		studentKlassId:req.body.studentKlassId,
+		studentId: req.body.studentId,
+		name: {
+			firstName: req.body.name.firstName,
+			lastName: req.body.name.lastName
+		}
+	};
 	/*
 	{ id: '587d391361ad5f7944d5efb2',
   className: 'Chem1',
@@ -313,17 +322,16 @@ app.post('/classes/:id/student/', (req,res) =>{
 	// return;
 
 	Student
-		.create({
-			_creator:req.body.studentKlassId,
-			studentKlassId:req.body.studentKlassId,
-			studentId: req.body.studentId,
-			name: {
-				firstName: req.body.name.firstName,
-				lastName: req.body.name.lastName
-			}
-		})
-		.then(function() {
-			res.status(201).redirect('/');
+		.create(stdntObj)
+		.then(function(stdnt) {
+			console.log(stdnt);
+			Klass.findById(req.body.studentKlassId)
+			.then(function(course){
+				course.students.push(stdnt._id)
+				course.save();
+				res.status(201).redirect('/');
+				console.log(course);
+			})
 		})
 		.catch(err => {
 			console.error(err);
