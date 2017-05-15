@@ -298,8 +298,6 @@ app.put('/classes/:id/student', (req, res) => {
 
 //creating a student
 app.post('/classes/:id/student/', (req,res) =>{
-	// let stdnt = JSON.parse(req.body);
-	console.log(req.body);
 	let stdntObj = {
 		_creator:req.body.studentKlassId,
 		studentKlassId:req.body.studentKlassId,
@@ -309,17 +307,6 @@ app.post('/classes/:id/student/', (req,res) =>{
 			lastName: req.body.name.lastName
 		}
 	};
-	/*
-	{ id: '587d391361ad5f7944d5efb2',
-  className: 'Chem1',
-  subject: 'Chemistry',
-  gradeLevel: '6th',
-  term: 'Fall, 2017',
-  'students[0][studentid]': 'a',
-  'students[0][name][firstName]': 'b',
-  'students[0][name][lastName]': 'c' }
-	*/
-	// return;
 
 	Student
 		.create(stdntObj)
@@ -330,7 +317,6 @@ app.post('/classes/:id/student/', (req,res) =>{
 				course.students.push(stdnt._id)
 				course.save();
 				res.status(201).redirect('/');
-				console.log(course);
 			})
 		})
 		.catch(err => {
