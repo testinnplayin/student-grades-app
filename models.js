@@ -10,13 +10,14 @@ const gradesSchema = mongoose.Schema({
 });
 
 const studentSchema = mongoose.Schema({
+	_creator:{ type:mongoose.Schema.Types.ObjectId, ref:'Klass'},
 	studentKlassId:String,
 	studentId: String,
 	name: {
 		firstName: String,
 		lastName: String
-	},
-	grades: [gradesSchema]
+	}
+	// grades: [gradesSchema]
 });
 
 const classSchema = mongoose.Schema({
@@ -24,7 +25,7 @@ const classSchema = mongoose.Schema({
 	subject: String,
 	gradeLevel: String,
 	term: String,
-	students: [studentSchema]
+	students: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Student' }]
 });
 
 classSchema.methods.apiRepr = function() {

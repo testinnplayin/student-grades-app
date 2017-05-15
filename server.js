@@ -102,6 +102,7 @@ app.get('/classes/:id', (req, res) => {
 
 	Klass
 	.findById(req.params.id)
+	.populate('_creator')
 	.exec()
 	.then(function(course) {
 		res.json( course.apiRepr() );
@@ -111,6 +112,20 @@ app.get('/classes/:id', (req, res) => {
 		res.status(500).json({ message : 'Internal server error while fetching class' });
 	});
 
+});
+
+app.get('/student/:id',(req,res)=>{
+	Student
+	.findById(req.params.id)
+	.populate('_creator')
+	.exec()
+	.then(function(obj) {
+		res.json( obj );
+	})
+	.catch(function(err) {
+		console.error(err);
+		res.status(500).json({ message : 'Internal server error while fetching student' });
+	});
 });
 
 //class GET for Read operation for specific class view
@@ -169,13 +184,22 @@ app.delete('/classes/:id/student/:studentId', (req, res) => {
 
 	Klass
 	// .findById(req.params.id)
-	.find({"students.studentId": parseInt(req.params.studentId)})
+	// .find({"students.studentId": parseInt(req.params.studentId)})
+	//{name:'vlad','links.url':req.params.query}
+		.find({'Klass.id':req.params.id,'students.studentId':req.params.studentId})
 		.exec()
 		.then(function(course) {
-			console.log('removing ----');
-			course.find({'students.studentId':req.params.studentId})
 			console.log(course);
-			console.log('----');
+			console.log('removing ----');
+			// course.findOne({'students.studentId':req.params.studentId})
+			// .exec()
+			// .then(function(student){
+			// 	console.log('?>',student);
+			// })
+
+			// console.log(course);
+			// console.log('----');
+
 			// Klass.find({'students.studentId':req.params.studentId})
 			// .exec()
 			// .then(function(student){console.log(student); console.log('bye bye student'); })
@@ -274,6 +298,7 @@ app.put('/classes/:id/student', (req, res) => {
 
 //creating a student
 app.post('/classes/:id/student/', (req,res) =>{
+	// let stdnt = JSON.parse(req.body);
 	console.log(req.body);
 	/*
 	{ id: '587d391361ad5f7944d5efb2',
@@ -289,15 +314,16 @@ app.post('/classes/:id/student/', (req,res) =>{
 
 	Student
 		.create({
-			studentKlassId:req.body.id,
-			studentId: req.body['students[0][studentid]'],
+			_creator:req.body.studentKlassId,
+			studentKlassId:req.body.studentKlassId,
+			studentId: req.body.studentId,
 			name: {
-				firstName: req.body['students[0][name][firstName]'],
-				lastName: req.body['students[0][name][lastName]']
+				firstName: req.body.name.firstName,
+				lastName: req.body.name.lastName
 			}
 		})
 		.then(function() {
-			res.redirect('/');
+			res.status(201).redirect('/');
 		})
 		.catch(err => {
 			console.error(err);
